@@ -15,5 +15,8 @@ Using the format above, replace with your own `program`, `interests` and `projec
 
 # Acknowledgements
 
+The content on this site draws extensively from these repositories:
+
 - https://github.com/advanced-js/students
 - https://github.com/datacarpentry/R-ecology
+
