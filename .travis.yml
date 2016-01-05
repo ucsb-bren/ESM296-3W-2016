@@ -1,12 +1,17 @@
-sudo: false
 language: ruby
+
 rvm:
-  # https://pages.github.com/versions/ 
-  - 2.1.1
-cache: bundler
+- 2.1.1
+
 script:
-  - bundle exec ruby bin/validate.rb
-  - bundle exec jekyll build
+- jekyll build
+#- htmlproof ./_site # thorough check on links, but reports an excess of false errors currently so turning off
+
+# branch whitelist
 branches:
   only:
-    - gh-pages
+  - gh-pages     # test only the gh-pages branch
+
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
