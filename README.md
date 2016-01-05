@@ -1,4 +1,4 @@
-# Student directory [![Build Status](https://travis-ci.org/ucsb-bren/env-info.svg?branch=gh-pages)](https://travis-ci.org/ucsb-bren/env-info)
+# Environmental Informatics at UCSB [![Build Status](https://travis-ci.org/ucsb-bren/env-info.svg?branch=gh-pages)](https://travis-ci.org/ucsb-bren/env-info)
 
 Repository for practicing doing pull requests. Introduce yourself via a `GITHUB_USERNAME.json` file under [`_data/`](_data/) directory, and submit via pull request. Here's an example:
 
@@ -13,7 +13,7 @@ Repository for practicing doing pull requests. Introduce yourself via a `GITHUB_
 
 Using the format above, replace with your own `program`, `interests` and `project` idea.
 
-# Acknowledgements
+## Acknowledgements
 
 The content on this site draws extensively from these repositories:
 
