@@ -1,5 +1,3 @@
-# borrowed from https://github.com/data-lessons/NEON-R-Make-Pretty-Maps-Plots/blob/gh-pages/posts/_output.yaml
-# per https://github.com/data-lessons/NEON-R-Make-Pretty-Maps-Plots/blob/1614f9e18046c718200510980e4441339ec82ec0/README.md
 html_document:
   toc: true
   toc_depth: 4
@@ -13,8 +11,8 @@ html_document:
   css: 
     - //maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css # http://fortawesome.github.io/Font-Awesome/icons/
     - //cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.css          # https://octicons.github.com/
-    - styles.css
+    - styles/styles.css
   includes:
 #    in_header:   _output/header.html
-    before_body: _output/before_body.html
+    before_body: _includes/before_body.html
 #    after_body:  _output/after_body.html

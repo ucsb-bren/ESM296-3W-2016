@@ -1,15 +1,19 @@
-# Student directory [![Build Status](https://travis-ci.org/advanced-js/students.svg?branch=gh-pages)](https://travis-ci.org/advanced-js/students)
+# Student directory [![Build Status](https://travis-ci.org/ucsb-bren/env-info.svg?branch=gh-pages)](https://travis-ci.org/ucsb-bren/env-info)
 
-Repository for practicing doing pull requests. Introduce yourself via a `GITHUB_USERNAME.json` file under the appropriate [`_data/TERM_YEAR/`](_data/) directory, and submit via pull request. Here's an example:
+Repository for practicing doing pull requests. Introduce yourself via a `GITHUB_USERNAME.json` file under [`_data/`](_data/) directory, and submit via pull request. Here's an example:
 
 ```javascript
-// _data/spring_2015/afeld.json
+// _data/bbest.json
 {
-  "emoji": "dancer",
-  "introduction": "Developer at 18F by day, dancer by night."
+	"program": "lecturer",
+	"interests": "marine biology, species distribution modeling, spatial decision-making",
+	"project": "route ships around marine mammal hot spots"
 }
 ```
 
-Using the format above, replace with your own `emoji` (choose from [this list](http://www.emoji-cheat-sheet.com/)) and `introduction`.
+Using the format above, replace with your own `program`, `interests` and `project` idea.
 
-***Teachers: see the [meta](meta.md) file for usage instructions.***
+# Acknowledgements
+
+- https://github.com/advanced-js/students
+- https://github.com/datacarpentry/R-ecology

@@ -1,3 +1,9 @@
+/* push body below nav bar */
+body { 
+    padding-top: 65px; 
+}
+
+/* make octicons light gray in students.html */
 .vcard-details .octicon {
     color: #999;
 }

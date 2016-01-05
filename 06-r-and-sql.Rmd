@@ -96,10 +96,10 @@ results.
 
 Before we can do this, we need to re-establish a database connection.
 
-```{r connect}
+```{r connect-again}
 library(RSQLite)
 ## Set dbname and driver out of convenience
-myDB <- "portal_mammals.sqlite"
+myDB <- "data/portal_mammals.sqlite"
 conn <- dbConnect(drv = SQLite(), dbname= myDB)
 ```
 

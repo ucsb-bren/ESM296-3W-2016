@@ -8,9 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
+<meta name="author" content="Ben Best" />
 
 
-<title>schedule</title>
+<title>test</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +20,33 @@
 <script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
 
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; }
+code > span.dt { color: #dfdfbf; }
+code > span.dv { color: #dcdccc; }
+code > span.bn { color: #dca3a3; }
+code > span.fl { color: #c0bed1; }
+code > span.ch { color: #dca3a3; }
+code > span.st { color: #cc9393; }
+code > span.co { color: #7f9f7f; }
+code > span.ot { color: #efef8f; }
+code > span.al { color: #ffcfaf; }
+code > span.fu { color: #efef8f; }
+code > span.er { color: #c3bf9f; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css" />
@@ -71,21 +99,47 @@ img {
 </div>
 
 <div id="header">
-<h1 class="title">schedule</h1>
+<h1 class="title">test</h1>
+<h4 class="author"><em>Ben Best</em></h4>
 <h4 class="date"><em>January 5, 2016</em></h4>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#r-markdown">R Markdown</a><ul>
+<li><a href="#h3">H3</a><ul>
+<li><a href="#h4">H4</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#including-plots">Including Plots</a></li>
+</ul>
+</div>
 
-<!-- ###### INDEX OF LESSONS ON THIS TOPIC ###### -->
-<ol style="list-style-type: decimal">
-<li><a href="00-before-we-start.html">Lesson 00 Before we start</a></li>
-<li><a href="01-intro-to-R.html">Lesson 01 Introduction to R</a></li>
-<li><a href="02-starting-with-data.html">Lesson 02 Starting with data</a></li>
-<li><a href="03-data-frames.html">Lesson 03 Introducing <code>data.frame</code></a></li>
-<li><a href="04-dplyr.html">Lesson 04 Aggregating and analyzing data with dplyr</a></li>
-<li><a href="05-visualisation-ggplot2.html">Lesson 05 Data visualisation with ggplot2</a></li>
-<li><a href="06-r-and-sql.html">Lesson 06 R and SQL</a></li>
-</ol>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<div id="h3" class="section level3">
+<h3>H3</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(cars)</code></pre>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+<div id="h4" class="section level4">
+<h4>H4</h4>
+</div>
+</div>
+</div>
+<div id="including-plots" class="section level2">
+<h2>Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="test_files/figure-html/pressure-1.png" title="" alt="" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+</div>
 
 
 </div>
