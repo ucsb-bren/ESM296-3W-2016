@@ -16,10 +16,13 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 - [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) (office hours TBD)
 - [Ben Best](http://www.bdbest.org)  (office hours TBD)
 
-### Feedback
+### Interaction
 
-- messaging forum at [bren-envinfo.slack.com](https://bren-envinfo.slack.com)
-- anonymous feedback at ...
+- **Forum** at [env-info.slack.com](https://env-info.slack.com)
+- [**Feedback**](https://goo.gl/forms/mIeOu7Xoaw) using Google Forms
+- **Stickies**, aka post-it notes, available to pickup and return at front table, to be placed on top of computer:
+    - <a href="#" class="btn btn-danger btn-sm">Help!</a> Use the red stickies to let us know you're stuck with a problem; spares arm raising.
+    - <a href="#" class="btn btn-success btn-sm">Done</a> Flag the green sticky once you've finished working through material as a class.
 
 ### Workload
 

@@ -6,7 +6,7 @@ author: Data Carpentry contributors
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE, results='hide'}
 source("setup.R")
-if (file.exists("portalR.db")) file.remove("portalR.db")
+if (file.exists("data/portalR.db")) file.remove("data/portalR.db")
 ```
 
 > ## Learning Objectives
@@ -78,7 +78,7 @@ dbGetQuery(conn,"SELECT count(*) FROM surveys")
 ```
 
 It's good practice to always close a connection that you open in R. Let's do that next.
-Note that once you've closed a connection, you will have to open a new connection to 
+Note that once you've closed a connection, you will have to open a new connection to
 query and import the data again.
 
 ```{r close Connection}
@@ -117,11 +117,11 @@ head(result)
 >
 >  1. Write a query that returns counts of genus by plot_id
 >  2. You can join multiple tables together in SQL using the following syntax where foreign key refers to your unique id (eg species_id):
- SELECT table.col, table.col 
- FROM table1 JOIN table2 
+ SELECT table.col, table.col
+ FROM table1 JOIN table2
  ON table1.key = table2.key
  JOIN table3 ON table2.key = table3.key
- 
+
 > Write a query that joins the species, plot and survey tables together. The query should return counts of genus by plot type. Then create a bar plot of your results in R.
 
 
@@ -197,7 +197,7 @@ plots <- read.csv("data/plots.csv")
 Next we'll need to create a database and add our tables.
 
 ```{r create database, purl=FALSE}
-myDB <- "portalR.db"
+myDB <- "data/portalR.db"
 myConn <- dbConnect(drv = SQLite(), dbname= myDB)
 dbListTables(myConn)
 ```
@@ -211,7 +211,7 @@ dbWriteTable(myConn,"species",species)
 dbListTables(myConn)
 dbGetQuery(myConn,"SELECT * from species limit 10")
 ```
-  
+
 If you check the location of our database you'll see that data is automatically
 being written to disk. Not only does R and RSQLite provide easy ways to query
 existing databases, it also allows you to easily create your own databases from
