@@ -1,7 +1,6 @@
 ---
 title: "SQL databases and R"
 author: Data Carpentry contributors
-published: false
 ---
 
 

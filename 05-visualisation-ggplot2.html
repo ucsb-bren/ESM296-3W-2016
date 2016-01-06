@@ -133,6 +133,16 @@ img {
 <span class="kw">library</span>(magrittr)
 <span class="co"># modern dataframe manipulations</span>
 <span class="kw">library</span>(dplyr)</code></pre>
+<pre><code>#&gt; 
+#&gt; Attaching package: &#39;dplyr&#39;
+#&gt; 
+#&gt; The following objects are masked from &#39;package:stats&#39;:
+#&gt; 
+#&gt;     filter, lag
+#&gt; 
+#&gt; The following objects are masked from &#39;package:base&#39;:
+#&gt; 
+#&gt;     intersect, setdiff, setequal, union</code></pre>
 <p>Load data directly from figshare.</p>
 <pre class="sourceCode r"><code class="sourceCode r">surveys_raw &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://files.figshare.com/1919744/surveys.csv&quot;</span>)</code></pre>
 <p><code>surveys.csv</code> data contains some measurements of the animals caught in plots.</p>
@@ -167,7 +177,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">           </span><span class="kw">filter</span>(species_id %in%<span class="st"> </span>frequent_species$species_id)</code></pre>
 <p>Make simple scatter plot of <code>hindfoot_length</code> (in millimeters) as a function of <code>weight</code> (in grams), using basic R plotting capabilities.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> surveys_complete$weight, <span class="dt">y =</span> surveys_complete$hindfoot_length)</code></pre>
-<p><img src="img/R-ecology-base-plot-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_base-plot-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2>Plotting with ggplot2</h2>
@@ -188,7 +198,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="img/R-ecology-first-ggplot-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_first-ggplot-1.png" title="" alt="" width="672" /></p>
 <p>Notes:</p>
 <ul>
 <li>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add. i.e. these are universal plot settings</li>
@@ -202,25 +212,25 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)</code></pre>
-<p><img src="img/R-ecology-adding-transparency-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_adding-transparency-1.png" title="" alt="" width="672" /></p>
 <ul>
 <li>adding colors</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre>
-<p><img src="img/R-ecology-adding-colors-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_adding-colors-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
 <p>Visualising the distribution of weight within each species.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id,  <span class="dt">y =</span> weight)) +
 <span class="st">                   </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="img/R-ecology-boxplot-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_boxplot-1.png" title="" alt="" width="672" /></p>
 <p>By adding points to boxplot, we can see particular measurements and the abundance of measurements.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> weight)) +
 <span class="st">                   </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">color =</span> <span class="st">&quot;tomato&quot;</span>) +
 <span class="st">                   </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="dv">0</span>)</code></pre>
-<p><img src="img/R-ecology-boxplot-with-points-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_boxplot-with-points-1.png" title="" alt="" width="672" /></p>
 <p>Notice how the boxplot layer is on top of the jitter layer? Play around with the order of geoms and adjust transparency to see how to build up your plot in layers.</p>
 <blockquote>
 <h3>Challenge</h3>
@@ -236,22 +246,22 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <p>Timelapse data can be visualised as a line plot with years on x axis and counts on y axis.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) +
 <span class="st">                  </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="img/R-ecology-first-time-series-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_first-time-series-1.png" title="" alt="" width="672" /></p>
 <p>Unfortunately this does not work, because we plot data for all the species together. We need to tell ggplot to split graphed data by <code>species_id</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">group =</span> species_id)) +
 <span class="st">  </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="img/R-ecology-time-series-by-species-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_time-series-by-species-1.png" title="time series by species" alt="time series by species" width="672" /></p>
 <p>We will be able to distinguish species in the plot if we add colors.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">group =</span> species_id, <span class="dt">color =</span> species_id)) +
 <span class="st">  </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="img/R-ecology-time-series-with-colors-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_time-series-with-colors-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="faceting" class="section level2">
 <h2>Faceting</h2>
 <p>ggplot has a special technique called <em>faceting</em> that allows to split one plot into multiple plots based on some factor. We will use it to plot one time series for each species separately.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~species_id)</code></pre>
-<p><img src="img/R-ecology-first-facet-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_first-facet-1.png" title="" alt="" width="672" /></p>
 <p>Now we would like to split line in each plot by sex of each individual measured. To do that we need to make counts in dataframe grouped by sex.</p>
 <blockquote>
 <h3>Challenges:</h3>
@@ -277,13 +287,13 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 </blockquote>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre>
-<p><img src="img/R-ecology-facet-by-species-and-sex-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_facet-by-species-and-sex-1.png" title="" alt="" width="672" /></p>
 <blockquote>
 <p>We can improve the plot by coloring by sex instead of species (species are already in separate plots, so we don’t need to distinguish them better)</p>
 </blockquote>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre>
-<p><img src="img/R-ecology-facet-by-species-and-sex-colored-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/Rmd_facet-by-species-and-sex-colored-1.png" title="" alt="" width="672" /></p>
 </div>
 
 

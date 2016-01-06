@@ -3,7 +3,7 @@ layout: topic
 title: Data visualisation with ggplot2
 subtitle: Visualising data in R with ggplot2 package
 minutes: 60
-published: false
+output: html_document
 ---
 
 
@@ -211,7 +211,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n)) +
 Unfortunately this does not work, because we plot data for all the species
 together. We need to tell ggplot to split graphed data by `species_id`
 
-```{r time-series-by-species}
+```{r time-series-by-species, fig.cap='time series by species'}
 ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
   geom_line()
 ```

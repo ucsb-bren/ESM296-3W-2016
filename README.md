@@ -20,3 +20,8 @@ The content on this site draws extensively from these repositories:
 - https://github.com/advanced-js/students
 - https://github.com/datacarpentry/R-ecology
 
+## Testing
+
+```bash
+bundle exec jekyll serve
+```
