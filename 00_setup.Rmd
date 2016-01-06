@@ -1,0 +1,53 @@
+---
+title: "Setup"
+subtitle: "ESM 296-3W - Environmental Informatics - Winter 2016"
+author: "Ben Best, Naomi Tague"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: yes
+  pdf_document:
+    fig_caption: yes
+    toc: yes
+    toc_depth: 3
+---
+
+# Install Software
+
+## R
+
+## RStudio
+
+## Git
+
+## Github
+
+- Use your *.edu account and you can also get free private repositories. 
+
+## Atom
+
+## Slack
+
+- Visit bren-envinfo.slack.com and sign in. Set your Slack username to the same as your Github account name.
+
+## Check
+
+```{r}
+# parameters
+R_v       = '3.2.3'
+RStudio_v = '0.99.841'
+
+# check R version ----
+if (getRversion() < R_v){
+  stop(sprintf('Your version of R (%s) is older than the expected minimum R version (%s). Please close R/RStudio and install the latest version of R from http://cran.r-project.org.', getRversion(), R_v))
+}
+
+# check for latest version of R (http://www.rdocumentation.org/packages/gtools/functions/checkRVersion)
+# gtools::checkRVersion() # require(gtools)
+
+# check RStudio version ----
+if (RStudio.Version()$version < RStudio_v){
+  stop(sprintf('Your version of RStudio (%s) is older than the expected minimum RStudio version (%s). Please close R/RStudio and install the latest version of RStudio from https://www.rstudio.com/products/rstudio/download/.', RStudio.Version()$version, RStudio_v))
+}
+```
+

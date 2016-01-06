@@ -1,0 +1,227 @@
+"record_id","site_id","site_name","country","state_province","continent","abbreviation","lat","lon","min_elev","max_elev","precip"
+1,1,"Kitlope 1","Canada","British Columbia","North America","KITLOPE1",53.07,-127.83,20,20,2100
+2,2,"Kitlope 2","Canada","British Columbia","North America","KITLOPE2",52.21,-127.79,10,10,2100
+3,3,"Mt. St. Hilaire","Canada","Montreal","North America","MTSTHILA",45.62,-73.58,,,750
+4,4,"Metthieson Hammock County Park","U.S.A","Florida","North America","MATTHIES",25.72,-80.27,15,15,1375
+5,5,"San Felasko Hammock","U.S.A","Florida","North America","SANFELAS",29.68,-82.43,30,30,1375
+6,6,"University of Florida Horticulture Woods","U.S.A","Florida","North America","UFHORTIC",29.67,-82.33,50,50,1375
+7,7,"Cedar Bluffs","U.S.A","Indiana","North America","CEDARBLU",39.77,-86.15,215,215,1000
+8,8,"Northwest Branch","U.S.A","Maryland","North America","NWBRANCH",39.03,-77.03,20,20,1060
+9,9,"Babler State Park","U.S.A","Missouri","North America","BABLERSP",38.53,-90.67,150,150,930
+10,10,"Cuivre River State Park","U.S.A","Missouri","North America","CUIVRE",39.02,-91,140,140,930
+11,11,"Rock Creek","U.S.A","Missouri","North America","ROCKCREE",37.5,-90.25,285,285,1125
+12,12,"Tyson Reserve (chert glade)","U.S.A","Missouri","North America","TYSONGLA",38.5,-90.52,150,150,932
+13,13,"Tyson Reserve (woods)","U.S.A","Missouri","North America","TYSONWOO",38.5,-90.52,150,150,932
+14,14,"Valley View Glades","U.S.A","Missouri","North America","VALLEYVI",38.25,-90.62,225,225,930
+15,15,"Indian Cave State Park","U.S.A","Nebraska","North America","INDIANCA",40.5,-95.72,320,320,900
+16,16,"Cary Arboretum","U.S.A","New York","North America","CARY",46.83,-73.75,210,210,1020
+17,17,"Montgomery Place","U.S.A","New York","North America","MONTGOME",43.17,-77.62,210,210,875
+18,18,"Bankamp State Park","U.S.A","Ohio","North America","BANKAMP",40.05,-81.02,250,250,875
+19,19,"Heuston Woods (Beech/Maple)","U.S.A","Ohio","North America","HEUSTOBM",39.55,-84.72,200,200,1000
+20,20,"Heuston Woods (mixed forest)","U.S.A","Ohio","North America","HEUSTOMF",39.55,-84.72,200,200,1000
+21,21,"Timberline","U.S.A","Oregon","North America","TIMBERLI",45.28,-121.75,2000,2000,2200
+22,22,"Jones Mill","U.S.A","Pennsylvania","North America","JONESMIL",40.08,-79.35,500,500,1100
+23,23,"Laurel Ridge","U.S.A","Pennsylvania","North America","LAURELRI",39.95,-79.37,670,670,1000
+24,24,"Kane,  Alleghany National Forest","U.S.A","Pennsylvania","North America","KANEALLE",41.67,-78.8,500,500,1000
+25,25,"Tidroute,  Alleghany National Forest","U.S.A","Pennsylvania","North America","TIDROUTE",41.7,-79.4,310,310,1000
+26,26,"Wild Basin","U.S.A","Texas","North America","WILDBASI",30.33,-97.92,1600,1600,750
+27,27,"Burling Tract","U.S.A","Virginia","North America","BURLING",38.95,-77.17,60,60,1053
+28,28,"Potomac","U.S.A","Virginia","North America","POTOMAC",38.08,-76.57,33,33,875
+29,29,"Isla de Providencia","Colombia","","Mesoamerica","PROVIDEN",13.35,-81.37,230,230,2500
+30,30,"Guanacaste upland","Costa Rica","","Mesoamerica","GUANUP",10.53,-85.3,100,100,1600
+31,31,"Guanacaste gallery forest","Costa Rica","","Mesoamerica","GUANGF",10.5,-85.17,100,100,1600
+32,32,"La Selva","Costa Rica","","Mesoamerica","LASELVA",10.43,-84.02,100,100,4000
+33,33,"Magsaysay","Costa Rica","","Mesoamerica","MAGSASAY",10.4,-84.05,150,150,3884
+34,34,"Carara National Park","Costa Rica","","Mesoamerica","CARARA",9.76,-84.53,130,130,3500
+35,35,"Rancho Quemado","Costa Rica","","Mesoamerica","RANCHOQU",8.7,-83.55,300,300,3125
+36,36,"Osa-Sirena","Costa Rica","","Mesoamerica","OSASIREN",8.5,-83.92,30,30,3800
+37,37,"Sierra Rosario","Cuba","","Mesoamerica","SIERRARO",22.83,-83,370,390,2200
+38,38,"Los Haitaises National Park","Dominican Republic","","Mesoamerica","LOSHAITI",19.08,-69.5,10,20,1000
+39,39,"Round Hill (Slope)","Jamaica","","Mesoamerica","ROUNDSLO",17.33,-77.42,150,150,1200
+40,40,"Round Hill (Top)","Jamaica","","Mesoamerica","ROUNDTOP",17.33,-77.42,300,300,1200
+41,41,"Benito Juarez","Mexico","","Mesoamerica","BENITO",15.33,-92.25,2100,2100,1500
+42,42,"Bosque de Guadeloupe","Mexico","","Mesoamerica","BOSQUEDE",19.5,-96.95,1200,1200,1514
+43,43,"Chamela Upland 1","Mexico","","Mesoamerica","CHAMELA1",19.5,-105.05,10,584,748
+44,44,"Chamela Upland 2","Mexico","","Mesoamerica","CHAMELA2",19.5,-105.05,10,584,748
+45,45,"Chamela Arroyos","Mexico","","Mesoamerica","CHAMELA3",19.5,-105.05,10,584,748
+46,46,"Chamela 4","Mexico","","Mesoamerica","CHAMELA4",19.5,-105.05,100,100,748
+47,47,"Los Tuxtlas","Mexico","","Mesoamerica","TUXTLAS",18.58,-95.13,170,200,4953
+48,48,"Las Joyas","Mexico","","Mesoamerica","LASJOYAS",19.58,-104.13,1950,1950,1000
+49,49,"Quince Ocotes","Mexico","","Mesoamerica","QUINCEOC",19.73,-104.25,1800,1800,1000
+50,50,"Motozintla","Mexico","","Mesoamerica","MOTOZINT",15.33,-92.2,1600,1600,500
+51,51,"Cerro Olumo","Nicaragua","","Mesoamerica","CERROOLU",12.3,-85.4,840,840,2000
+52,52,"Cerro El Picacho","Nicaragua","","Mesoamerica","CERROELP",13,-85.92,1420,1420,2000
+53,53,"Curundu","Panama","","Mesoamerica","CURUNDU",8.98,-79.55,20,20,1830
+54,54,"Madden Forest","Panama","","Mesoamerica","MADDEN",9.1,-79.6,50,50,2433
+55,55,"Pipeline Road","Panama","","Mesoamerica","PIPELINE",9.17,-79.75,300,300,3000
+56,56,"Luquillo","Puerto Rico","","Mesoamerica","LUQUILLO",18.18,-65.83,300,300,3500
+57,57,"Mogotes de Nevzrez","Puerto Rico","","Mesoamerica","MOGOTE",18.42,-66.25,50,50,1500
+58,58,"Parque El Rey","Argentina","","South America","PARQUEER",-24.58,-64.7,1000,1000,1500
+59,59,"Arroyo Riachuelo","Argentina","","South America","RIACHUEL",-27,-58,60,60,1000
+60,60,"Salta","Argentina","","South America","SALTA",-24.67,-64.5,1300,1400,712
+61,61,"Calabatea","Bolivia","","South America","CALABATE",-14.92,-68.33,1500,1550,2000
+62,62,"Chaquimayo","Bolivia","","South America","CHAQUIMA",-14.57,-68.47,1000,1000,1600
+63,63,"Curuyuqui","Bolivia","","South America","CURUYUQU",-18.76,-62.23,350,350,450
+64,64,"Curuyuqui Riverine","Bolivia","","South America","CURUYUQR",-18.77,-62.3,350,350,450
+65,65,"El Encanto","Bolivia","","South America","ENCANTO",-14.63,-60.7,280,280,1700
+66,66,"Incahuara","Bolivia","","South America","INCAHUAR",-15.92,-67.58,1520,1560,3500
+67,67,"Alto Madidi","Bolivia","","South America","MADIDI",-13.58,-68.77,280,280,3000
+68,68,"Alto Madidi ridge top","Bolivia","","South America","MADIDIRI",-13.58,-68.77,360,380,3000
+69,69,"Nuevo Mundo","Bolivia","","South America","NUEVOMUN",-10.65,-66.77,160,160,1820
+70,70,"Perseverancia","Bolivia","","South America","PERSEVER",-14.63,-62.62,100,100,1350
+71,71,"Quiapaca","Bolivia","","South America","QUIAPACA",-18.33,-59.5,300,300,900
+72,72,"Río Negro","Bolivia","","South America","RIONEGRO",-9.83,-65.67,100,100,1820
+73,73,"Sacramento","Bolivia","","South America","SACRAM",-16.3,-67.8,2380,2450,2450
+74,74,"Santa Cruz","Bolivia","","South America","SANTACRU",-17.77,-63.07,375,375,1200
+75,75,"Santiago","Bolivia","","South America","SANTIAGO",-18.33,-59.5,700,800,990
+76,76,"Yanaigua","Bolivia","","South America","YANAIGUA",-19.7,-62.1,250,250,400
+77,77,"Alter de Chao","Brazil","","South America","ALTERDOC",-2.5,-54.97,50,50,2000
+78,78,"Boraceia","Brazil","","South America","BORACEIA",-23.38,-46,800,800,3500
+79,79,"Campinas","Brazil","","South America","CAMPINAS",-22.83,-47.13,550,600,1400
+80,80,"Carajas","Brazil","","South America","CARAJAS",-5.5,-51,620,620,1850
+81,81,"Carlos Botelho State Park","Brazil","","South America","CARLOSBO",-24.25,-46.93,550,560,3100
+82,82,"Ducke Reserve","Brazil","","South America","DUCKE",-3,-59.97,80,80,2200
+83,83,"Camorin-Jacarepagua","Brazil","","South America","CAMORIN",-22.93,-43.37,200,200,1500
+84,84,"Linhares","Brazil","","South America","LINHARES",-19.3,-40.07,30,60,1400
+85,85,"Manaus","Brazil","","South America","MANAUS",-3.13,-60.02,85,85,2000
+86,86,"Belem-Mocambo","Brazil","","South America","BELEM",-1.5,-47.98,20,20,2760
+87,87,"Alto de Mirador","Chile","","South America","MIRADOR",-40.23,-73.3,800,800,4000
+88,88,"Bosque de San Martín","Chile","","South America","MARTIN",-39.5,-73.17,30,30,2316
+89,89,"Puyehue","Chile","","South America","PUYEHUE",-40.72,-72.3,460,520,3000
+90,90,"Alto de Cuevas","Colombia","","South America","CUEVAS",6.67,-76.5,1670,1670,4000
+91,91,"Alto de Sapa","Colombia","","South America","ALTOSAPA",7.17,-75.9,2660,2660,4500
+92,92,"Alto de Mirador","Colombia","","South America","ALTODEMI",10.92,-73.83,1180,1180,2500
+93,93,"Anchicaya","Colombia","","South America","ANCHICAY",3.75,-76.83,300,300,3100
+94,94,"Antado","Colombia","","South America","ANTADO",7.25,-75.92,1560,1560,4500
+95,95,"Araracuara  high campina","Colombia","","South America","ARCATING",-0.42,-72.32,250,250,3500
+96,96,"Araracuara","Colombia","","South America","ARARACUA",-0.42,-72.33,200,200,3250
+97,97,"Bajo Calima","Colombia","","South America","CALIMA",3.92,-77,50,150,7470
+98,98,"Bosque de la Cueva","Colombia","","South America","CUEVA",11.08,-73.47,350,350,2000
+99,99,"Campano","Colombia","","South America","CAMPANO",11.13,-74.02,1680,1690,1250
+100,100,"Carpanta Siete Cuerales","Colombia","","South America","SIETECUE",4.58,-73.67,2350,2350,3000
+101,101,"Carpanta","Colombia","","South America","CARPANTA",4.58,-73.67,2900,2900,3000
+102,102,"Cedral","Colombia","","South America","CEDRAL",4.75,-75.55,2140,2140,3000
+103,103,"Cerro Kennedy","Colombia","","South America","KENNEDY",11.08,-74.02,2600,2600,1000
+104,104,"Cerro Espejo","Colombia","","South America","CERROESP",10.47,-72.83,2550,2570,1750
+105,105,"Coloso","Colombia","","South America","COLOSOI",9.5,-75.8,300,300,1000
+106,106,"Farallones de Cali","Colombia","","South America","FARALL",3.5,-76.58,1930,1930,1500
+107,107,"Finca Mehrenberg","Colombia","","South America","FINCAM",2.27,-76.2,2275,2300,2290
+108,108,"Finca Zíngara","Colombia","","South America","FINCAZ",3.53,-76.58,1960,1960,1647
+109,109,"Galerazamba","Colombia","","South America","GALERAZ",10.8,-75.25,10,10,500
+110,110,"Hacienda Himalaya","Colombia","","South America","HACHIMAL",3.63,-76.55,1860,1860,1500
+111,111,"La Planada","Colombia","","South America","LAPLANAD",1.13,-77.97,1800,1800,4300
+112,112,"La Raya","Colombia","","South America","LARAYA",8.33,-74.92,50,80,3000
+113,113,"Loma de los Colorados","Colombia","","South America","COLORADO",9.97,-75.17,200,250,1000
+114,114,"Manaure","Colombia","","South America","MANAURE",10.37,-73.13,540,540,1500
+115,115,"Mariquita","Colombia","","South America","MARIQUIT",5.25,-74.83,560,560,1920
+116,116,"Murri","Colombia","","South America","MURRI",6.58,-76.83,910,910,4200
+117,117,"Neusa","Colombia","","South America","NEUSA",5.17,-74.13,3050,3050,985
+118,118,"Rio Manso","Colombia","","South America","RIOMANSO",7.5,-76.08,200,200,4000
+119,119,"Sabana Rubia","Colombia","","South America","SABANARU",10.5,-70.92,2940,2940,1500
+120,120,"Lomas de Santo Tomas","Colombia","","South America","SANTOTOM",4.92,-74.83,320,320,1500
+121,121,"Tayrona National Park","Colombia","","South America","TAYRONA",11.33,-74.03,50,50,1500
+122,122,"Tutunendo","Colombia","","South America","TUTUNEND",5.77,-76.58,90,90,9000
+123,123,"Ucumari","Colombia","","South America","UCUMARI",4,-75.5,2620,2620,3000
+124,124,"Campamento Achupalla","Ecuador","","South America","ACHUPALL",-3.45,-78.37,2100,2100,2500
+125,125,"Fila de Bilsa","Ecuador","","South America","BILSA",0.62,-79.87,280,280,2500
+126,126,"Capeira","Ecuador","","South America","CAPEIRA",-2,-79.97,50,50,804
+127,127,"Centinela","Ecuador","","South America","CENTINEL",-0.58,-79.33,650,800,4500
+128,128,"Cuangos","Ecuador","","South America","CUANGOS",-3.48,-78.23,1500,1600,2500
+129,129,"Dureno","Ecuador","","South America","DURENO",0.25,-76.75,300,300,3000
+130,130,"El Corazon","Ecuador","","South America","ELCORAZO",0.58,-77.7,3150,3150,3700
+131,131,"Esmeraldas Tropical Garden","Ecuador","","South America","ESMERALD",0.9,-79.62,150,150,1750
+132,132,"Huamani","Ecuador","","South America","HUAMANI",-0.67,-77.67,1150,1150,3500
+133,133,"Jatun Sacha","Ecuador","","South America","JATUNSAC",-1.07,-77.6,450,450,4100
+134,134,"Jauneche","Ecuador","","South America","JAUNECHE",-1.1,-79.63,75,75,1855
+135,135,"Maquipucuna","Ecuador","","South America","MAQUIPUC",0.12,-78.62,1630,1630,3000
+136,136,"Miazi","Ecuador","","South America","MIAZI",-4.3,-78.67,850,850,2000
+137,137,"Pasochoa","Ecuador","","South America","PASOCHOA",-0.47,-78.42,3000,3040,1250
+138,138,"Perro Muerto","Ecuador","","South America","PERROMUE",-1.6,-80.7,450,450,1550
+139,139,"Rio Nangaritza","Ecuador","","South America","NANGARIT",-4.3,-78.67,930,930,5000
+140,140,"Rio Palenque 1","Ecuador","","South America","RIOPAL1",-0.56,-79.33,200,200,2650
+141,141,"Rio Palenque 2","Ecuador","","South America","RIOPAL2",-0.57,-79.33,150,220,2650
+142,142,"San Sebastian","Ecuador","","South America","SANSEBAS",-1.6,-80.7,550,550,2000
+143,143,"Saul","French Guiana","","South America","SAUL",3.63,-53.2,300,300,2358
+144,144,"Berbice River","Guyana","","South America","BERBICER",5.5,-58.08,160,160,2200
+145,145,"Rio Jejuimi","Paraguay","","South America","JEJUIMI",-24.13,-55.53,150,150,1800
+146,146,"Allpahuayo","Peru","","South America","ALLPAHUA",-3.95,-73.42,130,180,3100
+147,147,"Bosque Nacional von Humboldt","Peru","","South America","HUMBOLDT",-8.83,-75,270,270,2500
+148,148,"Cabeza de Mono","Peru","","South America","CABEZADE",-10.33,-75.3,320,320,4000
+149,149,"Cerro Aypate","Peru","","South America","CERROAYP",-4.58,-79.53,2770,2770,1800
+150,150,"Cerros de Amotape","Peru","","South America","AMOTAPE",-4.15,-80.62,820,820,164
+151,151,"Chirinos","Peru","","South America","CHIRINOS",-5.42,-78.88,1780,1780,1400
+152,152,"Chorro Blanco","Peru","","South America","CHORROBL",-6.17,-78.75,2380,2380,1400
+153,153,"Cochacashu","Peru","","South America","COCHACAS",-11.85,-71.32,380,380,2000
+154,154,"Constancia","Peru","","South America","CONSTANC",-4.25,-72.75,160,160,3100
+155,155,"Cuterva Nacional Park","Peru","","South America","CUTERVO",-6.17,-78.67,2200,2250,1400
+156,156,"Cuzco Amazonico","Peru","","South America","CUZCOAMA",-12.58,-69.15,200,200,2350
+157,157,"El Pargo","Peru","","South America","ELPARGO",-6.5,-79.52,3000,3000,1075
+158,158,"Indiana","Peru","","South America","INDIANA",-3.52,-73.07,130,130,3100
+159,159,"Jenaro Herrera","Peru","","South America","JENAROHE",-4.92,-73.75,130,130,2520
+160,160,"La Genoa","Peru","","South America","LAGENOA",-11.08,-75.42,1140,1140,2000
+161,161,"Mishana, Tahuampa","Peru","","South America","TAHUAMPA",-3.78,-73.5,130,130,3100
+162,162,"Mishana Old Floodplain","Peru","","South America","MISHNFL",-3.78,-73.5,130,130,3100
+163,163,"Mishana White Sand","Peru","","South America","MISHWS",-3.78,-73.5,140,140,3100
+164,164,"Montaña de Cuyas","Peru","","South America","CUYAS",-4.53,-79.73,2410,2410,700
+165,165,"Rio Candamo","Peru","","South America","CANDAMO",-13.5,-69.83,790,790,6760
+166,166,"Pampas del Heath","Peru","","South America","RIOHEATH",-12.83,-68.83,200,200,2200
+167,167,"Rio Tavara","Peru","","South America","RIOTAVAR",-13.35,-69.67,400,400,6760
+168,168,"Shiringamazu","Peru","","South America","SHIRINGA",-10.33,-75.17,300,300,5000
+169,169,"Quebrada Sucusari","Peru","","South America","SUCUSARI",-3.25,-72.92,140,140,3100
+170,170,"Tambopata Upland Sandy","Peru","","South America","TAMBUPL",-12.82,-69.72,280,280,2200
+171,171,"Tambopata Alluvial","Peru","","South America","TAMBOALL",-12.83,-69.28,260,260,2200
+172,172,"Tambopata Swamp Trail","Peru","","South America","TAMBLAT2",-12.78,-69.28,250,250,2200
+173,173,"Tambopata Lateritic","Peru","","South America","TAMBO",-12.78,-69.28,260,260,2200
+174,174,"Tarapoto","Peru","","South America","TARAPOTO",-6.58,-76.42,350,540,1400
+175,175,"Venceremos","Peru","","South America","VENCER",-5.75,-77.67,1850,1850,1300
+176,176,"Yanamono Tahuampo","Peru","","South America","YANAMTAH",-3.47,-72.83,120,130,3100
+177,177,"Yanamono 1","Peru","","South America","YANAM1",-3.43,-72.85,140,140,3100
+178,178,"Yanamono 2","Peru","","South America","YANAM2",-3.43,-72.85,140,140,3100
+179,179,"Blohm Ranch","Venezuela","","South America","BLOHMR",8.57,-67.58,100,100,1400
+180,180,"Boca de Uchire","Venezuela","","South America","UCHIRE",10.15,-65.43,150,150,1200
+181,181,"Cerro de la Neblina 1","Venezuela","","South America","CERONEB1",0.83,-66.18,140,140,3000
+182,182,"Cerro de la Neblina 2","Venezuela","","South America","CERONEB2",0.83,-66.18,140,140,3000
+183,183,"Estacion Biologica de los Llanos","Venezuela","","South America","LLANO",8.93,-67.42,100,100,1312
+184,184,"Suderhackstedt","Germany","","Europe","SUDERHAC",54.6,9.28,20,20,695
+185,185,"Allacher Lohe","Germany","","Europe","ALLACHER",48.07,11.5,530,530,866
+186,186,"Ruissala","Finland","","Europe","RUISSALO",60.53,22.47,20,20,500
+187,187,"Liesjvari National Park","Finland","","Europe","LIESJVAR",60.67,23.92,50,50,600
+188,188,"Uppsala","Sweden","","Europe","UPPSALA",59.85,17.63,20,20,500
+189,189,"Banyong","Cameroon","","Africa","BANYONG",5,9.17,420,420,2600
+190,190,"Korup National Park","Cameroon","","Africa","KORUP",5.9,8.7,100,100,5460
+191,191,"Mount Cameroun","Cameroon","","Africa","MTCAM",4.08,9,200,250,8000
+192,192,"Ndakan","Central African Republic","","Africa","NDAKANI",2.37,16.15,390,390,1400
+193,193,"Ndakan upland","Central African Republic","","Africa","NDAKANNI",2.37,16.32,400,400,1400
+194,194,"Belinga","Gabon","","Africa","BELINGA",1.15,13.2,740,770,1800
+195,195,"Makokou 1","Gabon","","Africa","MAKOKOU1",0.57,12.87,480,480,1755
+196,196,"Makokou 2","Gabon","","Africa","MAKOKOU2",0.57,12.87,480,480,1755
+197,197,"Beza Mahafaly 1","Madagascar","","Africa","BEZA1",-23.64,44.59,150,150,600
+198,198,"Beza Mahafaly 2","Madagascar","","Africa","BEZA2",-23.64,44.59,150,200,600
+199,199,"Beza Mahafaly 3","Madagascar","","Africa","BEZA3",-23.64,44.59,150,200,600
+200,200,"Ankarafantsika","Madagascar","","Africa","ANKARIF",-16.32,46.82,70,100,1400
+201,201,"Nosy Mangabe","Madagascar","","Africa","NOSYMANG",-15.5,49.77,250,300,3500
+202,202,"Perinet Forestry Station","Madagascar","","Africa","PERINET",-18.92,48.42,980,980,1200
+203,203,"Brise Fer","Mauritius","","Africa","BRISEFER",-20.38,57.43,550,550,2400
+204,204,"Omo Forest Reserve","Nigeria","","Africa","OMOFOR",7,5,150,150,1800
+205,205,"Pande Forest Reserve","Tanzania","","Africa","PANDE",-6.67,39.08,80,80,1000
+206,206,"Pugu Forest Reserve","Tanzania","","Africa","PUGU",-6.83,39.08,150,200,1236
+207,207,"Davies River State Forest","Australia","","Australasia","DAVIES",-17.08,145.57,740,800,2300
+208,208,"Avalanche","India","","Australasia","AVALANCH",11.3,76.58,2100,2100,1400
+209,209,"Mudumalai 1","India","","Australasia","MUDUMAL1",11.6,76.53,1000,1000,1000
+210,210,"Mudumalai 2","India","","Australasia","MUDUMAL2",11.6,76.53,1000,1000,1000
+211,211,"Nadugani","India","","Australasia","NADUGANI",11.45,76.38,680,700,2500
+212,212,"Chiba","Japan","","Australasia","CHIBA",35.15,140.15,270,270,2600
+213,213,"Genting Highlands","Malaysia (Malaya)","","Australasia","GENTING",3.97,101.63,80,100,4000
+214,214,"Pasoh 30","Malaysia (Malaya)","","Australasia","PASOH30",3,102.33,880,900,2000
+215,215,"Pasoh 40","Malaysia (Malaya)","","Australasia","PASOH40",3,102.33,100,100,2054
+216,216,"Bako National Park","Malaysia (Sarawak)","","Australasia","BAKOSAR",1.75,110.42,100,100,2054
+217,217,"Semengoh Forest Preserve","Malaysia (Sarawak)","","Australasia","SEMENGOH",1.83,110.08,100,100,4167
+218,218,"Rivière de Pirogues","New Caledonia","","Australasia","NEWCALDO",-22.17,166.83,400,400,2200
+219,219,"Baitete","New Guinea","","Australasia","BAITETE",-5.17,145.8,200,200,3375
+220,220,"Varirata National Park","New Guinea","","Australasia","VARIRATA",-9.5,147.5,740,740,1000
+221,221,"Palanan","Philippines","","Australasia","PALANAN",17.13,122.52,10,50,2400
+222,222,"Kenting National Park","Taiwan","","Australasia","KENTING",21.92,120.83,200,200,2500
+223,223,"Nanjen Shan Ecological Protected Area","Taiwan","","Australasia","NANJENSH",22,120.83,310,310,2500
+224,224,"Khao Yai National Park","Thailand","","Australasia","KHAOYAI",14.33,101.83,700,700,2300
+225,225,"Sakaerat 1","Thailand","","Australasia","SAKAERAT",14.5,102,400,400,1500
+226,226,"Sakaerat 2","Thailand","","Australasia","SAKAERA2",14.5,102,400,400,1500

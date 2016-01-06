@@ -1,3 +1,6 @@
+# regenerate all *.Rmd
+# run if changes made in: _output.yaml, or _includes/*.html
+
 dir_rmd = '.'
 redo = T
 
