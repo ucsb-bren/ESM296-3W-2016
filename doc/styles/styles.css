@@ -1,0 +1,87 @@
+/* make octicons light gray in students.html */
+.vcard-details .octicon {
+    color: #999;
+}
+
+.caption {
+  font-style: italic;
+}
+
+/* tocify per https://github.com/rstudio/rstudioaddins/blob/gh-pages/includes/before.html */
+body {
+  padding-top: 65px; /* push body below nav bar of 65px */
+  min-width: 200px;
+}
+/* offset scroll position for anchor links */
+h2 {
+  padding-top: 25px;
+  margin-top: -25px;
+}
+h3 {
+  padding-top: 25px;
+  margin-top: -25px;
+}
+h4 {
+  padding-top: 25px;
+  margin-top: -25px;
+}
+.main-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+.section {
+  margin-bottom: 25px;
+}
+.tocify {
+  border: none;
+  background-color: #ECF2F6;
+  margin-top: 20px;
+}
+.tocify .list-group-item {
+  border-radius: 0px;
+  background-color: #ECF2F6;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: #3676BD;
+}
+.tocify .list-group-item.active {
+  color: white;
+  background-color: #428DC8;
+}
+.tocify .list-group-item:hover {
+  background-color: #caddec;
+}
+.tocify .list-group-item.active:hover {
+  color: white;
+  background-color: #428DC8;
+}
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 12px;
+}
+.doc-header {
+  font-size: 39px;
+}
+.doc-footer {
+  margin-top: 30px;
+}
+#overview h2 {
+  visibility: hidden;
+  height: 0px;
+}
+#release-note {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.example-image {
+  max-height: 250px;
+}
+blockquote {
+  font-size: 1em;
+}
+.text-nowrap {
+  white-space: nowrap;
+}

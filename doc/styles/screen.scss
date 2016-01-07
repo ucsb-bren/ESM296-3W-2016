@@ -1,0 +1,52 @@
+---
+---
+
+
+body {
+  font-family: Helvetica, sans-serif;
+  margin: 50px;
+}
+
+/* 
+a {
+  color: black;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+*/
+
+.js-student {
+  float: left;
+  list-style-type: none;
+  margin: 0 20px 20px 0;
+
+  a {
+    text-decoration: none;
+  }
+  .info {
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+  }
+}
+
+.js-avatar {
+  $size: 135px;
+
+  display: inline-block;
+  height: $size;
+  margin-right: 10px;
+  width: $size;
+}
+
+.github-username {
+  font-family: Helvetica, 'Segoe UI', Arial, freesans, sans-serif; // copy from GitHub
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
