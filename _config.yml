@@ -1,6 +1,6 @@
 exclude:
   - vendor
   - "*.Rmd"
-baseurl: env-info
+baseurl: /env-info
 gems:
   - jekyll-last-modified-at
