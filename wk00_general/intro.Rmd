@@ -3,25 +3,30 @@ title: "Environmental Informatics"
 subtitle: "ESM 296-3W (winter 2016)"
 author: "Ben Best, Naomi Tague"
 date: '`r format(Sys.time(), "%Y-%m-%d")`'
-output: ioslides_presentation
+output:
+  ioslides_presentation:
+    fig_caption: true
+    smaller: true
 ---
 
 # Introduction
 
 ## Environmental Informatics
 
-- manipulating information to solve environmental problems
+> manipulating information to solve environmental problems
 
-## Data Science
+## Data Science - Venn
 
-- "data science": Venn diagram of:
+![Source: [The Data Science Venn Diagram — Drew Conway](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)](../img/DataScience_VennDiagram_DrewConway.png)
 
-    1. math/stats
-    
-    1. specialty expertise, ie env science
-    
-    1. informatics
-    
+## Data Science - Sequence
+
+![Source: [Computational Information Design - Ben Fry](http://benfry.com/phd/)](http://i0.wp.com/flowingdata.com/wp-content/uploads/2009/06/all-fields.png?zoom=2&w=960)
+
+## Data Science - Sequence for R
+
+![Source: [R for Data Science - Hadley Wickham](http://r4ds.had.co.nz/intro.html)](../img/r4ds_data-science.png)
+
 ## Motivation Ex: OHI
 
 - previously, one person curating all data & code, many scientists input.

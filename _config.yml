@@ -3,11 +3,16 @@ exclude:
   - "*.Rmd"
 baseurl: /env-info
 gems: # https://pages.github.com/versions/
-#  - jekyll-last-modified-at
-  - jekyll-mentions
-  - jekyll-redirect-from
-  - jekyll-feed
-  - jemoji
-  - jekyll-gist
   - jekyll-sitemap
+  - jekyll-mentions
+#  - jemoji
+#  - jekyll-last-modified-at
+#  - jekyll-redirect-from
+#  - jekyll-feed
+#  - jekyll-gist
   
+# Conversion
+markdown:    kramdown
+highlighter: rouge
+kramdown:
+  input: GFM

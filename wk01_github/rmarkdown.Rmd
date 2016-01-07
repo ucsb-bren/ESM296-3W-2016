@@ -9,6 +9,9 @@ output: ioslides_presentation
 
 - [Github flavored markdown](https://help.github.com/articles/github-flavored-markdown) like in default README.md
 
+- Rstudio menu Help > Markdown Quick Reference
+
+- [R Markdown — Dynamic Documents for R](http://rmarkdown.rstudio.com/)
 
 ## hadley_4ds: Recommendations for learning more about communication:
 

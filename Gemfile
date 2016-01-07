@@ -11,3 +11,4 @@ gem 'github-pages', versions['github-pages']
 gem 'jemoji'
 gem 'jekyll-gist'
 gem 'jekyll-sitemap'
+gem 'rouge'
