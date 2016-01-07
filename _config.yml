@@ -3,7 +3,7 @@ exclude:
   - "*.Rmd"
 baseurl: /env-info
 gems: # https://pages.github.com/versions/
-  - jekyll-last-modified-at
+#  - jekyll-last-modified-at
   - jekyll-mentions
   - jekyll-redirect-from
   - jekyll-feed
