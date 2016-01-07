@@ -9,27 +9,27 @@ layout: default
 
 ## Portals
 
-- [UNEP Environmental Data Explorer - The Environmental Database (search | map | graph | download)](http://geodata.grid.unep.ch/)
+- [UNEP Environmental Data Explorer - Environmental Database (search \| map \| graph \| download)](http://geodata.grid.unep.ch/)
 - [Data.gov, USA](http://catalog.data.gov/dataset)
 - [Climate Change Atlas, USA](http://www.fs.fed.us/nrs/atlas/) for 147 birds and 134 trees
 - [Climate Change Knowledge Portal, WorldBank](http://sdwebx.worldbank.org/climateportal/)
 - [Datasets — European Environment Agency](http://www.eea.europa.eu/data-and-maps/data#c17=&c11=&c5=all&c0=5&b_start=0)
 - [Free GIS Datasets - Categorised List](http://freegisdata.rtwilson.com/)
-- [Data - Developer Central | US EPA](http://developer.epa.gov/category/data/)
-- [Quick Links | National Centers for Environmental Information (NCEI) formerly known as National Climatic Data Center (NCDC)](https://www.ncdc.noaa.gov/data-access/quick-links)
-* [Downloads | Natural Earth](http://www.naturalearthdata.com/downloads/)
-* [Socioeconomic Data and Applications Center | SEDAC](http://sedac.ciesin.columbia.edu/)
-* [UNEP Environmental Data Explorer - The Environmental Database (search | map | graph | download)](http://geodata.grid.unep.ch/)
+- [Data - Developer Central \| US EPA](http://developer.epa.gov/category/data/)
+- [Quick Links \| National Centers for Environmental Information (NCEI) formerly known as National Climatic Data Center (NCDC)](https://www.ncdc.noaa.gov/data-access/quick-links)
+* [Downloads \| Natural Earth](http://www.naturalearthdata.com/downloads/)
+* [Socioeconomic Data and Applications Center \| SEDAC](http://sedac.ciesin.columbia.edu/)
+* [UNEP Environmental Data Explorer - The Environmental Database (search \| map \| graph \| download)](http://geodata.grid.unep.ch/)
 * [GeoNetwork - The portal to spatial data and information](http://www.fao.org/geonetwork/srv/en/main.home)
 * [NASA Earth Observations (NEO)](http://neo.sci.gsfc.nasa.gov/)
-* [Download data by country | DIVA-GIS](http://www.diva-gis.org/gdata)
+* [Download data by country \| DIVA-GIS](http://www.diva-gis.org/gdata)
 * [Data — Geospatial Consulting @ UC Davis](https://geospatial.ucdavis.edu/resources/data-cartography)
-* [Global Administrative Areas | Boundaries without limits](http://gadm.org/)
-* [WorldClim - Global Climate Data | Free climate data for ecological modeling and GIS](http://www.worldclim.org/)
-* [Free and Open Access to Biodiversity Data | GBIF.org](http://www.gbif.org/)
+* [Global Administrative Areas \| Boundaries without limits](http://gadm.org/)
+* [WorldClim - Global Climate Data \| Free climate data for ecological modeling and GIS](http://www.worldclim.org/)
+* [Free and Open Access to Biodiversity Data \| GBIF.org](http://www.gbif.org/)
 * [CGIAR-CSI SRTM 90m DEM Digital Elevation Database](http://srtm.csi.cgiar.org/)
-* [Digital Data | UCSB Library](http://www.library.ucsb.edu/mil/digital-data)
-* [Spatial data: by location | UCSB Library](http://www.library.ucsb.edu/map-imagery-lab/spatial-data-location)
+* [Digital Data \| UCSB Library](http://www.library.ucsb.edu/mil/digital-data)
+* [Spatial data: by location \| UCSB Library](http://www.library.ucsb.edu/map-imagery-lab/spatial-data-location)
 * [Geoportal](http://portal.gis.ca.gov/geoportal/catalog/main/home.page)
 * [CNRA Download](http://www.atlas.ca.gov/download.html)
 * [USGS TNM 2.0 Viewer](http://viewer.nationalmap.gov/viewer/)
@@ -40,14 +40,14 @@ layout: default
 * [Population Estimates and Projections (2015, 2014, 2013 and 2012)](http://www.census.gov/data/developers/data-sets/population-estimates-and-projections.html)
 * [Health Insurance Statistics: CPS, SIPP, ACS and SAHIE](http://www.census.gov/data/developers/data-sets/Health-Insurance-Statistics.html)
 * [Available APIs](http://www.census.gov/data/developers/data-sets.html)
-* [Spatial Data: by Type | UCSB Library](http://www.library.ucsb.edu/map-imagery-lab/spatial-data-type)
-* [Spatial Data Services | UCSB Library](http://www.library.ucsb.edu/mil/gis-services)
+* [Spatial Data: by Type \| UCSB Library](http://www.library.ucsb.edu/map-imagery-lab/spatial-data-type)
+* [Spatial Data Services \| UCSB Library](http://www.library.ucsb.edu/mil/gis-services)
 * [Data Catalog of Santa Barbara County](http://cosb.countyofsb.org/gis/default.aspx?id=2802)
-* [Global Change Master Directory (GCMD)](http://gcmd.nasa.gov/KeywordSearch/Keywords.do?Portal=GCMD&KeywordPath=Parameters|Home&MetadataType=0&Columns=0#maincontent)
+* [Global Change Master Directory (GCMD)](http://gcmd.nasa.gov/KeywordSearch/Keywords.do?Portal=GCMD&KeywordPath=Parameters\|Home&MetadataType=0&Columns=0#maincontent)
 
 ## CSV datasets
 
-[Data Packages Listing - Frictionless Open Data | okfn](http://data.okfn.org/data)
+[Data Packages Listing - Frictionless Open Data \| okfn](http://data.okfn.org/data)
 
 ## R API packages
 
@@ -98,7 +98,7 @@ open-source data portal platform
 
 - [datasets in R, by package](https://vincentarelbundock.github.io/Rdatasets/datasets.html)
 
-- [NEON Spatio-temporal Series Teaching Data Subsets | Figshare](https://figshare.com/articles/Spatio_temporal_Series_Teaching_Data_Subsets/2009586)
+- [NEON Spatio-temporal Series Teaching Data Subsets \| Figshare](https://figshare.com/articles/Spatio_temporal_Series_Teaching_Data_Subsets/2009586)
 
 - [World beer consumption & scientific productivity.](https://figshare.com/articles/World_beer_consumption_scientific_productivity_/664162)
 

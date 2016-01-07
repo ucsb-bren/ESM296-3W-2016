@@ -1,6 +1,8 @@
 # Environmental Informatics at UCSB [![Build Status](https://travis-ci.org/ucsb-bren/env-info.svg?branch=gh-pages)](https://travis-ci.org/ucsb-bren/env-info)
 
-Repository for practicing doing pull requests. Introduce yourself via a `GITHUB_USERNAME.json` file under [`_data/`](_data/) directory, and submit via pull request. Here's an example:
+
+
+Fork and clone this repository. Introduce yourself by adding a file per your **Github** `username.json` under the [`_data/`](_data/) directory. Here's an example for Github username `bbest`:
 
 ```javascript
 // _data/bbest.json
@@ -11,7 +13,7 @@ Repository for practicing doing pull requests. Introduce yourself via a `GITHUB_
 }
 ```
 
-Using the format above, replace with your own `program`, `interests` and `project` idea.
+Using the format above, replace with your own `program`, `interests` and `project` idea. Create an Rmarkdown document also with your username under the [`students`](students/) folder with more details on your project idea, commit and push the changes, and submit a pull request to the original repository.
 
 ## Acknowledgements
 

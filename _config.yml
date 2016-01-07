@@ -2,5 +2,12 @@ exclude:
   - vendor
   - "*.Rmd"
 baseurl: /env-info
-gems:
+gems: # https://pages.github.com/versions/
   - jekyll-last-modified-at
+  - jekyll-mentions
+  - jekyll-redirect-from
+  - jekyll-feed
+  - jemoji
+  - jekyll-gist
+  - jekyll-sitemap
+  
