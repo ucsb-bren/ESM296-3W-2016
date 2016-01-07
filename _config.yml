@@ -4,12 +4,12 @@ exclude:
 baseurl: /env-info
 gems: # https://pages.github.com/versions/
   - jekyll-sitemap
+  - jekyll-gist
   - jekyll-mentions
-#  - jemoji
+  - jekyll-redirect-from
+  - jekyll-feed
+  - jemoji
 #  - jekyll-last-modified-at
-#  - jekyll-redirect-from
-#  - jekyll-feed
-#  - jekyll-gist
   
 # Conversion
 markdown:    kramdown

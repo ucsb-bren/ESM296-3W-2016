@@ -8,7 +8,10 @@ gem 'github-pages', versions['github-pages']
 
 # gem 'jekyll-last-modified-at', :require => 'jekyll-last-modified-at'
 
-gem 'jemoji'
-gem 'jekyll-gist'
+# https://pages.github.com/versions/
 gem 'jekyll-sitemap'
-gem 'rouge'
+gem 'jekyll-gist'
+gem 'jekyll-mentions'
+gem 'jekyll-redirect-from'
+gem 'jekyll-feed'
+gem 'jemoji' 
