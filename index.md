@@ -85,12 +85,13 @@ The majority of exciting interactive application development is happening these 
 - [threejs](https://github.com/bwlewis/rthreejs): 3D scatterplots and globes
 - [DiagrammeR](http://rich-iannone.github.io/DiagrammeR/): Diagrams and flowcharts
 
-### Wk 7. Interactive Applications
+### Wk 7. Advanced Programming
+
+Developing more complex programs involves breaking data analysis down into key components - and organizing these components so that they can be easily re-used, modified and linked with other programs. We will introduce you to techniques for structured programming. You'll learn how to create your own [R package](http://r-pkgs.had.co.nz/intro.html).
+
+### Wk 8. Interactive Applications
 
 Continuing with the online interactive theme, we'll explore the world of making [Shiny](http://shiny.rstudio.com/) apps for truly interactive applications that allow for backend R functions reactive to user inputs to a clean web interface easily rendered with the most minimal amount of code. See the [shiny cheat sheet](http://shiny.rstudio.com/images/shiny-cheatsheet.pdf).
-
-### Wk 8. Advanced Programming
-Developing more complex programs involves breaking data analysis down into key components - and organizing these components so that they can be easily re-used, modified and linked with other programs. We will introduce you to techniques for structured programming. You'll learn how to create your own [R package](http://r-pkgs.had.co.nz/intro.html).
 
 ### Wk 9. Documentation and Testing
 

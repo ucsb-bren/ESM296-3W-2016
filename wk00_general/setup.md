@@ -12,10 +12,9 @@ To run the code in this book, you will need to install both R and the RStudio ID
 1. Download and install RStudio, <http://www.rstudio.com/download>.
 1. Install needed packages (see below).
 
-
 ## R
 
-![Rmarkdown can be used throughout the life cycle of your data to weave rendered code and documentation into a variety of formats, from portable static documents and to dynamic online applications. Figure source: [Reproducible Research - Johns Hopkins University | Coursera](https://www.coursera.org/course/repdata)](../img/Peng2015_ReproResearch.png)
+![Rmarkdown can be used throughout the life cycle of your data to weave rendered code and documentation into a variety of formats, from portable static documents and to dynamic online applications. Figure source: [Reproducible Research - Johns Hopkins University | Coursera](https://www.coursera.org/course/repdata)](img/Peng2015_ReproResearch.png)
 
 
 ## RStudio

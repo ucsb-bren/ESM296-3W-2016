@@ -5,11 +5,21 @@ layout: default
 
 <!-- ###### INDEX OF LESSONS ON THIS TOPIC ###### -->
 
-1. [Lesson 00 Before we start](00-before-we-start.html)
-2. [Lesson 01 Introduction to R](01-intro-to-R.html)
-3. [Lesson 02 Starting with data](02-starting-with-data.html)
-4. [Lesson 03 Introducing `data.frame`](03-data-frames.html)
-5. [Lesson 04 Aggregating and analyzing data with dplyr](04-dplyr.html)
-6. [Lesson 05 Data visualisation with ggplot2](05-visualisation-ggplot2.html)
-7. [Lesson 06 R and SQL](06-r-and-sql.html)
-
+Week | Materials
+:---:|----------
+1    | General
+     | - [intro](./wk00_general/intro.html) [NT,BB]
+     | - [setup](./wk00_general/setup.html) [BB]
+     |  
+     | Reproducible Science Tools
+     | - [github](./wk01_repro/github.pdf) [NT]
+     | - [rmarkdown](./wk01_repro/rmarkdown.html) [NT]
+2    | Programming Concepts
+3    | Reading and Wrangling Data
+4    | Tidying up Data
+5    | Visualizing Data
+6    | Interactive Plots and Maps
+7    | Advanced Programming
+8    | Interactive Applications
+9    | Documentation and Testing
+10   | Final Project Presentations

@@ -1,7 +1,8 @@
 ---
-title: "lec01_repro"
-author: "Ben Best"
-date: "January 2, 2016"
+title: "Environmental Informatics"
+subtitle: "ESM 296-3W (winter 2016)"
+author: "Ben Best, Naomi Tague"
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
 output: ioslides_presentation
 ---
 
@@ -48,10 +49,6 @@ Install the necessary software (R, RStudio, Git) on your laptops. Then every wee
 [TODO: table with icons]
 
 Idea is to **collaborate**! Will put this to the test with a student directory.
-
-# Week 1: Reproducible Science Tools
-
-## Reproducible Science Tools
 
 # Setup
 
