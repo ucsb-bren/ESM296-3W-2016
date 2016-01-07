@@ -1,7 +1,6 @@
 ---
 title: "Setup"
-date: "`r format(Sys.time(), '%Y-%m-%d %H:%M')`"
-output: html_document
+layout: default
 ---
 
 # Install Software
@@ -33,7 +32,7 @@ To run the code in this book, you will need to install both R and the RStudio ID
 
 ## Check
 
-```{r check-versions, eval=FALSE}
+```r
 # parameters
 R_v       = '3.2.3'
 RStudio_v = '0.99.841'
@@ -51,4 +50,3 @@ if (RStudio.Version()$version < RStudio_v){
   stop(sprintf('Your version of RStudio (%s) is older than the expected minimum RStudio version (%s). Please close R/RStudio and install the latest version of RStudio from https://www.rstudio.com/products/rstudio/download/.', RStudio.Version()$version, RStudio_v))
 }
 ```
-

@@ -4,7 +4,7 @@
 dir_rmd = '.'
 redo = T
 
-for (rmd in list.files(dir_rmd, pattern='\\.Rmd$')){ # rmd = list.files(dir_rmd, pattern='\\.Rmd$')[1]
+for (rmd in list.files(dir_rmd, pattern='\\.Rmd$', recursive=T)){ # rmd = list.files(dir_rmd, pattern='\\.Rmd$')[1]
   
   # render Rmd to html
   pfx = tools::file_path_sans_ext(rmd)

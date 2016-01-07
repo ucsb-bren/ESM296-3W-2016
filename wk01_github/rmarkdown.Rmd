@@ -5,7 +5,9 @@ date: '`r format(Sys.time(), "%Y-%m-%d")`'
 output: ioslides_presentation
 ---
 
-# Week 1: 
+# Rmarkdown
+
+- [Github flavored markdown](https://help.github.com/articles/github-flavored-markdown) like in default README.md
 
 
 ## hadley_4ds: Recommendations for learning more about communication:

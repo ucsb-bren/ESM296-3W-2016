@@ -39,15 +39,26 @@ There will also be a short paper accompanied by an in class presentation to be s
 
 ### Wk 1. Reproducible Science Tools
 
+#### Introduction
+
 Environmental science and management is increasingly a group enterprise involving many stakeholders from various disciplines. Environmental science also increasingly requires collection, processing, analysis and interpretation of large data sets. There are a variety of tools that help make collaborative data analysis easier. We'll focus this first week in getting you up to speed with the basics of operating two technologies that are currently the most popular and intuitive: 
 
-1. [Rmarkdown](http://rmarkdown.rstudio.com/) enables you to weave rendered chunks of code to directly create tables, figures, formulas and references and output to documents, PDFs, websites or interactive online applications. You are expected to turn in all your homework assignments with this authoring format. See Rmarkdown [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf),  [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) and Figure 1.
-  
-    ![](img/Peng2015_ReproResearch.png)
-    
-    _Rmarkdown can be used throughout the life cycle of your data to weave rendered code and documentation into a variety of formats, from portable static documents and to dynamic online applications. Figure source: [Reproducible Research - Johns Hopkins University](https://www.coursera.org/course/repdata)_
-
 1. [Git](https://git-scm.com/) is the most popular file versioning software which allows you to play nicely with others when it comes to code and data. [Github](https://github.com/) is the most popular online site for hosting git repositories, and has many bonus features for rendering formats (md, csv, geojson, ...) and handling project management (issues, wiki,...). You'll create your own personal private repository to turn in homework (a la [Github Classroom](https://education.github.com/guide)) and manage your code and files like a project (ie turning in homework = resolving an issue).
+
+1. [Rmarkdown](http://rmarkdown.rstudio.com/) enables you to weave rendered chunks of code to directly create tables, figures, formulas and references and output to documents, PDFs, websites or interactive online applications. You are expected to turn in all your homework assignments with this authoring format. See Rmarkdown [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf),  [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) and Figure 1.
+
+
+#### Materials
+
+General
+
+- [intro](./wk00_general/intro.html) [NT,BB]
+- [setup](./wk00_general/setup.html) [BB]
+
+Reproducible Science Tools
+
+ - [github](./wk01_github/github.pdf) [NT]
+ - [rmarkdown](./wk01_github/rmarkdown.html) [NT]
 
 ### Wk 2. Programming Concepts
 
