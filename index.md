@@ -18,10 +18,11 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 ### Interaction
 
 - **Forum** at [env-info.slack.com](https://env-info.slack.com)
-- [**Feedback**](https://goo.gl/forms/mIeOu7Xoaw) using Google Forms
 - **Stickies**, aka post-it notes, available to pickup and return at front table, to be used sticking up off top of laptop screen:
   - <a href="#" class="btn btn-danger btn-sm">Help!</a> Use the red stickies to let us know you're stuck with a problem; spares arm raising.
-  - <a href="#" class="btn btn-success btn-sm">Done</a> Flag the green sticky once you've finished working through material as a class.
+  - <a href="#" class="btn btn-success btn-sm">Ready</a> Flag the green sticky once you're ready for the next step.
+- [**Issues**](https://github.com/ucsb-bren/env-info/issues) for ucsb-bren/env-info Github repository
+- [**Feedback**](https://goo.gl/forms/mIeOu7Xoaw) using Google Forms
 
 ### Workload
 
@@ -41,30 +42,13 @@ Listed by week...
 
 ### 1. Reproducible Science Tools
 
-#### Introduction
-
 Environmental science and management is increasingly a group enterprise involving many stakeholders from various disciplines. Environmental science also increasingly requires collection, processing, analysis and interpretation of large data sets. There are a variety of tools that help make collaborative data analysis easier. We'll focus this first week in getting you up to speed with the basics of operating two technologies that are currently the most popular and intuitive: 
 
 1. [**Git**](https://git-scm.com/) is the most popular file versioning software which allows you to play nicely with others when it comes to code and data. [**Github**](https://github.com/) is the most popular online site for hosting git repositories, and has many bonus features for rendering formats (md, csv, geojson, ...) and handling project management (issues, wiki,...). 
 
 1. [**Rmarkdown**](http://rmarkdown.rstudio.com/) enables you to weave rendered chunks of R code in with formatted text (as markdown). Rmarkdown enables you to most easily generate tables, figures, formulas and references into a variety of outputs: documents, PDFs, websites or interactive online applications.
 
-#### Materials
-
-General
-
-- [intro](./wk00_general/intro.html) [NT,BB]
-- [setup](./wk00_general/setup.html) [BB]
-
-Reproducible Science Tools
-
- - [github](./wk01_github/github.pdf) [NT]
- - [rmarkdown](./wk01_github/rmarkdown.html) [BB]
-
-**Git**. You'll create your own personal private repository to turn in homework (a la [Github Classroom](https://education.github.com/guide)) and manage your code and files like a project (ie turning in homework = resolving an issue).
-
-**Rmarkdown**. You are expected to turn in all your homework assignments with this authoring format. See Rmarkdown [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf),  [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) and Figure 1.
-
+    <a href="wk01_github" class="btn btn-primary btn-sm">Reproducible Science Tools...</a>
 
 ### 2. Programming Concepts
 
@@ -117,3 +101,9 @@ Two essential components of programming best practices are documentation and tes
 ### 10. Final Project Presentations
 
 You'll share your final project presentations in class, describing the scientific question asked, methodological steps taken to gather and clean data, analytical steps and visualizations. This will be done with an Rmarkdown presentation having a Shiny app embedded with all code made available on a Github repository (ie at your group's org.github.io site).
+
+## Resources
+
+### [References]({{ site.baseurl }}/refs.html)
+
+### [Data]({{ site.baseurl }}/data)

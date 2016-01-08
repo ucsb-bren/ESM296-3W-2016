@@ -1,0 +1,40 @@
+---
+title: "References"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+
+## Cheatsheets
+
+Most of these cheatsheets are from [rstudio.com/resources/cheatsheets](https://www.rstudio.com/resources/cheatsheets/).
+
+```{r cheatsheets, results='asis'}
+for (f in list.files('refs/cheatsheets')){
+  cat(sprintf('- [%s](refs/cheatsheets/%s)\n', f, f))
+}
+```
+
+## Literature
+
+```{r lit, results='asis'}
+for (f in list.files('refs/lit')){
+  cat(sprintf('- [%s](refs/lit/%s)\n', f, f))
+}
+```
+
+## Books
+
+- [R for Data Science](http://r4ds.had.co.nz/) [<span class="octicon octicon-mark-github"></span>](https://github.com/hadley/r4ds) by Garrett Grolemund and Hadley Wickham
+- [Advanced R](http://adv-r.had.co.nz/) [<span class="octicon octicon-mark-github"></span>](https://github.com/hadley/adv-r) by Hadley Wickham
+- [Reproducible Research with R and Rstudio](http://christophergandrud.github.io/RepResR-RStudio/) by Christopher Gandrud
+
+## Courses
+
+- [Data Carpentry for Biologists](http://www.datacarpentry.org/semester-biology/) [<span class="octicon octicon-mark-github"></span>](https://github.com/datacarpentry/semester-biology) by Ethan White
+- [Data Analysis and Visualization Using R](http://varianceexplained.org/RData/) [<span class="octicon octicon-mark-github"></span>](https://github.com/dgrtwo/RData) by David Robinson
+- [Data wrangling, exploration, and analysis with R](http://stat545-ubc.github.io/) [<span class="octicon octicon-mark-github"></span>](https://github.com/STAT545-UBC/STAT545-UBC.github.io) by Jenny Bryan
+- [Software Carpentry: R for reproducible scientific analysis](http://swcarpentry.github.io/r-novice-gapminder/) [<span class="octicon octicon-mark-github"></span>](https://github.com/swcarpentry/r-novice-gapminder) by Software Carpentry
+- [Tools for Reproducible Research](http://kbroman.org/Tools4RR/) [<span class="octicon octicon-mark-github"></span>](https://github.com/kbroman/Tools4RR) by Karl Broman

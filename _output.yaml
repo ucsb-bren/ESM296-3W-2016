@@ -15,7 +15,7 @@ html_document:
     - styles/styles.css
   includes:
     in_header:   _includes/in_header_rmd.html
-    before_body: _includes/before_body.html
+    before_body: _includes/before_body_rmd.html
     after_body:  _includes/after_body.html
 ioslides_presentation:
   self_contained: false

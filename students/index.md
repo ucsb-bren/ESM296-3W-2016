@@ -1,10 +1,9 @@
 ---
+title: Student Listing
 layout: default
 ---
 
-# Student Directory
-
-[Add yourself!](https://github.com/ucsb-bren/env-info)
+[Add yourself!](https://github.com/ucsb-bren/env-info#readme)
 
 <!-- based on http://git.io/vvroy -->
 <ul>
@@ -27,13 +26,17 @@ layout: default
             <span class="js-name"></span>
           </div>
         </a>
-        <a href="students/{{ username }}.html">
+        
           <div class="vcard-details">
-            <p><span class="octicon octicon-jersey"></span> {{ user.program }}</p>
-            <p><span class="octicon octicon-list-unordered"></span> {{ user.interests }}</p>
-            <p><span class="octicon octicon-rocket"></span> {{ user.project }}</p>
+            <a href="students/{{ username }}.html">
+              <p><span class="octicon octicon-jersey"></span> {{ user.program }}</p>
+              <p><span class="octicon octicon-list-unordered"></span> {{ user.interests }}</p>
+              <p><span class="octicon octicon-rocket"></span> {{ user.project }}</p>
+            </a>
+            <a href="http://{{ user.organization }}.github.io">
+              <p><span class="octicon octicon-organization"></span> @{{ user.organization }}</p>
+            </a>
           </div>
-        </a>
       </div>
     </li>
   {% endfor %}

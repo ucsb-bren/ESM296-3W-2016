@@ -7,6 +7,13 @@ output:
   ioslides_presentation:
     fig_caption: true
     smaller: true
+    widescreen: true
+    self_contained: false
+    css: 
+      - libs/font-awesome-4.5.0/css/font-awesome.min.css # http://fortawesome.github.io/Font-Awesome/icons/
+      - libs/octicons-3.3.0/octicons.css                 # https://octicons.github.com/
+      - styles/styles.css
+    
 ---
 
 # Introduction
@@ -17,7 +24,7 @@ output:
 
 ## Data Science - Venn
 
-![Source: [The Data Science Venn Diagram — Drew Conway](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)](../img/DataScience_VennDiagram_DrewConway.png)
+![Source: [The Data Science Venn Diagram — Drew Conway](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)](img/DataScience_VennDiagram_DrewConway.png)
 
 ## Data Science - Sequence
 
@@ -25,122 +32,49 @@ output:
 
 ## Data Science - Sequence for R
 
-![Source: [R for Data Science - Hadley Wickham](http://r4ds.had.co.nz/intro.html)](../img/r4ds_data-science.png)
+![Source: [R for Data Science - Hadley Wickham](http://r4ds.had.co.nz/intro.html)](img/r4ds_data-science.png)
 
-## Motivation Ex: OHI
+## Motivating example: Ocean Health Index
 
-- previously, one person curating all data & code, many scientists input.
+- previously, one person curating all data & code, a bottleneck to many scientists inputting ideas
 
-- needed to open it up, elevate internal working group
+- needed to open it up for use internally, eg [ohi-science](https://github.com/ohi-science)
 
-- next, make available to whole world
+- next, make available to whole world, eg [subcountry](http://ohi-science.org/subcountry/)
 
-- see this now for all R packages, for instance 
+- now see Github + Rmarkdown widely used, eg <span class="octicon octicon-mark-github"></span> in [refs](http://ucsb-bren.github.io/env-info/refs)
 
-## Workflow
+## Github Workflow
 
-Install the necessary software (R, RStudio, Git) on your laptops. Then every week, you'll go through the following steps for each week's repository:
+Each week, you'll **fork** ucsb-bren's repository to your Github user space, **clone** it to your local machine to make changes, before making a **pull request** to turn it in.
 
-1. Fork
-
-1. Clone
-
-1. Commit
-
-1. Push
-
-1. Pull Request
-
-[TODO: table with icons]
-
-Idea is to **collaborate**! Will put this to the test with a student directory.
+|       | <span class="octicon octicon-repo"></span> `github.com/ucsb-bren/[repo]` <br> (org, web)  | <span class="octicon octicon-repo"></span> `github.com/[user]/[repo]` <br> (you, web) | <span class="octicon octicon-repo"></span> `~/github/[repo]` <br> (you, local) |
+|-------|-----------------------------------------------|--------------------------------------------|---------------------------------------|
+| <span class="octicon octicon-arrow-right"></span> | | <span class="octicon octicon-arrow-right"></span> [**fork**](https://help.github.com/articles/fork-a-repo) <span class="mega-octicon octicon-repo-forked"></span> | <span class="octicon octicon-arrow-right"></span> [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="mega-octicon octicon-cloud-download"></span> |
+| <span class="octicon octicon-arrow-down"></span> | | | <span class="octicon octicon-arrow-down"></span> [**commit**](http://git-scm.com/docs/git-commit) <span class="mega-octicon octicon-git-commit"></span> |
+| <span class="octicon octicon-arrow-down"></span> | | | <span class="octicon octicon-arrow-down"></span> [**branch**](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) <span class="mega-octicon octicon-git-branch"></span> |
+| <span class="octicon octicon-arrow-left"></span> | [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="mega-octicon octicon-git-merge"></span> | <span class="octicon octicon-arrow-left"></span> [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="mega-octicon octicon-git-pull-request"></span> | <span class="octicon octicon-arrow-left"></span> [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="mega-octicon octicon-cloud-upload"></span> |
 
 # Setup
 
+[setup](../setup.html): install and configure R, Rstudio, Git, Github
+
 ## Flagology
 
-- Red flag = problem, help!
+Regularly:
 
-- Green flag = done, ready for next step.
+- <span class="red2">red: **Help!**</span>
+
+- <span class="green2">green: **Ready**</span> for next step
+
+Today for Group Project Discussion:
+
+- <span class="yellow2">yellow: **Individual**</span> -- name, github username, program
+
+- <span class="blue2">blue: **Project**</span> ideas
 
 ## Feedback
 
-- anonymous Google form
-
-- Gitter forum
-
-- issues
-
-## Install Software
-
-To have students complete assignments using forks (note: this setup means that **students will be able to see one another's work**):
-
-## Fork Assignments
-
-https://raw.githubusercontent.com/education/guide/master/docs/forks.md
-
-1. To start, [**fork** the repository][forking].
-
-### 1. Create the repositories
-
-**[Create one repository][create-repo] per assignment**. Include any boilerplate files your students will need to get started.
-
-If you'd prefer that your assignments or students' work isn't publicly visible, [request private repositories][private-repos] to use for your class. You will need one private repository per assignment.
-
-### 2. Give students read-only access
-
-**If your repositories are public, you can skip this step.**
-
-If your course materials are in private repositories, students will need read-only access to them. Create a `students` team with "read access" and give that team access to all repositories that they will need. Next, add each student to the team, via [`add_to_team`][add-to-team-action] in our [teachers_pet][teachers-pet] tool, or [manually][help-add-to-team].
-
-[Read more about access control][help-access-control].
-
-### 3. Completing assignments
-
-Your students then follow these steps for each assignment:
-
-1. To start, [**fork** the repository][forking].
-1. [**Clone**][ref-clone] the repository to your computer.
-1. Modify the files and [**commit**][ref-commit] changes to complete your solution.
-1. [**Push**][ref-push]/sync the changes up to GitHub.
-1. [Create a **pull request**][pull-request] on the original repository to turn in the assignment.
-
-You may consider making a context-specific copy of these steps in your syllabus or assignment description – grab [the markdown][raw].
-
-### 4. Reviewing assignments
-
-Once created, you can then do code review with line-by-line feedback directly within the pull request. If you allow your students to submit corrections, they can push fixes up to their forks, which will be reflected in the pull request.
-
-Since you don't want any solutions in the original assignment repository, you should leave the pull request unmerged. When you're finished giving feedback, you can close the pull request and leave a :+1: (`:+1:`) in a final comment.
-
-# Assignment 01: Students
-
-## Describe Your Interests, use Markdown
-
-- group project / phd thesis
-
-
-- https://search.dataone.org
-  - [Halpern B , Frazier M , Potapenko J , Casey K , Koenig K , Longo C , Lowndes J , Rockwood C , Selig E , Selkoe K , and Walbridge S. 2015. Cumulative human impacts: Supplementary data (doi:10.5063/F19Z92TW) Download](https://knb.ecoinformatics.org/#view/doi:10.5063/F19Z92TW)
-  
-  [Environment | Data](http://data.worldbank.org/topic/environment)
-
-
-## Pick Core Datasets
-* [Data Packaged Core Datasets](https://github.com/datasets)
-* [Data Packages Listing - Frictionless Open Data](http://data.okfn.org/data)
-
-
-<!-- Links -->
-[create-repo]: https://help.github.com/articles/create-a-repo
-[private-repos]: /guide/private_repos
-[add-to-team-action]: https://github.com/education/teachers_pet/#giving-others-access
-[teachers-pet]: https://github.com/education/teachers_pet
-[help-add-to-team]: https://help.github.com/articles/adding-organization-members-to-a-team
-[help-access-control]: https://help.github.com/articles/what-are-the-different-access-permissions#organization-accounts
-[forking]: https://guides.github.com/activities/forking/
-[ref-clone]: http://gitref.org/creating/#clone
-[ref-commit]: http://gitref.org/basic/#commit
-[ref-push]: http://gitref.org/remotes/#push
-[pull-request]: https://help.github.com/articles/creating-a-pull-request
-[raw]: https://raw.githubusercontent.com/education/guide/master/docs/forks.md
+- **Forum** at [env-info.slack.com](https://env-info.slack.com) - need to be invited by @bbest
+- [**Feedback**](https://goo.gl/forms/mIeOu7Xoaw) using Google Forms
+- [**Issues**](https://github.com/ucsb-bren/env-info/issues) for `ucsb-bren/env-info`

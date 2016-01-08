@@ -1,7 +1,5 @@
 # Environmental Informatics at UCSB [![Build Status](https://travis-ci.org/ucsb-bren/env-info.svg?branch=gh-pages)](https://travis-ci.org/ucsb-bren/env-info)
 
-
-
 Fork and clone this repository. Introduce yourself by adding a file per your **Github** `username.json` under the [`_data/`](_data/) directory. Here's an example for Github username `bbest`:
 
 ```javascript

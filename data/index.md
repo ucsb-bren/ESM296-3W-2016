@@ -13,6 +13,7 @@ layout: default
 - [Data.gov, USA](http://catalog.data.gov/dataset)
 - [Climate Change Atlas, USA](http://www.fs.fed.us/nrs/atlas/) for 147 birds and 134 trees
 - [Climate Change Knowledge Portal, WorldBank](http://sdwebx.worldbank.org/climateportal/)
+- [Environment Data, WorldBank](http://data.worldbank.org/topic/environment)
 - [Datasets — European Environment Agency](http://www.eea.europa.eu/data-and-maps/data#c17=&c11=&c5=all&c0=5&b_start=0)
 - [Free GIS Datasets - Categorised List](http://freegisdata.rtwilson.com/)
 - [Data - Developer Central \| US EPA](http://developer.epa.gov/category/data/)

@@ -13,7 +13,7 @@ To run the code in this book, you will need to install both R and the RStudio ID
 
 ## Setup Github, Git
 
-1. Create **Github** account at <http://github.com>, if you don't already have one. For username, I recommend all lower-case letters, short as you can.
+1. Create **Github** account at <http://github.com>, if you don't already have one. For username, I recommend all lower-case letters, short as you can. You're encouraged to upload a picture since it will get included in the [students]({{ site.baseurl }}/students) listing as part of the first assignment.
 1. Configure Git with global commands. Open up the Bash version of Git and type the following:
 
         git config –global user.name "your GitHub account name"
