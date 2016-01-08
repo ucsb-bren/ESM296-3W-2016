@@ -99,7 +99,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
         	"organization": "whaleroute"
         }
 
-    You should see [`<organization>.github.io`](http://organization.github.io)
+    Once your new pull request gets accepted by @bbest / @naomitague, you should see it added to your profile in the [students]({{ site.baseurl }}/students/) listing and linked to your [`<organization>.github.io`](http://<organization>.github.io).
 
 1. [Add an Issue](https://guides.github.com/features/issues):
 
