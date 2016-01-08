@@ -37,7 +37,9 @@ There will also be a short paper accompanied by an in class presentation to be s
 
 ## Schedule
 
-### Wk 1. Reproducible Science Tools
+Listed by week...
+
+### 1. Reproducible Science Tools
 
 #### Introduction
 
@@ -64,11 +66,11 @@ Reproducible Science Tools
 **Rmarkdown**. You are expected to turn in all your homework assignments with this authoring format. See Rmarkdown [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf),  [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) and Figure 1.
 
 
-### Wk 2. Programming Concepts
+### 2. Programming Concepts
 
 Programming is a general term used for developing sets of instructions for data generation, analysis, interpretation and visualization. We will introduce some basic programming concepts: [data types](http://adv-r.had.co.nz/Data-structures.html), [flow control](http://adv-r.had.co.nz/Functional-programming.html) and [functions](http://adv-r.had.co.nz/Functions.html)  We will also cover programming "best practices". While the specific syntax here applies to R, the concepts are universal to all programming languages.
 
-### Wk 3. Reading and Wrangling Data
+### 3. Reading and Wrangling Data
 
 Getting your data into the format you require is often one of the most frustrating and time consuming task involved in data analysis. Fortunately there are tools that make this easier.
 You will become inculcated into the "Hadley"-verse of R packages which represent a new wonderful paradigm of data science which embraces readability of code. We'll focus on these R packages in particular:
@@ -78,16 +80,16 @@ You will become inculcated into the "Hadley"-verse of R packages which represent
 
 See also the [data wrangling cheat sheet with dplyr, tidyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
-### Wk 4. Tidying up Data
+### 4. Tidying up Data
 
 Data comes in a wide variety of formats. Literally. You'll learn about "wide" vs "narrow" formats with the [tidyr](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) package, as well as how to handle dates/times with [lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html), and strings with [stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). We'll throw in a bit about [regular expressions](https://stat545-ubc.github.io/block022_regular-expression.html) for good measure.
 
-### Wk 5. Visualizing Data
+### 5. Visualizing Data
 
 Visualization allows you to find patterns in your data. Good visualization allows you to communicate what your learn from data to others.  New tools provide users with efficient and flexible ways to generate elegant informative visualizations of their data. We will introduce you 'best practices' and R's powerful visualization "grammar"
  [ggplot2](https://github.com/jennybc/ggplot2-tutorial) which allows you too quickly generate some pretty fancy plots and tailor them to your audience. See the [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/11/ggplot2-cheatsheet.pdf).
 
-### Wk 6. Interactive Plots and Maps
+### 6. Interactive Plots and Maps
 
 The majority of exciting interactive application development is happening these days on the web, and specifically with powerful JavaScript libraries (especially with node framework). R and particularly the RStudio environment have taken advantage of this with the new htmlwidgets architecture, which enables exciting interactive visualizations right from the RStudio IDE (as a Viewer pane), rendered as a standalone HTML document (so easy to share with colleagues or on website), and/or integrated within a Shiny application (for full featured slice and dice capabilities but dependant on an R backend engine; see next week). Check out the [htmlwidgets showcase](http://www.htmlwidgets.org/showcase_leaflet.html) for a sample of the types of interactive visualizations made easy to render:
 
@@ -100,18 +102,18 @@ The majority of exciting interactive application development is happening these 
 - [threejs](https://github.com/bwlewis/rthreejs): 3D scatterplots and globes
 - [DiagrammeR](http://rich-iannone.github.io/DiagrammeR/): Diagrams and flowcharts
 
-### Wk 7. Advanced Programming
+### 7. Advanced Programming
 
 Developing more complex programs involves breaking data analysis down into key components - and organizing these components so that they can be easily re-used, modified and linked with other programs. We will introduce you to techniques for structured programming. You'll learn how to create your own [R package](http://r-pkgs.had.co.nz/intro.html).
 
-### Wk 8. Interactive Applications
+### 8. Interactive Applications
 
 Continuing with the online interactive theme, we'll explore the world of making [Shiny](http://shiny.rstudio.com/) apps for truly interactive applications that allow for backend R functions reactive to user inputs to a clean web interface easily rendered with the most minimal amount of code. See the [shiny cheat sheet](http://shiny.rstudio.com/images/shiny-cheatsheet.pdf).
 
-### Wk 9. Documentation and Testing
+### 9. Documentation and Testing
 
 Two essential components of programming best practices are documentation and testing. Particularly when programming and data analysis involve multiple steps or collaborative programming, good documentation and testing are essential. We will introduce you to ways to help you to write documentation inline using [roxygen2](http://r-pkgs.had.co.nz/man.html) and ways to automate [testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf) of your programs. 
 
-### Wk 10. Final Project Presentations
+### 10. Final Project Presentations
 
 You'll share your final project presentations in class, describing the scientific question asked, methodological steps taken to gather and clean data, analytical steps and visualizations. This will be done with an Rmarkdown presentation having a Shiny app embedded with all code made available on a Github repository (ie at your group's org.github.io site).
