@@ -12,7 +12,7 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 
 ### Instructors
 
-- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NM] (office hours TBD)
+- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] (office hours TBD)
 - [Ben Best](http://www.bdbest.org) [BB]  (office hours TBD)
 
 ### Interaction
