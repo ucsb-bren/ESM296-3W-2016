@@ -17,16 +17,19 @@ To run the code in this book, you will need to install both R and the RStudio ID
 
 1. Configure Git with global commands. Open up the Bash version of Git and type the following:
 
+        # check your version of git
+        git --version
+
         git config –-global user.name "your GitHub account name"
         git config –-global user.email "GitHubEmail@something.com"
         
-        # list your config and check that your user.name and user.email variables are set
+        # list your config to confirm user.* variables set
         git config --list
         
 1. Open Rstudio and set the path to Git executable. Go to Tools > Global Options > Git/SVN. You should browse to the git executable which is usually, dependent on operating system:
 
     - Mac: `/usr/local/git/bin/git`
-    - Windows: `C:/Program Files (x86)/Git/bin/git.exe`
+    - Windows: `C:/Program Files/Git/bin/git.exe`
 
 ## Sign in to Slack
 
