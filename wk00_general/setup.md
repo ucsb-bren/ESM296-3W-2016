@@ -26,7 +26,7 @@ To run the code in this book, you will need to install both R and the RStudio ID
 
 ## Sign in to Slack
 
-BB will invite you via email to the **Slack** forum [envinfo](http://envinfo.slack.com). When you first sign up, please try setting the same Slack username as your Github username. You can use this messaging forum for realtime discussion and feedback.
+BB will invite you via email to the **Slack** forum [env-info](http://env-info.slack.com). When you first sign up, please try setting the same Slack username as your Github username. You can use this messaging forum for realtime discussion and feedback.
 
 ## Check
 
