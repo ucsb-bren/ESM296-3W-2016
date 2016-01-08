@@ -39,7 +39,7 @@ Copy and paste the following code in your R console, which will tell you whether
 
 # parameters
 R_v       = '3.2.3'
-RStudio_v = '0.99.841'
+RStudio_v = '0.99.491'
 
 # check R version ----
 if (getRversion() < R_v){
