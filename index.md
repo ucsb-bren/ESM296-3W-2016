@@ -57,7 +57,7 @@ General
 Reproducible Science Tools
 
  - [github](./wk01_github/github.pdf) [NT]
- - [rmarkdown](./wk01_github/rmarkdown.html) [NT]
+ - [rmarkdown](./wk01_github/rmarkdown.html) [BB]
 
 **Git**. You'll create your own personal private repository to turn in homework (a la [Github Classroom](https://education.github.com/guide)) and manage your code and files like a project (ie turning in homework = resolving an issue).
 
