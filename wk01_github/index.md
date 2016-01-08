@@ -123,7 +123,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 - [R Markdown Reference Guide]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-reference.pdf)
 - [Mastering Markdown · GitHub Guides](https://guides.github.com/features/mastering-markdown/)
 
-## Details
+## Footnotes
 
 ### 1. json
 
