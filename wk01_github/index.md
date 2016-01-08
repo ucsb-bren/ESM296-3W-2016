@@ -17,6 +17,23 @@ layout: default
 
 ## Assignment
 
+### Github with Naomi
+
+- in RStudio, menu File > New Project, New Directory, empty, then click "Create a git repository"
+- Now you should see a new Git tab in RS tudio with 2 new files: .gitignore and *.Rproj
+- create a new R script grphpcp.R:
+
+    pcp = read.table('pcp.txt')
+    plot(pcp$meters)
+
+- now change a line to:
+
+    pcp = read.table('pcp.txt')
+    plot(pcp$meters, type='l', col='blue')
+
+- in Git pane, click Commit changes
+- M means modified
+- 
 ### Individually
 
 Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json <sup><a href="#json">1</a></sup> file, and a dedicated Rmarkdown document.
