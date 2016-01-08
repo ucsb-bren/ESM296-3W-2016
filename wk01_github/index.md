@@ -21,15 +21,15 @@ layout: default
 
 - in RStudio, menu File > New Project, New Directory, empty, then click "Create a git repository"
 - Now you should see a new Git tab in RS tudio with 2 new files: .gitignore and *.Rproj
+- download [pcp.txt](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/pcp.txt) into your project
 - create a new R script grphpcp.R:
 
-    pcp = read.table('pcp.txt')
-    plot(pcp$meters)
+      pcp = read.table('pcp.txt')
+      plot(pcp$meters)
 
-- now change a line to:
+- now change the last line to:
 
-    pcp = read.table('pcp.txt')
-    plot(pcp$meters, type='l', col='blue')
+      plot(pcp$meters, type='l', col='blue')
 
 - in Git pane, click Commit changes
 - M means modified
