@@ -17,8 +17,8 @@ To run the code in this book, you will need to install both R and the RStudio ID
 
 1. Configure Git with global commands. Open up the Bash version of Git and type the following:
 
-        git config –global user.name "your GitHub account name"
-        git config –global user.email "GitHubEmail@something.com"
+        git config –-global user.name "your GitHub account name"
+        git config –-global user.email "GitHubEmail@something.com"
         
 1. Open Rstudio and set the path to Git executable. Go to Tools > Global Options > Git/SVN. You should browse to the git executable which is usually, dependent on operating system:
 
