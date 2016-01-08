@@ -55,10 +55,6 @@ Each week, you'll **fork** ucsb-bren's repository to your Github user space, **c
 | <span class="octicon octicon-arrow-down"></span> | | | <span class="octicon octicon-arrow-down"></span> [**branch**](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) <span class="mega-octicon octicon-git-branch"></span> |
 | <span class="octicon octicon-arrow-left"></span> | [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="mega-octicon octicon-git-merge"></span> | <span class="octicon octicon-arrow-left"></span> [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="mega-octicon octicon-git-pull-request"></span> | <span class="octicon octicon-arrow-left"></span> [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="mega-octicon octicon-cloud-upload"></span> |
 
-# Setup
-
-[setup](../setup.html): install and configure R, Rstudio, Git, Github
-
 ## Flagology
 
 Regularly:
@@ -78,3 +74,8 @@ Today for Group Project Discussion:
 - **Forum** at [env-info.slack.com](https://env-info.slack.com) - need to be invited by @bbest
 - [**Feedback**](https://goo.gl/forms/mIeOu7Xoaw) using Google Forms
 - [**Issues**](https://github.com/ucsb-bren/env-info/issues) for `ucsb-bren/env-info`
+
+# Setup
+
+[setup](../setup.html): install and configure R, Rstudio, Git, Github
+
