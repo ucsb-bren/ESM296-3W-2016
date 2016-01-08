@@ -7,7 +7,7 @@ layout: default
 
 To run the code in this book, you will need to install both R and the RStudio IDE, an application that makes R easier to use. Both are open source, free and easy to install:
 
-1. **R**: <https://www.r-project.org/alt-home/>
+1. **R**: <http://cran.stat.ucla.edu/> (NEW!)
 1. **RStudio**: <http://www.rstudio.com/download>
 1. **Git**: <http://git-scm.com/downloads>. Default options work well.
 
