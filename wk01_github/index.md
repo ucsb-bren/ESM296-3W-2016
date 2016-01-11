@@ -40,7 +40,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 
 1. Fork the [ucsb-bren/env-info](https://github.com/ucsb-bren/env-info) repository into your Github user space, and clone to your laptop to work on files (per [Github Workflow](../wk00_general/intro.html#8)). All paths below refer to wherever you cloned the `env-info` folder onto your machine.
 
-1. Add yourself the [students]({{ site.baseurl }}/students/) listing by adding a file per your Github `<username>.json` into the [`_data/`](_data/) directory. Here's an example for Github username `bbest`, so the file is at `_data/bbest.json`:
+1. Add yourself the [students]({{ site.baseurl }}/students/) listing by adding a file per your Github `<username>.json` into the [`_data/`](_data/) directory. Here's an example for Github username `bbest`, so the file is at [`_data/bbest.json`](https://github.com/ucsb-bren/env-info/blob/gh-pages/_data/bbest.json):
         
         {
         	"program": "lecturer",
