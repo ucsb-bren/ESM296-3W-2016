@@ -101,13 +101,13 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 
 1. [Create a new Github organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/). Like Github usernames, I recommend organization names be all lowercase, dashes `-` good, short and sweet (eg `whaleroute`).
 
-1. [Adding organization members to the owner team](https://help.github.com/articles/adding-organization-members-to-a-team/) (eg @naomitague)
+1. [Add organization members to the owner team](https://help.github.com/articles/adding-organization-members-to-a-team/) (eg @naomitague)
 
-1. [Create a repository](https://help.github.com/articles/create-a-repo/) named after your Github `<organization>.github.io` (eg `whaleroute.github.io`)
+1. [Create a repository](https://help.github.com/articles/create-a-repo/) named after your Github `<organization>.github.io` (eg `whaleroute.github.io`). This repository will store your organization's website files, so the repository of files at `http://github.com/<organization>/<organization>.github.io` and website to be viewable at `http://<organization>.github.io`.
 
-1. Follow the rest of the [pages.github.com](https://pages.github.com) instructions to push a "Hello World" that you can see at [`<organization>.github.io`](http://organization.github.io) (eg [`http://whaleroute.github.io`](http://whaleroute.github.io))
+1. Follow the rest of the [pages.github.com](https://pages.github.com) instructions to push a "Hello World" that you can see at [`<organization>.github.io`](http://<organization>.github.io) (eg [`http://whaleroute.github.io`](http://whaleroute.github.io))
 
-1. Every member of the group needs to individually Pull `ucsb-bren/env-info` to get the latest, and edit your `_data/<username>.json` to indicate the organization. For example, `_data/bbest.json`: 
+1. Let's add your new organization to your [students]({{ site.baseurl }}/students/) listing. Every member of the group needs to get the latest `ucsb-bren/env-info` by doing a Pull on their previously cloned folder from within the RStudio project env-info, then edit your `_data/<username>.json` to indicate the organization. For example, `_data/bbest.json`: 
 
         {
         	"program": "lecturer",
@@ -116,14 +116,14 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
         	"organization": "whaleroute"
         }
 
-    Once your new pull request gets accepted by @bbest / @naomitague, you should see it added to your profile in the [students]({{ site.baseurl }}/students/) listing and linked to your [`<organization>.github.io`](http://<organization>.github.io).
+    Commit and push your changes and make a new pull request. Once your new pull request gets accepted by @bbest / @naomitague, you should see the updated [students]({{ site.baseurl }}/students/) listing with your organization linked to your [`<organization>.github.io`](http://<organization>.github.io).
 
-1. [Add an Issue](https://guides.github.com/features/issues):
+1. [Add an Issue](https://guides.github.com/features/issues) to your Issues at `http://github.com/<organization>/<organization>.github.io`:
 
     1. title: create index.html with links to github users
           comment: by creating an index.Rmd in your locally cloned `<organization>.github.io` repository, committing and pushing changes
     
-    - Now have each member take a crack at making changes on the file(s). Be sure to [Pull](http://r-pkgs.had.co.nz/git.html#git-pull) often. Reference issue `#1` in the message when doing a Commit and Push. For the last person making a Commit use `closes #1` in the commit message, and the issue will get automatically closed.
+    - Now have each member take a crack at making changes on the file(s). Be sure to [Pull](http://r-pkgs.had.co.nz/git.html#git-pull) often to get the latest changes. Reference issue `#1` in the message when doing a Commit and Push. For the last person making a Commit use `closes #1` in the commit message, and the issue will get automatically closed.
     
     - Add more issues, assign to group members, associate with new Milestones, and rock the social coding world!
 
