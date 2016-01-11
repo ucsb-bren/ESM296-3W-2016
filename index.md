@@ -104,6 +104,8 @@ You'll share your final project presentations in class, describing the scientifi
 
 ## Resources
 
-### [References]({{ site.baseurl }}/refs.html)
-
 ### [Data]({{ site.baseurl }}/data)
+
+### [Jobs]({{ site.baseurl }}/jobs.html)
+
+### [References]({{ site.baseurl }}/refs.html)
