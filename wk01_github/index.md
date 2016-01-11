@@ -107,7 +107,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 
 1. Follow the rest of the [pages.github.com](https://pages.github.com) instructions to push a "Hello World" that you can see at [`<organization>.github.io`](http://<organization>.github.io) (eg [`http://whaleroute.github.io`](http://whaleroute.github.io))
 
-1. Let's add your new organization to your [students]({{ site.baseurl }}/students/) listing. Every member of the group needs to get the latest `ucsb-bren/env-info` by doing a Pull on their previously cloned folder from within the RStudio project env-info, then edit your `_data/<username>.json` to indicate the organization. For example, `_data/bbest.json`: 
+1. Let's add this new organization to your [ucsb-bren.github.io/env-info/students]({{ site.baseurl }}/students/) listing. Every member of the group needs to get the latest `ucsb-bren/env-info` by doing a Pull on their previously cloned folder from within the RStudio project env-info, then edit your `_data/<username>.json` to indicate the organization. For example, `_data/bbest.json`: 
 
         {
         	"program": "lecturer",
