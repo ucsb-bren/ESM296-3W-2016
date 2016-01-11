@@ -17,7 +17,7 @@ layout: default
 
 ## Assignment
 
-### Github with Naomi
+### Demo with Naomi
 
 - in RStudio, menu File > New Project, New Directory, empty, then click "Create a git repository"
 - Now you should see a new Git tab in RS tudio with 2 new files: .gitignore and *.Rproj
@@ -32,8 +32,8 @@ layout: default
       plot(pcp$meters, type='l', col='blue')
 
 - in Git pane, click Commit changes
-- M means modified
-- 
+- **<span class="label label-primary">M</span>** in the Git pan means Modified
+
 ### Individually
 
 Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json <sup><a href="#json">1</a></sup> file, and a dedicated Rmarkdown document.
