@@ -15,9 +15,7 @@ layout: default
  - [**github**]({{ site.baseurl }}/wk01_github/github.pdf) <span class="text-muted">[NT]</span>
  - [**rmarkdown**]({{ site.baseurl }}/wk01_github/rmarkdown.html) <span class="text-muted">[BB]</span>
 
-## Assignment
-
-### Demo with Naomi
+## Github Demo with Naomi
 
 - in RStudio, menu File > New Project, New Directory, empty, then click "Create a git repository"
 - Now you should see a new Git tab in RS tudio with 2 new files: .gitignore and *.Rproj
@@ -33,6 +31,8 @@ layout: default
 
 - in Git pane, click Commit changes
 - **<span class="label label-primary">M</span>** in the Git pan means Modified
+
+## Assignment
 
 ### Individually
 
