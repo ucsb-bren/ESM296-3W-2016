@@ -4,7 +4,7 @@ layout: default
 ---
 ## Github Part 2
 
-[Git Part2 Lecture Notes](gitpart2.pdf)
+![Git Part2 Lecture Notes](gitpart2.pdf)
     
 
 ## Assignment
