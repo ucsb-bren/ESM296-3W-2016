@@ -4,8 +4,28 @@ layout: default
 ---
 ## Github Part 2
 
-![Git Part2 Lecture Notes](gitpart2.pdf)
+
+
+## Schedule
+
+1. 8:30 - 9:30 am
+
+    Github finish: ![Git Part2 Lecture Notes](gitpart2.pdf) [15 min, NM]
+    Group assignments [5 min]
+    Github [Per Group assignment](#per-group), to create Github organization and respository  [30 min, per group]
+    [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
     
+1. 9:30 - 10:30 am
+
+    Break [10 min]
+    Rmarkdown [Individual assignment](#individually) to add student listing [30 min, individually]
+    Programming concepts lecture [20 min, NT]
+
+1. 10:30 - 11:30 am
+
+    Programming exercise I [20 min, individually]
+    More on Programming [20 min, NT]
+    Programming exercise II [20 min, individually]
 
 ## Assignment
 

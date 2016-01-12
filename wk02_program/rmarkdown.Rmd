@@ -4,7 +4,7 @@ subtitle: "Environmental Informatics"
 author: "@bbest"
 date: '`r format(Sys.time(), "%Y-%m-%d")`'
 output: 
-  ioslides_presentation:
+  slidy_presentation:
     widescreen: true
     self_contained: false
     lib_dir: libs

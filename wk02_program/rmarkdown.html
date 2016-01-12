@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="@bbest" />
+  <meta name="date" content="2016-01-12" />
+  <title>Rmarkdown</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="libs/Slidy2/styles/slidy.css" />
+  <script src="libs/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Rmarkdown</h1>
+  <h1 class="subtitle">Environmental Informatics</h1>
+  <p class="author">
+<span class="citation">@bbest</span>
+  </p>
+  <p class="date">2016-01-12</p>
+</div>
+<div id="inspiration" class="slide section level2 flexbox vcenter">
+<h1>Inspiration</h1>
+<div align="center">
+<img src="img/Gandrud2013_ReproducibleResearchRstudio_cover.png" height=500>
+</div>
+<p>Gandrud (2013) <a href="http://christophergandrud.github.io/RepResR-RStudio/">Reproducible Research with R and Rstudio</a></p>
+</div>
+<div id="what-is-rmarkdown" class="slide section level2">
+<h1>What is Rmarkdown?</h1>
+<p>Rmarkdown = R + markdown</p>
+<ul>
+<li><em><strong>input</strong></em> simple text:
+<ul>
+<li><strong>markdown</strong>: simple formatting of text (bold, links, headers, images, …)</li>
+<li><strong>R</strong>: execute chunks of code (figures, tables…)</li>
+</ul></li>
+<li><em><strong>output</strong></em> various formats:
+<ul>
+<li><strong>html</strong>: share on public website</li>
+<li><strong>pdf</strong>: polished publication</li>
+<li><strong>docx</strong>: share with co-authors to track changes</li>
+</ul></li>
+</ul>
+</div>
+<div id="first-example-of-rmarkdown" class="slide section level2">
+<h1>First Example of Rmarkdown</h1>
+<div align="center">
+<img src="img/rmd_first.png" height=550>
+</div>
+<p>In RStudio, menu File &gt; New File &gt; Rmarkdown… Document, HTML. Knit HMTL button to render the right.</p>
+</div>
+<div id="markdown" class="slide section level2">
+<h1>Markdown</h1>
+<p>“easy” HTML</p>
+<div align="center">
+<img src="img/rmd_markdownOverview.png" height=400>
+</div>
+<p>Github renders (with <a href="https://help.github.com/articles/github-flavored-markdown">flavor</a>), eg README.md</p>
+</div>
+<div id="r-in-rmarkdown---chunk" class="slide section level2">
+<h1>R in Rmarkdown - Chunk</h1>
+<p>Surround code with 3 backticks with <code>{r}</code> in first line</p>
+<div align="center">
+<img src="img/markdownChunk.png" height=550>
+</div>
+</div>
+<div id="r-in-rmarkdown---inline" class="slide section level2">
+<h1>R in Rmarkdown - Inline</h1>
+<p>Surround code in single backticks</p>
+<p><code>pi=`r pi`</code> evaluates to “pi=3.1415927”</p>
+</div>
+<div id="equations-in-rmarkdown---chunk" class="slide section level2">
+<h1>Equations in Rmarkdown - Chunk</h1>
+<p>Uses <a href="https://en.wikibooks.org/wiki/LaTeX">Latex</a> markup language for equations as input. Outputs using <a href="https://www.mathjax.org/">MathJax</a> JavaScript library for HTML output, native for PDF.</p>
+<pre><code>$$
+\frac{1}{n} \sum_{i=i}^{n} x_{i}
+$$</code></pre>
+<p><span class="math">\[
+\frac{1}{n} \sum_{i=i}^{n} x_{i}
+\]</span></p>
+</div>
+<div id="equations-in-rmarkdown---inline" class="slide section level2">
+<h1>Equations in Rmarkdown - Inline</h1>
+<p><code>The Arithmetic mean is equal to $\frac{1}{n} \sum_{i=i}^{n} x_{i}$, or the summation of n numbers divided by n.</code></p>
+<p>The Arithmetic mean is equal to <span class="math">\(\frac{1}{n} \sum_{i=i}^{n} x_{i}\)</span>, or the summation of n numbers divided by n.</p>
+</div>
+<div id="github-friendly" class="slide section level2">
+<h1>Github Friendly</h1>
+<ul>
+<li><p>Rmarkdown (*.Rmd) renders as markdown (*.md)</p></li>
+<li><p>easy to see change in simple text files (vs binary / proprietary formats)</p></li>
+</ul>
+</div>
+<div id="demo" class="slide section level2">
+<h1>Demo</h1>
+<p>Rstudio: menu File &gt; New File &gt; Rmarkdown… Document, HTML. Knit HMTL button.</p>
+<ul>
+<li><a href="https://github.com/ucsb-bren/env-info/blob/gh-pages/wk01_github/first.Rmd">first.<strong>Rmd</strong></a></li>
+<li><a href="https://ucsb-bren.github.io/env-info/wk01_github/first.html">first.<strong>html</strong></a></li>
+</ul>
+<p>Rstudio: menu Help &gt; Markdown Quick Reference</p>
+</div>
+<div id="further-resources" class="slide section level2">
+<h1>Further Resources</h1>
+<ul>
+<li><a href="http://rmarkdown.rstudio.com/">rmarkdown.rstudio.com</a>: authoritative reference site</li>
+<li><a href="https://github.com/bbest/rmarkdown-example">bbest/rmarkdown-example</a>: example of full manuscript (figures, tables, captions, references using Zotero) as html, pdf, docx</li>
+</ul>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>
