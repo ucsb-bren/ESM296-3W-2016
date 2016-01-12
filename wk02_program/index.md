@@ -10,7 +10,7 @@ layout: default
 
 1. 8:30 - 9:30 am
 
-    Github finish: ![Git Part2 Lecture Notes](gitpart2.pdf) [15 min, NM]
+    Github finish: [Git Part2 Lecture Notes](gitpart2.pdf) [15 min, NM]
     Group assignments [5 min]
     Github [Per Group assignment](#per-group), to create Github organization and respository  [30 min, per group]
     [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
