@@ -1,7 +1,11 @@
 ---
-title: "Week 1. Reproducible Science Tools"
+title: "Week 2: Github Part 2/ R Markdown / Programing Intro"
 layout: default
 ---
+## Github Part 2
+
+[Git Part2 Lecture Notes](gitpart2.pdf)
+    
 
 ## Assignment
 
