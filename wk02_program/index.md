@@ -31,20 +31,27 @@ layout: default
 
 ### Git Assignment (Group)
 
-1. [Create a new Github organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/). Like Github usernames, I recommend organization names be all lowercase, dashes `-` good, short and sweet (eg `whaleroute`).
+1. Assign yourself to an [env-info group](https://docs.google.com/document/d/1scKj-5vp3BORXivj9JZxKCUJdIdp6kQ5yGemHRzEP2U/edit?usp=sharing)
 
-2. [Add organization members to the owner team](https://help.github.com/articles/adding-organization-members-to-a-team/) (eg @naomitague)
+2. The first person listed in the group should [Create a new Github organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/) (eg `<organization>` is `whaleroute`) and [Add organization members to the owner team](https://help.github.com/articles/adding-organization-members-to-a-team/) (eg owner `bbest` adds username `naomitague`).
 
-3. [Create a repository](https://help.github.com/articles/create-a-repo/) named after your Github `<organization>.github.io` (eg `whaleroute.github.io`). This repository will store your organization's website files, so the repository of files at `http://github.com/<organization>/<organization>.github.io` and website to be viewable at `http://<organization>.github.io`.
+3. The first person listed in the group should also [Create a repository](https://help.github.com/articles/create-a-repo/) with Owner set to your organization (eg `whaleroute`, not your default username) and name it after your Github `<organization>.github.io` (eg `whaleroute.github.io`). Tick the box to initialize this repository with a README.
 
-4. Create a Data analysis project 
-    * Create an Rproject that uses this repository, 
+    ![](img/github_new-repo_for-org.png)
+
+    This repository will store your organization's website files, so the repository of files at `http://github.com/<organization>/<organization>.github.io` (eg <http://github.com/whaleroute/whaleroute.github.io>) will eventually be viewable at `http://<organization>.github.io` (eg <http://whaleroute.github.io>), but only after you add an index.html, per [pages.github.com](https://pages.github.com). That will come later, after you learn RMarkdown. For now you'll use this repository to work on your Git and Github skills.
+
+4. Now every member of the group should obtain this repository onto your local machine for editing, ie `git clone`. You can do this via RStudio menu File, New Project..., Version Control, Git
+
+    ![](img/rstudio_new-project-git.png)
+
+5. Finally, time to play with git in RStudio to make changes for your group's data analysis.
     * write a short Rscript to read or generate some data, manipulate it and plot it 
     * commit your file to local repository and github respository; 
     * have two different people make some changes to the script; commit them locally and then to github
     * make a new branch, make some changes; commit them (locally)
     * merge your fork to the main branch
-    *  make an error, commit it
+    * make an error, commit it
     * go back!
     * commit to github
 
@@ -52,7 +59,7 @@ layout: default
 
 Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json <sup><a href="#json">1</a></sup> file, and a dedicated Rmarkdown document.
 
-1. Fork the [ucsb-bren/env-info](https://github.com/ucsb-bren/env-info) repository into your Github user space, and clone to your laptop to work on files (per [Github Workflow](../wk00_general/intro.html#8)). All paths below refer to wherever you cloned the `env-info` folder onto your machine.
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the [ucsb-bren/env-info](https://github.com/ucsb-bren/env-info) repository into your Github user space, and clone the repository `<username>/env-info` to your laptop to work on files, similar to how you previously cloned `<organization>/<organization>.github.io` (via RStudio menu File, New Project..., Version Control, Git). All paths below refer to wherever you cloned the `env-info` repo onto your local machine.
 
 1. Add yourself the [students]({{ site.baseurl }}/students/) listing by adding a file per your Github `<username>.json` into the [`_data/`](_data/) directory. Here's an example for Github username `bbest`, so the file is at [`_data/bbest.json`](https://github.com/ucsb-bren/env-info/blob/gh-pages/_data/bbest.json):
         
