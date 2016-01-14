@@ -11,7 +11,7 @@ layout: default
 1. 8:30 - 9:30 am
 
     Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NM]
-    Group assignments [5 min]
+    Assign groups [5 min]
     Github [Per Group assignment](#per-group), to create Github organization and respository  [30 min, per group]
     [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
     
@@ -93,9 +93,9 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
     
             ![](images/cool_idea.png)
             
-    - Play with formatting to add at least one italic, bold, list, link, and image. (We'll get into adding R code chunks next week.)
+    - For this to work on the <http://ucsb-bren.github.io/env-info> site, you'll need to commit and push the knitted `<username>.html` and `images/cool_idea.png` files. Play with formatting to add at least one italic, bold, list, link, and image.
     
-    - Try [adding a table of contents](http://rmarkdown.rstudio.com/html_document_format.html#table-of-contents) by replacing the front matter line (in YAML <sup><a href="#yaml">3</a></sup>):
+    - Next, [add a table of contents](http://rmarkdown.rstudio.com/html_document_format.html#table-of-contents) by replacing the front matter line (in YAML <sup><a href="#yaml">3</a></sup>):
     
           output: html_document
     
@@ -105,7 +105,19 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
             html_document:
               toc: true
               toc_depth: 2
-                
+    
+    - Next, [add a chunk of R code](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) to read a csv <sup><a href="#csv">4</a></sup> data file and output a summary, like:
+    
+          ```{r}
+          # read csv
+          d = read.csv('bbest_ports.csv')
+          
+          # output summary
+          summary(d)
+          ```
+          
+      Try to use data relevant to your question of interest, and be sure to copy the csv data file into the `students/data` folder, preferably with a file name like `<username>_<dataname>.csv`. If you have trouble finding data, explore the links in [Data]({{ site.baseurl }}/data/).
+    
     - Be sure to run the "Knit HTML" on your `students/<username>.Rmd` to generate the final desired `students/<username>.html`
 
 1. Commit, push and pull request your changes, per [Github Workflow](../wk00_general/intro.html#8). This is how you'll turn in this assignment. 
@@ -129,14 +141,18 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 
 ## Footnotes
 
-### 1. json
+### json
 
 [JavaScript Object Notation](http://www.json.org/) (json) is a lightweight data format, which is both human and machine readable with complex hierarchies like XML, but more compact (and less explicit with tags).
 
-### 2. jekyll
+### jekyll
 
 [Jekyll](http://jekyllrb.com/docs/home/) is a static site generator used by [Github Pages](https://pages.github.com) (the website hosting capacity of Github, since default view of HTML is as code not rendered form) using the liquid templating language which has limited [data file support](http://jekyllrb.com/docs/datafiles/) for JSON in the [`_data`](https://github.com/ucsb-bren/env-info/tree/gh-pages/_data) folder for iterating through JSON file objects like in [`students/index.md`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/students/index.md) and wrapping the template in [`layouts/default.html`](https://github.com/ucsb-bren/env-info/blob/gh-pages/_layouts/default.html) which uses the [`_includes`](https://github.com/ucsb-bren/env-info/tree/gh-pages/_includes) to provide a common navigational bar for the site to yield the final [`students/index.html`](http://ucsb-bren.github.io/env-info).
 
-### 3. yaml
+### yaml
 
 [YAML](https://en.wikipedia.org/wiki/YAML) is a human readable format for storing variables of various types (single values, lists, arrays) in a language agnostic manner. It's commonly used in configuration files, and any modern language would have a library for reading and writing this format (eg [yaml](https://cran.r-project.org/web/packages/yaml) for R).
+
+### csv
+
+[CSV](https://en.wikipedia.org/wiki/Comma-separated_values), Comma-separated_value, files store data in a human and machine readable format in which rows of data are seperated by a newline, and columns by a comma. This format is probably the most widespread for sharing tabular data, and is read by most database and spreadsheet programs, including Excel. CSV files are also nicely [rendered in Github](https://help.github.com/articles/rendering-csv-and-tsv-data/) with column formatting, searching and even [line-by-line linking](https://github.com/blog/1601-see-your-csvs). An emerging [standard](http://data.okfn.org/standards) for tabular data stores data in CSV form and the metadata (ie variable description, variable type, dataset source, citation, etc) as [JSON](#json).

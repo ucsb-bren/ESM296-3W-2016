@@ -4,11 +4,26 @@ subtitle: "Environmental Informatics"
 author: "@bbest"
 date: '`r format(Sys.time(), "%Y-%m-%d")`'
 output: 
-  slidy_presentation:
+  ioslides_presentation:
+    incremental: true
     widescreen: true
     self_contained: false
     lib_dir: libs
 ---
+
+## Teaching Method per Module
+
+Follow a **schedule** for the 3 hour class with the following elements per module:
+
+1. **Lecture** to _**introduce**_: watch presentation
+
+1. **Demo** to _**show**_: watch instructor use RStudio to get overall idea
+
+1. **Exercise** to _**learn**_: do it yourself, individually, with given material
+
+1. **Group** to _**apply**_: apply new technique to your group project (ie specific data and question)
+
+# Rmarkdown
 
 ## Inspiration {.flexbox .vcenter}
 

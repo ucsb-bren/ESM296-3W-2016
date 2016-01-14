@@ -1,128 +1,247 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="@bbest" />
-  <meta name="date" content="2016-01-12" />
   <title>Rmarkdown</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print"
-    href="libs/Slidy2/styles/slidy.css" />
-  <script src="libs/Slidy2/scripts/slidy.js"
-    charset="utf-8" type="text/javascript"></script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+  <meta name="date" content="2016-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" media="all" href="libs/ioslides-13.5.1/fonts/fonts.css">
+
+  <link rel="stylesheet" media="all" href="libs/ioslides-13.5.1/theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="libs/ioslides-13.5.1/theme/css/phone.css">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Rmarkdown',
+                        subtitle: 'Environmental Informatics',
+                useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  '<span class="citation">@bbest</span>' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+
 </head>
-<body>
-<div class="slide titlepage">
-  <h1 class="title">Rmarkdown</h1>
-  <h1 class="subtitle">Environmental Informatics</h1>
-  <p class="author">
-<span class="citation">@bbest</span>
-  </p>
-  <p class="date">2016-01-12</p>
-</div>
-<div id="inspiration" class="slide section level2 flexbox vcenter">
-<h1>Inspiration</h1>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">2016-01-14</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>Teaching Method per Module</h2></hgroup><article  id="teaching-method-per-module">
+
+<p>Follow a <strong>schedule</strong> for the 3 hour class with the following elements per module:</p>
+
+<ol class = 'build'>
+<li><p><strong>Lecture</strong> to <em><strong>introduce</strong></em>: watch presentation</p></li>
+<li><p><strong>Demo</strong> to <em><strong>show</strong></em>: watch instructor use RStudio to get overall idea</p></li>
+<li><p><strong>Exercise</strong> to <em><strong>learn</strong></em>: do it yourself, individually, with given material</p></li>
+<li><p><strong>Group</strong> to <em><strong>apply</strong></em>: apply new technique to your group project (ie specific data and question)</p></li>
+</ol>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Rmarkdown</h2></hgroup><article  id="rmarkdown">
+
+</article></slide><slide class=''><hgroup><h2>Inspiration</h2></hgroup><article  id="inspiration" class="flexbox vcenter">
+
 <div align="center">
-<img src="img/Gandrud2013_ReproducibleResearchRstudio_cover.png" height=500>
-</div>
-<p>Gandrud (2013) <a href="http://christophergandrud.github.io/RepResR-RStudio/">Reproducible Research with R and Rstudio</a></p>
-</div>
-<div id="what-is-rmarkdown" class="slide section level2">
-<h1>What is Rmarkdown?</h1>
+<img src="img/Gandrud2013_ReproducibleResearchRstudio_cover.png" height=500></div>
+
+<p>Gandrud (2013) <a href='http://christophergandrud.github.io/RepResR-RStudio/' title=''>Reproducible Research with R and Rstudio</a></p>
+
+</article></slide><slide class=''><hgroup><h2>What is Rmarkdown?</h2></hgroup><article  id="what-is-rmarkdown">
+
 <p>Rmarkdown = R + markdown</p>
-<ul>
+
+<ul class = 'build'>
 <li><em><strong>input</strong></em> simple text:
-<ul>
-<li><strong>markdown</strong>: simple formatting of text (bold, links, headers, images, …)</li>
-<li><strong>R</strong>: execute chunks of code (figures, tables…)</li>
+
+<ul class = 'build'>
+<li><strong>markdown</strong>: simple formatting of text (bold, links, headers, images, &#8230;)</li>
+<li><strong>R</strong>: execute chunks of code (figures, tables&#8230;)</li>
 </ul></li>
 <li><em><strong>output</strong></em> various formats:
-<ul>
+
+<ul class = 'build'>
 <li><strong>html</strong>: share on public website</li>
 <li><strong>pdf</strong>: polished publication</li>
 <li><strong>docx</strong>: share with co-authors to track changes</li>
 </ul></li>
 </ul>
-</div>
-<div id="first-example-of-rmarkdown" class="slide section level2">
-<h1>First Example of Rmarkdown</h1>
+
+</article></slide><slide class=''><hgroup><h2>First Example of Rmarkdown</h2></hgroup><article  id="first-example-of-rmarkdown">
+
 <div align="center">
-<img src="img/rmd_first.png" height=550>
-</div>
-<p>In RStudio, menu File &gt; New File &gt; Rmarkdown… Document, HTML. Knit HMTL button to render the right.</p>
-</div>
-<div id="markdown" class="slide section level2">
-<h1>Markdown</h1>
-<p>“easy” HTML</p>
+<img src="img/rmd_first.png" height=550></div>
+
+<p>In RStudio, menu File &gt; New File &gt; Rmarkdown&#8230; Document, HTML. Knit HMTL button to render the right.</p>
+
+</article></slide><slide class=''><hgroup><h2>Markdown</h2></hgroup><article  id="markdown">
+
+<p>&quot;easy&quot; HTML</p>
+
 <div align="center">
-<img src="img/rmd_markdownOverview.png" height=400>
-</div>
-<p>Github renders (with <a href="https://help.github.com/articles/github-flavored-markdown">flavor</a>), eg README.md</p>
-</div>
-<div id="r-in-rmarkdown---chunk" class="slide section level2">
-<h1>R in Rmarkdown - Chunk</h1>
+<img src="img/rmd_markdownOverview.png" height=400></div>
+
+<p>Github renders (with <a href='https://help.github.com/articles/github-flavored-markdown' title=''>flavor</a>), eg README.md</p>
+
+</article></slide><slide class=''><hgroup><h2>R in Rmarkdown - Chunk</h2></hgroup><article  id="r-in-rmarkdown---chunk">
+
 <p>Surround code with 3 backticks with <code>{r}</code> in first line</p>
+
 <div align="center">
-<img src="img/markdownChunk.png" height=550>
-</div>
-</div>
-<div id="r-in-rmarkdown---inline" class="slide section level2">
-<h1>R in Rmarkdown - Inline</h1>
+<img src="img/markdownChunk.png" height=550></div>
+
+</article></slide><slide class=''><hgroup><h2>R in Rmarkdown - Inline</h2></hgroup><article  id="r-in-rmarkdown---inline">
+
 <p>Surround code in single backticks</p>
-<p><code>pi=`r pi`</code> evaluates to “pi=3.1415927”</p>
-</div>
-<div id="equations-in-rmarkdown---chunk" class="slide section level2">
-<h1>Equations in Rmarkdown - Chunk</h1>
-<p>Uses <a href="https://en.wikibooks.org/wiki/LaTeX">Latex</a> markup language for equations as input. Outputs using <a href="https://www.mathjax.org/">MathJax</a> JavaScript library for HTML output, native for PDF.</p>
-<pre><code>$$
+
+<p><code>pi=`r pi`</code> evaluates to &quot;pi=3.1415927&quot;</p>
+
+</article></slide><slide class=''><hgroup><h2>Equations in Rmarkdown - Chunk</h2></hgroup><article  id="equations-in-rmarkdown---chunk">
+
+<p>Uses <a href='https://en.wikibooks.org/wiki/LaTeX' title=''>Latex</a> markup language for equations as input. Outputs using <a href='https://www.mathjax.org/' title=''>MathJax</a> JavaScript library for HTML output, native for PDF.</p>
+
+<pre >$$
 \frac{1}{n} \sum_{i=i}^{n} x_{i}
-$$</code></pre>
-<p><span class="math">\[
+$$</pre>
+
+<p>\[
 \frac{1}{n} \sum_{i=i}^{n} x_{i}
-\]</span></p>
-</div>
-<div id="equations-in-rmarkdown---inline" class="slide section level2">
-<h1>Equations in Rmarkdown - Inline</h1>
+\]</p>
+
+</article></slide><slide class=''><hgroup><h2>Equations in Rmarkdown - Inline</h2></hgroup><article  id="equations-in-rmarkdown---inline">
+
 <p><code>The Arithmetic mean is equal to $\frac{1}{n} \sum_{i=i}^{n} x_{i}$, or the summation of n numbers divided by n.</code></p>
-<p>The Arithmetic mean is equal to <span class="math">\(\frac{1}{n} \sum_{i=i}^{n} x_{i}\)</span>, or the summation of n numbers divided by n.</p>
-</div>
-<div id="github-friendly" class="slide section level2">
-<h1>Github Friendly</h1>
-<ul>
+
+<p>The Arithmetic mean is equal to \(\frac{1}{n} \sum_{i=i}^{n} x_{i}\), or the summation of n numbers divided by n.</p>
+
+</article></slide><slide class=''><hgroup><h2>Github Friendly</h2></hgroup><article  id="github-friendly">
+
+<ul class = 'build'>
 <li><p>Rmarkdown (*.Rmd) renders as markdown (*.md)</p></li>
 <li><p>easy to see change in simple text files (vs binary / proprietary formats)</p></li>
 </ul>
-</div>
-<div id="demo" class="slide section level2">
-<h1>Demo</h1>
-<p>Rstudio: menu File &gt; New File &gt; Rmarkdown… Document, HTML. Knit HMTL button.</p>
-<ul>
-<li><a href="https://github.com/ucsb-bren/env-info/blob/gh-pages/wk01_github/first.Rmd">first.<strong>Rmd</strong></a></li>
-<li><a href="https://ucsb-bren.github.io/env-info/wk01_github/first.html">first.<strong>html</strong></a></li>
-</ul>
-<p>Rstudio: menu Help &gt; Markdown Quick Reference</p>
-</div>
-<div id="further-resources" class="slide section level2">
-<h1>Further Resources</h1>
-<ul>
-<li><a href="http://rmarkdown.rstudio.com/">rmarkdown.rstudio.com</a>: authoritative reference site</li>
-<li><a href="https://github.com/bbest/rmarkdown-example">bbest/rmarkdown-example</a>: example of full manuscript (figures, tables, captions, references using Zotero) as html, pdf, docx</li>
-</ul>
-</div>
 
-  <!-- dynamically load mathjax for compatibility with self-contained -->
-  <script>
-    (function () {
-      var script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-      document.getElementsByTagName("head")[0].appendChild(script);
-    })();
-  </script>
+</article></slide><slide class=''><hgroup><h2>Demo</h2></hgroup><article  id="demo">
+
+<p>Rstudio: menu File &gt; New File &gt; Rmarkdown&#8230; Document, HTML. Knit HMTL button.</p>
+
+<ul class = 'build'>
+<li><a href='https://github.com/ucsb-bren/env-info/blob/gh-pages/wk01_github/first.Rmd' title=''>first.<strong>Rmd</strong></a></li>
+<li><a href='https://ucsb-bren.github.io/env-info/wk01_github/first.html' title=''>first.<strong>html</strong></a></li>
+</ul>
+
+<p>Rstudio: menu Help &gt; Markdown Quick Reference</p>
+
+</article></slide><slide class=''><hgroup><h2>Further Resources</h2></hgroup><article  id="further-resources">
+
+<ul class = 'build'>
+<li><a href='http://rmarkdown.rstudio.com/' title=''>rmarkdown.rstudio.com</a>: authoritative reference site</li>
+<li><a href='https://github.com/bbest/rmarkdown-example' title=''>bbest/rmarkdown-example</a>: example of full manuscript (figures, tables, captions, references using Zotero) as html, pdf, docx</li>
+</ul></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script src="libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+<script src="libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+<script src="libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+<script src="libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+<script src="libs/ioslides-13.5.1/js/hammer.js"></script>
+<script src="libs/ioslides-13.5.1/js/slide-controller.js"></script>
+<script src="libs/ioslides-13.5.1/js/slide-deck.js"></script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
 
 </body>
 </html>
