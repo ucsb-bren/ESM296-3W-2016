@@ -38,7 +38,7 @@ layout: default
 
     This repository will store your organization's website files, so the repository of files at `http://github.com/<organization>/<organization>.github.io` (eg <http://github.com/whaleroute/whaleroute.github.io>) will eventually be viewable at `http://<organization>.github.io` (eg <http://whaleroute.github.io>), but only after you add an index.html, per [pages.github.com](https://pages.github.com). That will come later, after you learn RMarkdown. For now you'll use this repository to work on your Git and Github skills.
 
-4. Now every member of the group should obtain this repository onto your local machine for editing, ie `git clone`. You can do this via RStudio menu File, New Project..., Version Control, Git
+4. Now every member of the group should obtain this repository onto your local machine for editing, ie `git clone`. You can do this via RStudio menu File, New Project..., Version Control, Git. Substitute with your own `<organization>` like below (not `whaleroute`):
 
     ![](img/rstudio_new-project-git.png)
 
