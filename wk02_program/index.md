@@ -46,14 +46,14 @@ layout: default
     ![](img/rstudio_new-project-git.png)
 
 5. Finally, time to play with [Git/Github in RStudio](http://r-pkgs.had.co.nz/git.html#git-status) to make changes for your group's data analysis.
-    * write a short Rscript to read or generate some data, manipulate it and plot it 
-    * commit your file to local repository and github respository; 
-    * have two different people make some changes to the script; commit them locally and then to github
-    * make a new branch, make some changes; commit them (locally)
-    * merge your fork to the main branch
-    * make an error, commit it
-    * go back!
-    * commit to github
+    * Write a short Rscript to read or generate some data, manipulate it and plot it 
+    * Commit your file to the local repository and Push to the Github respository; 
+    * Have everyone in the group make some changes to the script. Commit them locally and then Push to Github.
+    * Make a new branch, make some changes; commit them (locally)
+    * Merge your fork to the main branch
+    * Make an error, commit it
+    * Go back!
+    * Commit and push to Github
 
 ### RMarkdown Assignment  (Individually)
 
