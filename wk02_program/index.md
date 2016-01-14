@@ -2,9 +2,6 @@
 title: "Week 2: Github Part 2/ R Markdown / Programing Intro"
 layout: default
 ---
-## Github Part 2
-
-
 
 ## Schedule
 
