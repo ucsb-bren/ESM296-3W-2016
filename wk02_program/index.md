@@ -45,7 +45,7 @@ layout: default
 
     ![](img/rstudio_new-project-git.png)
 
-5. Finally, time to play with git in RStudio to make changes for your group's data analysis.
+5. Finally, time to play with [Git/Github in RStudio](http://r-pkgs.had.co.nz/git.html#git-status) to make changes for your group's data analysis.
     * write a short Rscript to read or generate some data, manipulate it and plot it 
     * commit your file to local repository and github respository; 
     * have two different people make some changes to the script; commit them locally and then to github
