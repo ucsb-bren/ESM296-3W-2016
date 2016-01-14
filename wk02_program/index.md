@@ -19,7 +19,7 @@ layout: default
 
     Break [10 min]
     Rmarkdown [Individual assignment](#individually) to add student listing [30 min, individually]
-    Programming concepts lecture [20 min, NT]
+    Programming concepts lecture [Programming Lecture] (programming.full.pdf) [20 min, NT]
 
 1. 10:30 - 11:30 am
 
@@ -29,26 +29,26 @@ layout: default
 
 ## Assignment
 
-### Per Group
+### Git Assignment (Group)
 
 1. [Create a new Github organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/). Like Github usernames, I recommend organization names be all lowercase, dashes `-` good, short and sweet (eg `whaleroute`).
 
-1. [Add organization members to the owner team](https://help.github.com/articles/adding-organization-members-to-a-team/) (eg @naomitague)
+2. [Add organization members to the owner team](https://help.github.com/articles/adding-organization-members-to-a-team/) (eg @naomitague)
 
-1. [Create a repository](https://help.github.com/articles/create-a-repo/) named after your Github `<organization>.github.io` (eg `whaleroute.github.io`). This repository will store your organization's website files, so the repository of files at `http://github.com/<organization>/<organization>.github.io` and website to be viewable at `http://<organization>.github.io`.
+3. [Create a repository](https://help.github.com/articles/create-a-repo/) named after your Github `<organization>.github.io` (eg `whaleroute.github.io`). This repository will store your organization's website files, so the repository of files at `http://github.com/<organization>/<organization>.github.io` and website to be viewable at `http://<organization>.github.io`.
 
-1. Follow the rest of the [pages.github.com](https://pages.github.com) instructions to push a "Hello World" that you can see at [`<organization>.github.io`](http://<organization>.github.io) (eg [`http://whaleroute.github.io`](http://whaleroute.github.io))
+4. Create a Data analysis project 
+    * Create an Rproject that uses this repository, 
+    * write a short Rscript to read or generate some data, manipulate it and plot it 
+    * commit your file to local repository and github respository; 
+    * have two different people make some changes to the script; commit them locally and then to github
+    * make a new branch, make some changes; commit them (locally)
+    * merge your fork to the main branch
+    *  make an error, commit it
+    * go back!
+    * commit to github
 
-1. [Add an Issue](https://guides.github.com/features/issues) to your Issues at `http://github.com/<organization>/<organization>.github.io`:
-
-    1. title: create index.html with links to github users
-          comment: by creating an index.Rmd in your locally cloned `<organization>.github.io` repository, committing and pushing changes
-    
-    - Now have each member take a crack at making changes on the file(s). Be sure to [Pull](http://r-pkgs.had.co.nz/git.html#git-pull) often to get the latest changes. Reference issue `#1` in the message when doing a Commit and Push. For the last person making a Commit use `closes #1` in the commit message, and the issue will get automatically closed.
-    
-    - Add more issues, assign to group members, associate with new Milestones, and rock the social coding world!
-
-### Individually
+### RMarkdown Assignment  (Individually)
 
 Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json <sup><a href="#json">1</a></sup> file, and a dedicated Rmarkdown document.
 
@@ -107,12 +107,21 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
               toc_depth: 2
                 
     - Be sure to run the "Knit HTML" on your `students/<username>.Rmd` to generate the final desired `students/<username>.html`
+    
+    Add a link to your organization (from Group exercies)
 
 1. Commit, push and pull request your changes, per [Github Workflow](../wk00_general/intro.html#8). This is how you'll turn in this assignment. 
 
     **Review**. We can provide line-by-line feedback directly within the pull request as part of a code review. You could even follow up with submitting corrections by pushing fixes up to your fork, which will be reflected in the pull request. When we're finished giving feedback, we'll close the pull request and leave a :+1: in the final comment.
 
+### Programing Assignment (Group)
 
+1. Write a function in R to do some data analysis or simulation that your group will find interesting
+    * include at least two different data types
+    * return a list
+    * include at least two different control structures
+    * make sure you document your program
+2. Add this function to your organization's github repository - Note this is how we will check to make sure you have completed the assignment - so make sure that your student listing has a link to your group's organization and that you have committed and pushed your function to that organization's respository
 
 ## Resources
 
