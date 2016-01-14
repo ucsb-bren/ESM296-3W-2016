@@ -33,6 +33,14 @@ Follow a **schedule** for the 3 hour class with the following elements per modul
 
 - <img height=400 src="img/science-the-shit-out-of-this.jpg"/>
 
+## Flipped Classroom
+
+Teacher's role: "Sage on the Stage" -> "Guide on the Side"
+
+![](img/flipped-classroom.png)
+
+Inspired by [Data Carpentry for Biologists](http://www.datacarpentry.org/semester-biology/about/flipped-classes/), created by [Knewton](https://www.knewton.com/infographics/flipped-classroom/)
+
 # Rmarkdown
 
 ## Inspiration {.flexbox .vcenter}
