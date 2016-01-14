@@ -9,13 +9,13 @@ layout: default
 
     Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NM]
     Assign [env-info groups](https://docs.google.com/document/d/1scKj-5vp3BORXivj9JZxKCUJdIdp6kQ5yGemHRzEP2U/edit?usp=sharing) [5 min]
-    Github [Per Group assignment](#per-group), to create Github organization and respository  [30 min, per group]
+    [Git Assignment (Group)](#git-assignment-(group)), to create Github organization and respository  [30 min, per group]
     [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
     
 1. 9:30 - 10:30 am
 
     Break [10 min]
-    Rmarkdown [Individual assignment](#individually) to add student listing [30 min, individually]
+    [RMarkdown Assignment (Individually)](#rmarkdown-assignment-(individually)) to add student listing [30 min, individually]
     Programming concepts lecture [Programming Lecture] (programming.full.pdf) [20 min, NT]
 
 1. 10:30 - 11:30 am
@@ -52,7 +52,7 @@ layout: default
     * Go back!
     * Commit and push to Github
 
-### RMarkdown Assignment  (Individually)
+### RMarkdown Assignment (Individually)
 
 Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json <sup><a href="#json">1</a></sup> file, and a dedicated Rmarkdown document.
 
