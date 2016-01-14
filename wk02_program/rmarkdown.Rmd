@@ -23,6 +23,16 @@ Follow a **schedule** for the 3 hour class with the following elements per modul
 
 1. **Group** to _**apply**_: apply new technique to your group project (ie specific data and question)
 
+## Real Skills Learned
+
+- Technology changes rapidly
+
+- Yes, you're learning about tools and libraries specific to R, but the concepts are applicable to most any programming language
+
+- The real skill learned here is **critical thinking** / **problem solving** / **googling** to figure out how to get your science done!
+
+- <img height=400 src="img/science-the-shit-out-of-this.jpg"/>
+
 # Rmarkdown
 
 ## Inspiration {.flexbox .vcenter}
