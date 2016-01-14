@@ -16,7 +16,7 @@ layout: default
 
     Break [10 min]
     [RMarkdown Assignment (Individually)](#rmarkdown-assignment-(individually)) to add student listing [30 min, individually]
-    Programming concepts lecture [Programming Lecture] (programming.full.pdf) [20 min, NT]
+    Programming concepts lecture [Programming Lecture](programming.full.pdf) [20 min, NT]
 
 1. 10:30 - 11:30 am
 
