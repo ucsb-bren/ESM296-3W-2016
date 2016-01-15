@@ -80,6 +80,25 @@ img {
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>What data have you already identified? Feel free to provide a link and/or details on the variables of interest.</p>
+<p>Here is some data from <a href="http://www.statcan.gc.ca/pub/54-205-x/2011000/part-partie1-eng.htm">Shipping in Canada (2011)</a>:</p>
+<pre class="r"><code>ports_bc = read.csv('data/bbest_ports-bc.csv')
+summary(ports_bc)</code></pre>
+<pre><code>##          name     int_ktons         dom_ktons          sum_ktons     
+##  Alberni   :1   Min.   :   40.9   Min.   :    0.00   Min.   :  1018  
+##  Beale Cove:1   1st Qu.:  854.3   1st Qu.:   39.65   1st Qu.:  1375  
+##  Crofton   :1   Median : 1042.5   Median :  501.10   Median :  1864  
+##  Howe Sound:1   Mean   :10380.6   Mean   : 1893.72   Mean   : 12274  
+##  Kitimat   :1   3rd Qu.: 1609.7   3rd Qu.: 1761.88   3rd Qu.:  3918  
+##  Mcneill   :1   Max.   :96516.3   Max.   :11058.90   Max.   :107575  
+##  (Other)   :6                                                        
+##       lon              lat             code  
+##  Min.   :-130.3   Min.   :48.86   BCV    :1  
+##  1st Qu.:-125.4   1st Qu.:49.25   CRO    :1  
+##  Median :-124.5   Median :49.57   EVC    :1  
+##  Mean   :-125.1   Mean   :50.27   HWS    :1  
+##  3rd Qu.:-123.6   3rd Qu.:49.95   KTM    :1  
+##  Max.   :-123.1   Max.   :54.31   NNO    :1  
+##                                   (Other):6</code></pre>
 </div>
 
 
