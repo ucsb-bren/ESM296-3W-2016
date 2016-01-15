@@ -164,15 +164,15 @@ fatal: could not read Username for 'https://github.com': Device not configured
 
 ### Git, Github and RStudio
 
-- [Git and GitHub Cheat Sheet]({{ site.baseurl }}/refs/cheatsheets/github-git-cheat-sheet.pdf)
-- [Git and GitHub · R packages](http://r-pkgs.had.co.nz/git.html)
+- [Git and GitHub cheat sheet]({{ site.baseurl }}/refs/cheatsheets/github-git-cheat-sheet.pdf)
+- [Git and GitHub with RStudio](http://r-pkgs.had.co.nz/git.html)
 
 ### Rmarkdown
 
-- [Markdown Quick Reference](http://rmarkdown.rstudio.com/authoring_basics.html)
-- [R Markdown Cheat Sheet]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-cheatsheet.pdf)
-- [R Markdown Reference Guide]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-reference.pdf)
-- [Mastering Markdown · GitHub Guides](https://guides.github.com/features/mastering-markdown/)
+- [Markdown quick reference](http://rmarkdown.rstudio.com/authoring_basics.html)
+- [R Markdown cheat sheet]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-cheatsheet.pdf)
+- [R Markdown reference guide]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-reference.pdf)
+- [Mastering Markdown | GitHub guides](https://guides.github.com/features/mastering-markdown/)
 
 ## Footnotes
 
