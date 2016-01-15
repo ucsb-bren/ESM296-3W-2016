@@ -8,6 +8,9 @@ output: html_document
 ## Content
         
 What is your burning environmental question that you'd like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
+
+![cool idea](images/bbest_cool-idea.png)
+
         
 ## Techniques
         
