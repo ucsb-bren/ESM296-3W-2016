@@ -9,7 +9,7 @@ layout: default
 
     Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NT]
     Assign [env-info groups](https://docs.google.com/document/d/1scKj-5vp3BORXivj9JZxKCUJdIdp6kQ5yGemHRzEP2U/edit?usp=sharing) [5 min]
-    [Doodle preferred office hours for BB](http://doodle.com/poll/e44g8w79s9i5swy8) by 5pm today
+    [Doodle preferred office hours for BB](http://doodle.com/poll/e44g8w79s9i5swy8) by 5pm today  
     [Git Assignment (Group)](#git-assignment-(group)), to create Github organization and respository  [30 min, per group]
     [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
     
@@ -152,6 +152,15 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 2. Add this function to your organization's github repository - Note this is how we will check to make sure you have completed the assignment - so make sure that your student listing has a link to your group's organization and that you have committed and pushed your function to that organization's respository
 
 ## Resources
+
+### Fixing `rpostback-askpass` error
+
+If you get this `rpostback-askpass` error on a Mac when pushing in RStudio, see [rpostback-askpass error on Mac doing Git Push from RStudio to Github · Issue #2 · ucsb-bren/env-info](https://github.com/ucsb-bren/env-info/issues/2):
+
+```
+error: unable to read askpass response from 'rpostback-askpass'
+fatal: could not read Username for 'https://github.com': Device not configured
+```
 
 ### Git, Github and RStudio
 
