@@ -7,8 +7,9 @@ layout: default
 
 1. 8:30 - 9:30 am
 
-    Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NM]
+    Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NT]
     Assign [env-info groups](https://docs.google.com/document/d/1scKj-5vp3BORXivj9JZxKCUJdIdp6kQ5yGemHRzEP2U/edit?usp=sharing) [5 min]
+    [Doodle preferred office hours for BB](http://doodle.com/poll/e44g8w79s9i5swy8) by 5pm today
     [Git Assignment (Group)](#git-assignment-(group)), to create Github organization and respository  [30 min, per group]
     [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
     
@@ -23,6 +24,17 @@ layout: default
     Programming exercise I [20 min, individually]
     More on Programming [20 min, NT]
     Programming exercise II [20 min, individually]
+
+### Github Demo II [NT]
+
+    # list git log in reverse order
+    git log --reverse
+    
+    # go back in time
+    git reset #commit#
+    
+    # go back and delete all subsequent commits!
+    git revert #commit# --hard
 
 ## Assignment
 
@@ -143,6 +155,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 
 ### Git, Github and RStudio
 
+- [Git and GitHub Cheat Sheet]({{ site.baseurl }}/refs/github-git-cheat-sheet.pdf)
 - [Git and GitHub · R packages](http://r-pkgs.had.co.nz/git.html)
 
 ### Rmarkdown
