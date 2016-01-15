@@ -164,7 +164,7 @@ fatal: could not read Username for 'https://github.com': Device not configured
 
 ### Git, Github and RStudio
 
-- [Git and GitHub Cheat Sheet]({{ site.baseurl }}/refs/github-git-cheat-sheet.pdf)
+- [Git and GitHub Cheat Sheet]({{ site.baseurl }}/refs/cheatsheets/github-git-cheat-sheet.pdf)
 - [Git and GitHub · R packages](http://r-pkgs.had.co.nz/git.html)
 
 ### Rmarkdown
