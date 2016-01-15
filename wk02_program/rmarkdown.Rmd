@@ -5,10 +5,43 @@ author: "@bbest"
 date: '`r format(Sys.time(), "%Y-%m-%d")`'
 output: 
   ioslides_presentation:
+    incremental: true
     widescreen: true
     self_contained: false
     lib_dir: libs
 ---
+
+## Teaching Method per Module
+
+Follow a **schedule** for the 3 hour class with the following elements per module:
+
+1. **Lecture** to _**introduce**_: watch presentation
+
+1. **Demo** to _**show**_: watch instructor use RStudio to get overall idea
+
+1. **Exercise** to _**learn**_: do it yourself, individually, with given material
+
+1. **Group** to _**apply**_: apply new technique to your group project (ie specific data and question)
+
+## Real Skills Learned
+
+- Technology changes rapidly
+
+- Yes, you're learning about tools and libraries specific to R, but the concepts are applicable to most any programming language
+
+- The real skill learned here is **critical thinking** / **problem solving** / **googling** to figure out how to get your science done!
+
+- <img height=400 src="img/science-the-shit-out-of-this.jpg"/>
+
+## Flipped Classroom
+
+Teacher's role: "Sage on the Stage" -> "Guide on the Side"
+
+![](img/flipped-classroom.png)
+
+Inspired by [Data Carpentry for Biologists](http://www.datacarpentry.org/semester-biology/about/flipped-classes/), created by [Knewton](https://www.knewton.com/infographics/flipped-classroom/)
+
+# Rmarkdown
 
 ## Inspiration {.flexbox .vcenter}
 
@@ -96,10 +129,15 @@ The Arithmetic mean is equal to $\frac{1}{n} \sum_{i=i}^{n} x_{i}$, or the summa
 
 Rstudio: menu File > New File > Rmarkdown... Document, HTML. Knit HMTL button.
 
-- [first.**Rmd**](https://github.com/ucsb-bren/env-info/blob/gh-pages/wk01_github/first.Rmd)
-- [first.**html**](https://ucsb-bren.github.io/env-info/wk01_github/first.html) 
+- [first.**Rmd**](https://github.com/ucsb-bren/env-info/blob/gh-pages/wk02_program/first.Rmd)
+- [first.**html**](https://ucsb-bren.github.io/env-info/wk02_program/first.html)
 
-Rstudio: menu Help > Markdown Quick Reference
+## Help
+
+- Rstudio menu Help > [Markdown Quick Reference](http://rmarkdown.rstudio.com/authoring_basics.html)
+- [R Markdown Cheat Sheet](../refs/cheatsheets/rmarkdown-cheatsheet.pdf)
+- [R Markdown Reference Guide](../refs/cheatsheets/rmarkdown-reference.pdf)
+- [Mastering Markdown · GitHub Guides](https://guides.github.com/features/mastering-markdown/)
 
 ## Further Resources
 
