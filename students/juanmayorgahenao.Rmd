@@ -13,7 +13,12 @@ output:
 
 ## Content
 
-I'm very interesting in investigating how can *dynamic* ecosystem-based management strategies be designed to protect and recover marine resources. In particular, I'm interested in reef-associated predators and their role in ecosystem stability and resilience. What can we learn from studying the populations of reef-associated predators that can inform the design and implementation of **dynamic ecosytem-based management** ? 
+I'm very interested in investigating how can *dynamic* **ecosystem-based management** strategies be designed to protect and recover marine resources. In particular, I'm interested in reef-associated predators and their role in ecosystem stability and resilience. Some burning questions are: 
+
+- What can we learn from studying the populations of reef-associated predators that can inform the design and implementation of dynamic ecosytem-based management ? 
+- How can *dynamic* ecosystem-based management increase resource stewardship of coastal communities?
+
+I'm also passionate about ocean exploration, science communication, and outreach. I sail with the Ocean Exploration Trust doing deep sea reseach onboard the *E/V Nautilus*. Follow our research at:  <http://www.nautiluslive.org>
 
 ![](images/juan_reef-photo.jpg)
 
