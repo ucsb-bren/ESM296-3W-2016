@@ -1,7 +1,8 @@
 ---
 title: "Markdown Assignment 1"
-author: "Juan S. Mayorga"
-date: "January 16, 2016"
+author: "Juan S. Mayorga
+         - https://github.com/fish-ecol/fish-ecol.github.io "
+date: "January 16, 2016" 
 output: 
  html_document:
   theme: cosmo
