@@ -67,6 +67,13 @@ img {
 <h4 class="date"><em>January 15, 2016</em></h4>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#content">Content</a></li>
+<li><a href="#techniques">Techniques</a></li>
+<li><a href="#data">Data</a></li>
+</ul>
+</div>
 
 <div id="content" class="section level2">
 <h2>Content</h2>
@@ -86,6 +93,26 @@ img {
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>Survey data has been collected from various participants in Uganda.</p>
+<pre class="r"><code>d = read.csv('data/jebone_ugandaSMS.csv')
+      
+summary(d)</code></pre>
+<pre><code>##  Nominated      Zone       years_zone        gender         age      
+##  no :504   ZONE I : 24   Min.   : 1.000   female:442   Min.   :18.0  
+##  yes:536   ZONE V : 22   1st Qu.: 2.000   male  :598   1st Qu.:23.0  
+##            CHURCH : 18   Median : 5.000                Median :28.0  
+##            LUGOBA : 15   Mean   : 9.192                Mean   :30.5  
+##            LUBIRI : 14   3rd Qu.:13.000                3rd Qu.:35.0  
+##            B 9    : 13   Max.   :65.000                Max.   :76.0  
+##            (Other):934                                               
+##  satisfaction_rubbish_collection
+##  dissatisfied  :320             
+##  neither_satisf:124             
+##  satisfied     :270             
+##  very_dissatisf:283             
+##  very_satisfied: 43             
+##                                 
+## </code></pre>
+<p><a href="http://&lt;organization&gt;.github.io"><strong>Citizen Monitoring</strong></a></p>
 </div>
 
 
