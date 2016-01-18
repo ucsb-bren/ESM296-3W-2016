@@ -1,9 +1,19 @@
+---
+title: "sgriff"
+author: "Stephanie Griffin"
+date: "January 16, 2016"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
 {
   "program": "student",
   "interests": "water supply, food security",
   "project": "Pollution",
   "organization": "pollute"
 }  
+
 ## **Content**
         
   + My [GP](www2.bren.ucsb.edu/~sbwater) focuses on local water supply sustainability. 
@@ -16,4 +26,14 @@ Becoming more comfortable with *programming* and *data imaging* will help our GP
 ## **Data**
         
 Data for the GP has largely been collected from local water agencies and the county (historical and projected data include metered sales, water supply by source, energy requirements by source, and costs). 
-![](images/cool_idea.png)
+![](images/cool_idea.png)  
+
+
+```{r}
+# read csv
+s = read.csv('sgriff_loadyields.csv') #sgriff_loadyields indicates annual N & P flux in states' waters (in kg/yr/km^2)
+      
+# output summary
+summary(s)
+```
+
