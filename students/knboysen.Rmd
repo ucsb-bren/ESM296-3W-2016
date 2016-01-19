@@ -48,7 +48,7 @@ I downloaded data from the United National Environmental Programme's [Environmen
 
 ```{r}
 # read csv
-sea_level_unep_kb <- read.csv("~/BREN/winter16/env_info/env-info/sea_level_unep_kb.csv")
+sea_level_unep_kb <- read.csv("data/knboysen_sea_level_unep.csv")
       
 # output histogram
 hist(sea_level_unep_kb$Percent_land_under_5m, xlab="Percent Land Below 5m", main="Histogram of UNEP Elevation Data", col ="blue")
