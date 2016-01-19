@@ -38,6 +38,8 @@ layout: default
 
 ## Assignment
 
+Due: Jan 20, Wednesday 5pm
+
 ### Git Assignment (Group)
 
 1. Assign yourself to an [env-info group](https://docs.google.com/document/d/1scKj-5vp3BORXivj9JZxKCUJdIdp6kQ5yGemHRzEP2U/edit?usp=sharing)
@@ -141,15 +143,6 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
 1. Commit, push and pull request your changes, per [Github Workflow](../wk00_general/intro.html#8). This is how you'll turn in this assignment. 
 
     **Review**. We can provide line-by-line feedback directly within the pull request as part of a code review. You could even follow up with submitting corrections by pushing fixes up to your fork, which will be reflected in the pull request. When we're finished giving feedback, we'll close the pull request and leave a :+1: in the final comment.
-
-### Programing Assignment (Group)
-
-1. Write a function in R to do some data analysis or simulation that your group will find interesting
-    * include at least two different data types
-    * return a list
-    * include at least two different control structures
-    * make sure you document your program
-2. Add this function to your organization's github repository - Note this is how we will check to make sure you have completed the assignment - so make sure that your student listing has a link to your group's organization and that you have committed and pushed your function to that organization's respository
 
 ## Resources
 
