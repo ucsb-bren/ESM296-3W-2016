@@ -1,5 +1,5 @@
 ---
-title: "knboysen"
+title: "Kristen Boysen (username:knboysen) Site"
 author: "Kristen Boysen"
 date: "January 15, 2016"
 output:   
