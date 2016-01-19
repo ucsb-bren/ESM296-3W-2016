@@ -12,6 +12,8 @@ output:
         
 I am interested in reducing waste and inefficient products that create environmental and toxilogical harm. I am also interested in GIS and visualizing geographic data in useful and interesting ways (*especially data related to global deforestation right now as it is a large component of my thesis project*)
 
+In this class I will be looking into pollution statistics... [see my group site here](https://github.com/pollute/pollute.github.io)
+
 
   ## **Techniques**
         
