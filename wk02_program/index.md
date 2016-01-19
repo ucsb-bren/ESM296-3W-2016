@@ -38,7 +38,7 @@ layout: default
 
 ## Assignment
 
-Due: Jan 20, Wednesday 5pm
+Due: Jan 21, Thursday 5pm
 
 ### Git Assignment (Group)
 
