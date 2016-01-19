@@ -25,14 +25,16 @@ For this class, the group will be working to create a program to take in survey 
 A group member has data on survey responses on solid waste. Data is received via text message and associated timestamps. The responses need to be tied to a specific survey question and organized.
   
 ## Image
-![](images/cool-image.jpg)
+![](images/age_hist.png)
 
-An artistic use of waste.
+<!--- hist(ugandasms$age, main="Age Distribution of Survey Respondents", xlab="Age (Years)", xlim=c(0, 80))-->
 
-## Summary of Well Data
+Fig. 1. Histogram of age distribution of survey respondents.
+
+## Summary of Survey Response Data
 ```{r}
 # read csv
-d = read.csv('welldata.csv')
+d = read.csv('ugandasms.csv')
       
 # output summary
 summary(d)
