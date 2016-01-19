@@ -1,0 +1,43 @@
+---
+title: "R Markdown Assignment, Week 2"
+author: "Jennifer Kidson"
+date: "January 15, 2016"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+## Content
+        
+For this class, the group will be working to create a program to take in survey data in real time, reorganize it, and output summary statistics. For my group project (on Santa Barbara water supply) and future work, I'm most interested in learning data management strategies and ways to visualize data. 
+        
+## Techniques
+        
+1. Wrangling data
+2. Cleaning up data
+3. Visualizing data
+    + **interactive maps**
+    + *interactive time series*
+        
+## Data
+        
+A group member has data on survey responses on solid waste. Data is received via text message and associated timestamps. The responses need to be tied to a specific survey question and organized.
+  
+## Image
+![](images/jkidson_age_hist.png)
+
+<!--- hist(ugandasms$age, main="Age Distribution of Survey Respondents", xlab="Age (Years)", xlim=c(0, 80))-->
+
+Fig. 1. Histogram of age distribution of survey respondents.
+
+## Summary of Survey Response Data
+```{r}
+# read csv
+d = read.csv('data/jkidson_ugandasms.csv')
+      
+# output summary
+summary(d)
+```
+
+### [Citizen Monitoring Github Page](https://github.com/citizen-monitoring)

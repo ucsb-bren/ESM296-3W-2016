@@ -13,7 +13,7 @@ output:
 Specifically, we are interested in developing a data set that automatically updates as new data becomes available.
 
  
-![](images/muganda.png)
+![](images/jebone_muganda.png)
 
 * **More about:** 
     + [citizen science](https://en.wikipedia.org/wiki/Municipal_solid_waste)
