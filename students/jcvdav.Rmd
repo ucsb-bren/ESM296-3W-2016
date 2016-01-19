@@ -18,7 +18,7 @@ output:
 ## Our organization:
 
 ###[**fish-ecol**](https://github.com/fish-ecol)
-![](tuna.jpg)
+![](images/jcvdav_tuna.jpg)
 
 
 ## Content
@@ -45,7 +45,7 @@ We have not defined a single project idea or question, but my colaborators [Juan
 
 ```{r}
 # Read some data
-SemPul=read.csv("SemPul.csv", sep=";")
+SemPul=read.csv("data/jcvdav_SemPul.csv", sep=";")
 # Data has been modified from the original, which is confidential
 
 # Now a summary
