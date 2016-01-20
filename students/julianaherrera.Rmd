@@ -1,13 +1,26 @@
 ---
-title: "Assignment 1 - Markdown"
+title: "Group Project - CRSeafood"
 author: "Juliana Herrera"
 date: "January 19, 2016"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#Content
+I'm very interested in the effects of markets over fisheries management. My Group Project is focused in answering the overarching question **_What are the consequences of applying seafood certification programs to 
+small-scale fisheries?_**, focusing on a Small scale fishery in Costa Rica. Our specific questions are: 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+  + What are the factors affecting the current supply chain?
+  + How do certifications affect the profits of fishers and retailers?
+  + Do they affect the ratio of domestic sales to exports?
+
+###Costa Rican Snapper fishery as a case study
+The project is being developed in the North Pacific of the country, with two communities of small scale fishers who work with bottom long lines. Since 2008 the communities have been working to achieve recognition of sustainability through the adquisition of a certification. They are currently under assessment of FairTrade. 
+
+#Techniques
+In order to understand what affects the supply chain of snapper, we had to first map how is it laid out. We did this through **_systems thinking_**. The following figure shows our preliminary results:
+
+
+#Data
 
 ```{r}
 summary(cars)
