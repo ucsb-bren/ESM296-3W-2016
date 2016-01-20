@@ -1,6 +1,3 @@
-##### NEED TO FIX IMAGE, AND READ CSV
-
-
 ---
 title: "RMarkdown Assignment"
 output:
