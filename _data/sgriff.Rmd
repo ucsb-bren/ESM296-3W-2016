@@ -30,10 +30,8 @@ Data for the GP has largely been collected from local water agencies and the cou
 
 
 ```{r}
-# read csv
-s = read.csv('sgriff_loadyields.csv') #sgriff_loadyields indicates annual N & P flux in states' waters (in kg/yr/km^2)
-      
+s = read.csv('sgriff_loadyields.csv') #sgriff_loadyields shows annual N & P flux in states' waters (in kg/yr/km^2).
+
 # output summary
 summary(s)
 ```
-
