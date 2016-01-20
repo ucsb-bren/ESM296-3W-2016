@@ -7,7 +7,7 @@ output:
     toc_depth: 3
 ---
 
-![I dont like cold](images/jpalacios.jpg)
+![I dont like cold](images/julianopalaciosabrantes.jpg)
 
 
 ### Content
@@ -30,7 +30,7 @@ I still have no data for my proyect. I Could use some of the FAOStats available 
 ``` {r}
 
  # read csv
-Data = read.csv("ReefPerch.csv")
+Data = read.csv("data/julianopalaciosabrantes_ReefPerch.csv")
       
 # output summary
 summary(Data)
