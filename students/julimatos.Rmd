@@ -11,7 +11,8 @@ output:
   Our [group project](http://sbfire.weebly.com/) is an *assessment* of the benefits of fire mitigation programs cities in the **wildland urban interface**, using Santa Barbara as a case study. We have already distributed a survey to the residents of the City of Santa Barbara's Wildland Fire Suppression Assessment District in order to gauge the attitudes of the residents toward the program. We have also ran fire modeling programs to determine the effectiveness of the vegetation treatments of the program. The final component of our project will be looking at the transferability of the program, and we are trying to determine what other cities in California may benefit from a similar program. 
   
   The picture below shows the extent of the Wildland Fire Suppression Assessment District in the City of Santa Barbara.
-  ![](/Users/julianamatos/Desktop/WFSAD.png)
+  
+  ![](images/julimatos_WFSAD.png)
   
         
   ## Techniques
@@ -31,7 +32,7 @@ output:
   
 ```{r}
 # read csv
-d = read.csv('data/julimatos_FullData.csv')
+d = read.csv('data/smccutcheon_FullData.csv')
       
 # output summary
 summary(d)
