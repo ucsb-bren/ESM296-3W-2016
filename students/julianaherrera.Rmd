@@ -5,7 +5,8 @@ date: "January 19, 2016"
 output: html_document
 ---
 
-#Content
+##Content
+
 I'm very interested in the effects of markets over fisheries management. My Group Project is focused in answering the overarching question **_What are the consequences of applying seafood certification programs to 
 small-scale fisheries?_**, focusing on a Small scale fishery in Costa Rica. Our specific questions are: 
 
@@ -14,22 +15,14 @@ small-scale fisheries?_**, focusing on a Small scale fishery in Costa Rica. Our 
   + Do they affect the ratio of domestic sales to exports?
 
 ###Costa Rican Snapper fishery as a case study
-The project is being developed in the North Pacific of the country, with two communities of small scale fishers who work with bottom long lines. Since 2008 the communities have been working to achieve recognition of sustainability through the adquisition of a certification. They are currently under assessment of FairTrade. 
+The project is being developed in the North Pacific of the country, with two communities of small scale fishers who work with bottom long lines. Since 2010 the communities have been trying to obtain a certification of sustainability, in order to sell a premium price product. Currently they are going through a pre-assessment for FairTrade. 
+Link to CRSeafood webpage (http://www2.bren.ucsb.edu/~crseafood/)
 
-#Techniques
-In order to understand what affects the supply chain of snapper, we had to first map how is it laid out. We did this through **_systems thinking_**. The following figure shows our preliminary results:
+##Techniques
 
+In order to understand what affects the supply chain of snapper, we had to first map how is this system laid out. We did this through **_systems thinking_**. The following figure shows our preliminary results:
 
-#Data
+##Data
 
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Currently my team and I are working on developing a model that will show the effects of implementing a certification. We are evaluating these changes in terms of profits and biomass changes. 
+Learning how to use Github and applying it to the creating of this model would be a great advantage. We are currently cleaning and organizing the data obtained, therefore there are no preliminary results regarding the bio-economic model of snapper. 
