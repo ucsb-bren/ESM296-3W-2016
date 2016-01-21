@@ -12,8 +12,10 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 
 ### Instructors
 
-- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] (office hours TBD)
-- [Ben Best](http://www.bdbest.org) [BB]  (office hours TBD)
+- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] <ctague@bren.ucsb.edu>
+  Office hours: TBD
+- [Ben Best](http://www.bdbest.org) [BB] <bdbest@gmail.com> 
+  Office hours: Tuesdays 11:30 - 1pm in Bren 4524
 
 ### Interaction
 
