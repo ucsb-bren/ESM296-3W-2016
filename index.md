@@ -12,8 +12,10 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 
 ### Instructors
 
-- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] (office hours TBD)
-- [Ben Best](http://www.bdbest.org) [BB]  (office hours TBD)
+- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] <ctague@bren.ucsb.edu>
+  Office hours: TBD
+- [Ben Best](http://www.bdbest.org) [BB] <bdbest@gmail.com> 
+  Office hours: Tuesdays 11:30 - 1pm in Bren 4524
 
 ### Interaction
 
@@ -48,11 +50,13 @@ Environmental science and management is increasingly a group enterprise involvin
 
 1. [**Rmarkdown**](http://rmarkdown.rstudio.com/) enables you to weave rendered chunks of R code in with formatted text (as markdown). Rmarkdown enables you to most easily generate tables, figures, formulas and references into a variety of outputs: documents, PDFs, websites or interactive online applications.
 
-    <a href="wk01_github" class="btn btn-primary btn-sm">Reproducible Science Tools...</a>
+<a href="wk01_github" class="btn btn-primary btn-sm">Reproducible Science Tools...</a>
 
 ### 2. Programming Concepts
 
 Programming is a general term used for developing sets of instructions for data generation, analysis, interpretation and visualization. We will introduce some basic programming concepts: [data types](http://adv-r.had.co.nz/Data-structures.html), [flow control](http://adv-r.had.co.nz/Functional-programming.html) and [functions](http://adv-r.had.co.nz/Functions.html)  We will also cover programming "best practices". While the specific syntax here applies to R, the concepts are universal to all programming languages.
+
+<a href="wk02_program" class="btn btn-primary btn-sm">Programming Concepts...</a>
 
 ### 3. Reading and Wrangling Data
 
@@ -104,6 +108,8 @@ You'll share your final project presentations in class, describing the scientifi
 
 ## Resources
 
-### [References]({{ site.baseurl }}/refs.html)
-
 ### [Data]({{ site.baseurl }}/data)
+
+### [Jobs]({{ site.baseurl }}/jobs.html)
+
+### [References]({{ site.baseurl }}/refs.html)

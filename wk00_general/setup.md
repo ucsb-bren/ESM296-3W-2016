@@ -7,7 +7,7 @@ layout: default
 
 To run the code in this book, you will need to install both R and the RStudio IDE, an application that makes R easier to use. Both are open source, free and easy to install:
 
-1. **R**: <https://www.r-project.org/alt-home/>
+1. **R**: <http://cran.stat.ucla.edu/> (NEW!)
 1. **RStudio**: <http://www.rstudio.com/download>
 1. **Git**: <http://git-scm.com/downloads>. Default options work well.
 
@@ -17,13 +17,19 @@ To run the code in this book, you will need to install both R and the RStudio ID
 
 1. Configure Git with global commands. Open up the Bash version of Git and type the following:
 
-        git config –global user.name "your GitHub account name"
-        git config –global user.email "GitHubEmail@something.com"
+        # check your version of git
+        git --version
+
+        git config –-global user.name "your GitHub account name"
+        git config –-global user.email "GitHubEmail@something.com"
+        
+        # list your config to confirm user.* variables set
+        git config --list
         
 1. Open Rstudio and set the path to Git executable. Go to Tools > Global Options > Git/SVN. You should browse to the git executable which is usually, dependent on operating system:
 
     - Mac: `/usr/local/git/bin/git`
-    - Windows: `C:/Program Files (x86)/Git/bin/git.exe`
+    - Windows: `C:/Program Files/Git/bin/git.exe`
 
 ## Sign in to Slack
 
@@ -39,7 +45,7 @@ Copy and paste the following code in your R console, which will tell you whether
 
 # parameters
 R_v       = '3.2.3'
-RStudio_v = '0.99.841'
+RStudio_v = '0.99.491'
 
 # check R version ----
 if (getRversion() < R_v){

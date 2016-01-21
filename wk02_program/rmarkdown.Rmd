@@ -1,0 +1,145 @@
+---
+title: "Rmarkdown"
+subtitle: "Environmental Informatics"
+author: "@bbest"
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
+output: 
+  ioslides_presentation:
+    incremental: true
+    widescreen: true
+    self_contained: false
+    lib_dir: libs
+---
+
+## Teaching Method per Module
+
+Follow a **schedule** for the 3 hour class with the following elements per module:
+
+1. **Lecture** to _**introduce**_: watch presentation
+
+1. **Demo** to _**show**_: watch instructor use RStudio to get overall idea
+
+1. **Exercise** to _**learn**_: do it yourself, individually, with given material
+
+1. **Group** to _**apply**_: apply new technique to your group project (ie specific data and question)
+
+## Real Skills Learned
+
+- Technology changes rapidly
+
+- Yes, you're learning about tools and libraries specific to R, but the concepts are applicable to most any programming language
+
+- The real skill learned here is **critical thinking** / **problem solving** / **googling** to figure out how to get your science done!
+
+- <img height=400 src="img/science-the-shit-out-of-this.jpg"/>
+
+## Flipped Classroom
+
+Teacher's role: "Sage on the Stage" -> "Guide on the Side"
+
+![](img/flipped-classroom.png)
+
+Inspired by [Data Carpentry for Biologists](http://www.datacarpentry.org/semester-biology/about/flipped-classes/), created by [Knewton](https://www.knewton.com/infographics/flipped-classroom/)
+
+# Rmarkdown
+
+## Inspiration {.flexbox .vcenter}
+
+<div align="center">
+<img src="img/Gandrud2013_ReproducibleResearchRstudio_cover.png" height=500>
+</div>
+
+Gandrud (2013) [Reproducible Research with R and Rstudio](http://christophergandrud.github.io/RepResR-RStudio/)
+
+## What is Rmarkdown?
+
+Rmarkdown = R + markdown
+
+- _**input**_ simple text:
+    - **markdown**: simple formatting of text (bold, links, headers, images, ...)
+    - **R**: execute chunks of code (figures, tables...)
+    
+- _**output**_ various formats:
+    - **html**: share on public website
+    - **pdf**: polished publication
+    - **docx**: share with co-authors to track changes
+
+## First Example of Rmarkdown
+
+<div align="center">
+<img src="img/rmd_first.png" height=550>
+</div>
+
+In RStudio, menu File > New File > Rmarkdown... Document, HTML. Knit HMTL button to render the right.
+
+## Markdown
+
+"easy" HTML
+
+<div align="center">
+<img src="img/rmd_markdownOverview.png" height=400>
+</div>
+
+Github renders (with [flavor](https://help.github.com/articles/github-flavored-markdown)), eg README.md
+
+## R in Rmarkdown - Chunk
+
+Surround code with 3 backticks with `{r}` in first line
+
+<div align="center">
+<img src="img/markdownChunk.png" height=550>
+</div>
+
+## R in Rmarkdown - Inline
+
+Surround code in single backticks
+
+``pi=`r '\x60r pi\x60'` `` evaluates to "pi=`r pi`"
+
+## Equations in Rmarkdown - Chunk
+
+Uses [Latex](https://en.wikibooks.org/wiki/LaTeX) markup language for equations as input. Outputs using [MathJax](https://www.mathjax.org/) JavaScript library for HTML output, native for PDF.
+
+```
+$$
+\frac{1}{n} \sum_{i=i}^{n} x_{i}
+$$
+```
+
+$$
+\frac{1}{n} \sum_{i=i}^{n} x_{i}
+$$
+
+## Equations in Rmarkdown - Inline
+
+  ```
+  The Arithmetic mean is equal to $\frac{1}{n} \sum_{i=i}^{n} x_{i}$, or the summation of n numbers divided by n.
+  ```
+
+The Arithmetic mean is equal to $\frac{1}{n} \sum_{i=i}^{n} x_{i}$, or the summation of n numbers divided by n.
+
+
+## Github Friendly
+
+- Rmarkdown (\*.Rmd) renders as markdown (*.md)
+  
+- easy to see change in simple text files (vs binary / proprietary formats)
+
+## Demo
+
+Rstudio: menu File > New File > Rmarkdown... Document, HTML. Knit HMTL button.
+
+- [first.**Rmd**](https://github.com/ucsb-bren/env-info/blob/gh-pages/wk02_program/first.Rmd)
+- [first.**html**](https://ucsb-bren.github.io/env-info/wk02_program/first.html)
+
+## Help
+
+- Rstudio menu Help > [Markdown Quick Reference](http://rmarkdown.rstudio.com/authoring_basics.html)
+- [R Markdown Cheat Sheet](../refs/cheatsheets/rmarkdown-cheatsheet.pdf)
+- [R Markdown Reference Guide](../refs/cheatsheets/rmarkdown-reference.pdf)
+- [Mastering Markdown · GitHub Guides](https://guides.github.com/features/mastering-markdown/)
+
+## Further Resources
+
+- [rmarkdown.rstudio.com](http://rmarkdown.rstudio.com/): authoritative reference site
+- [bbest/rmarkdown-example](https://github.com/bbest/rmarkdown-example): example of full manuscript (figures, tables, captions, references using Zotero) as html, pdf, docx
