@@ -1,0 +1,186 @@
+---
+title: "extra"
+author: "Ben Best"
+date: "January 22, 2016"
+output: html_document
+---
+
+## Extra
+
+### Get $CO_2$ Emissions
+
+```{r get-CO2}
+library(readxl)
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = 'data/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+
+if (!file.exists(xls)){
+  download.file(url, xls)
+}
+d = read_excel(xls, skip=12)
+```
+
+
+[CO2 time series per region/country \| EUROPA](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9)
+
+- join with population over time. get at emissions per capita
+- rank worst 10
+- get at cumulative emissions
+- join with GDP. fit model, who excessively bad/goodget?
+- references relevant to UCOP21:
+  - [United Nations Framework Convention on Climate Change - Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/United_Nations_Framework_Convention_on_Climate_Change#Paris_Agreement)
+  - [6 Graphs Explain the World’s Top 10 Emitters | World Resources Institute](http://www.wri.org/blog/2014/11/6-graphs-explain-world%E2%80%99s-top-10-emitters)
+  - [Global Emissions | Climate Change | US EPA](http://www3.epa.gov/climatechange/ghgemissions/global.html)
+- just USA
+
+
+nycflights13
+
+
+
+```{r}
+library(dplyr)
+library(nycflights13)
+
+# Convert data to a tbl_df so that it uses dplyr's nice print method
+flights <- tbl_df(flights)
+flights
+
+# Use glimpse to few some values in each column
+glimpse(flights)
+
+# filter: inspect subsets of data
+# How many flights flew to Madison in 2013?
+flights %>%
+  filter(dest == "MSN")
+
+# filter: multiple conditions
+# How many flights flew to Madison in first week of January?
+# Comma separated conditions are combined with '&'
+flights %>%
+  filter(dest == "MSN", month == 1, day <= 7)
+
+# QuestionCommas in the filter statement are implicit & (and) operators. Is there anything similar for | (or)?
+# Logical or statements are supported, but there's no shorthand.
+flights %>%
+  filter(dest == "MSN" | dest == "ORD" | dest == "MDW")
+# For more complicated checks, I would try a set operation.
+flights %>%
+  filter(dest %in% c("MSN", "ORD", "MDW"))
+
+
+# arrange: sort columns
+# Sort by which airport they departed from in NYC, then year, month, day.
+flights %>%
+  arrange(origin, year, month, day)
+
+# desc: reverses sorting of a column
+# Find longest delayed flights to Madison.
+flights %>%
+  filter(dest == "MSN") %>%
+  arrange(desc(dep_delay))
+
+# select
+# Select the columns you want.
+flights %>%
+  select(origin, year, month, day)
+
+# select's helpers
+# select has many helper functions. See ?select.
+flights %>%
+  select(origin, year:day, starts_with("dep"))
+
+# negative selecting
+# We can drop columns by “negating” the name. Since helpers give us column names, we can negate them too.
+flights %>%
+  select(-dest, -starts_with("arr"),
+         -ends_with("time"))
+```
+
+Recap: Verbs for inspecting data
+- convert to a `tbl_df` - nice print method
+- `glimpse` - some of each column
+- `filter` - subsetting
+- `arrange` - sorting (desc to reverse the sort)
+- `select` - picking (and omiting) columns
+
+```{r}
+# rename
+# Rename columns with rename(NewName = OldName). To keep the order correct, read/remember the renaming = as “was”.
+flights %>%
+  rename(y = year, m = month, d = day)
+
+# mutate
+# How much departure delay did the flight make up for in the air?
+flights %>%
+  mutate(
+    gain = arr_delay - dep_delay,
+    speed = (distance / air_time) * 60,
+    gain_per_hour = gain / (air_time / 60)) %>%
+  select(gain:gain_per_hour)
+
+# group_by
+# Let's compute the average delay per month of flights to Madison.
+# Normally–in aggregate, by or plyr's d*ply functions–you specify the grouping as an argument to the aggregation function.
+aggregate(dep_delay ~ month, flights, mean,
+          subset = flights$dest == "MSN")
+
+# group_by
+# In dplyr, grouping is its own action. It is done as its own step in the pipeline. Here, we filter to the flights to Madison and group_by month.
+msn_by_month <- flights %>%
+  filter(dest == "MSN") %>%
+  group_by(month)
+msn_by_month
+
+# summarise
+# Now we use summarise to compute (several) aggregate values within each group (month). summarise returns one row per group.
+msn_by_month %>%
+  summarise(
+    flights = n(),
+    avg_delay = mean(dep_delay, na.rm = TRUE),
+    n_planes = n_distinct(tailnum))
+
+# tally
+# tally is a shortcut for counting number of items per group.
+# Number of flights from NYC by destination by month:
+flights %>%
+  group_by(dest, month) %>%
+  tally
+
+# ungroup
+# Remove the grouping structure with ungroup.
+msn_by_month %>% ungroup
+
+# Summarizing undoes grouping.
+# Each summarise statement peels off one layer of grouping (from the right of the list of groups).
+# day gets peeled off
+per_day <- flights %>%
+  group_by(dest, year, month, day) %>%
+  summarise(flights = n())
+per_day
+
+# Peel off month grouping
+per_month <- per_day %>%
+  summarise(flights = sum(flights))
+per_month
+```
+
+
+That covers 80% of dplyr
+- select
+- filter
+- arrange
+- glimpse
+- rename
+- mutate
+- group_by, ungroup
+- summarise
+
+Other 20%
+
+- assembly: bind_rows, bind_cols
+- column-wise operations: mutate_each, summarise_each
+- join tables together: left_join, right_join, inner_join, full_join
+- filtering joins: semi_join, anti_join
+- do: arbitrary code on each chunk
+- different types of tabular data (databases, data.tables)
