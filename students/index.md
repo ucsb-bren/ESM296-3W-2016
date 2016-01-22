@@ -28,7 +28,7 @@ layout: default
         </a>
         
           <div class="vcard-details">
-            <a href="students/{{ username }}.html">
+            <a href="{{ site.baseurl }}/students/{{ username }}.html">
               <p><span class="octicon octicon-jersey"></span> {{ user.program }}</p>
               <p><span class="octicon octicon-list-unordered"></span> {{ user.interests }}</p>
               <p><span class="octicon octicon-rocket"></span> {{ user.project }}</p>
