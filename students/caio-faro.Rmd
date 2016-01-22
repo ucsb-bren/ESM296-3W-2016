@@ -1,0 +1,35 @@
+---
+title: "RMarkdown Assignment"
+author: "Caio Faro"
+date: "January 20, 2016"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+## *Content*
+  
+  I'm interested in fishery management and ocean conservation, particulary related to ecologically sensitive species such as **sharks and rays**.
+  Currently I'm working in the [Fisheries Management](https://github.com/fishmgt) group for the Informatics course at the Master of Environmental Science and Management at UCSB.
+  
+  ![](images/caio-faro_hammerhead.jpg)
+        
+## *Techniques*
+        
+  I hope to take from the Informatics course skills like how use the github plataform, that allows a collaborative workspace, and how to organize and manage data. Also, I think improving my R skills, especially in generating better visualitions of data, might be a differential in my future professional life.
+        
+## *Data*
+        
+  At the present moment I'm not participating in any MESM project. However, when searching for a opportunity to write my proposal I looked at The International Comission for the Conservation of Atlantic Tunas (ICCAT) database on shark captures, which I'll be using for this assignment.
+  
+  
+```{r}
+# read csv
+d = read.csv('data/caio-faro_ICCATSharks.csv')
+Brazil <- subset(d, PartyName == "BRAZIL")
+      
+# output summary
+summary(Brazil)
+```
+  

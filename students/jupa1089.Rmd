@@ -14,7 +14,7 @@ Does citizen monitoring (via **SMS surveys**) impact the quality of municipal wa
 
 [link](https://github.com/citizen-monitoring/citizen-monitoring.github.io)
 
-![](images/ugandasms.png)
+![](images/jupa1089_ugandasms.png)
 
 ## Techniques
 
@@ -30,7 +30,7 @@ We have preliminary survey result data from Mark Buntaine. These are in excel fo
 
 ```{r}
 #read csv
-d = read.csv('jupa1089_ugandaSMS.csv')
+d = read.csv('data/jupa1089_ugandaSMS.csv')
 
 #output summary
 summary(d)
