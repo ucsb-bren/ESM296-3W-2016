@@ -8,8 +8,8 @@ output:
     toc_depth: 2
 ---
 
-
-![Cichlid!](http://www.petworldrochester.com/wp-content/uploads/2013/01/Cichlid-Peacock-OB.jpg)
+<div style="width:400px; height=300px">
+![Cichlid](images/Cichlid.jpg)
 
 **Author: Niko Hartline**
 *Acknowledgements: BBest for the great .Rmd guide*
@@ -33,8 +33,12 @@ output:
   
 ```{r}
 
-#Singleton_Country_Aggregates = read.csv('nhartline_Singleton_Country_Aggregates.csv')
+Singleton_Country_Aggregates = read.csv('data/zebos1_Singleton_Country_Aggregates.csv')
 
-#summary(Singleton_Country_Aggregates)
+summary(Singleton_Country_Aggregates)
 ```
+  
+  ## Data Wrangling
+  
+  
   
