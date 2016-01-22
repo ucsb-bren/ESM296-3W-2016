@@ -18,7 +18,7 @@ small-scale fisheries?_**, focusing on a Small scale fishery in Costa Rica. Our 
 The project is being developed in the North Pacific of the country, with two communities of small scale fishers who work with bottom long lines. Since 2010 the communities have been trying to obtain a certification of sustainability, in order to sell a premium price product. Currently they are going through a pre-assessment for FairTrade. 
 Link to CRSeafood webpage (http://www2.bren.ucsb.edu/~crseafood/)
 
-<div style="width:400px; height=300px">
+<div style="width:300px; height=300px">
 ![](http://www.laff.bren.ucsb.edu/sites/www.laff.bren.ucsb.edu/files/styles/main_people_image/public/images/people/IMGP0301.JPG?itok=0OZ2DSQM)
 
 ##Techniques
