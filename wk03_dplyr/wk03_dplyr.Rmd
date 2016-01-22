@@ -1,0 +1,209 @@
+---
+title: 'Week 3: Tutorial on Reading and Wrangling Data'
+author: "Ben Best"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    highlight: default
+    toc: yes
+    toc_depth: 3
+---
+
+## Github Workflows Recap
+
+- "conversation" of code amongst us with pull requests & issues, with every change logged in the version history
+
+- flows:
+
+    1. **fork** and **pull request**: _fork_, clone, pull, (branch,) commit, push and _pull request_
+
+        - _**read only**_ (no write) permissions on original repository
+        
+        - eg `bren-ucsb/env-info` _fork_ to `bbest/env-info`
+        
+        - ie `<org>/<repo>` _fork_ to `<user>/<repo>`
+        
+        - to update: 
+        
+            - _pull request_ `<user>/<repo>` -> `<org>/<repo>`, or 
+            
+            - _pull request_ `<org>/<repo>` -> `<user>/<repo>`
+
+    1. **pull** and **push**: clone, pull, (branch,) commit and push
+  
+        - read and _**write**_ permissions on original repository
+        
+        - eg `bbest` _push_ directly to `whaleroute/whaleroute.github.io`
+        
+        - ie `<user>` _push_ directly to `<org>/<repo>`
+    
+        - see [Github Flow](https://guides.github.com/introduction/flow/) for branching model
+
+## Assignment
+
+For the individual assignment today, please ensure you have the latest from `bren-ucsb/env-info` by issuing a _pull request_ to your `<user>/env-info` (You may need to "switch the base".) Since you have write permissions on `<user>/env-info`, you should then _merge_ changes.
+
+## Where am I? Getting around in the Command Line
+
+Knowing your present working directory is critical to using "relative" paths, ie relative to your present working directory. Relative paths (eg `somedir/somefile.csv` are often preferred over "absolute" paths (eg `C:/somedir/somefile.csv`) since the project's root folder can move around on the machine or even to a different machine and still work, whereas an absolute path is locked down to a very exact machine-specific path. Here are a couple of aspects to keep in mind however when knitting Rmarkdown (*.Rmd) files:
+
+- When you open an RStudio project, the default present working directory is the top level folder for that project (and contains the `*.Rproj` file). 
+
+- When you "Knit" an Rmarkdown file (`*.Rmd`), the working directory is set to the folder containing the `*.Rmd` and a new workspace is used.
+
+The above differences mean that when writing chunks of R code, a path can work in the Console and fail when you go to "Knit" the Rmarkdown file (`*.Rmd`), or vice versa.
+
+So let's review some basic commands for navigating directories in both [shell commands](http://swcarpentry.github.io/shell-novice/) and R commands.
+
+### Bash Shell
+
+The [bash shell](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) is the most common Unix-based command shell, found in Linux and Mac machines. It gets emulated for Windows in the Git Bash Shell application when installing git. Natively, Windows uses the less powerful [Windows DOS command prompt](https://en.wikipedia.org/wiki/List_of_DOS_commands), which uses `cd` (for `pwd` and `cd`) and `dir` (instead of `ls`).
+
+```sh
+# present working directory
+pwd
+
+# change working directory
+cd
+
+# list files
+ls
+
+# list files that end in '.jpg'
+ls *.jpg
+```
+
+Note the use of the wildcard `*` to indicate any set of characters.
+
+### R
+
+Now play with the same commands commented above, but in R.
+
+```{r cmd-r, eval=F}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+```
+
+Look at the help for [`list.files()`](http://www.rdocumentation.org/packages/base/functions/list.files) (`?list.files` or F1 with cursor over `list.files()` in editing window) to see that the `pattern` argument expects a [regular expression](http://www.rdocumentation.org/packages/base/functions/regex) and [`glob2rx()`](http://www.rdocumentation.org/packages/utils/functions/glob2rx) changes the wildcard or globbing pattern into a regular expression.
+
+To work on your `students/<user>.Rmd`, I recomend you get the Console and your Rmarkdown file using the same working directory:
+
+```{r setwd, eval=F}
+setwd('students')
+```
+
+## Install Packages
+
+```{r install-packages, eval=F}
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}
+```
+
+The **gapminder** dataset is "an excerpt of the data available at Gapminder.org. For each of 142 countries, the package provides values for life expectancy, GDP per capita, and population, every five years, from 1952 to 2007" ([CRAN](https://cran.r-project.org/web/packages/gapminder/index.html)). Gapminder was the brain child of Hans Rosling who famously gave the [TED Talk: The best stats you've ever seen - Hans Rosling](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en).
+
+## Readings
+
+These are the main R packages we'll be learning about this week:
+
+- [`readr`: column types](https://cran.r-project.org/web/packages/readr/vignettes/column-types.html)
+- [`dplyr`: introduction](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
+- [`tidyr`: tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
+- [`dplyr` & `tidyr`: data wrangling cheatsheet](../refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+
+## Reading CSV
+
+### `utils::read.csv`
+
+Traditionally, you would read a CSV like so:
+
+```{r read.csv, eval=F}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+### `readr::read_csv`
+
+Better yet, try read_csv:
+
+```{r read_csv, eval=F}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+What are the differences in data types of columns when using `read.csv` vs `read_csv`?
+
+### `dplry::tbl_df`
+
+Now convert to a dplyr table:
+
+```{r tbl_df, eval=F}
+library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+d
+head(d)
+summary(d)
+glimpse(d)
+```
+
+## Presentation
+
+- [wrangling-webinar.pdf](wrangling-webinar.pdf)
+
+## References
+
+### Command Line
+
+- [The Unix Shell \| Software Carpentry](http://swcarpentry.github.io/shell-novice/)
+
+### Data Management
+
+- [Best Practices Primer \| DataONE]({{ site.baseurl }}/refs/lit/DataONE%202012%20Best%20Practices%20Primer%20DataONE_BP_Primer_020212.pdf)
+- [Data Management Guide for Public Participation \| DataONE]({{ site.baseurl }}/refs/lit/DataONE%20Data%20Management%20Guide%20for%20Public%20Participation%20PPSR-DataManagementGuide.pdf)
+- [Education Modules \| DataONE](https://www.dataone.org/education-modules)
+
+### Data Wrangling in R
+
+
+## Footnotes
+
+1. bash (bourne again shell)

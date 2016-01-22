@@ -1,0 +1,65 @@
+---
+title: "Assignment One"
+author: "Alex Smith"
+date: "January 20, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+## Organization
+
+[Fisheries Managment](http://github.com/fishmgt)
+
+@fishmgt
+
+## Check out this beautiful sea cucumber!
+
+![Awesome Sea Cucumber](images/alxsmith_cucumber.png)
+
+## Interest
+
+- Tools for Stock Assessment and development of MSY models
+- Supply Chain
+
+## Content
+
+We will have a very ~~awesome~~ **interesting** question very soon. 
+
+## Techniques
+
+All the techniques... *specifically*
+
+- Parameteriztion
+- Data Cleaning
+- Modeling with feedback loops
+
+## Data
+
+Still deciding on which data to use. Below is sample data which includes:
+
+* Fisherman indicator (fisherman=1)
+* Age (yrs)
+* Residence time (yrs)
+* Height (cm)
+* Weight (kg)
+* Fish meals per week
+* Parts of fish consumed:
+   0=none, 1=mussle tissure, 2= sometimes whole fish, 3= whole fish
+* Methyl Mercury (mg/g)
+* Total Mercury (mg/g)
+
+```{r}
+#read csv
+data = read.csv("data/alxsmith_fishermen.csv")
+
+#output summary 
+summary(data)
+```
+
+Here's a sample plot:
+
+```{r, echo=FALSE}
+fishfactor=factor(data$fishpart, levels = c(0,1,2,3), labels=c("No Fish", "Mussle Tissue", "Whole Fish\n(sometimes)", "Whole Fish"))
+plot(fishfactor, pch=15, col=rainbow(4), main="Fish Part Consumption")
+```
