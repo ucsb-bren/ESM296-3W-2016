@@ -154,14 +154,64 @@ head(d)
 summary(d)</code></pre>
 <p>Formatting tables with dplry::tbl_df</p>
 <pre class="r"><code>library(readr)
-library(dplyr)
-
-d = read_csv('../data/r-ecology/species.csv') %&gt;%
-  tbl_df()
-d
-head(d)
-summary(d)
-glimpse(d)</code></pre>
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>d = read_csv('../data/r-ecology/surveys.csv') %&gt;%
+  tbl_df() %&gt;%
+  select(species_id,year) %&gt;%
+  #filter(species_id == &quot;NL&quot;) %&gt;%
+  group_by(species_id,year) %&gt;%
+  summarize(count = n())
+d</code></pre>
+<pre><code>## Source: local data frame [535 x 3]
+## Groups: species_id [?]
+## 
+##    species_id  year count
+##         (chr) (int) (int)
+## 1          AB  1980     5
+## 2          AB  1981     7
+## 3          AB  1982    34
+## 4          AB  1983    41
+## 5          AB  1984    12
+## 6          AB  1985    14
+## 7          AB  1986     5
+## 8          AB  1987    35
+## 9          AB  1988    39
+## 10         AB  1989    31
+## ..        ...   ...   ...</code></pre>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 3]
+## Groups: species_id [1]
+## 
+##   species_id  year count
+##        (chr) (int) (int)
+## 1         AB  1980     5
+## 2         AB  1981     7
+## 3         AB  1982    34
+## 4         AB  1983    41
+## 5         AB  1984    12
+## 6         AB  1985    14</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##   species_id             year          count       
+##  Length:535         Min.   :1977   Min.   :  1.00  
+##  Class :character   1st Qu.:1984   1st Qu.:  3.00  
+##  Mode  :character   Median :1990   Median : 19.00  
+##                     Mean   :1990   Mean   : 66.45  
+##                     3rd Qu.:1996   3rd Qu.: 65.00  
+##                     Max.   :2002   Max.   :892.00</code></pre>
+<pre class="r"><code>glimpse(d)</code></pre>
+<pre><code>## Observations: 535
+## Variables: 3
+## $ species_id (chr) &quot;AB&quot;, &quot;AB&quot;, &quot;AB&quot;, &quot;AB&quot;, &quot;AB&quot;, &quot;AB&quot;, &quot;AB&quot;, &quot;AB&quot;, &quot;AB...
+## $ year       (int) 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 198...
+## $ count      (int) 5, 7, 34, 41, 12, 14, 5, 35, 39, 31, 27, 15, 10, 9,...</code></pre>
 </div>
 
 

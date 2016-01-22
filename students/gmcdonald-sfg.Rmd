@@ -94,12 +94,16 @@ head(d)
 summary(d)
 ```
 Formatting tables with dplry::tbl_df  
-```{r,eval=FALSE}
+```{r,eval=TRUE}
 library(readr)
 library(dplyr)
 
-d = read_csv('../data/r-ecology/species.csv') %>%
-  tbl_df()
+d = read_csv('../data/r-ecology/surveys.csv') %>%
+  tbl_df() %>%
+  select(species_id,year) %>%
+  #filter(species_id == "NL") %>%
+  group_by(species_id,year) %>%
+  summarize(count = n())
 d
 head(d)
 summary(d)
