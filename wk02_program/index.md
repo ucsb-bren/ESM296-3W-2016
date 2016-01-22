@@ -91,7 +91,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
     
             ## Content
             
-            What is your burning environmental question that you'd like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
+            What burning environmental question(s) would you like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
             
             ## Techniques
             
@@ -138,8 +138,6 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
     
     - Be sure to run the "Knit HTML" on your `students/<username>.Rmd` to generate the final desired `students/<username>.html`
     
-    Add a link to your organization (from Group exercies)
-
 1. Commit, push and pull request your changes, per [Github Workflow](../wk00_general/intro.html#8). This is how you'll turn in this assignment. 
 
     **Review**. We can provide line-by-line feedback directly within the pull request as part of a code review. You could even follow up with submitting corrections by pushing fixes up to your fork, which will be reflected in the pull request. When we're finished giving feedback, we'll close the pull request and leave a :+1: in the final comment.
@@ -159,13 +157,14 @@ fatal: could not read Username for 'https://github.com': Device not configured
 
 - [Git and GitHub cheat sheet]({{ site.baseurl }}/refs/cheatsheets/github-git-cheat-sheet.pdf)
 - [Git and GitHub with RStudio](http://r-pkgs.had.co.nz/git.html)
+- [PLOS Computational Biology: A Quick Introduction to Version Control with Git and GitHub](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668)
 
 ### Rmarkdown
 
 - [Markdown quick reference](http://rmarkdown.rstudio.com/authoring_basics.html)
 - [R Markdown cheat sheet]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-cheatsheet.pdf)
 - [R Markdown reference guide]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-reference.pdf)
-- [Mastering Markdown | GitHub guides](https://guides.github.com/features/mastering-markdown/)
+- [Mastering Markdown - GitHub guides](https://guides.github.com/features/mastering-markdown)
 
 ## Footnotes
 

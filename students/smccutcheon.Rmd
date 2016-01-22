@@ -52,12 +52,12 @@ What data have you already identified? Feel free to provide a link and/or detail
 ```
 A map of the _most recent_ comprehensive calculation of total wildland urban intermix in the US is shown below. The map was created by the __US Forest Service__.
 
-![](images/2010_WUImap.png)
+![](images/smccutcheon_2010_WUImap.png)
 
 ###Data File
 ```{r}
 #read csv
-d=read.csv('data/FullData.csv')
+d=read.csv('data/smccutcheon_FullData.csv')
 
 #output summary
 summary(d)

@@ -2,7 +2,10 @@
 title: "jebone"
 author: "Jennifer Bone"
 date: "January 15, 2016"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
 ---
 ## Content
         
@@ -10,9 +13,10 @@ output: html_document
 Specifically, we are interested in developing a data set that automatically updates as new data becomes available.
 
  
-![](images/muganda.png)
+![](images/jebone_muganda.png)
 
-More about [**citizen science**](https://en.wikipedia.org/wiki/Municipal_solid_waste)
+* **More about:** 
+    + [citizen science](https://en.wikipedia.org/wiki/Municipal_solid_waste)
 
 ## Techniques
         
@@ -21,3 +25,11 @@ Data management and visualization
 ## Data
         
 Survey data has been collected from various participants in Uganda.
+
+```{r}
+d = read.csv('data/jebone_ugandaSMS.csv')
+      
+summary(d)
+```
+
+[**Citizen Monitoring**](http://<organization>.github.io)
