@@ -12,8 +12,10 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 
 ### Instructors
 
-- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] (office hours TBD)
-- [Ben Best](http://www.bdbest.org) [BB]  (office hours TBD)
+- [Naomi Tague](http://bren.ucsb.edu/people/Faculty/christina_tague.htm) [NT] <ctague@bren.ucsb.edu>
+  Office hours: TBD
+- [Ben Best](http://www.bdbest.org) [BB] <bdbest@gmail.com> 
+  Office hours: Tuesdays 11:30 - 1pm in Bren 4524
 
 ### Interaction
 
@@ -48,13 +50,13 @@ Environmental science and management is increasingly a group enterprise involvin
 
 1. [**Rmarkdown**](http://rmarkdown.rstudio.com/) enables you to weave rendered chunks of R code in with formatted text (as markdown). Rmarkdown enables you to most easily generate tables, figures, formulas and references into a variety of outputs: documents, PDFs, websites or interactive online applications.
 
-<a href="wk01_github" class="btn btn-primary btn-sm">Reproducible Science Tools...</a>
+<a href="wk01_github/" class="btn btn-primary btn-sm">Reproducible Science Tools...</a>
 
 ### 2. Programming Concepts
 
 Programming is a general term used for developing sets of instructions for data generation, analysis, interpretation and visualization. We will introduce some basic programming concepts: [data types](http://adv-r.had.co.nz/Data-structures.html), [flow control](http://adv-r.had.co.nz/Functional-programming.html) and [functions](http://adv-r.had.co.nz/Functions.html)  We will also cover programming "best practices". While the specific syntax here applies to R, the concepts are universal to all programming languages.
 
-<a href="wk02_program" class="btn btn-primary btn-sm">Programming Concepts...</a>
+<a href="wk02_program/" class="btn btn-primary btn-sm">Programming Concepts...</a>
 
 ### 3. Reading and Wrangling Data
 
@@ -65,6 +67,8 @@ You will become inculcated into the "Hadley"-verse of R packages which represent
 - [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) is your main data wrangling tool with a piping idiom (`%>%`) that encourages very readable SQL-like sequential statements: `select`, `filter`, `arrange`, `group_by`, `summarize`. The other beauty about dplyr is that you can initially write for a simple CSV, and scale up the back end to work with databases (such as sqlite, MySQL, PostgreSQL or even Google BigQuery) and dplyr translates the backend functions automatically, so no need to rewrite the rest of your code (concept of "middleware").
 
 See also the [data wrangling cheat sheet with dplyr, tidyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+
+<a href="wk03_dplyr/" class="btn btn-primary btn-sm">Reading and Wrangling Data...</a>
 
 ### 4. Tidying up Data
 

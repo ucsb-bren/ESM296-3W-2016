@@ -1,0 +1,42 @@
+---
+title: "Group Project - CRSeafood"
+author: "Juliana Herrera"
+date: "January 19, 2016"
+output: html_document
+---
+
+##Content
+
+I'm very interested in the effects of markets over fisheries management. My Group Project is focused in answering the overarching question **_What are the consequences of applying seafood certification programs to 
+small-scale fisheries?_**, focusing on a Small scale fishery in Costa Rica. Our specific questions are: 
+
+  + What are the factors affecting the current supply chain?
+  + How do certifications affect the profits of fishers and retailers?
+  + Do they affect the ratio of domestic sales to exports?
+
+###Costa Rican Snapper fishery as a case study
+The project is being developed in the North Pacific of the country, with two communities of small scale fishers who work with bottom long lines. Since 2010 the communities have been trying to obtain a certification of sustainability, in order to sell a premium price product. Currently they are going through a pre-assessment for FairTrade. 
+Link to CRSeafood webpage (http://www2.bren.ucsb.edu/~crseafood/)
+
+<div style="width:300px; height=200px">
+![](http://www.laff.bren.ucsb.edu/sites/www.laff.bren.ucsb.edu/files/styles/main_people_image/public/images/people/IMGP0301.JPG?itok=0OZ2DSQM)
+
+##Techniques
+
+In order to understand what affects the supply chain of snapper, we had to first map how is this system laid out. We did this through **_systems thinking_**. The following figure shows our preliminary results:
+
+<div style="width:1000px; height=700px">
+![](snappermap.png)
+
+##Data
+
+Currently my team and I are working on developing a model that will show the effects of implementing a certification. We are evaluating these changes in terms of profits and biomass changes. 
+Learning how to use Github and applying it to the creation of this model would be a great advantage. We are currently cleaning and organizing the data obtained, therefore there are no preliminary results regarding the bio-economic model of snapper. However, here is a short example of some of the data we have available.
+
+```{r}
+# read csv
+d = read.csv('pricessnapper.csv')
+      
+# output summary
+summary(d)
+```
