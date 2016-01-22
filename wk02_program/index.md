@@ -157,6 +157,7 @@ fatal: could not read Username for 'https://github.com': Device not configured
 
 - [Git and GitHub cheat sheet]({{ site.baseurl }}/refs/cheatsheets/github-git-cheat-sheet.pdf)
 - [Git and GitHub with RStudio](http://r-pkgs.had.co.nz/git.html)
+- [PLOS Computational Biology: A Quick Introduction to Version Control with Git and GitHub](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668)
 
 ### Rmarkdown
 
