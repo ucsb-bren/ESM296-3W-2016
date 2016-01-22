@@ -7,8 +7,9 @@ layout: default
 
 1. 8:30 - 9:30 am
 
-    Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NM]
+    Github finish: [Git lecture, II](gitpart2.pdf) [15 min, NT]
     Assign [env-info groups](https://docs.google.com/document/d/1scKj-5vp3BORXivj9JZxKCUJdIdp6kQ5yGemHRzEP2U/edit?usp=sharing) [5 min]
+    [Doodle preferred office hours for BB](http://doodle.com/poll/e44g8w79s9i5swy8) by 5pm today  
     [Git Assignment (Group)](#git-assignment-(group)), to create Github organization and respository  [30 min, per group]
     [Rmarkdown lecture](./rmarkdown.html) & demo [BB, 30 min]
     
@@ -24,7 +25,20 @@ layout: default
     More on Programming [20 min, NT]
     Programming exercise II [20 min, individually]
 
+### Github Demo II [NT]
+
+    # list git log in reverse order
+    git log --reverse
+    
+    # go back in time
+    git reset #commit#
+    
+    # go back and delete all subsequent commits!
+    git revert #commit# --hard
+
 ## Assignment
+
+Due: Jan 21, Thursday 5pm
 
 ### Git Assignment (Group)
 
@@ -77,7 +91,7 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
     
             ## Content
             
-            What is your burning environmental question that you'd like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
+            What burning environmental question(s) would you like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
             
             ## Techniques
             
@@ -124,33 +138,33 @@ Add yourself to the [students]({{ site.baseurl }}/students/) listing with a json
     
     - Be sure to run the "Knit HTML" on your `students/<username>.Rmd` to generate the final desired `students/<username>.html`
     
-    Add a link to your organization (from Group exercies)
-
 1. Commit, push and pull request your changes, per [Github Workflow](../wk00_general/intro.html#8). This is how you'll turn in this assignment. 
 
     **Review**. We can provide line-by-line feedback directly within the pull request as part of a code review. You could even follow up with submitting corrections by pushing fixes up to your fork, which will be reflected in the pull request. When we're finished giving feedback, we'll close the pull request and leave a :+1: in the final comment.
 
-### Programing Assignment (Group)
-
-1. Write a function in R to do some data analysis or simulation that your group will find interesting
-    * include at least two different data types
-    * return a list
-    * include at least two different control structures
-    * make sure you document your program
-2. Add this function to your organization's github repository - Note this is how we will check to make sure you have completed the assignment - so make sure that your student listing has a link to your group's organization and that you have committed and pushed your function to that organization's respository
-
 ## Resources
+
+### Fixing `rpostback-askpass` error
+
+If you get this `rpostback-askpass` error on a Mac when pushing in RStudio, see [rpostback-askpass error on Mac doing Git Push from RStudio to Github · Issue #2 · ucsb-bren/env-info](https://github.com/ucsb-bren/env-info/issues/2):
+
+```
+error: unable to read askpass response from 'rpostback-askpass'
+fatal: could not read Username for 'https://github.com': Device not configured
+```
 
 ### Git, Github and RStudio
 
-- [Git and GitHub · R packages](http://r-pkgs.had.co.nz/git.html)
+- [Git and GitHub cheat sheet]({{ site.baseurl }}/refs/cheatsheets/github-git-cheat-sheet.pdf)
+- [Git and GitHub with RStudio](http://r-pkgs.had.co.nz/git.html)
+- [PLOS Computational Biology: A Quick Introduction to Version Control with Git and GitHub](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668)
 
 ### Rmarkdown
 
-- [Markdown Quick Reference](http://rmarkdown.rstudio.com/authoring_basics.html)
-- [R Markdown Cheat Sheet]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-cheatsheet.pdf)
-- [R Markdown Reference Guide]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-reference.pdf)
-- [Mastering Markdown · GitHub Guides](https://guides.github.com/features/mastering-markdown/)
+- [Markdown quick reference](http://rmarkdown.rstudio.com/authoring_basics.html)
+- [R Markdown cheat sheet]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-cheatsheet.pdf)
+- [R Markdown reference guide]({{ site.baseurl }}/refs/cheatsheets/rmarkdown-reference.pdf)
+- [Mastering Markdown - GitHub guides](https://guides.github.com/features/mastering-markdown)
 
 ## Footnotes
 

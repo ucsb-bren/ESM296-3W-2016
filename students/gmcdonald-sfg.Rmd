@@ -12,7 +12,7 @@ output:
         
 I work with the Fish Forever initiative  ([Fish Forever](http://www.fishforever.org)), a partnership between the Sustainable Fisheries Group at UCSB, Rare, and Environmental Defense Fund, aimed at improving management of small-scale fisheries in the developing tropics through the use of TURF-reserves.
 
-  ![](images/FF_Logo.png)
+  ![](images/gmcdonald-sfg_FF_Logo.png)
 
 One of the most critical challenges we face is assessing and managing fisheris in the data- and resource-limited situations where we work. To address this, we are using data-limited assessment techniques to creatively work with the data that we do have. However, no single technique is perfect, so we are therefore using multiple techniques to examine each fishery so that we can have a more complete understanding of how the fishery is performing. I therefore have two main research questions:
 
