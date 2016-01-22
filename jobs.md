@@ -3,9 +3,15 @@ title: "Jobs"
 layout: default
 ---
 
+## Postdoctoral Teaching & Learning Fellow, UBC Vancouver
+
+The University of British Columbia, Vancouver invites applications for a Postdoctoral Teaching & Learning Fellow, associated with a proposed Master of Data Science (MDS) program which is pending approval from the B.C. Ministry of Advanced Education. This program is a collaborative effort of the Department of Computer Science and the Department of Statistics, within the Faculty of Science. The Fellow will be based in the Department of Statistics but work closely with colleagues from both departments, including another Fellow based in Computer Science.
+
+Details: [UBC-MDS/mds-stats-teaching-fellow](https://github.com/UBC-MDS/mds-stats-teaching-fellow)
+
 ## UCSB "data wrangler" position for marine observation network
 
-  Job Description: The University of California, Santa Barbara (UCSB) Marine Science Institute seeks an individual who can provide analytical and research support as part of our new marine biodiversity observing network (MBON). The MBON is an ambitious five-year project focused on quantifying biodiversity of a broad range of marine taxa in the Santa Barbara Channel. A major aspect of this project is integration of existing biological and physical data streams including data collected by divers, research cruises, fixed instruments, and through remote sensing. We seek to hire a full-time analyst to help us manage and analyze these data. Core responsibilities will include writing computer code to process and combine existing data sets, collaborating with project staff on analyses of these data, and preparing data products for dissemination through our website and other data portals. Details at <https://recruit.ap.ucsb.edu/apply/JPF00644>
+Job Description: The University of California, Santa Barbara (UCSB) Marine Science Institute seeks an individual who can provide analytical and research support as part of our new marine biodiversity observing network (MBON). The MBON is an ambitious five-year project focused on quantifying biodiversity of a broad range of marine taxa in the Santa Barbara Channel. A major aspect of this project is integration of existing biological and physical data streams including data collected by divers, research cruises, fixed instruments, and through remote sensing. We seek to hire a full-time analyst to help us manage and analyze these data. Core responsibilities will include writing computer code to process and combine existing data sets, collaborating with project staff on analyses of these data, and preparing data products for dissemination through our website and other data portals. Details at <https://recruit.ap.ucsb.edu/apply/JPF00644>
   
 ## UCSB internship for quantitative research on energy policy and politics
 
