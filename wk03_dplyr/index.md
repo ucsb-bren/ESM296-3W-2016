@@ -15,7 +15,8 @@ We'll also hear about best practices for data management from UCSB librarian Ste
 
 1. 8:30 - 9:30 am: **Wrangling Data** (individual)
 
-    - [wk03_dplyr](./wk03_dplyr.pdf): recap Github, command line navigation, readr, dplyr, tidyr
+    - [wk03_dplyr](./wk03_dplyr.html): recap Github, command line navigation, readr, dplyr, tidyr
+    - [wrangling-webinar.pdf](wrangling-webinar.pdf)
     - [individual assignment](#individual) to work on `env-info/students/<user>.Rmd`
 
 1. 9:30 - 10:30 am: **Data Management Plan** (group)
@@ -34,7 +35,7 @@ Due: Jan 28, Thursday 5pm
 
 ### Individual
 
-- Work through the read-only [**wk03_dplyr**](./wk03_dplyr.pdf) pdf by typing in code as R chunks into your `students/<user>.Rmd`, knit to `students/<user>.html`, _commit_ changes locally with a message, _push_ to your `github.com/<user>/env-info` and submit as a _pull request_ to `github.com/ucsb-bren/env-info`.
+- Work through the [**wk03_dplyr**](./wk03_dplyr.html) and [wrangling-webinar.pdf](wrangling-webinar.pdf) pdfs by typing in code as R chunks into your `students/<user>.Rmd`, knit to `students/<user>.html`, _commit_ changes locally with a message, _push_ to your `github.com/<user>/env-info` and submit as a _pull request_ to `github.com/ucsb-bren/env-info`.
 
 ### Group
 
@@ -53,41 +54,6 @@ Due: Jan 28, Thursday 5pm
   - Add a `data` folder and csv/xls/etc files inside. (Note that empty folders are not recognized by Git, only when they have files inside.)
 
   - Apply functions from the `readr`, `dplyr`, `tidyr` packages to analyze your data. I recommend adding markdown headers with specific questions (eg `## Who are the Top 10 Carbon Dioxide Emitting Countries?`) and R chunks of code below to answer. 
-
-## Snippets
-
-Since the [**wk03_dplyr**](./wk03_dplyr.pdf) is read-only, here are snippets for longer bits of code which you can use.
-
-### Install Packages
-
-```r
-# Run this chunk only once in your Console
-# Do not evaluate when knitting Rmarkdown
-
-# list of packages
-pkgs = c(
-  'readr',        # read csv
-  'readxl',       # read xls
-  'dplyr',        # data frame manipulation
-  'tidyr',        # data tidying
-  'nycflights13', # test dataset of NYC flights for 2013
-  'gapminder')    # test dataset of life expectancy and popultion
-
-# install packages if not found
-for (p in pkgs){
-  if (!require(p, character.only=T)){
-    install.packages(p)
-  }
-}
-```
-
-### Get $CO_2$ Emissions
-
-```r
-url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
-xls = 'data/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
-```
-
 
 ## Resources
 
