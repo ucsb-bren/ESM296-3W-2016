@@ -1,0 +1,37 @@
+---
+title: "jupa1089 Details"
+author: "Julia P."
+date: "January 17, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+## Content
+
+Does citizen monitoring (via **SMS surveys**) impact the quality of municipal waste collection services in *Kampala, Uganda*?
+
+[link](https://github.com/citizen-monitoring/citizen-monitoring.github.io)
+
+![](images/jupa1089_ugandasms.png)
+
+## Techniques
+
+The most applicable techniques:
+
+* data organization,
+  + calculating summary statistics,
+  + clear, shareable code.
+
+## Data
+
+We have preliminary survey result data from Mark Buntaine. These are in excel format and will have any identifying information removed.
+
+```{r}
+#read csv
+d = read.csv('data/jupa1089_ugandaSMS.csv')
+
+#output summary
+summary(d)
+```
