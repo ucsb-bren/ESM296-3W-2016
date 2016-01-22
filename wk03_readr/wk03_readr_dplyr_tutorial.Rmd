@@ -1,8 +1,0 @@
----
-title: "Week 3: Tutorial on Reading and Wrangling Data"
-author: "Ben Best"
-date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
-output: pdf_document
----
-
-Testing.

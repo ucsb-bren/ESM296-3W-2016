@@ -68,7 +68,7 @@ You will become inculcated into the "Hadley"-verse of R packages which represent
 
 See also the [data wrangling cheat sheet with dplyr, tidyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
-<a href="wk03_readr/" class="btn btn-primary btn-sm">Reading and Wrangling Data...</a>
+<a href="wk03_dplyr/" class="btn btn-primary btn-sm">Reading and Wrangling Data...</a>
 
 ### 4. Tidying up Data
 
