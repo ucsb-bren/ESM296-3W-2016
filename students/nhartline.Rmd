@@ -1,4 +1,7 @@
 ---
+title: "Fishy Page"
+author: "Hartline"
+date: "January 22, 2016"
 output:
   html_document:
     toc: true
@@ -29,6 +32,7 @@ output:
   [IUCN Red List](http://www.iucnredlist.org/) and [FAOSTAT](http://faostat.fao.org/) will be the two primary data sources for this endeavor. 
   
 ```{r}
+
 #Singleton_Country_Aggregates = read.csv('nhartline_Singleton_Country_Aggregates.csv')
 
 #summary(Singleton_Country_Aggregates)
