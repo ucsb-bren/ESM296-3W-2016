@@ -35,3 +35,7 @@ d = read.csv('jupa1089_ugandaSMS.csv')
 #output summary
 summary(d)
 ```
+
+
+##Data Wrangling
+
