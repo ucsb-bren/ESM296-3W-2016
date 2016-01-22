@@ -62,4 +62,71 @@ print(subset[,c(1,3,15)])
 
 The mean percent of land under 5m is `r mean(na.omit(sea_level_unep_kb$Percent_land_under_5m))`%. 
 
+###Data Wrangling
+
+Install Packages
+```{r, eval=F}
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}
+```
+
+
+##utils::read.csv
+Traditionally, you would read a CSV like so:
+```{r}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d) ##species_ID is a factor
+summary(d)
+```
+
+readr::read_csv
+Better yet, try read_csv:
+```{r}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d) ##now the specices_ID is a "character". why does this matter, BB?!
+summary(d)
+```
+
+dplry::tbl_df
+Now convert to a dplyr table:
+```{r}
+library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+d
+head(d)
+summary(d)
+glimpse(d)
+```
+
+```{r}
+b=read_csv('C:/Users/Kristen/Documents/BREN/winter16/env_info/env-info/data/r-ecology/surveys.csv') %>%
+  select(species_id, year) %>%
+  filter(species_id== "AB") %>%
+  group_by(species_id, year) %>%
+  summarize(count = n())
+
+```
 
