@@ -12,7 +12,7 @@ output:
 ####@fishmgt
 
 ##Check out this beautiful sea cucumber!
-![Awesome Sea Cucumber](alximage.png)
+![Awesome Sea Cucumber](images/alxsmith_*.png)
 
 ##Interest
 - Tools for Stock Assessment and development of MSY models
@@ -49,7 +49,7 @@ Still deciding on which data to use. Below is sample data which includes:
 ```{r}
 #read csv
 
-data=read.csv("~/Documents/R/Informatics/env_info_page/students/alx_fishermen.csv")
+data=read.csv('data/alxsmith_*.csv')
 
 #output summary 
 summary(data)
