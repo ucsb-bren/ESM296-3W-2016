@@ -1,0 +1,51 @@
+---
+title: "Getting Jiggy with R Markdown: Assignment 1"
+author: "Dannique"
+date: "January 21, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+
+## Organization
+
+[Pollution Prevention](http://github.com/pollute)
+
+@pollute
+
+
+#### <span style = "color:blue"> *Interests* </span>        
+
+I am interested in water resources, ecosystem health, and conservation management and am especially enthuastic about tools for data management. I believe good data management a fundemental skill that can be applied to both increasing work efficiency and exceling in a
+any scientific position where data is inovled...so basically, it has endless applications.    
+
+Here is a photo of me taking a water sample at one of my favorite locations on Earth: the Lyell Fork of the Tuolumne River.
+![](images/lyell.jpg)        
+
+
+## Content
+
+will have some soon!
+
+
+## Techniques
+
+data wrangling, of course!
+
+
+## Data
+        
+```{r}
+# read csv
+data = read.csv("data/daalbu_SWEdataforTUM.csv")
+
+#output summary
+summary(data)
+```
+
+<small>Data for SWE sourced from [here](http://cdec.water.ca.gov/cgi-progs/queryWY?staid=TUM&sensor_num=3&wy=2016&span=7years)</small>
+
+
+
