@@ -13,7 +13,7 @@ output:
   I'm interested in fishery management and ocean conservation, particulary related to ecologically sensitive species such as **sharks and rays**.
   Currently I'm working in the [Fisheries Management](https://github.com/fishmgt) group for the Informatics course at the Master of Environmental Science and Management at UCSB.
   
-  ![](images/caio_hammerhead.jpg)
+  ![](images/caio-faro_hammerhead.jpg)
         
 ## *Techniques*
         
@@ -26,7 +26,7 @@ output:
   
 ```{r}
 # read csv
-d = read.csv('caio-faro_ICCATSharks.csv')
+d = read.csv('data/caio-faro_ICCATSharks.csv')
 Brazil <- subset(d, PartyName == "BRAZIL")
       
 # output summary
