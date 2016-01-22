@@ -1,0 +1,54 @@
+---
+title: "wag7"
+author: "Wagner Quiros Pereira"
+date: "January 20, 2016"
+output: html_document
+---
+
+## Content
+
+What is your burning environmental question that you'd like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
+
+
+**_Ocean health Index in Costa Rica, but on a smaller region_**
+  
+I would like to determine the health of the Gulf of Nicoya, Costa Rica using the OHI framework.
+  
+
+## Techniques
+
+What techniques from the course do you think will be most applicable?
+      
+ 
+Useful techniques will be:
+
+* Data Organization
+* Data Visualizing
+* Dinamic figures
+* Practice writing code and gaining speed
+  
+        
+## Data
+
+
+What data have you already identified? Feel free to provide a link and/or details on the variables of interest.
+     
+I have no data yet as this is still on early stages.
+  
+![](images/wag7_AJM_5653.png)
+
+```{r data, echo=TRUE, eval=T}
+###DataFile
+
+#read csv
+d=read.csv('data/wag7_Potsherds.csv')
+
+#output summary
+summary(d)
+
+```
+
+
+
+###Organization
+[Marine Health Indexes](https://github.com/marinehealth)
