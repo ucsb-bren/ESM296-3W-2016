@@ -1,53 +1,28 @@
 ---
-title: "bbest: route ships around marine mammal hot spots"
+title: "bbest"
 author: "Ben Best"
-date: "January 5, 2016"
-output: 
-  html_document:
-    toc: true
-    toc_depth: 4
+date: "January 15, 2016"
+output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## Content
+        
+What is your burning environmental question that you'd like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
+
+![cool idea](images/bbest_cool-idea.png)
+        
+## Techniques
+        
+What techniques from the course do you think will be most applicable?
+        
+## Data
+        
+What data have you already identified? Feel free to provide a link and/or details on the variables of interest.
+  
+Here is some data from [Shipping in Canada (2011)](http://www.statcan.gc.ca/pub/54-205-x/2011000/part-partie1-eng.htm):
+  
+```{r}
+ports_bc = read.csv('data/bbest_ports-bc.csv')
+summary(ports_bc)
 ```
 
-## Introduction
-
-### Problem
-
-TODO: include image example
-
-```{r cars}
-summary(cars)
-```
-
-### Solution
-
-## Methods
-
-### Data
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-## Results
-
-### Figures
-
-List of techniques to use:
-
-- map of study area, using leaflet
-
-- scatterplot of variables
-
-### Tables
-
-- with DT
-
-## Discussion
