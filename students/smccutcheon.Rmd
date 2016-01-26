@@ -5,6 +5,8 @@ output:
     toc: true
     toc_depth: 3
 ---
+##Lab 2, HW 1
+
 
 ####Organization
 [fire-mitigation](https://github.com/fire-mitigation)
@@ -62,3 +64,108 @@ d=read.csv('data/smccutcheon_FullData.csv')
 #output summary
 summary(d)
 ```
+
+
+##Lab 3, HW 2
+
+
+###Data Wrangling
+```{r, eval=FALSE}
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}
+
+```
+
+####Traditional csv read
+```{r}
+
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+
+```
+
+####Using readr to read csv
+```{r}
+
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+#### Code using basic functions only
+```{r}
+#read in csv
+surveys = read.csv('../data/r-ecology/surveys.csv')
+
+# view data
+head (surveys)
+summary (surveys)
+
+# limit columns to species and year
+surveys_2 = surveys[,c('species_id', 'year')]
+
+# limit rows to just species "NL"
+surveys_3 = surveys_2[,c('species_id', 'year')]
+
+# get count per year
+surveys_4 = aggregate(species_id ~ year, data=surveys_3, FUN= 'length')
+
+# write to csv
+write.csv(surveys_4, 'data/surveys_smccutcheon.csv', row.names = FALSE)
+```
+####Code using nested functions
+```{r}
+# read in data
+surveys = read.csv('../data/r-ecology/surveys.csv')
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit data with [], aggregate to count, write to csv
+write.csv(
+  aggregate(
+    species_id ~ year, 
+    data = surveys[surveys_2$species_id  == 'NL', c('species_id', 'year')], 
+    FUN = 'length'), 
+  'data/surveys_smccutcheon.csv',
+  row.names = FALSE)
+```
+####Code using dplyr
+```{r, message = FALSE}
+# load libraries
+library(readr)
+library(dplyr)
+
+# read in csv
+surveys = read_csv('../data/r-ecology/surveys.csv') 
+
+# dplyr elegance
+surveys %T>%                          # note tee operator %T>% for glimpse
+  glimpse() %>%                       # view data
+  select(species_id, year) %>%        # limit columns
+  filter(species_id  == 'NL') %>%     # limit rows
+  group_by(year) %>%                  # get count by first grouping
+  summarize(n = n()) %>%              #   then summarize
+  write_csv('data/surveys_smccutcheon.csv') # write out csv
+```
+
