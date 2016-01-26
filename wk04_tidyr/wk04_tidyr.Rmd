@@ -12,6 +12,10 @@ output:
     toc_depth: 3
 ---
 
+## organizations
+
+- invite @bbest and @ctague to your https://github.com/<organization> so we can directly _push_ to your site (vs _fork_ & _pull request_)
+
 ## tidyr
 
 - what is an observation? wide vs long format
