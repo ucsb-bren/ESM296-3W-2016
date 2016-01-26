@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 3: Tutorial on Reading and Wrangling Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-25 11:49</em></h4>
+<h4 class="date"><em>2016-01-25 18:16</em></h4>
 </div>
 
 
@@ -349,7 +349,7 @@ write.csv(
 </div>
 <div id="elegance-with-dplyr" class="section level3">
 <h3>Elegance with <code>dplyr</code></h3>
-<p>Next, we’ll use the libraries <code>readr</code>for improved versions of reading and writing csv files, and <code>dplyr</code> for advanced data frame manipulation. Most importantly, <code>dplyr</code> uses the “then” operator <code>%&gt;%</code> which transfers the output of on the left to the first argument of the function on the right. Most simply <code>surveys %&gt;% summary()</code> transfers the surveys data frame into the first argument of the summary function. Use of this chaining operator seems excessive in this simple example, but is powerful when chaining together many operations on the same dataset. We get past the previous problem of multiple variable names, without the incomprehensibility of the nested awkwardness.</p>
+<p>Next, we’ll use the libraries <code>readr</code>for improved versions of reading and writing csv files, and <code>dplyr</code> for advanced data frame manipulation. Most importantly, <code>dplyr</code> uses the “then” operator <code>%&gt;%</code> which transfers the output on the left to the first argument of the function on the right. Most simply <code>surveys %&gt;% summary()</code> transfers the surveys data frame into the first argument of the summary function. Use of this chaining operator seems excessive in this simple example, but is powerful when chaining together many operations on the same data frame. We’re able to efficiently write out operations, get past the previous problem of multiple variable names without the obfuscation of nesting.</p>
 <pre class="r"><code># load libraries
 library(readr)
 library(dplyr)
@@ -407,12 +407,6 @@ surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
 <li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
 </ul>
 </div>
-</div>
-<div id="footnotes" class="section level2">
-<h2>Footnotes</h2>
-<ol style="list-style-type: decimal">
-<li>bash (bourne again shell)</li>
-</ol>
 </div>
 
   </div> <!--span-9-->

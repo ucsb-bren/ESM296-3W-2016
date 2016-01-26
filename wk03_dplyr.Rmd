@@ -5,7 +5,9 @@ date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
 ---
 
 ```{r, echo=F}
-setwd('students')
+if (basename(getwd())!='students'){
+  setwd('students')
+}
 ```
 
 
@@ -248,7 +250,7 @@ Although we've saved space from not performing the extra naming of variables, we
 
 ### Elegance with `dplyr`
 
-Next, we'll use the libraries `readr`for improved versions of reading and writing csv files, and `dplyr` for advanced data frame manipulation. Most importantly, `dplyr` uses the "then" operator `%>%` which transfers the output of on the left to the first argument of the function on the right. Most simply `surveys %>% summary()` transfers the surveys data frame into the first argument of the summary function. Use of this chaining operator seems excessive in this simple example, but is powerful when chaining together many operations on the same dataset. We get past the previous problem of multiple variable names, without the incomprehensibility of the nested awkwardness.
+Next, we'll use the libraries `readr`for improved versions of reading and writing csv files, and `dplyr` for advanced data frame manipulation. Most importantly, `dplyr` uses the "then" operator `%>%` which transfers the output on the left to the first argument of the function on the right. Most simply `surveys %>% summary()` transfers the surveys data frame into the first argument of the summary function. Use of this chaining operator seems excessive in this simple example, but is powerful when chaining together many operations on the same data frame. We're able to efficiently write out operations, get past the previous problem of multiple variable names without the obfuscation of nesting.
 
 ```{r dplyr elegance, eval=F}
 # load libraries
@@ -301,7 +303,3 @@ The "tee" operator `%T>%` is similar to the "then" operator `%>%` in that the le
 
 - [Data Wrangling (dplyr, readr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
 - [wrangling-webinar.pdf](wrangling-webinar.pdf)
-
-## Footnotes
-
-1. bash (bourne again shell)
