@@ -72,6 +72,13 @@ img {
 <li><a href="#content">Content</a></li>
 <li><a href="#techniques">Techniques</a></li>
 <li><a href="#data">Data</a></li>
+<li><a href="#data-wrangling">Data Wrangling</a></li>
+<li><a href="#install-packages">install packages</a></li>
+<li><a href="#utilsread.csv">utils::read.csv</a></li>
+<li><a href="#readrread_csv">readr::read_csv</a></li>
+<li><a href="#dplrytbl_df">dplry::tbl_df</a></li>
+<li><a href="#dplry-loosely">dplry loosely</a></li>
+<li><a href="#wrangling-data">Wrangling Data</a></li>
 </ul>
 </div>
 
@@ -113,6 +120,110 @@ summary(d)</code></pre>
 ##                                 
 ## </code></pre>
 <p><a href="http://&lt;organization&gt;.github.io"><strong>Citizen Monitoring</strong></a></p>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2>Data Wrangling</h2>
+<pre class="r"><code># present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')</code></pre>
+</div>
+<div id="install-packages" class="section level2">
+<h2>install packages</h2>
+<pre class="r"><code>##Install Packages
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}</code></pre>
+</div>
+<div id="utilsread.csv" class="section level2">
+<h2>utils::read.csv</h2>
+<pre class="r"><code>d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)</code></pre>
+</div>
+<div id="readrread_csv" class="section level2">
+<h2>readr::read_csv</h2>
+<pre class="r"><code>library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)</code></pre>
+</div>
+<div id="dplrytbl_df" class="section level2">
+<h2>dplry::tbl_df</h2>
+<pre class="r"><code>library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/species.csv') %&gt;%
+  tbl_df()
+d
+head(d)
+summary(d)
+glimpse(d)</code></pre>
+</div>
+<div id="dplry-loosely" class="section level2">
+<h2>dplry loosely</h2>
+<pre class="r"><code>library(readr)
+library(dplyr)
+
+read_csv('../data/r-ecology/surveys.csv') %&gt;%
+  select(species_id,year) %&gt;%
+  filter(species_id == &quot;DM&quot;) %&gt;%
+  group_by(species_id,year) %&gt;%
+  summarize(count=n())
+
+d
+head(d)
+summary(d)
+glimpse(d)</code></pre>
+</div>
+<div id="wrangling-data" class="section level2">
+<h2>Wrangling Data</h2>
+<pre class="r"><code>#install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;rstudio/EDAWR&quot;)
+#?storms
+#?cases
+
+#gather(cases,&quot;year&quot;,&quot;n&quot;,2:4)
+#spread(pollution,size,amount)
+#storms2&lt;-separate(storms,date,c(&quot;y&quot;,&quot;m&quot;,&quot;d&quot;),sep=&quot;-&quot;)
+#unite(storms2,&quot;date&quot;, y, m, d, sep=&quot;-&quot;) 
+
+
+#select(storms,-storm)
+#install.packages(&quot;dplyr&quot;)
+#install.packages(&quot;nycflights123&quot;)
+
+#filter(storms,wind&gt;=50)
+#mutate(storms,ratio=pressure/wind, inverse=ratio^-1)
+#arrange(storms,desc(wind))</code></pre>
 </div>
 
 
