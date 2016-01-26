@@ -2,14 +2,7 @@
 title: 'Week 4: Wrangling Data II'
 author: "Ben Best"
 date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
-output:
-  html_document:
-    toc: yes
-    toc_depth: 3
-  pdf_document:
-    highlight: default
-    toc: yes
-    toc_depth: 3
+output: html_document
 ---
 
 ## organizations
