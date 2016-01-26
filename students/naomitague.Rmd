@@ -1,0 +1,134 @@
+---
+title: "ntague"
+author: "Naomi Tague"
+date: "January 15, 2016"
+output:
+  html_document:
+    theme: united
+    highlight: tango
+---
+
+## Content
+        
+Provide some information on art, environment
+
+![first diea](images/sculpture1.jpg)
+        
+## Techniques
+        
+Key techniques for visualization 
+        
+## Data
+        
+Data for visualization
+  
+Here is some data from [Water data](http://waterdata.usgs.gov/nwis/rt):
+  
+```{r}
+
+pcp = read.csv('data/pcp.txt', header=T)
+summary(pcp)
+```
+
+## Data Wrangling
+
+```{r, eval=FALSE}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+```
+
+# Install Packages
+
+```{r, eval=FALSE}
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+
+```
+
+
+## utils::read.csv
+
+Traditionally, you would read a CSV like so:
+
+```{r}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+## readr::read_csv
+
+Better yet, try read_csv:
+
+```{r}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+
+## dplry::tbl_df
+
+Now convert to a dplyr table:
+
+```{r}
+library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d = tbl_df(d)
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+
+d = tbl_df(read_csv('../data/r-ecology/species.csv'))
+
+head(d)
+summary(d)
+glimpse(d)
+
+```
+
+## dplyr loosely
+
+### What year does species 'NL' show up in the surveys.csv?
+
+
+```{r}
+library(readr)
+library(dplyr)
+
+read_csv('../data/r-ecology/surveys.csv') %>%
+  select(species_id, year) %>%
+  #filter(species_id == 'NL') %>%
+  group_by(species_id, year) %>%
+  summarize(count = n())
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+
+d = tbl_df(read_csv('../data/r-ecology/species.csv'))
+d
+head(d)
+summary(d)
+glimpse(d)
+
+```
