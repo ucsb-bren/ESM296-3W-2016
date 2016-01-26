@@ -53,16 +53,16 @@ Due: Jan 28, Thursday 5pm
 
   - Add a `data` folder and csv/xls/etc files inside. (Note that empty folders are not recognized by Git, only when they have files inside.)
 
-  - Apply the following functions from the `readr`, `dplyr`, `tidyr` packages to analyze your data. I recommend adding markdown headers with specific questions (eg `## Who are the Top 10 Carbon Dioxide Emitting Countries?`) and R chunks of code below to answer. 
-
- - At the bottom of your group repo's `index.Rmd`, add a header `## Data Question` and type a question similar to [**wk03_dplyr**](../wk03_dplyr.html) for a csv of your choice (besides `surveys.csv` and hopefully relevant to your group's area of study) like _**How many observations of species 'NL' appear each year?**_. Answering your question should require chaining the following `dplyr` functions:
+  - At the bottom of your group repo's `index.Rmd`, add a header `## Data Question` and type a question similar to [**wk03_dplyr**](../wk03_dplyr.html) for a csv of your choice (besides `surveys.csv` and hopefully relevant to your group's area of study) like _**How many observations of species 'NL' appear each year?**_. Answering your question should require chaining the following `dplyr` functions:
 
     - `select()`
     - `filter()`
     - `group_by()`
     - `summarize()`
     
-  Include the R chunk below the question and knit the `index.Rmd` into `index.html`. Be sure to push your results so they show up on the site `http://<org>.github.io`. 
+  Include the R chunk below the question and knit the `index.Rmd` into `index.html`. Be sure to push your results so they show up on the site `http://<org>.github.io`.
+  
+  When I look at the blame for your `index.Rmd`, I would like to see that every member of the group contributed. You can make up another question, add comments, improve code, etc.
 
 ## Resources
 
