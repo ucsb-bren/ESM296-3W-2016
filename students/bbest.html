@@ -149,6 +149,261 @@ for (p in pkgs){
     <span class="kw">install.packages</span>(p)
   }
 }</code></pre>
+<div id="utilsread.csv" class="section level2">
+<h2>utils::read.csv</h2>
+<p>Traditionally, you would read a CSV like so:</p>
+<pre class="sourceCode r"><code class="sourceCode r">d =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>)
+d</code></pre>
+<pre><code>##    species_id            genus         species    taxa
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## 11         CV         Crotalus         viridis Reptile
+## 12         DM        Dipodomys        merriami  Rodent
+## 13         DO        Dipodomys           ordii  Rodent
+## 14         DS        Dipodomys     spectabilis  Rodent
+## 15         DX        Dipodomys             sp.  Rodent
+## 16         EO          Eumeces       obsoletus Reptile
+## 17         GS         Gambelia           silus Reptile
+## 18         NL          Neotoma        albigula  Rodent
+## 19         NX          Neotoma             sp.  Rodent
+## 20         OL        Onychomys     leucogaster  Rodent
+## 21         OT        Onychomys        torridus  Rodent
+## 22         OX        Onychomys             sp.  Rodent
+## 23         PB      Chaetodipus         baileyi  Rodent
+## 24         PC           Pipilo       chlorurus    Bird
+## 25         PE       Peromyscus        eremicus  Rodent
+## 26         PF      Perognathus          flavus  Rodent
+## 27         PG        Pooecetes       gramineus    Bird
+## 28         PH      Perognathus        hispidus  Rodent
+## 29         PI      Chaetodipus     intermedius  Rodent
+## 30         PL       Peromyscus        leucopus  Rodent
+## 31         PM       Peromyscus     maniculatus  Rodent
+## 32         PP      Chaetodipus    penicillatus  Rodent
+## 33         PU           Pipilo          fuscus    Bird
+## 34         PX      Chaetodipus             sp.  Rodent
+## 35         RF  Reithrodontomys      fulvescens  Rodent
+## 36         RM  Reithrodontomys       megalotis  Rodent
+## 37         RO  Reithrodontomys        montanus  Rodent
+## 38         RX  Reithrodontomys             sp.  Rodent
+## 39         SA       Sylvilagus       audubonii  Rabbit
+## 40         SB         Spizella         breweri    Bird
+## 41         SC       Sceloporus          clarki Reptile
+## 42         SF         Sigmodon     fulviventer  Rodent
+## 43         SH         Sigmodon        hispidus  Rodent
+## 44         SO         Sigmodon    ochrognathus  Rodent
+## 45         SS     Spermophilus       spilosoma  Rodent
+## 46         ST     Spermophilus    tereticaudus  Rodent
+## 47         SU       Sceloporus       undulatus Reptile
+## 48         SX         Sigmodon             sp.  Rodent
+## 49         UL           Lizard             sp. Reptile
+## 50         UP           Pipilo             sp.    Bird
+## 51         UR           Rodent             sp.  Rodent
+## 52         US          Sparrow             sp.    Bird
+## 53         ZL      Zonotrichia      leucophrys    Bird
+## 54         ZM          Zenaida        macroura    Bird</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(d)</code></pre>
+<pre><code>##   species_id            genus         species   taxa
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(d)</code></pre>
+<pre><code>##    species_id             genus         species        taxa   
+##  AB     : 1   Chaetodipus    : 4   sp.      :10   Bird   :13  
+##  AH     : 1   Dipodomys      : 4   hispidus : 2   Rabbit : 1  
+##  AS     : 1   Reithrodontomys: 4   albigula : 1   Reptile: 9  
+##  BA     : 1   Sigmodon       : 4   audubonii: 1   Rodent :31  
+##  CB     : 1   Onychomys      : 3   baileyi  : 1               
+##  CM     : 1   Peromyscus     : 3   bilineata: 1               
+##  (Other):48   (Other)        :32   (Other)  :38</code></pre>
+</div>
+<div id="readrread_csv" class="section level2">
+<h2>readr::read_csv</h2>
+<p>Better yet, try read_csv:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+
+d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>)
+d</code></pre>
+<pre><code>## Source: local data frame [54 x 4]
+## 
+##    species_id            genus         species    taxa
+##         (chr)            (chr)           (chr)   (chr)
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## ..        ...              ...             ...     ...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 4]
+## 
+##   species_id            genus         species   taxa
+##        (chr)            (chr)           (chr)  (chr)
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(d)</code></pre>
+<pre><code>##   species_id           genus             species         
+##  Length:54          Length:54          Length:54         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##      taxa          
+##  Length:54         
+##  Class :character  
+##  Mode  :character</code></pre>
+</div>
+<div id="dplrytbl_df" class="section level2">
+<h2>dplry::tbl_df</h2>
+<p>Now convert to a dplyr table:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+<span class="kw">library</span>(dplyr)
+
+d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>)
+d =<span class="st"> </span><span class="kw">tbl_df</span>(d)
+
+d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>) %&gt;%
+<span class="st">  </span><span class="kw">tbl_df</span>()
+
+d =<span class="st"> </span><span class="kw">tbl_df</span>(<span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>))
+d</code></pre>
+<pre><code>## Source: local data frame [54 x 4]
+## 
+##    species_id            genus         species    taxa
+##         (chr)            (chr)           (chr)   (chr)
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## ..        ...              ...             ...     ...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 4]
+## 
+##   species_id            genus         species   taxa
+##        (chr)            (chr)           (chr)  (chr)
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(d)</code></pre>
+<pre><code>##   species_id           genus             species         
+##  Length:54          Length:54          Length:54         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##      taxa          
+##  Length:54         
+##  Class :character  
+##  Mode  :character</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(d)</code></pre>
+<pre><code>## Observations: 54
+## Variables: 4
+## $ species_id (chr) &quot;AB&quot;, &quot;AH&quot;, &quot;AS&quot;, &quot;BA&quot;, &quot;CB&quot;, &quot;CM&quot;, &quot;CQ&quot;, &quot;CS&quot;, &quot;CT...
+## $ genus      (chr) &quot;Amphispiza&quot;, &quot;Ammospermophilus&quot;, &quot;Ammodramus&quot;, &quot;Ba...
+## $ species    (chr) &quot;bilineata&quot;, &quot;harrisi&quot;, &quot;savannarum&quot;, &quot;taylori&quot;, &quot;b...
+## $ taxa       (chr) &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Bird&quot;,...</code></pre>
+</div>
+<div id="dplyr-loosely" class="section level2">
+<h2>dplyr loosely</h2>
+<div id="what-year-does-species-nl-show-up-in-the-surveys.csv" class="section level3">
+<h3>What year does species ‘NL’ show up in the surveys.csv?</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+<span class="kw">library</span>(dplyr)
+
+<span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/surveys.csv'</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(species_id, year) %&gt;%
+<span class="st">  </span><span class="co">#filter(species_id == 'NL') %&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(species_id, year) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span> <span class="kw">n</span>())</code></pre>
+<pre><code>## Source: local data frame [535 x 3]
+## Groups: species_id [?]
+## 
+##    species_id  year count
+##         (chr) (int) (int)
+## 1          AB  1980     5
+## 2          AB  1981     7
+## 3          AB  1982    34
+## 4          AB  1983    41
+## 5          AB  1984    12
+## 6          AB  1985    14
+## 7          AB  1986     5
+## 8          AB  1987    35
+## 9          AB  1988    39
+## 10         AB  1989    31
+## ..        ...   ...   ...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>) %&gt;%
+<span class="st">  </span><span class="kw">tbl_df</span>()
+
+d =<span class="st"> </span><span class="kw">tbl_df</span>(<span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>))
+d</code></pre>
+<pre><code>## Source: local data frame [54 x 4]
+## 
+##    species_id            genus         species    taxa
+##         (chr)            (chr)           (chr)   (chr)
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## ..        ...              ...             ...     ...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 4]
+## 
+##   species_id            genus         species   taxa
+##        (chr)            (chr)           (chr)  (chr)
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(d)</code></pre>
+<pre><code>##   species_id           genus             species         
+##  Length:54          Length:54          Length:54         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##      taxa          
+##  Length:54         
+##  Class :character  
+##  Mode  :character</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(d)</code></pre>
+<pre><code>## Observations: 54
+## Variables: 4
+## $ species_id (chr) &quot;AB&quot;, &quot;AH&quot;, &quot;AS&quot;, &quot;BA&quot;, &quot;CB&quot;, &quot;CM&quot;, &quot;CQ&quot;, &quot;CS&quot;, &quot;CT...
+## $ genus      (chr) &quot;Amphispiza&quot;, &quot;Ammospermophilus&quot;, &quot;Ammodramus&quot;, &quot;Ba...
+## $ species    (chr) &quot;bilineata&quot;, &quot;harrisi&quot;, &quot;savannarum&quot;, &quot;taylori&quot;, &quot;b...
+## $ taxa       (chr) &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Bird&quot;,...</code></pre>
+</div>
+</div>
 </div>
 
 
