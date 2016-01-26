@@ -226,7 +226,10 @@ d</code></pre>
 
 d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>)
 d</code></pre>
-<pre><code>##    species_id            genus         species    taxa
+<pre><code>## Source: local data frame [54 x 4]
+## 
+##    species_id            genus         species    taxa
+##         (chr)            (chr)           (chr)   (chr)
 ## 1          AB       Amphispiza       bilineata    Bird
 ## 2          AH Ammospermophilus         harrisi  Rodent
 ## 3          AS       Ammodramus      savannarum    Bird
@@ -237,52 +240,12 @@ d</code></pre>
 ## 8          CS         Crotalus      scutalatus Reptile
 ## 9          CT    Cnemidophorus          tigris Reptile
 ## 10         CU    Cnemidophorus       uniparens Reptile
-## 11         CV         Crotalus         viridis Reptile
-## 12         DM        Dipodomys        merriami  Rodent
-## 13         DO        Dipodomys           ordii  Rodent
-## 14         DS        Dipodomys     spectabilis  Rodent
-## 15         DX        Dipodomys             sp.  Rodent
-## 16         EO          Eumeces       obsoletus Reptile
-## 17         GS         Gambelia           silus Reptile
-## 18         NL          Neotoma        albigula  Rodent
-## 19         NX          Neotoma             sp.  Rodent
-## 20         OL        Onychomys     leucogaster  Rodent
-## 21         OT        Onychomys        torridus  Rodent
-## 22         OX        Onychomys             sp.  Rodent
-## 23         PB      Chaetodipus         baileyi  Rodent
-## 24         PC           Pipilo       chlorurus    Bird
-## 25         PE       Peromyscus        eremicus  Rodent
-## 26         PF      Perognathus          flavus  Rodent
-## 27         PG        Pooecetes       gramineus    Bird
-## 28         PH      Perognathus        hispidus  Rodent
-## 29         PI      Chaetodipus     intermedius  Rodent
-## 30         PL       Peromyscus        leucopus  Rodent
-## 31         PM       Peromyscus     maniculatus  Rodent
-## 32         PP      Chaetodipus    penicillatus  Rodent
-## 33         PU           Pipilo          fuscus    Bird
-## 34         PX      Chaetodipus             sp.  Rodent
-## 35         RF  Reithrodontomys      fulvescens  Rodent
-## 36         RM  Reithrodontomys       megalotis  Rodent
-## 37         RO  Reithrodontomys        montanus  Rodent
-## 38         RX  Reithrodontomys             sp.  Rodent
-## 39         SA       Sylvilagus       audubonii  Rabbit
-## 40         SB         Spizella         breweri    Bird
-## 41         SC       Sceloporus          clarki Reptile
-## 42         SF         Sigmodon     fulviventer  Rodent
-## 43         SH         Sigmodon        hispidus  Rodent
-## 44         SO         Sigmodon    ochrognathus  Rodent
-## 45         SS     Spermophilus       spilosoma  Rodent
-## 46         ST     Spermophilus    tereticaudus  Rodent
-## 47         SU       Sceloporus       undulatus Reptile
-## 48         SX         Sigmodon             sp.  Rodent
-## 49         UL           Lizard             sp. Reptile
-## 50         UP           Pipilo             sp.    Bird
-## 51         UR           Rodent             sp.  Rodent
-## 52         US          Sparrow             sp.    Bird
-## 53         ZL      Zonotrichia      leucophrys    Bird
-## 54         ZM          Zenaida        macroura    Bird</code></pre>
+## ..        ...              ...             ...     ...</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(d)</code></pre>
-<pre><code>##   species_id            genus         species   taxa
+<pre><code>## Source: local data frame [6 x 4]
+## 
+##   species_id            genus         species   taxa
+##        (chr)            (chr)           (chr)  (chr)
 ## 1         AB       Amphispiza       bilineata   Bird
 ## 2         AH Ammospermophilus         harrisi Rodent
 ## 3         AS       Ammodramus      savannarum   Bird
@@ -303,16 +266,9 @@ d</code></pre>
 <h2>dplry::tbl_df</h2>
 <p>Now convert to a dplyr table:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
-<span class="kw">library</span>(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>)
+<span class="kw">library</span>(dplyr)
+
+d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>)
 d =<span class="st"> </span><span class="kw">tbl_df</span>(d)
 
 d =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">'../data/r-ecology/species.csv'</span>) %&gt;%
