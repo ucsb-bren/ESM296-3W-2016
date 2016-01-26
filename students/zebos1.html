@@ -85,7 +85,7 @@ img {
 <p>Since the data will be coming from different source (the IUCN Red List and FAOSTAT), effective data concatenation will be key</p>
 <p>## Data</p>
 <p><a href="http://www.iucnredlist.org/">IUCN Red List</a> and <a href="http://faostat.fao.org/">FAOSTAT</a> will be the two primary data sources for this endeavor.</p>
-<pre class="r"><code>Singleton_Country_Aggregates = read.csv('data/zebos1_Singleton_Country_Aggregates.csv')
+<pre class="r"><code>Singleton_Country_Aggregates = read.csv('./data/zebos1_Singleton_Country_Aggregates.csv')
 
 summary(Singleton_Country_Aggregates)</code></pre>
 <pre><code>##       ISO3         All_Species_Table   FAO_Region         FAO_Country 
@@ -129,6 +129,53 @@ summary(Singleton_Country_Aggregates)</code></pre>
 ##  Max.   :1883.00         
 ## </code></pre>
 <p>## Data Wrangling</p>
+<p>##The .. tells R to back up one directory! Extremely useful! . Uses the current folder (I’d assume … backs out two directory folders)</p>
+<pre class="r"><code># Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}</code></pre>
+<p>readr with read_csv is different from read.csv and shows the class of variables. If you see this Ben/Naomi, what are some other differences between the two functions?</p>
+<pre class="r"><code>library(readr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>read_csv('../data/r-ecology/surveys.csv') %&gt;%
+  select(species_id,year)%&gt;%
+  #filter(species_id=='NL')%&gt;%
+  group_by(species_id,year)%&gt;%
+  count(species_id,year)%&gt;%
+  head()</code></pre>
+<pre><code>## Source: local data frame [6 x 3]
+## Groups: species_id [1]
+## 
+##   species_id  year     n
+##        (chr) (int) (int)
+## 1         AB  1980     5
+## 2         AB  1981     7
+## 3         AB  1982    34
+## 4         AB  1983    41
+## 5         AB  1984    12
+## 6         AB  1985    14</code></pre>
 
 
 </div>

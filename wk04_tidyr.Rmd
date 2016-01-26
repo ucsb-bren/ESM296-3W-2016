@@ -1,0 +1,21 @@
+---
+title: 'Week 4: Wrangling Data II'
+author: "Ben Best"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+output: html_document
+---
+
+## organizations
+
+- invite @bbest and @ctague to your https://github.com/<organization> so we can directly _push_ to your site (vs _fork_ & _pull request_)
+
+## tidyr
+
+- what is an observation? wide vs long format
+
+## dplyr
+
+- join, inner, outer, anti. vs merge. relational database.
+
+- middleware abstraction. try with sqlite as relational db.
+
