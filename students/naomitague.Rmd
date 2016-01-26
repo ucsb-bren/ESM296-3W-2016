@@ -6,6 +6,8 @@ output:
   html_document:
     theme: united
     highlight: tango
+    toc: true
+    toc_depth: 2
 ---
 
 ## Content
