@@ -5,9 +5,12 @@ date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
 output: html_document
 ---
 
-## organizations
+## Precursors
 
-- invite @bbest and @ctague to your https://github.com/<organization> so we can directly _push_ to your site (vs _fork_ & _pull request_)
+### Invitations
+
+- **organizations**: invite @bbest and @ctague to your https://github.com/<organization> so we can directly _push_ to your site (vs _fork_ & _pull request_)
+- **auditors**: add to GauchoSpace to use announcements there
 
 ## tidyr
 
@@ -15,7 +18,20 @@ output: html_document
 
 ## dplyr
 
+- group_by
+
+- mutate
+
 - join, inner, outer, anti. vs merge. relational database.
 
 - middleware abstraction. try with sqlite as relational db.
 
+## Individual
+
+Answer the following questions using `dplyr` and `tidyr` about GHG emissions since 1970...
+
+- top 3 emitters in last year?  compared to rest of world?
+
+- cumulative emissions?
+
+- per capita? join

@@ -210,7 +210,7 @@ write.csv(surveys_4, 'data/surveys_bbest.csv', row.names = FALSE)
 
 Because the variables are named sequentially, ie `surveys_2` to `surveys_4`, it is relatively easy to follow, but so often in the course of playing with data these names are very different. And then we quickly lose track of which operations get applied to which variables.
 
-Even with obvious variable names, there is a redunancy to assigning a new variable new to the output of each operation.
+Even with obvious variable names, there is a redunancy, as we'll see shortly, to assigning a new variable name to the output of each operation and input of each subsequent operation.
 
 ### Nested Functions
 
@@ -240,7 +240,7 @@ So the code started the same, and continues using the same functions, but these 
 
 1. `aggregate()`, which applies the `length()` function to get a count to the formula `species_id ~ year` in which the `species_id` gets split into groups based on `year`, which gets further applied as the unnamed first argument to 
 
-1. `write.csv()` which has the additional unnamed arguments specifying the output file and turning off the default option to write row numbers as names.
+1. `write.csv()` which has the additional unnamed argument specifying the output file and named argument turning off the default option to prefix row numbers.
 
 Although we've saved space from not performing the extra naming of variables, we've made the code very difficult to read, needing to parse which functions are arguments to subsequent functions. The indentation helps readability a bit, but now let's examine a far better solution to either approaches above with `dplyr`.
 
@@ -281,7 +281,7 @@ The "tee" operator `%T>%` is similar to the "then" operator `%>%` in that the le
 
 ## Presentation
 
-- [wrangling-webinar.pdf](wrangling-webinar.pdf)
+- [wrangling-webinar.pdf](wk03_dplyr/wrangling-webinar.pdf)
 
 ## References
 
