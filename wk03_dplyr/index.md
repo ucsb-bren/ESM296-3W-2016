@@ -62,7 +62,7 @@ Due: Jan 28, Thursday 5pm
     
   Include the R chunk below the question and knit the `index.Rmd` into `index.html`. Be sure to push your results so they show up on the site `http://<org>.github.io`.
   
-  When I look at the blame for your `index.Rmd`, I would like to see that every member of the group contributed. You can make up another question, add comments, improve code, etc.
+  When I look at the [Blame](https://help.github.com/articles/using-git-blame-to-trace-changes-in-a-file/) for your `index.Rmd`, I would like to see that every member of the group contributed. You can make up another question, add comments, improve code, etc.
 
 ## Resources
 
