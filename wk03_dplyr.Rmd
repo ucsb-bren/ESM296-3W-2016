@@ -1,5 +1,5 @@
 ---
-title: 'Week 3: Tutorial on Reading and Wrangling Data'
+title: 'Week 3: Reading and Wrangling Data'
 author: "Ben Best"
 date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
 ---
