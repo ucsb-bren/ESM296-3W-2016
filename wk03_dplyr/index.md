@@ -37,7 +37,7 @@ Due: Jan 28, Thursday 5pm
 
 - Ensure you have the latest from `bren-ucsb/env-info` by issuing a _pull request_ to your `<user>/env-info` (You may need to "switch the base".) Since you have write permissions on `<user>/env-info`, you should then _Merge_ changes.
 
-- Work through the [**wk03_dplyr**](../wk03_dplyr.html) and [wrangling-webinar.pdf](wrangling-webinar.pdf) pdfs by typing in code as R chunks into your `env-info/students/<user>.Rmd`. Be sure to knit to `students/<user>.html`, _commit_ changes locally with a message, _push_ to your `github.com/<user>/env-info` and submit as a _pull request_ to `github.com/ucsb-bren/env-info`.
+- Work through the [**wk03_dplyr**](../wk03_dplyr.html) and [wrangling-webinar.pdf](wrangling-webinar.pdf) pdfs by typing in code as R chunks into your `env-info/students/<user>.Rmd`. I recommend starting this section with a `## Data Wrangling` header and use subheaders below to match the demo, like `### Multiple Variables`. Be sure to knit to `students/<user>.html`, _commit_ changes locally with a message, _push_ to your `github.com/<user>/env-info` and submit as a _pull request_ to `github.com/ucsb-bren/env-info`.
 
 ### Group
 
