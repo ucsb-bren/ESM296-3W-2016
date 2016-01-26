@@ -33,3 +33,109 @@ summary(d)
 ```
 
 [**Citizen Monitoring**](http://<organization>.github.io)
+
+##Data Wrangling
+```{r,eval=FALSE}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+```
+##install packages
+```{r,eval=FALSE}
+##Install Packages
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}
+```
+##utils::read.csv
+```{r,eval=FALSE}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+##readr::read_csv
+```{r,eval=FALSE}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+##dplry::tbl_df
+```{r,eval=FALSE}
+library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+d
+head(d)
+summary(d)
+glimpse(d)
+```
+##dplry loosely
+```{r,eval=FALSE}
+library(readr)
+library(dplyr)
+
+read_csv('../data/r-ecology/surveys.csv') %>%
+  select(species_id,year) %>%
+  filter(species_id == "DM") %>%
+  group_by(species_id,year) %>%
+  summarize(count=n())
+
+d
+head(d)
+summary(d)
+glimpse(d)
+```
+
+##Wrangling Data
+```{r}
+#install.packages("devtools")
+#devtools::install_github("rstudio/EDAWR")
+#?storms
+#?cases
+
+#gather(cases,"year","n",2:4)
+#spread(pollution,size,amount)
+#storms2<-separate(storms,date,c("y","m","d"),sep="-")
+#unite(storms2,"date", y, m, d, sep="-") 
+
+
+#select(storms,-storm)
+#install.packages("dplyr")
+#install.packages("nycflights123")
+
+#filter(storms,wind>=50)
+#mutate(storms,ratio=pressure/wind, inverse=ratio^-1)
+#arrange(storms,desc(wind))
+```

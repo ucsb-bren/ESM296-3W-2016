@@ -35,13 +35,13 @@ What data have you already identified? Feel free to provide a link and/or detail
      
 I have no data yet as this is still on early stages.
   
-![](images/AJM_5653.png)
+![](images/wag7_AJM_5653.png)
 
-```{r data, echo=TRUE, eval=FALSE}
+```{r data, echo=TRUE, eval=T}
 ###DataFile
 
 #read csv
-d=read.csv('Potsherds.csv')
+d=read.csv('data/wag7_Potsherds.csv')
 
 #output summary
 summary(d)

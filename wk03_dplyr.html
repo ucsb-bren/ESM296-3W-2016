@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Ben Best" />
+
+
+<title>Week 3: Reading and Wrangling Data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<!-- http://www.favicon-generator.org/ -->
+<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+<link rel="manifest" href="favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
+<script src="libs/tocify-1.9.1/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="libs/tocify-1.9.1/jquery.tocify.min.js"></script>
+
+<link href="libs/lightbox-2.8.2/css/lightbox.min.css" rel="stylesheet">
+
+<!--
+Font Awesome: http://fortawesome.github.io/Font-Awesome/icons
+Octicons:     https://octicons.github.com
+-->
+<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css">
+
+<style type="text/css">
+@media (max-width: 992px) {
+#toc {
+  position: relative;
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+}
+}
+</style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css" type="text/css" />
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<!--- https://codepo8.github.io/css-fork-on-github-ribbon/ 
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/ucsb-bren/env-info">Fork me on GitHub</a></span>
+-->
+<div class="row-fluid">
+<div class="navbar navbar-default navbar-fixed-top navbar-transparent">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="http://ucsb-bren.github.io/env-info/" class="navbar-brand"><i class="fa fa-home"></i> env-info</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <!--
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/#schedule"><i class="fa fa-calendar"></i> schedule</a>
+        </li>
+      </ul>
+      -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/students"><i class="fa fa-users"></i> students</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row-fluid">
+  <div class="span3 col-md-3">
+    <div id="toc"></div>
+  </div>
+  <div class="main-content span9 col-md-9">
+
+<div id="header">
+<h1 class="title">Week 3: Reading and Wrangling Data</h1>
+<h4 class="author"><em>Ben Best</em></h4>
+<h4 class="date"><em>2016-01-25 18:44</em></h4>
+</div>
+
+
+<div id="github-workflows-recap" class="section level2">
+<h2>Github Workflows Recap</h2>
+<ul>
+<li><p>“conversation” of code amongst us with pull requests &amp; issues, with every change logged in the version history</p></li>
+<li><p>flows:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>fork</strong> and <strong>pull request</strong>: <em>fork</em>, clone, pull, (branch,) commit, push and <em>pull request</em></p>
+<ul>
+<li><p><em><strong>read only</strong></em> (no write) permissions on original repository</p></li>
+<li><p>eg <code>bren-ucsb/env-info</code> <em>fork</em> to <code>bbest/env-info</code></p></li>
+<li><p>ie <code>&lt;org&gt;/&lt;repo&gt;</code> <em>fork</em> to <code>&lt;user&gt;/&lt;repo&gt;</code></p></li>
+<li><p>to update:</p>
+<ul>
+<li><p><em>pull request</em> <code>&lt;user&gt;/&lt;repo&gt;</code> -&gt; <code>&lt;org&gt;/&lt;repo&gt;</code>, or</p></li>
+<li><p><em>pull request</em> <code>&lt;org&gt;/&lt;repo&gt;</code> -&gt; <code>&lt;user&gt;/&lt;repo&gt;</code></p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>pull</strong> and <strong>push</strong>: clone, pull, (branch,) commit and push</p>
+<ul>
+<li><p>read and <em><strong>write</strong></em> permissions on original repository</p></li>
+<li><p>eg <code>bbest</code> <em>push</em> directly to <code>whaleroute/whaleroute.github.io</code></p></li>
+<li><p>ie <code>&lt;user&gt;</code> <em>push</em> directly to <code>&lt;org&gt;/&lt;repo&gt;</code></p></li>
+<li><p>see <a href="https://guides.github.com/introduction/flow/">Github Flow</a> for branching model</p></li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="where-am-i-getting-around-in-the-command-line" class="section level2">
+<h2>Where am I? Getting around in the Command Line</h2>
+<p>Knowing your present working directory is critical to using “relative” paths, ie relative to your present working directory. Relative paths (eg <code>somedir/somefile.csv</code> are often preferred over “absolute” paths (eg <code>C:/somedir/somefile.csv</code>) since the project’s root folder can move around on the machine or even to a different machine and still work, whereas an absolute path is locked down to a very exact machine-specific path. Here are a couple of aspects to keep in mind however when knitting Rmarkdown (*.Rmd) files:</p>
+<ul>
+<li><p>When you open an RStudio project, the default present working directory is the top level folder for that project (and contains the <code>*.Rproj</code> file).</p></li>
+<li><p>When you “Knit” an Rmarkdown file (<code>*.Rmd</code>), the working directory is set to the folder containing the <code>*.Rmd</code> and a new workspace is used.</p></li>
+</ul>
+<p>The above differences mean that when writing chunks of R code, a path can work in the Console and fail when you go to “Knit” the Rmarkdown file (<code>*.Rmd</code>), or vice versa.</p>
+<p>So let’s review some basic commands for navigating directories in both <a href="http://swcarpentry.github.io/shell-novice/">shell commands</a> and R commands.</p>
+<div id="bash-shell" class="section level3">
+<h3>Bash Shell</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash shell</a> is the most common Unix-based command shell, found in Linux and Mac machines. It gets emulated for Windows in the Git Bash Shell application when installing git. Natively, Windows uses the less powerful <a href="https://en.wikipedia.org/wiki/List_of_DOS_commands">Windows DOS command prompt</a>, which uses <code>cd</code> (for <code>pwd</code> and <code>cd</code>) and <code>dir</code> (instead of <code>ls</code>).</p>
+<pre class="sh"><code># present working directory
+pwd
+
+# change working directory
+cd
+
+# list files
+ls
+
+# list files that end in &#39;.jpg&#39;
+ls *.jpg</code></pre>
+<p>Note the use of the wildcard <code>*</code> to indicate any set of characters.</p>
+</div>
+<div id="r" class="section level3">
+<h3>R</h3>
+<p>Now play with the same commands commented above, but in R.</p>
+<pre class="r"><code># present working directory
+getwd()
+
+# change working directory
+setwd(&#39;.&#39;)
+
+# list files
+list.files()
+
+# list files that end in &#39;.jpg&#39;
+list.files(pattern=glob2rx(&#39;*.jpg&#39;))
+
+# file exists
+file.exists(&#39;test.png&#39;)</code></pre>
+<p>Look at the help for <a href="http://www.rdocumentation.org/packages/base/functions/list.files"><code>list.files()</code></a> (<code>?list.files</code> or F1 with cursor over <code>list.files()</code> in editing window) to see that the <code>pattern</code> argument expects a <a href="http://www.rdocumentation.org/packages/base/functions/regex">regular expression</a> and <a href="http://www.rdocumentation.org/packages/utils/functions/glob2rx"><code>glob2rx()</code></a> changes the wildcard or globbing pattern into a regular expression.</p>
+<p>To work on your <code>students/&lt;user&gt;.Rmd</code>, I recomend you get the Console and your Rmarkdown file using the same working directory:</p>
+<pre class="r"><code>setwd(&#39;students&#39;)</code></pre>
+</div>
+</div>
+<div id="install-packages" class="section level2">
+<h2>Install Packages</h2>
+<pre class="r"><code># Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  &#39;readr&#39;,        # read csv
+  &#39;readxl&#39;,       # read xls
+  &#39;dplyr&#39;,        # data frame manipulation
+  &#39;tidyr&#39;,        # data tidying
+  &#39;nycflights13&#39;, # test dataset of NYC flights for 2013
+  &#39;gapminder&#39;)    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}</code></pre>
+<p>The <strong>gapminder</strong> dataset is “an excerpt of the data available at Gapminder.org. For each of 142 countries, the package provides values for life expectancy, GDP per capita, and population, every five years, from 1952 to 2007” (<a href="https://cran.r-project.org/web/packages/gapminder/index.html">CRAN</a>). Gapminder was the brain child of Hans Rosling who famously gave the <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en">TED Talk: The best stats you’ve ever seen - Hans Rosling</a>.</p>
+</div>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<p>These are the main R packages we’ll be learning about this week:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/readr/vignettes/column-types.html"><code>readr</code>: column types</a></li>
+<li><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html"><code>dplyr</code>: introduction</a></li>
+<li><a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html"><code>tidyr</code>: tidy data</a></li>
+<li><a href="../refs/cheatsheets/data-wrangling-cheatsheet.pdf"><code>dplyr</code> &amp; <code>tidyr</code>: data wrangling cheatsheet</a></li>
+</ul>
+</div>
+<div id="reading-csv" class="section level2">
+<h2>Reading CSV</h2>
+<div id="utilsread.csv" class="section level3">
+<h3><code>utils::read.csv</code></h3>
+<p>Traditionally, you would read a CSV like so:</p>
+<pre class="r"><code>d = read.csv(&#39;../data/r-ecology/species.csv&#39;)
+d
+head(d)
+summary(d)</code></pre>
+</div>
+<div id="readrread_csv" class="section level3">
+<h3><code>readr::read_csv</code></h3>
+<p>Better yet, try read_csv:</p>
+<pre class="r"><code>library(readr)
+
+d = read_csv(&#39;../data/r-ecology/species.csv&#39;)
+d
+head(d)
+summary(d)</code></pre>
+<p>What are the differences in data types of columns when using <code>read.csv</code> vs <code>read_csv</code>? Especially compare character or factor data types. For an intriguing read into the perils of using factors, check out level 8.2 of the <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">R_inferno.pdf</a> 9 levels of hell in R (yes, a <a href="https://en.wikipedia.org/wiki/Inferno_(Dante)">Dante reference</a>).</p>
+</div>
+</div>
+<div id="dplyr-demo" class="section level2">
+<h2><code>dplyr</code> Demo</h2>
+<p>When performing data analysis in R, code can become quite messy, making it hard to revisit and determine the sequence of operations. Commenting helps. Good variable names help. Still, at least two common issues make code difficult to understand: <strong>multiple variables</strong> and <strong>nested functions</strong>. Let’s examine these issues by approaching an analysis presenting both problems, and finally see how <code>dplyr</code> offers an elegant alternative.</p>
+<p>For example, let’s ask of the <code>surveys.csv</code> dataset: <em><strong>How many observations of species ‘NL’ appear each year?</strong></em></p>
+<div id="pseudocode" class="section level3">
+<h3>Pseudocode</h3>
+<p>You can write the logic out as <strong>pseudocode</strong> which can become later comments for the actual code:</p>
+<pre class="r"><code># read in csv
+# view data
+# limit columns to species and year
+# limit rows to just species &quot;NL&quot;
+# get count per year
+# write out csv</code></pre>
+</div>
+<div id="multiple-variables" class="section level3">
+<h3>Multiple Variables</h3>
+<p>Now let’s approach this code sequentially using base functions, ie natively loaded functions in R without need for additional libraries.</p>
+<pre class="r"><code># read in csv
+surveys = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit columns to species and year
+surveys_2 = surveys[,c(&#39;species_id&#39;, &#39;year&#39;)]
+
+# limit rows to just species &quot;NL&quot;
+surveys_3 = surveys_2[surveys_2$species_id  == &#39;NL&#39;,]
+
+# get count per year
+surveys_4 = aggregate(species_id ~ year, data=surveys_3, FUN=&#39;length&#39;)
+
+# write to csv
+write.csv(surveys_4, &#39;data/surveys_bbest.csv&#39;, row.names = FALSE)</code></pre>
+<p>Because the variables are named sequentially, ie <code>surveys_2</code> to <code>surveys_4</code>, it is relatively easy to follow, but so often in the course of playing with data these names are very different. And then we quickly lose track of which operations get applied to which variables.</p>
+<p>Even with obvious variable names, there is a redunancy to assigning a new variable new to the output of each operation.</p>
+</div>
+<div id="nested-functions" class="section level3">
+<h3>Nested Functions</h3>
+<p>Another common programming trick to reduce variable naming space is to nest the output of one function as the input of the next one.</p>
+<pre class="r"><code># read in data
+surveys = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit data with [], aggregate to count, write to csv
+write.csv(
+  aggregate(
+    species_id ~ year, 
+    data = surveys[surveys_2$species_id  == &#39;NL&#39;, c(&#39;species_id&#39;, &#39;year&#39;)], 
+    FUN = &#39;length&#39;), 
+  &#39;data/surveys_bbest.csv&#39;,
+  row.names = FALSE)</code></pre>
+<p>So the code started the same, and continues using the same functions, but these functions get applied from the input arguments to the outer containing functions, ie in a nested manner:</p>
+<ol style="list-style-type: decimal">
+<li><p>surveys gets sliced <code>[]</code> into rows and columns in one call, which gets used as the <code>data =</code> argument to</p></li>
+<li><p><code>aggregate()</code>, which applies the <code>length()</code> function to get a count to the formula <code>species_id ~ year</code> in which the <code>species_id</code> gets split into groups based on <code>year</code>, which gets further applied as the unnamed first argument to</p></li>
+<li><p><code>write.csv()</code> which has the additional unnamed arguments specifying the output file and turning off the default option to write row numbers as names.</p></li>
+</ol>
+<p>Although we’ve saved space from not performing the extra naming of variables, we’ve made the code very difficult to read, needing to parse which functions are arguments to subsequent functions. The indentation helps readability a bit, but now let’s examine a far better solution to either approaches above with <code>dplyr</code>.</p>
+</div>
+<div id="elegance-with-dplyr" class="section level3">
+<h3>Elegance with <code>dplyr</code></h3>
+<p>Next, we’ll use the libraries <code>readr</code>for improved versions of reading and writing csv files, and <code>dplyr</code> for advanced data frame manipulation. Most importantly, <code>dplyr</code> uses the “then” operator <code>%&gt;%</code> which transfers the output on the left to the first argument of the function on the right. Most simply <code>surveys %&gt;% summary()</code> transfers the surveys data frame into the first argument of the summary function. Use of this chaining operator seems excessive in this simple example, but is powerful when chaining together many operations on the same data frame. We’re able to efficiently write out operations, get past the previous problem of multiple variable names without the obfuscation of nesting.</p>
+<pre class="r"><code># load libraries
+library(readr)
+library(dplyr)
+
+# read in csv
+surveys = read_csv(&#39;../data/r-ecology/surveys.csv&#39;) 
+
+# dplyr elegance
+surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
+  glimpse() %&gt;%                       # view data
+  select(species_id, year) %&gt;%        # limit columns
+  filter(species_id  == &#39;NL&#39;) %&gt;%     # limit rows
+  group_by(year) %&gt;%                  # get count by first grouping
+  summarize(n = n()) %&gt;%              #   then summarize
+  write_csv(&#39;data/surveys_bbest.csv&#39;) # write out csv</code></pre>
+<p>Now we can read from the top, starting with the data frame surveys, to see a very clear sequence of operations:</p>
+<ol style="list-style-type: decimal">
+<li><code>glimpse()</code></li>
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>group_by()</code></li>
+<li><code>summarize()</code></li>
+<li><code>write_csv()</code></li>
+</ol>
+<p>Arguments are minimal without repeating the name of the data frame, or even needing quotations in the case of column names.</p>
+<p>The “tee” operator <code>%T&gt;%</code> is similar to the “then” operator <code>%&gt;%</code> in that the left side is passed to the right, but is then also teed off as the output of the right side. This is useful in this case for <code>glimpse</code> since its output is simply printed to the Console and does not otherwise return the data frame needed to continue the sequence of operations. So the “tee” operator <code>%T&gt;%</code> is most useful for injecting intermediate operations like printing or plotting that wouldn’t otherwise output a return object for continuing operations.</p>
+</div>
+</div>
+<div id="presentation" class="section level2">
+<h2>Presentation</h2>
+<ul>
+<li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<div id="command-line" class="section level3">
+<h3>Command Line</h3>
+<ul>
+<li><a href="http://swcarpentry.github.io/shell-novice/">The Unix Shell | Software Carpentry</a></li>
+</ul>
+</div>
+<div id="data-management" class="section level3">
+<h3>Data Management</h3>
+<ul>
+<li><a href="{{%20site.baseurl%20}}/refs/lit/DataONE%202012%20Best%20Practices%20Primer%20DataONE_BP_Primer_020212.pdf">Best Practices Primer | DataONE</a></li>
+<li><a href="{{%20site.baseurl%20}}/refs/lit/DataONE%20Data%20Management%20Guide%20for%20Public%20Participation%20PPSR-DataManagementGuide.pdf">Data Management Guide for Public Participation | DataONE</a></li>
+<li><a href="https://www.dataone.org/education-modules">Education Modules | DataONE</a></li>
+</ul>
+</div>
+<div id="data-wrangling-in-r" class="section level3">
+<h3>Data Wrangling in R</h3>
+<ul>
+<li><a href="{{%20site.baseurl%20}}/refs/cheatsheets/data-wrangling-cheatsheet.pdf">Data Wrangling (dplyr, readr) cheat sheet</a></li>
+<li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
+</ul>
+</div>
+</div>
+
+  </div> <!--span-9-->
+</div> <!--row-fluid-->
+
+<!--
+<script src="{{ site.baseurl }}/libs/lightbox-2.8.2/js/lightbox.min.js"></script>
+
+<script>
+    lightbox.option({
+      'albumLabel': 'Example %1 of %2',
+      'resizeDuration': 200,
+      'fadeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+-->
+
+<style type="text/css">
+.main-container {
+  max-width: none;
+}
+</style>
+
+<script>
+$(function() {
+    var toc = $("#toc").tocify({
+      selectors: "h2,h3",
+      theme: "bootstrap3",
+      context: '.main-content',
+      hashGenerator: 'pretty',
+      showAndHide: false
+    }).data("toc-tocify");
+    $(".optionName").popover({ trigger: "hover" });
+});
+</script>
+
+<div style="color:gray">
+  <span class="octicon octicon-repo-forked"></span> <b>Fork</b> me at <a href="http://github.com/ucsb-bren/env-info">github.com/<b>ucsb-bren/env-info</b></a>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

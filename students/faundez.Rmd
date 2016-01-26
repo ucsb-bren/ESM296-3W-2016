@@ -1,0 +1,70 @@
+---
+title: "faundez_Lab2"
+author: "Patricia Faundez"
+date: "January 17, 2016"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+## Content
+
+Text shows.
+
+<!-- Text hidden with HTML. -->
+
+```{r question, eval = FALSE, echo=FALSE}
+Text hidden with R chunk, echo=F
+
+What is your burning environmental question that you'd like to address? Feel free to provide group project, dissertation, and/or personal interest. What's the study area?
+```
+
+**_Is the health of the Chilean ocean changing regionaly?_**
+  
+  I would like to determine the health of the ocean's regions in Chile. By measuring ocean health across a portfolio of goals I can better understand potential trade-offs between goals and propose management targets for the future.
+  
+
+## Techniques
+
+```{r question2, eval = FALSE, echo=FALSE}
+ What techniques from the course do you think will be most applicable?
+
+```        
+ 
+Useful techniques will be:
+
+* Tidying up Data
+* Visualizing Data
+* Interactive Plots and Maps
+* Advanced Programming
+  
+        
+## Data
+
+```{r question3, eval = FALSE, echo=FALSE}
+What data have you already identified? Feel free to provide a link and/or details on the variables of interest.
+
+```        
+
+I have have idenfied data of jobs, wages and revenues per region in Chile.
+  
+  The data will be used to calculate the Livelihoods and Economies goal in each region of Chile. This goal focuses on avoiding the loss of ocean-dependent livelihoods and productive coastal economies while maximizing livelihood quality. The Status of this goal is the average of the Status of the two sub-goals : livelihoods  (i.e., jobs and wages) and economies (i.e., revenues) using [data](http://www.ine.cl/canales/chile_estadistico/familias/laborales.php)
+  
+![](images/Chile_OHI.png)
+
+```{r data, echo=TRUE, eval=FALSE}
+###Data File
+
+#read csv
+d=read.csv('data/faundez_Iregion.csv')
+
+#output summary
+summary(d)
+
+```
+
+
+
+###Organization
+[Marine Health Indexes](https://github.com/marinehealth)
