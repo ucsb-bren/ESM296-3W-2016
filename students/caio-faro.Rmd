@@ -31,6 +31,8 @@ Brazil <- subset(d, PartyName == "BRAZIL")
       
 # output summary
 summary(Brazil)
+
+
 ```
 
 
