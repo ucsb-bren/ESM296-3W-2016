@@ -1,31 +1,338 @@
-"country_code","city_name"
-"AT",14
-"BE",13
-"BG",20
-"CH",4
-"CY",1
-"CZ",22
-"DE",59
-"DK",2
-"EE",4
-"ES",112
-"FI",1
-"FR",51
-"GB",17
-"GR",4
-"HU",12
-"IE",3
-"IS",1
-"IT",43
-"LT",5
-"LU",1
-"LV",3
-"MT",1
-"NL",2
-"NO",1
-"PL",61
-"PT",5
-"RO",28
-"SE",5
-"SI",1
-"SK",2
+"","city_name","n"
+"1","<da>st<ed> nad Labem",2
+"2","<U+008A>iauliai",1
+"3","A Coru<f1>a",2
+"4","Aalborg",1
+"5","Aix-en-Provence",1
+"6","Ajaccio",1
+"7","Alba Iulia",1
+"8","Albi",1
+"9","Alcal<e1> de Henares",1
+"10","Alicante/Alacant",2
+"11","Almer<ed>a",1
+"12","Amsterdam",1
+"13","Antwerpen",2
+"14","Arad",2
+"15","Arrecife",1
+"16","Asti",1
+"17","Athina",2
+"18","Augsburg",2
+"19","Avil<e9>s",2
+"20","Bacau",1
+"21","Badajoz",1
+"22","Badalona",2
+"23","Baia Mare",3
+"24","Bansk<e1> Bystrica",1
+"25","Barakaldo",1
+"26","Barcelona",4
+"27","Barnsley",1
+"28","Bayonne",1
+"29","Belfast",1
+"30","Benidorm",1
+"31","Bergamo",1
+"32","Berlin",2
+"33","Bialystok",1
+"34","Biella",1
+"35","Bielsko-Biala",1
+"36","Bilbao",2
+"37","Birmingham",1
+"38","Blagoevgrad",1
+"39","Bolzano",1
+"40","Bor<e5>s",1
+"41","Bordeaux",2
+"42","Botosani",1
+"43","Brasov",2
+"44","Bremen",4
+"45","Bremerhaven",1
+"46","Brescia",1
+"47","Brno",1
+"48","Bruxelles / Brussel",6
+"49","Bucuresti",1
+"50","Budapest",4
+"51","Burgas",2
+"52","Burgos",1
+"53","Buzau",1
+"54","Bydgoszcz",2
+"55","C<e1>ceres",1
+"56","C<e1>diz",1
+"57","C<f3>rdoba",2
+"58","Cagliari",1
+"59","Calais",2
+"60","Campobasso",1
+"61","Cardiff",1
+"62","Cartagena",1
+"63","Castell<f3>n de la Plana/Castell<f3> de la Plana",1
+"64","Cesk<e9> Budejovice",1
+"65","Ch<e2>lons-en-Champagne",1
+"66","Charleville-M<e9>zi<e8>res",1
+"67","Cherbourg",1
+"68","Cluj-Napoca",1
+"69","Colmar",1
+"70","Como",1
+"71","Coslada",1
+"72","Cottbus",1
+"73","Craiova",3
+"74","Cremona",2
+"75","Czestochowa",2
+"76","Darmstadt",1
+"77","Debrecen",1
+"78","Derry",1
+"79","Dos Hermanas",1
+"80","Dresden",1
+"81","Dublin",3
+"82","Duisburg",1
+"83","Dunkerque",2
+"84","Edinburgh",1
+"85","Elblag",1
+"86","Elche/Elx",2
+"87","Elda",1
+"88","Erfurt",1
+"89","Essen",1
+"90","Ferrol",2
+"91","Firenze",1
+"92","Frankfurt (Oder)",1
+"93","Frankfurt am Main",1
+"94","Freiburg im Breisgau",1
+"95","G<f6>rlitz",1
+"96","G<f6>teborg",2
+"97","G<f6>ttingen",1
+"98","Gdansk",5
+"99","Gdynia",2
+"100","Genova",2
+"101","Gent",1
+"102","Gera",1
+"103","Gij<f3>n",5
+"104","Girona",1
+"105","Giurgiu",2
+"106","Gliwice",1
+"107","Gorz<f3>w Wielkopolski",1
+"108","Granada",2
+"109","Graz",3
+"110","Grenoble",1
+"111","Grudziadz",1
+"112","Gy<f5>r",2
+"113","Halle an der Saale",1
+"114","Hamburg",3
+"115","Hanau",1
+"116","Helsinki / Helsingfors",1
+"117","Iasi",1
+"118","Ingolstadt",1
+"119","Innsbruck",1
+"120","Inowroclaw",1
+"121","Ja<e9>n",2
+"122","Jerez de la Frontera",1
+"123","Jihlava",1
+"124","K<f6>ln",1
+"125","K<f8>benhavn",1
+"126","Kaiserslautern",1
+"127","Kalisz",1
+"128","Karlsruhe",1
+"129","Karvin<e1>",1
+"130","Kassel",1
+"131","Katowice",2
+"132","Kaunas",1
+"133","Kielce",1
+"134","Kingston-upon-Hull",1
+"135","Kladno",1
+"136","Klagenfurt",1
+"137","Klaipeda",1
+"138","Koblenz",1
+"139","Konin",1
+"140","Koszalin",1
+"141","Krak<f3>w",3
+"142","L<f3>dz",2
+"143","La Spezia",2
+"144","Le Havre",6
+"145","Le<f3>n",1
+"146","Lecco",1
+"147","Leeds",1
+"148","Lefkosia",1
+"149","Leipzig",1
+"150","Lens - Li<e9>vin",1
+"151","Li<e8>ge",3
+"152","Liberec",1
+"153","Liepaja",1
+"154","Lille",1
+"155","Limoges",2
+"156","Linz",2
+"157","Lisboa",2
+"158","Ljubljana",1
+"159","Lleida",1
+"160","Logro<f1>o",1
+"161","Lomza",1
+"162","London",4
+"163","Lorient",1
+"164","Lublin",1
+"165","Ludwigshafen am Rhein",3
+"166","Lugano",1
+"167","Lugo",1
+"168","Lund",1
+"169","Luxembourg",1
+"170","Lyon",1
+"171","M<e1>laga",1
+"172","M<f3>stoles",1
+"173","M<f6>nchengladbach",1
+"174","M<fc>nchen",1
+"175","M<fc>nster",1
+"176","Madrid",10
+"177","Magdeburg",1
+"178","Mainz",2
+"179","Malm<f6>",1
+"180","Manchester",1
+"181","Mannheim",1
+"182","Manresa",1
+"183","Marbella",1
+"184","Marseille",2
+"185","Martigues",4
+"186","Matar<f3>",1
+"187","Metz",1
+"188","Milano",1
+"189","Miskolc",1
+"190","Mons",1
+"191","Monza",1
+"192","N<fc>rnberg",1
+"193","Nancy",1
+"194","Narva",1
+"195","Nitra",1
+"196","Nottingham",1
+"197","Novara",1
+"198","Nowy Sacz",1
+"199","Ny<ed>regyh<e1>za",1
+"200","Olsztyn",1
+"201","Opole",1
+"202","Oradea",1
+"203","Oslo",1
+"204","Osnabr<fc>ck",1
+"205","Ostrava",2
+"206","Ourense",1
+"207","Oviedo",3
+"208","P<e1>tra",2
+"209","P<e9>cs",2
+"210","Padova",1
+"211","Palencia",1
+"212","Palma de Mallorca",2
+"213","Pamplona/Iru<f1>a",3
+"214","Pardubice",2
+"215","Pau",2
+"216","Pavia",1
+"217","Pernik",1
+"218","Perugia",1
+"219","Piatra Neamt",1
+"220","Pila",1
+"221","Piotrk<f3>w Trybunalski",1
+"222","Pitesti",1
+"223","Pleven",1
+"224","Plock",1
+"225","Ploiesti",3
+"226","Plovdiv",2
+"227","Plzen",6
+"228","Pontevedra",1
+"229","Potsdam",1
+"230","Poznan",2
+"231","Praha",3
+"232","Prat de Llobregat, El",2
+"233","Przemysl",1
+"234","Radom",1
+"235","Ravenna",1
+"236","Regensburg",1
+"237","Reims",2
+"238","Rennes",1
+"239","Reutlingen",1
+"240","Reykjav<ed>k",1
+"241","Riga",2
+"242","Roma",3
+"243","Rostock",2
+"244","Rouen",4
+"245","Rub<ed>",1
+"246","Ruse",1
+"247","Rybnik",1
+"248","Rzesz<f3>w",1
+"249","Saarbr<fc>cken",2
+"250","Saint-Etienne",1
+"251","Saint-Nazaire",1
+"252","Saint Denis",1
+"253","Salamanca",1
+"254","Salzburg",1
+"255","San Fernando",1
+"256","San Sebasti<e1>n/Donostia",2
+"257","Sanremo",1
+"258","Santa Cruz de Tenerife",2
+"259","Santander",2
+"260","Santiago de Compostela",2
+"261","Sassari",2
+"262","Satu Mare",1
+"263","Savona",1
+"264","Schiedam",1
+"265","Seixal",1
+"266","Set<fa>bal",1
+"267","Sevilla",5
+"268","Shumen",1
+"269","Siedlce",1
+"270","Sliven",1
+"271","Slupsk",1
+"272","Sofia",5
+"273","Sosnowiec",1
+"274","Southampton",1
+"275","Stara Zagora",1
+"276","Strasbourg",1
+"277","Stuttgart",1
+"278","Szczecin",1
+"279","Szeged",1
+"280","T<e2>rgu Mures",1
+"281","Talavera de la Reina",1
+"282","Tallinn",2
+"283","Taranto",2
+"284","Tarbes",1
+"285","Tarn<f3>w",1
+"286","Tarragona",1
+"287","Tartu",1
+"288","Tczew",1
+"289","Telde",2
+"290","Terrassa",1
+"291","Thurrock",1
+"292","Timisoara",1
+"293","Toledo",1
+"294","Torino",2
+"295","Torun",2
+"296","Toulouse",1
+"297","Trento",1
+"298","Treviso",1
+"299","Trier",1
+"300","Trieste",1
+"301","Troyes",1
+"302","Tychy",1
+"303","Ulm",1
+"304","Valencia",3
+"305","Valladolid",1
+"306","Valletta",1
+"307","Varese",1
+"308","Varna",2
+"309","Venezia",3
+"310","Verona",1
+"311","Vicenza",1
+"312","Vidin",1
+"313","Vigo",2
+"314","Vila Franca de Xira",1
+"315","Viladecans",1
+"316","Vilanova i la Geltr<fa>",1
+"317","Vilnius",2
+"318","Vitoria/Gasteiz",2
+"319","Vratsa",1
+"320","Warszawa",2
+"321","Wetzlar",1
+"322","Wien",6
+"323","Wiesbaden",1
+"324","Wloclawek",1
+"325","Wolfsburg",1
+"326","Wrexham",1
+"327","Wroclaw",1
+"328","Wuppertal",1
+"329","Z<fc>rich",3
+"330","Zabrze",1
+"331","Zamora",1
+"332","Zamosc",1
+"333","Zaragoza",2
+"334","Zgierz",1
+"335","Zielona G<f3>ra",1
+"336","Zl<ed>n",1
+"337","Zory",1

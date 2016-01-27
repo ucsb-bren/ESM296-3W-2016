@@ -5,7 +5,7 @@ date: "January 18, 2056"
 output: html_document
 ---
 
-#### <span style="color:red">**Content**</span>
+### <span style="color:red">**Content**</span>
         
 I am interested in environmental remediation: pollution modeling and the data analysis that comes with that are my jam. I also think that the tools we are learning in this class are useful in the corporate setting -- performance metrics, etc. could all be run through tools like this.
 
@@ -32,43 +32,56 @@ df
 
 ***
 
-#### <span style="color:red">**Techniques**</span>
+### <span style="color:red">**Techniques**</span>
         
 Creating code that pushes graphs reflecting up-to-date datasets without doing more than clicking a button resonates deeply with me. Bring on the pretty graphs!
 
 ***
         
-#### <span style="color:red">**Data**</span>
+### <span style="color:red">**Data**</span>
         
 So far our group is only working with data samples given in RStudio, but as we evolve this quarter I'm excited to see what we dig up!
 
 ***
-#### <span style="color:red">**Data Wrangling**</span>
+### <span style="color:red">**Data Wrangling**</span>
 
-```{r}
+Note: Unsure how to make the following chunk run without showing its results.
+```{r echo=FALSE, comment=NA}
 library(readr)
 library(dplyr)
-
 # setwd('students')
-# Hard to parse what head and summary are spitting out
+```
+
+####How does using read_csv from the readr package improve data readability?
+
+Using read.csv (the default) is pretty messy and unhelpful
+
+```{r}
 d = read.csv('./data/sparrow925_EUSO2.csv')
 head(d)
 summary(d)
+```
 
+Compare that to using read_csv, which gives you usefull info!
+
+```{r}
 # Oh man the head and summary here are so much more usable
 d2 = read_csv('./data/sparrow925_EUSO2.csv')
 head(d2)
 summary(d2)
 ```
 
+Now, lets use dplyr.
 Let's ask ourselves, how many cities are measured for each country?
+
+#### Using Multiple Variables
 
 ```{r}
 # read in csv
 d = read_csv('./data/sparrow925_EUSO2.csv')
 # view data
-head(d)
-summary(d)
+#head(d)
+#summary(d)
 # limit columns to country and city
 d2=d[,c('country_code','city_name')]
 # get count per country
@@ -76,17 +89,21 @@ d3=aggregate(city_name ~ country_code, data=d2, FUN='length')
 # write out csv
 write.csv(d3, './data/sparrow925_EUSO2_citycount.csv', row.names = FALSE)
 ```
-...There is a better way to format this...
 
+#### Using dplyr to Write Compact Code
+
+```{r}
+
+library(readr)
+library(dplyr)
+setwd('students')
 
 # read in csv
-#... be careful, there is something wrong here and it crashes R
 sparrow925_EUSO2_dplyr = read_csv('./data/sparrow925_EUSO2.csv')
 sparrow925_EUSO2_dplyr %T>%
   glimpse() %>% # view 
   select(country_code, city_name) %>% # limit columns
-  #filter(country_code='DE') %>% # limit rows
   group_by(city_name) %>% # get count by grouping
   summarize(n=n()) %>% # then summarize
   write.csv('./data/sparrow925_EUSO2_citycount.csv')
-
+```
