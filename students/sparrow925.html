@@ -90,6 +90,150 @@ img {
 <div id="data" class="section level4">
 <h4><span style="color:red"><strong>Data</strong></span></h4>
 <p>So far our group is only working with data samples given in RStudio, but as we evolve this quarter I’m excited to see what we dig up!</p>
+<hr />
+</div>
+<div id="data-wrangling" class="section level4">
+<h4><span style="color:red"><strong>Data Wrangling</strong></span></h4>
+<pre class="r"><code>library(readr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code># setwd('students')
+# Hard to parse what head and summary are spitting out
+d = read.csv('./data/sparrow925_EUSO2.csv')
+head(d)</code></pre>
+<pre><code>##   country_code  city_name station_european_code type_of_station
+## 1           AT Klagenfurt               AT2KA71      Background
+## 2           AT       Linz               AT4S415         Traffic
+## 3           AT       Linz               AT4S416      Background
+## 4           AT   Salzburg               AT51200      Background
+## 5           AT       Graz               AT60138      Background
+## 6           AT       Graz               AT60164         Traffic
+##   station_type_of_area component_caption statistics_year ug.m3 above_DLV.
+## 1                urban               SO2            2013   5.8          0
+## 2                urban               SO2            2013  12.2          0
+## 3                urban               SO2            2013  23.3          0
+## 4                urban               SO2            2013   4.9          0
+## 5             suburban               SO2            2013   9.3          0
+## 6                urban               SO2            2013   6.1          0</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##   country_code               city_name   station_european_code
+##  ES     :112   Madrid             : 10   AT2KA71:  1          
+##  PL     : 61   Bruxelles / Brussel:  6   AT4S415:  1          
+##  DE     : 59   Le Havre           :  6   AT4S416:  1          
+##  FR     : 51   Plzen              :  6   AT51200:  1          
+##  IT     : 43   Wien               :  6   AT60138:  1          
+##  RO     : 28   Gdansk             :  5   AT60164:  1          
+##  (Other):144   (Other)            :459   (Other):492          
+##    type_of_station station_type_of_area component_caption statistics_year
+##  background:  3    suburban: 75         SO2:498           Min.   :2013   
+##  Background:330    urban   :423                           1st Qu.:2013   
+##  Traffic   :165                                           Median :2013   
+##                                                           Mean   :2013   
+##                                                           3rd Qu.:2013   
+##                                                           Max.   :2013   
+##                                                                          
+##      ug.m3          above_DLV.
+##  Min.   :  0.90   Min.   :0   
+##  1st Qu.:  6.40   1st Qu.:0   
+##  Median : 10.40   Median :0   
+##  Mean   : 15.67   Mean   :0   
+##  3rd Qu.: 18.27   3rd Qu.:0   
+##  Max.   :116.80   Max.   :0   
+## </code></pre>
+<pre class="r"><code># Oh man the head and summary here are so much more usable
+d2 = read_csv('./data/sparrow925_EUSO2.csv')
+head(d2)</code></pre>
+<pre><code>## Source: local data frame [6 x 9]
+## 
+##   country_code  city_name station_european_code type_of_station
+##          (chr)      (chr)                 (chr)           (chr)
+## 1           AT Klagenfurt               AT2KA71      Background
+## 2           AT       Linz               AT4S415         Traffic
+## 3           AT       Linz               AT4S416      Background
+## 4           AT   Salzburg               AT51200      Background
+## 5           AT       Graz               AT60138      Background
+## 6           AT       Graz               AT60164         Traffic
+## Variables not shown: station_type_of_area (chr), component_caption (chr),
+##   statistics_year (int), ug/m3 (dbl), above_DLV? (int)</code></pre>
+<pre class="r"><code>summary(d2)</code></pre>
+<pre><code>##  country_code        city_name         station_european_code
+##  Length:498         Length:498         Length:498           
+##  Class :character   Class :character   Class :character     
+##  Mode  :character   Mode  :character   Mode  :character     
+##                                                             
+##                                                             
+##                                                             
+##  type_of_station    station_type_of_area component_caption 
+##  Length:498         Length:498           Length:498        
+##  Class :character   Class :character     Class :character  
+##  Mode  :character   Mode  :character     Mode  :character  
+##                                                            
+##                                                            
+##                                                            
+##  statistics_year     ug/m3          above_DLV?
+##  Min.   :2013    Min.   :  0.90   Min.   :0   
+##  1st Qu.:2013    1st Qu.:  6.40   1st Qu.:0   
+##  Median :2013    Median : 10.40   Median :0   
+##  Mean   :2013    Mean   : 15.67   Mean   :0   
+##  3rd Qu.:2013    3rd Qu.: 18.27   3rd Qu.:0   
+##  Max.   :2013    Max.   :116.80   Max.   :0</code></pre>
+<p>Let’s ask ourselves, how many cities are measured for each country?</p>
+<pre class="r"><code># read in csv
+d = read_csv('./data/sparrow925_EUSO2.csv')
+# view data
+head(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 9]
+## 
+##   country_code  city_name station_european_code type_of_station
+##          (chr)      (chr)                 (chr)           (chr)
+## 1           AT Klagenfurt               AT2KA71      Background
+## 2           AT       Linz               AT4S415         Traffic
+## 3           AT       Linz               AT4S416      Background
+## 4           AT   Salzburg               AT51200      Background
+## 5           AT       Graz               AT60138      Background
+## 6           AT       Graz               AT60164         Traffic
+## Variables not shown: station_type_of_area (chr), component_caption (chr),
+##   statistics_year (int), ug/m3 (dbl), above_DLV? (int)</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##  country_code        city_name         station_european_code
+##  Length:498         Length:498         Length:498           
+##  Class :character   Class :character   Class :character     
+##  Mode  :character   Mode  :character   Mode  :character     
+##                                                             
+##                                                             
+##                                                             
+##  type_of_station    station_type_of_area component_caption 
+##  Length:498         Length:498           Length:498        
+##  Class :character   Class :character     Class :character  
+##  Mode  :character   Mode  :character     Mode  :character  
+##                                                            
+##                                                            
+##                                                            
+##  statistics_year     ug/m3          above_DLV?
+##  Min.   :2013    Min.   :  0.90   Min.   :0   
+##  1st Qu.:2013    1st Qu.:  6.40   1st Qu.:0   
+##  Median :2013    Median : 10.40   Median :0   
+##  Mean   :2013    Mean   : 15.67   Mean   :0   
+##  3rd Qu.:2013    3rd Qu.: 18.27   3rd Qu.:0   
+##  Max.   :2013    Max.   :116.80   Max.   :0</code></pre>
+<pre class="r"><code># limit columns to country and city
+d2=d[,c('country_code','city_name')]
+# get count per country
+d3=aggregate(city_name ~ country_code, data=d2, FUN='length')
+# write out csv
+write.csv(d3, './data/sparrow925_EUSO2_citycount.csv', row.names = FALSE)</code></pre>
+<p>…There is a better way to format this…</p>
+</div>
+<div id="read-in-csv" class="section level1">
+<h1>read in csv</h1>
+<p>#… be careful, there is something wrong here and it crashes R sparrow925_EUSO2_dplyr = read_csv(‘./data/sparrow925_EUSO2.csv’) sparrow925_EUSO2_dplyr %T&gt;% glimpse() %&gt;% # view select(country_code, city_name) %&gt;% # limit columns #filter(country_code=‘DE’) %&gt;% # limit rows group_by(city_name) %&gt;% # get count by grouping summarize(n=n()) %&gt;% # then summarize write.csv(‘./data/sparrow925_EUSO2_citycount.csv’)</p>
 </div>
 
 
