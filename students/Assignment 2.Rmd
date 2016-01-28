@@ -15,11 +15,14 @@ library(readr)
 
 #Loading data
 pricedata <- read.csv('pricessnapper.csv') 
-
-colnames(pricedata) <- tolower(colnames(pricedata))
+  colnames(pricedata) <- tolower(colnames(pricedata))
 
 fishdata <- read_excel('catch.xlsx') 
-  
-colnames(fishdata) <- tolower(colnames(fishdata))
+  colnames(fishdata) <- tolower(colnames(fishdata))
 
+#Reshaping data
+tunadata<- (fishdata) %>%
+  select(-total) %>%
+  gather('month', 'catch', jan:dec) %>%
+  subset(region == 'Golfito', species == 'ATUN')
 ```
