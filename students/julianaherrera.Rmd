@@ -40,3 +40,29 @@ d = read.csv('pricessnapper.csv')
 # output summary
 summary(d)
 ```
+## Data Wrangling
+```{r}
+#Loading packages
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(readr)
+
+#Loading data
+pricedata <- read_csv('pricessnapper.csv') 
+  colnames(pricedata) <- tolower(colnames(pricedata))
+
+fishdata <- read_excel('catch.xlsx')
+  colnames(fishdata) <- tolower(colnames(fishdata))
+  
+# Changing columns and rows
+pricedata_2 <- pricedata[,c('year', 'fishery', 'price')] # limiting data to year, species and price only
+pricedata_3 <- pricedata_2[pricedata_2$fishery == 'Artisanal']  
+  
+ #Reshaping data 
+tunadata<- (fishdata) %>%
+  select(-total) %>%
+  gather('month', 'catch', jan:dec) %>%
+  subset(region == 'Golfito', species == 'ATUN')
+```
+
