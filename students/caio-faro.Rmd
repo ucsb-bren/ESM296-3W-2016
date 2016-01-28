@@ -25,16 +25,31 @@ output:
   
   
 ```{r}
+
 # read csv
 d = read.csv('data/caio-faro_ICCATSharks.csv')
 Brazil <- subset(d, PartyName == "BRAZIL")
-      
-# output summary
-summary(Brazil)
-
 
 ```
 
 
-## Data Wrangling
+## *Data Wrangling*
+
+```{r}
+
+suppressWarnings(suppressMessages(require(readr)))
+suppressWarnings(suppressMessages(require(dplyr)))
+
+tbl_df(Brazil)
+
+Brazil %>%
+  select(ScieName, YearC, Status, Fleet, Stock, GearCode, Qty_t) %>%
+  group_by(ScieName) %>%
+  summarize(Total_Catch_t = sum(Qty_t))
+  
+```
+
+
+
+
 
