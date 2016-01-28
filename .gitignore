@@ -3,3 +3,4 @@ Gemfile.lock
 .Rproj.user
 .Rhistory
 alxsmith.R
+.RData
