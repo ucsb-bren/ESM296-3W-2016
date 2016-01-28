@@ -43,7 +43,7 @@ You will work in small groups for the final project. There will also be a short 
 - presentation: 20 min (incl. 5 min for questions)
 - paper: 5 pages
 
-The "live" paper will live on your class group website, rendered from Rmarkdown to HTML, possibly containing interactive elements.
+The "live" paper will live on your class group website <org>.github.io, to be rendered from Rmarkdown to HTML, and contain the following headers:
 
 - **Introduction**
   Introduce your topic, providing specific scientific questions and problem statements.
