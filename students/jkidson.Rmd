@@ -32,6 +32,7 @@ A group member has data on survey responses on solid waste. Data is received via
 Fig. 1. Histogram of age distribution of survey respondents.
 
 ## Summary of Survey Response Data
+
 ```{r}
 # read csv
 d = read.csv('data/jkidson_ugandasms.csv')
@@ -41,3 +42,90 @@ summary(d)
 ```
 
 ### [Citizen Monitoring Github Page](https://github.com/citizen-monitoring)
+
+## Data Wrangling
+
+### Reading CSV with readr
+```{r} 
+library(readr)
+
+d = read_csv('data/jkidson_ugandasms.csv')
+head(d)
+summary(d)
+```
+
+### dplyr Demo
+
+#### Pseudocode
+```{r}
+# read in csv
+# view data
+# limit columns to Zone and satis
+# limit rows to just zone "CORNER"
+# get count for each satisfaction level
+# write out csv
+```
+
+#### Multiple Variables
+```{r}
+# read in csv
+surveys = read.csv('data/jkidson_ugandasms.csv') 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit columns to species and year
+surveys_2 = surveys[,c('Zone', 'satis')]
+
+# limit rows to just species "NL"
+surveys_3 = surveys_2[surveys_2$Zone  == 'CORNER',]
+
+# get count per year
+surveys_4 = aggregate(Zone ~ satis, data=surveys_3, FUN='length')
+
+# write to csv
+write.csv(surveys_4, 'data/surveys_jkidson.csv', row.names = FALSE)
+```
+
+#### Nested Functions 
+
+(For some reason this nested function is giving me an error, so I commented it out for now. I'll come back to it if I have time after the group assignment.)
+```{r}
+# read in data
+surveys = read.csv('data/jkidson_ugandasms.csv') 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit data with [], aggregate to count, write to csv
+# write.csv(
+#  aggregate(
+#    Zone ~ satis, 
+#    data = surveys[surveys$satis  == 'CORNER', c('Zone', 'satis')], 
+#    FUN = 'length'), 
+#  'data/surveys_jkidson.csv',
+#  row.names = FALSE)
+```
+
+#### Using dplyr
+```{r}
+# load libraries
+library(readr)
+library(dplyr)
+```
+
+```{r}
+# read in csv
+surveys = read_csv('data/jkidson_ugandasms.csv') 
+
+# dplyr elegance
+surveys %T>%                            # note tee operator %T>% for glimpse
+  glimpse() %>%                         # view data
+  select(Zone, satis) %>%               # limit columns
+  filter(Zone  == 'CORNER') %>%         # limit rows
+  group_by(satis) %>%                   # get count by first grouping
+  summarize(n = n()) %>%                # then summarize
+  write_csv('data/surveys_jkidson.csv') # write out csv
+```

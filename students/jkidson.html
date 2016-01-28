@@ -74,6 +74,7 @@ img {
 <li><a href="#data">Data</a></li>
 <li><a href="#image">Image</a></li>
 <li><a href="#summary-of-survey-response-data">Summary of Survey Response Data</a></li>
+<li><a href="#data-wrangling">Data Wrangling</a></li>
 </ul>
 </div>
 
@@ -118,16 +119,177 @@ summary(d)</code></pre>
 ##            LUBIRI : 14   3rd Qu.:13.000                3rd Qu.:35.0  
 ##            B 9    : 13   Max.   :65.000                Max.   :76.0  
 ##            (Other):934                                               
-##  satisfaction_rubbish_collection
-##  dissatisfied  :320             
-##  neither_satisf:124             
-##  satisfied     :270             
-##  very_dissatisf:283             
-##  very_satisfied: 43             
-##                                 
+##             satis    
+##  dissatisfied  :320  
+##  neither_satisf:124  
+##  satisfied     :270  
+##  very_dissatisf:283  
+##  very_satisfied: 43  
+##                      
 ## </code></pre>
 <div id="citizen-monitoring-github-page" class="section level3">
 <h3><a href="https://github.com/citizen-monitoring">Citizen Monitoring Github Page</a></h3>
+</div>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2>Data Wrangling</h2>
+<div id="reading-csv-with-readr" class="section level3">
+<h3>Reading CSV with readr</h3>
+<pre class="r"><code>library(readr)
+
+d = read_csv('data/jkidson_ugandasms.csv')
+head(d)</code></pre>
+<pre><code>##   Nominated      Zone years_zone gender age          satis
+## 1       yes    LUGOBA          6 female  30 very_dissatisf
+## 2        no  KISOWERA         30 female  40      satisfied
+## 3       yes  KISOWERA         15   male  29      satisfied
+## 4       yes GOOD HOPE          1 female  42 very_satisfied
+## 5       yes    LUGOBA          2   male  23      satisfied
+## 6        no    CORNER          3 female  30 very_dissatisf</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##   Nominated             Zone             years_zone        gender         
+##  Length:1040        Length:1040        Min.   : 1.000   Length:1040       
+##  Class :character   Class :character   1st Qu.: 2.000   Class :character  
+##  Mode  :character   Mode  :character   Median : 5.000   Mode  :character  
+##                                        Mean   : 9.192                     
+##                                        3rd Qu.:13.000                     
+##                                        Max.   :65.000                     
+##       age          satis          
+##  Min.   :18.0   Length:1040       
+##  1st Qu.:23.0   Class :character  
+##  Median :28.0   Mode  :character  
+##  Mean   :30.5                     
+##  3rd Qu.:35.0                     
+##  Max.   :76.0</code></pre>
+</div>
+<div id="dplyr-demo" class="section level3">
+<h3>dplyr Demo</h3>
+<div id="pseudocode" class="section level4">
+<h4>Pseudocode</h4>
+<pre class="r"><code># read in csv
+# view data
+# limit columns to Zone and satis
+# limit rows to just zone &quot;CORNER&quot;
+# get count for each satisfaction level
+# write out csv</code></pre>
+</div>
+<div id="multiple-variables" class="section level4">
+<h4>Multiple Variables</h4>
+<pre class="r"><code># read in csv
+surveys = read.csv('data/jkidson_ugandasms.csv') 
+
+# view data
+head(surveys)</code></pre>
+<pre><code>##   Nominated      Zone years_zone gender age          satis
+## 1       yes    LUGOBA          6 female  30 very_dissatisf
+## 2        no  KISOWERA         30 female  40      satisfied
+## 3       yes  KISOWERA         15   male  29      satisfied
+## 4       yes GOOD HOPE          1 female  42 very_satisfied
+## 5       yes    LUGOBA          2   male  23      satisfied
+## 6        no    CORNER          3 female  30 very_dissatisf</code></pre>
+<pre class="r"><code>summary(surveys)</code></pre>
+<pre><code>##  Nominated      Zone       years_zone        gender         age      
+##  no :504   ZONE I : 24   Min.   : 1.000   female:442   Min.   :18.0  
+##  yes:536   ZONE V : 22   1st Qu.: 2.000   male  :598   1st Qu.:23.0  
+##            CHURCH : 18   Median : 5.000                Median :28.0  
+##            LUGOBA : 15   Mean   : 9.192                Mean   :30.5  
+##            LUBIRI : 14   3rd Qu.:13.000                3rd Qu.:35.0  
+##            B 9    : 13   Max.   :65.000                Max.   :76.0  
+##            (Other):934                                               
+##             satis    
+##  dissatisfied  :320  
+##  neither_satisf:124  
+##  satisfied     :270  
+##  very_dissatisf:283  
+##  very_satisfied: 43  
+##                      
+## </code></pre>
+<pre class="r"><code># limit columns to species and year
+surveys_2 = surveys[,c('Zone', 'satis')]
+
+# limit rows to just species &quot;NL&quot;
+surveys_3 = surveys_2[surveys_2$Zone  == 'CORNER',]
+
+# get count per year
+surveys_4 = aggregate(Zone ~ satis, data=surveys_3, FUN='length')
+
+# write to csv
+write.csv(surveys_4, 'data/surveys_jkidson.csv', row.names = FALSE)</code></pre>
+</div>
+<div id="nested-functions" class="section level4">
+<h4>Nested Functions</h4>
+<p>(For some reason this nested function is giving me an error, so I commented it out for now. I’ll come back to it if I have time after the group assignment.)</p>
+<pre class="r"><code># read in data
+surveys = read.csv('data/jkidson_ugandasms.csv') 
+
+# view data
+head(surveys)</code></pre>
+<pre><code>##   Nominated      Zone years_zone gender age          satis
+## 1       yes    LUGOBA          6 female  30 very_dissatisf
+## 2        no  KISOWERA         30 female  40      satisfied
+## 3       yes  KISOWERA         15   male  29      satisfied
+## 4       yes GOOD HOPE          1 female  42 very_satisfied
+## 5       yes    LUGOBA          2   male  23      satisfied
+## 6        no    CORNER          3 female  30 very_dissatisf</code></pre>
+<pre class="r"><code>summary(surveys)</code></pre>
+<pre><code>##  Nominated      Zone       years_zone        gender         age      
+##  no :504   ZONE I : 24   Min.   : 1.000   female:442   Min.   :18.0  
+##  yes:536   ZONE V : 22   1st Qu.: 2.000   male  :598   1st Qu.:23.0  
+##            CHURCH : 18   Median : 5.000                Median :28.0  
+##            LUGOBA : 15   Mean   : 9.192                Mean   :30.5  
+##            LUBIRI : 14   3rd Qu.:13.000                3rd Qu.:35.0  
+##            B 9    : 13   Max.   :65.000                Max.   :76.0  
+##            (Other):934                                               
+##             satis    
+##  dissatisfied  :320  
+##  neither_satisf:124  
+##  satisfied     :270  
+##  very_dissatisf:283  
+##  very_satisfied: 43  
+##                      
+## </code></pre>
+<pre class="r"><code># limit data with [], aggregate to count, write to csv
+# write.csv(
+#  aggregate(
+#    Zone ~ satis, 
+#    data = surveys[surveys$satis  == 'CORNER', c('Zone', 'satis')], 
+#    FUN = 'length'), 
+#  'data/surveys_jkidson.csv',
+#  row.names = FALSE)</code></pre>
+</div>
+<div id="using-dplyr" class="section level4">
+<h4>Using dplyr</h4>
+<pre class="r"><code># load libraries
+library(readr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code># read in csv
+surveys = read_csv('data/jkidson_ugandasms.csv') 
+
+# dplyr elegance
+surveys %T&gt;%                            # note tee operator %T&gt;% for glimpse
+  glimpse() %&gt;%                         # view data
+  select(Zone, satis) %&gt;%               # limit columns
+  filter(Zone  == 'CORNER') %&gt;%         # limit rows
+  group_by(satis) %&gt;%                   # get count by first grouping
+  summarize(n = n()) %&gt;%                # then summarize
+  write_csv('data/surveys_jkidson.csv') # write out csv</code></pre>
+<pre><code>## Observations: 1,040
+## Variables: 6
+## $ Nominated  (chr) &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes...
+## $ Zone       (chr) &quot;LUGOBA&quot;, &quot;KISOWERA&quot;, &quot;KISOWERA&quot;, &quot;GOOD HOPE&quot;, &quot;LUG...
+## $ years_zone (int) 6, 30, 15, 1, 2, 3, 3, 13, 1, 2, 9, 35, 10, 4, 35, ...
+## $ gender     (chr) &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;fema...
+## $ age        (int) 30, 40, 29, 42, 23, 30, 26, 32, 25, 22, 30, 35, 29,...
+## $ satis      (chr) &quot;very_dissatisf&quot;, &quot;satisfied&quot;, &quot;satisfied&quot;, &quot;very_s...</code></pre>
+</div>
 </div>
 </div>
 
