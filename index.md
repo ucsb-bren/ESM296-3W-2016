@@ -30,28 +30,38 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 
 Each week you will be given an assignment in class, and we will spend some time working on it there. The completed assignment will be turned in via Github, due by 5pm the day before the next class, ie Thursday. Most assignments will have individual and group components.
 
-## Final Project
-
-- presentation: 20 min (incl. 5 min for questions)
-- paper: 5 pages
-
-The paper should be written in Rmarkdown and have the following headings:
-
-- **Introduction** Introduce your topic, providing examples of scientific questions and problem statements.
-- **Innovative Examples** Provide at least 3 examples of innovative approaches to solving or at least communicating the problem. Figures and tables are especially welcome.
-- **Methods** Introduce the goals of your analysis. Summarize.
-- **Results**
-- **Discussion**. Include recommendations for future.
-- **References**
-- **Code Appendix** Provide the chunks of R code for your analysis as an appendix and summarize
-
-You will work in small groups for the final project. There will also be a short paper accompanied by an in class presentation to be submitted the final week of class. This project will provide a review of several examples of innovative applications of data analysis or computing that illustrate how the strategic use of informatics can change how we think about or approach solving environmental problems. One of these examples will present the cumulative analysis of your own small group's work applying analytical techniques to a custom dataset. The other examples should come from literature, and/or online in a related topic.
-
 ### Grading
 
 - 70% assignments (7 assignments @ 10% each)
 - 20% final project (paper + presentation)
 - 10% participation
+
+## Final Project
+
+You will work in small groups for the final project. There will also be a short paper accompanied by an in class presentation to be submitted the final week of class. This project will provide a review of several examples of innovative applications of data analysis or computing that illustrate how the strategic use of informatics can change how we think about or approach solving environmental problems. One of these examples will present the cumulative analysis of your own small group's work applying analytical techniques to a custom dataset. The other examples should come from literature, and/or online in a related topic.
+
+- presentation: 20 min (incl. 5 min for questions)
+- paper: 5 pages
+
+The "live" paper will live on your class group website, rendered from Rmarkdown to HTML, possibly containing interactive elements.
+
+- **Introduction**
+  Introduce your topic, providing specific scientific questions and problem statements.
+  
+- **Innovative Examples**
+  Provide at least 3 examples of innovative approaches to solving or at least communicating the problem. Figures and tables are especially welcome.
+  
+- **Methods**
+  Introduce the goals of your analysis. Summarize the methods of your analysis. Reference a [Github release](https://help.github.com/articles/creating-releases/) of your organization's repository, which should contain all the commented code for your analysis.
+  
+- **Results**
+  Present the tables and figures from your analysis along with text that summarizes these findings. You're encouraged to use sortable tables and interactive figures.
+
+- **Discussion**
+  Discuss the implications of your findings. Include recommendations for future analysis.
+  
+- **References**
+  Include at least 5 references, which can be any combination of scientific literature and/or websites.
 
 ## Schedule
 
@@ -121,7 +131,7 @@ The majority of exciting interactive application development is happening these 
 
 ### 7. Advanced Programming
 
-#### Feb 19 8-noon [NT]
+#### Feb 19, 8-noon [NT]
 
 Developing more complex programs involves breaking data analysis down into key components - and organizing these components so that they can be easily re-used, modified and linked with other programs. We will introduce you to techniques for structured programming. You'll learn how to create your own [R package](http://r-pkgs.had.co.nz/intro.html).
 
@@ -129,7 +139,7 @@ Two essential components of programming best practices are documentation and tes
 
 ### 8. Interactive Applications
 
-#### Feb 26 8-noon [BB]
+#### Feb 26, 8-noon [BB]
 
 Continuing with the online interactive theme, we'll explore the world of making [Shiny](http://shiny.rstudio.com/) apps for truly interactive applications that allow for backend R functions reactive to user inputs to a clean web interface easily rendered with the most minimal amount of code. See the [shiny cheat sheet](http://shiny.rstudio.com/images/shiny-cheatsheet.pdf).
 
@@ -141,7 +151,7 @@ Because of [Bren Group Project](http://www.bren.ucsb.edu/research/gp_submit.html
 
 ### 10. Final Project Presentations
 
-#### Mar 11 8-noon
+#### Mar 11, 8-noon
 
 You'll share your final project presentations in class, describing the scientific question asked, methodological steps taken to gather and clean data, analytical steps and visualizations. This will be done with an Rmarkdown presentation having a Shiny app embedded with all code made available on a Github repository (ie at your group's org.github.io site).
 
