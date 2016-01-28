@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Wrangling Data II</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-26 16:23</em></h4>
+<h4 class="date"><em>2016-01-27 15:59</em></h4>
 </div>
 
 
@@ -174,24 +174,47 @@ img {
 <div id="materials" class="section level2">
 <h2>Materials</h2>
 <ul>
+<li><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">vignette: Introduction to dplyr</a></li>
+<li><a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">vignette: Tidy data</a></li>
+<li><a href="http://rpubs.com/tjmahr/dplyr_2015">dplyr: verbs for manipulating data-frames</a> (source: <a href="https://github.com/tjmahr/MadR_Pipelines">tjmahr/MadR_Pipelines</a>)</li>
 <li><a href="https://stat545-ubc.github.io/">stat545-ubc: Data wrangling, exploration, and analysis with R</a></li>
+<li><a href="http://stat545-ubc.github.io/block009_dplyr-intro.html">Introduction to dplyr</a></li>
+<li><a href="http://stat545-ubc.github.io/block010_dplyr-end-single-table.html">dplyr functions for a single dataset</a></li>
+<li><a href="http://stat545-ubc.github.io/hw03_dplyr-and-more-ggplot2.html">Homework 03: Use dplyr to manipulate and explore data (also use ggplot2)</a></li>
+<li><a href="http://stat545-ubc.github.io/cm102_regular-expressions.html">regular expressions &amp; character data in R</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/">Software Carpentry: R for reproducible scientific analysis</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html">Dataframe manipulation with dplyr</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html">Dataframe manipulation with tidyr</a></li>
 </ul>
 </div>
 <div id="demo" class="section level2">
 <h2>Demo</h2>
-<p>nycflights13</p>
-<pre class="r"><code>library(dplyr)
-library(nycflights13)
-
-# Convert data to a tbl_df so that it uses dplyr&#39;s nice print method
+<div id="nycflights13" class="section level3">
+<h3><code>nycflights13</code></h3>
+<p>flights departing NYC in 2013</p>
+<p>We’ll use this example dataset to play with functions in the <code>dplyr</code> package, “borrowing” heavily from the excellent presentation by <span class="citation">@tjmahr [dplyr: verbs for manipulating data-frames]</span>(<a href="http://rpubs.com/tjmahr/dplyr_2015" class="uri">http://rpubs.com/tjmahr/dplyr_2015</a>).</p>
+<pre class="r"><code># load libraries
+library(dplyr)
+library(nycflights13) # install.packages(&#39;nycflights13&#39;)</code></pre>
+</div>
+<div id="tbl_df" class="section level3">
+<h3><code>tbl_df</code></h3>
+<p>create a “data frame tbl”</p>
+<p>The main advantage to using a <code>tbl_df</code> over a regular <code>data.frame</code> is the printing: tbl objects only print a few rows and all the columns that fit on one screen, describing the rest of it as text and including the data type.</p>
+<pre class="r"><code># Convert data to a tbl_df so that it uses dplyr&#39;s nice print method
 flights &lt;- tbl_df(flights)
-flights
-
-# Use glimpse to few some values in each column
-glimpse(flights)
-
-# filter: inspect subsets of data
-# How many flights flew to Madison in 2013?
+flights</code></pre>
+</div>
+<div id="glimpse" class="section level3">
+<h3><code>glimpse</code></h3>
+<p>view data horizontally</p>
+<pre class="r"><code># Use glimpse to few some values in each column
+glimpse(flights)</code></pre>
+</div>
+<div id="filter" class="section level3">
+<h3><code>filter</code></h3>
+<p>limit rows</p>
+<pre class="r"><code># How many flights flew to Madison in 2013?
 flights %&gt;%
   filter(dest == &quot;MSN&quot;)
 
@@ -201,17 +224,18 @@ flights %&gt;%
 flights %&gt;%
   filter(dest == &quot;MSN&quot;, month == 1, day &lt;= 7)
 
-# QuestionCommas in the filter statement are implicit &amp; (and) operators. Is there anything similar for | (or)?
-# Logical or statements are supported, but there&#39;s no shorthand.
+# Question: Commas in the filter statement are implicit &amp; (and) operators. Is there anything similar for | (or)?
+# Logical OR statements are supported, but there&#39;s no shorthand.
 flights %&gt;%
   filter(dest == &quot;MSN&quot; | dest == &quot;ORD&quot; | dest == &quot;MDW&quot;)
 # For more complicated checks, I would try a set operation.
 flights %&gt;%
-  filter(dest %in% c(&quot;MSN&quot;, &quot;ORD&quot;, &quot;MDW&quot;))
-
-
-# arrange: sort columns
-# Sort by which airport they departed from in NYC, then year, month, day.
+  filter(dest %in% c(&quot;MSN&quot;, &quot;ORD&quot;, &quot;MDW&quot;))</code></pre>
+</div>
+<div id="arrange" class="section level3">
+<h3><code>arrange</code></h3>
+<p>sort rows by columns</p>
+<pre class="r"><code># Sort by which airport they departed from in NYC, then year, month, day.
 flights %&gt;%
   arrange(origin, year, month, day)
 
@@ -219,10 +243,12 @@ flights %&gt;%
 # Find longest delayed flights to Madison.
 flights %&gt;%
   filter(dest == &quot;MSN&quot;) %&gt;%
-  arrange(desc(dep_delay))
-
-# select
-# Select the columns you want.
+  arrange(desc(dep_delay))</code></pre>
+</div>
+<div id="select" class="section level3">
+<h3><code>select</code></h3>
+<p>select/rename columns</p>
+<pre class="r"><code># Select the columns you want.
 flights %&gt;%
   select(origin, year, month, day)
 
@@ -236,7 +262,7 @@ flights %&gt;%
 flights %&gt;%
   select(-dest, -starts_with(&quot;arr&quot;),
          -ends_with(&quot;time&quot;))</code></pre>
-<p>Recap: Verbs for inspecting data:</p>
+<p><strong>Recap</strong> verbs for inspecting data:</p>
 <ul>
 <li>convert to a <code>tbl_df</code> - nice print method</li>
 <li><code>glimpse</code> - some of each column</li>
@@ -244,22 +270,38 @@ flights %&gt;%
 <li><code>arrange</code> - sorting (desc to reverse the sort)</li>
 <li><code>select</code> - picking (and omiting) columns</li>
 </ul>
-<pre class="r"><code># rename
-# Rename columns with rename(NewName = OldName). To keep the order correct, read/remember the renaming = as “was”.
+<p><strong>Next</strong>: verbs for manipulating data:</p>
+<ul>
+<li>convert to a <code>tbl_df</code> - nice print method</li>
+<li><code>glimpse</code> - some of each column</li>
+<li><code>filter</code> - subsetting</li>
+<li><code>arrange</code> - sorting (desc to reverse the sort)</li>
+<li><code>select</code> - picking (and omiting) columns</li>
+</ul>
+</div>
+<div id="rename" class="section level3">
+<h3><code>rename</code></h3>
+<p>rename columns</p>
+<pre class="r"><code># Rename columns with rename(NewName = OldName). To keep the order correct, read/remember the renaming = as “was”.
 flights %&gt;%
-  rename(y = year, m = month, d = day)
-
-# mutate
-# How much departure delay did the flight make up for in the air?
+  rename(y = year, m = month, d = day)</code></pre>
+</div>
+<div id="mutate" class="section level3">
+<h3><code>mutate</code></h3>
+<p>add new variables</p>
+<pre class="r"><code># How much departure delay did the flight make up for in the air?
 flights %&gt;%
   mutate(
     gain = arr_delay - dep_delay,
     speed = (distance / air_time) * 60,
     gain_per_hour = gain / (air_time / 60)) %&gt;%
-  select(gain:gain_per_hour)
+  select(gain:gain_per_hour)</code></pre>
+</div>
+<div id="group_by-summarise" class="section level3">
+<h3><code>group_by</code>, <code>summarise</code></h3>
+<p>aggregate rows</p>
+<pre class="r"><code># Let&#39;s compute the average delay per month of flights to Madison.
 
-# group_by
-# Let&#39;s compute the average delay per month of flights to Madison.
 # Normally–in aggregate, by or plyr&#39;s d*ply functions–you specify the grouping as an argument to the aggregation function.
 aggregate(dep_delay ~ month, flights, mean,
           subset = flights$dest == &quot;MSN&quot;)
@@ -301,8 +343,27 @@ per_day
 # Peel off month grouping
 per_month &lt;- per_day %&gt;%
   summarise(flights = sum(flights))
-per_month</code></pre>
-<p>That covers 80% of dplyr:</p>
+per_month
+
+# mutate also respects grouping
+
+# Rank flight delays within each destination and month. (dplyr provides
+# a bunch of ranking functions. See the [cheatsheet][cheatsheets].)
+flights %&gt;%
+  group_by(dest, month) %&gt;%
+  mutate(timely = row_number(dep_delay),
+         late = row_number(desc(dep_delay))) %&gt;%
+  select(dep_delay, timely:late)
+
+# This is also good for mean-centering variables within groups.
+mean_center &lt;- function(xs) {
+  xs - mean(xs, na.rm = TRUE)
+}
+flights %&gt;%
+  group_by(dest, month) %&gt;%
+  mutate(c_delay = mean_center(dep_delay)) %&gt;%
+  select(dep_delay, c_delay)</code></pre>
+<p><strong>Recap</strong>: That covers 80% of dplyr:</p>
 <ul>
 <li><code>select</code></li>
 <li><code>filter</code></li>
@@ -313,28 +374,22 @@ per_month</code></pre>
 <li><code>group_by</code>, <code>ungroup</code></li>
 <li><code>summarise</code></li>
 </ul>
-<p>Other 20%</p>
+<p><strong>Other</strong> 20%:</p>
 <ul>
 <li>assembly: <code>bind_rows</code>, <code>bind_cols</code></li>
 <li>column-wise operations: <code>mutate_each</code>, <code>summarise_each</code></li>
 <li>join tables together: <code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code></li>
 <li>filtering joins: <code>semi_join</code>, `anti_join</li>
 <li><code>do</code>: arbitrary code on each chunk</li>
-<li>different types of tabular data (databases, data.tables)</li>
-</ul>
-<div id="tidyr" class="section level3">
-<h3>tidyr</h3>
-<ul>
-<li>what is an observation? wide vs long format</li>
+<li><p>different types of tabular data (databases, data.tables)</p></li>
+<li>join, inner, outer, anti. vs merge. relational database.</li>
+<li><p>middleware abstraction. try with sqlite as relational db.</p></li>
 </ul>
 </div>
-<div id="dplyr" class="section level3">
-<h3>dplyr</h3>
+<div id="tidyr" class="section level3">
+<h3>tidyr…</h3>
 <ul>
-<li><p>group_by</p></li>
-<li><p>mutate</p></li>
-<li><p>join, inner, outer, anti. vs merge. relational database.</p></li>
-<li><p>middleware abstraction. try with sqlite as relational db.</p></li>
+<li>what is an observation? wide vs long format</li>
 </ul>
 </div>
 </div>
@@ -343,14 +398,20 @@ per_month</code></pre>
 <div id="individual" class="section level3">
 <h3>Individual</h3>
 <p>Answer the following questions using <code>dplyr</code> and <code>tidyr</code> about GHG emissions since 1970…</p>
-<pre class="r"><code>library(readxl)
+<pre class="r"><code>library(readxl) # install.packages(&#39;readxl&#39;)
+
 url = &#39;http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls&#39;
-xls = &#39;data/CO2_1970-2014_dataset_of_CO2_report_2015.xls&#39;
+xls = &#39;../data/co2_europa.xls&#39;
+
+if (basename(getwd())==&#39;env-info&#39;){
+  setwd(&#39;students&#39;)
+}
 
 if (!file.exists(xls)){
   download.file(url, xls)
 }
-d = read_excel(xls, skip=12)</code></pre>
+co2 = read_excel(xls, skip=12)</code></pre>
+<p><em>Question. Why use <code>skip=12</code> argument in <code>read_excel()</code>?</em></p>
 <p>sources: - <a href="http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&amp;sort=des9">CO2 time series per region/country | EUROPA</a> - <a href="https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions">List of countries by carbon dioxide emissions - Wikipedia, the free encyclopedia</a></p>
 <ul>
 <li><p>top 3 emitters in last year? compared to rest of world?</p></li>

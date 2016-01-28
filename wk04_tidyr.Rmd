@@ -26,24 +26,58 @@ output: html_document
 
 ## Materials
 
+- [vignette: Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
+- [vignette: Tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
+- [dplyr: verbs for manipulating data-frames](http://rpubs.com/tjmahr/dplyr_2015) (source: [tjmahr/MadR_Pipelines](https://github.com/tjmahr/MadR_Pipelines))
 - [stat545-ubc: Data wrangling, exploration, and analysis with R](https://stat545-ubc.github.io/)
-
+  - [Introduction to dplyr](http://stat545-ubc.github.io/block009_dplyr-intro.html)
+  - [dplyr functions for a single dataset](http://stat545-ubc.github.io/block010_dplyr-end-single-table.html)
+  - [Homework 03: Use dplyr to manipulate and explore data (also use ggplot2)](http://stat545-ubc.github.io/hw03_dplyr-and-more-ggplot2.html)
+  - [regular expressions & character data in R](http://stat545-ubc.github.io/cm102_regular-expressions.html)
+- [Software Carpentry: R for reproducible scientific analysis](http://swcarpentry.github.io/r-novice-gapminder/)
+  - [Dataframe manipulation with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html)
+  - [Dataframe manipulation with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html)
+  
 ## Demo
 
-nycflights13
+### `nycflights13`
 
-```{r dplyr I, eval=F}
+flights departing NYC in 2013
+
+We'll use this example dataset to play with functions in the `dplyr` package, "borrowing" heavily from the excellent presentation by @tjmahr [dplyr: verbs for manipulating data-frames](http://rpubs.com/tjmahr/dplyr_2015).
+
+```{r dplyr nycflights13, eval=F}
+# load libraries
 library(dplyr)
-library(nycflights13)
+library(nycflights13) # install.packages('nycflights13')
+```
 
+### `tbl_df`
+
+create a "data frame tbl"
+
+The main advantage to using a `tbl_df` over a regular `data.frame` is the printing: tbl objects only print a few rows and all the columns that fit on one screen, describing the rest of it as text and including the data type.
+
+```{r dplyr tbl_df, eval=F}
 # Convert data to a tbl_df so that it uses dplyr's nice print method
 flights <- tbl_df(flights)
 flights
+```
 
+### `glimpse`
+
+view data horizontally
+
+```{r dplyr glimpse, eval=F}
 # Use glimpse to few some values in each column
 glimpse(flights)
+```
 
-# filter: inspect subsets of data
+### `filter`
+
+limit rows
+
+```{r dplyr filter, eval=F}
 # How many flights flew to Madison in 2013?
 flights %>%
   filter(dest == "MSN")
@@ -54,16 +88,20 @@ flights %>%
 flights %>%
   filter(dest == "MSN", month == 1, day <= 7)
 
-# QuestionCommas in the filter statement are implicit & (and) operators. Is there anything similar for | (or)?
-# Logical or statements are supported, but there's no shorthand.
+# Question: Commas in the filter statement are implicit & (and) operators. Is there anything similar for | (or)?
+# Logical OR statements are supported, but there's no shorthand.
 flights %>%
   filter(dest == "MSN" | dest == "ORD" | dest == "MDW")
 # For more complicated checks, I would try a set operation.
 flights %>%
   filter(dest %in% c("MSN", "ORD", "MDW"))
+```
 
+### `arrange`
 
-# arrange: sort columns
+sort rows by columns
+
+```{r dplyr arrange, eval=F}
 # Sort by which airport they departed from in NYC, then year, month, day.
 flights %>%
   arrange(origin, year, month, day)
@@ -73,8 +111,13 @@ flights %>%
 flights %>%
   filter(dest == "MSN") %>%
   arrange(desc(dep_delay))
+```
 
-# select
+### `select`
+
+select/rename columns
+
+```{r dplyr select, eval=F}
 # Select the columns you want.
 flights %>%
   select(origin, year, month, day)
@@ -91,7 +134,7 @@ flights %>%
          -ends_with("time"))
 ```
 
-Recap: Verbs for inspecting data:
+**Recap** verbs for inspecting data:
 
 - convert to a `tbl_df` - nice print method
 - `glimpse` - some of each column
@@ -99,13 +142,30 @@ Recap: Verbs for inspecting data:
 - `arrange` - sorting (desc to reverse the sort)
 - `select` - picking (and omiting) columns
 
-```{r dplyr II, eval=F}
-# rename
+**Next**: verbs for manipulating data:
+
+- convert to a `tbl_df` - nice print method
+- `glimpse` - some of each column
+- `filter` - subsetting
+- `arrange` - sorting (desc to reverse the sort)
+- `select` - picking (and omiting) columns
+
+
+### `rename`
+
+rename columns
+
+```{r dplyr rename, eval=F}
 # Rename columns with rename(NewName = OldName). To keep the order correct, read/remember the renaming = as “was”.
 flights %>%
   rename(y = year, m = month, d = day)
+```
 
-# mutate
+### `mutate`
+
+add new variables
+
+```{r dplyr mutate, eval=F}
 # How much departure delay did the flight make up for in the air?
 flights %>%
   mutate(
@@ -113,9 +173,15 @@ flights %>%
     speed = (distance / air_time) * 60,
     gain_per_hour = gain / (air_time / 60)) %>%
   select(gain:gain_per_hour)
+```
 
-# group_by
+### `group_by`, `summarise`
+
+aggregate rows
+
+```{r dplyr group_by, eval=F}
 # Let's compute the average delay per month of flights to Madison.
+
 # Normally–in aggregate, by or plyr's d*ply functions–you specify the grouping as an argument to the aggregation function.
 aggregate(dep_delay ~ month, flights, mean,
           subset = flights$dest == "MSN")
@@ -158,10 +224,28 @@ per_day
 per_month <- per_day %>%
   summarise(flights = sum(flights))
 per_month
+
+# mutate also respects grouping
+
+# Rank flight delays within each destination and month. (dplyr provides
+# a bunch of ranking functions. See the [cheatsheet][cheatsheets].)
+flights %>%
+  group_by(dest, month) %>%
+  mutate(timely = row_number(dep_delay),
+         late = row_number(desc(dep_delay))) %>%
+  select(dep_delay, timely:late)
+
+# This is also good for mean-centering variables within groups.
+mean_center <- function(xs) {
+  xs - mean(xs, na.rm = TRUE)
+}
+flights %>%
+  group_by(dest, month) %>%
+  mutate(c_delay = mean_center(dep_delay)) %>%
+  select(dep_delay, c_delay)
 ```
 
-
-That covers 80% of dplyr:
+**Recap**: That covers 80% of dplyr:
 
 - `select`
 - `filter`
@@ -172,7 +256,7 @@ That covers 80% of dplyr:
 - `group_by`, `ungroup`
 - `summarise`
 
-Other 20%
+**Other** 20%:
 
 - assembly: `bind_rows`, `bind_cols`
 - column-wise operations: `mutate_each`, `summarise_each`
@@ -181,19 +265,12 @@ Other 20%
 - `do`: arbitrary code on each chunk
 - different types of tabular data (databases, data.tables)
 
-### tidyr
+- join, inner, outer, anti. vs merge. relational database.
+- middleware abstraction. try with sqlite as relational db.
+
+### tidyr...
 
 - what is an observation? wide vs long format
-
-### dplyr
-
-- group_by
-
-- mutate
-
-- join, inner, outer, anti. vs merge. relational database.
-
-- middleware abstraction. try with sqlite as relational db.
 
 ## Assignment
 
@@ -202,15 +279,22 @@ Other 20%
 Answer the following questions using `dplyr` and `tidyr` about GHG emissions since 1970...
 
 ```{r get-CO2, results='hide'}
-library(readxl)
+library(readxl) # install.packages('readxl')
+
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
-xls = 'data/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+if (basename(getwd())=='env-info'){
+  setwd('students')
+}
 
 if (!file.exists(xls)){
   download.file(url, xls)
 }
-d = read_excel(xls, skip=12)
+co2 = read_excel(xls, skip=12)
 ```
+
+_Question. Why use `skip=12` argument in `read_excel()`?_
 
 sources:
 - [CO2 time series per region/country \| EUROPA](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9)
