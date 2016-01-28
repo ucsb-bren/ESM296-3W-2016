@@ -1,0 +1,43 @@
+---
+title: <span style="color:magenta">**Elise's Cool Website**</span>
+author: "Elise"
+date: "January 18, 2056"
+output: html_document
+---
+
+#### <span style="color:red">**Content**</span>
+        
+I am interested in environmental remediation: pollution modeling and the data analysis that comes with that are my jam. I also think that the tools we are learning in this class are useful in the corporate setting -- performance metrics, etc. could all be run through tools like this.
+
+I also have a [blog](www.elisewall.com) where I post projects and classwork I'm particularly passionate about.
+
+But for practice, I thought I would tell you a little bit about Bill Murray!
+
+![](images/sparrow925_groundhogday.gif)
+
+**How Bill Murray's Part Affects Box Office Profits**
+
+```{r echo=FALSE, comment=NA}
+col1 = c("Leading Actor", "Supporting Actor", "Cameo")
+col2 = c(964264090, 671063320, 321027122)
+col3 = c(24, 16, 5)
+df=data.frame(col1, col2, col3)
+colnames(df) = c("Bill Murray's Role", "Domestic Box Office (US dollars)", "Number of Movies")
+
+df
+
+```
+
+<small>Data for Bill Murray's Box Office numbers sourced from [here](http://www.the-numbers.com/person/103790401-Bill-Murray#tab=summary)</small>
+
+***
+
+#### <span style="color:red">**Techniques**</span>
+        
+Creating code that pushes graphs reflecting up-to-date datasets without doing more than clicking a button resonates deeply with me. Bring on the pretty graphs!
+
+***
+        
+#### <span style="color:red">**Data**</span>
+        
+So far our group is only working with data samples given in RStudio, but as we evolve this quarter I'm excited to see what we dig up!
