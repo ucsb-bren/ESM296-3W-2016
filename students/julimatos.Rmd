@@ -31,10 +31,110 @@ output:
   
 ```{r}
 # read csv
-d = read.csv('data/julimatos_FullData.csv')
+d = read.csv('./data/julimatos_FullData.csv')
       
 # output summary
 summary(d)
 ```
 
 [My Organization](http://fire-mitigation.github.io/)
+
+
+## Data Wrangling
+
+```{r}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+```
+
+## Read a CSV
+```{r}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+## Read a CSV a better way
+```{r}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+### Multiple Variables
+```{r}
+# read in csv
+surveys = read.csv('../data/r-ecology/surveys.csv') 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit columns to species and year
+surveys_2 = surveys[,c('species_id', 'year')]
+
+# limit rows to just species "NL"
+surveys_3 = surveys_2[surveys_2$species_id  == 'NL',]
+
+# get count per year
+surveys_4 = aggregate(species_id ~ year, data=surveys_3, FUN='length')
+
+# write to csv
+write.csv(surveys_4, 'data/surveys_bbest.csv', row.names = FALSE)
+```
+
+### Nested Functions
+```{r}
+# read in data
+surveys = read.csv('../data/r-ecology/surveys.csv') 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit data with [], aggregate to count, write to csv
+write.csv(
+  aggregate(
+    species_id ~ year, 
+    data = surveys[surveys_2$species_id  == 'NL', c('species_id', 'year')], 
+    FUN = 'length'), 
+  'data/surveys_bbest.csv',
+  row.names = FALSE)
+```
+
+### Elegance with dplyr
+```{r}
+# load libraries
+library(readr)
+library(dplyr)
+
+# read in csv
+surveys = read_csv('../data/r-ecology/surveys.csv') 
+
+# dplyr elegance
+surveys %T>%                          # note tee operator %T>% for glimpse
+  glimpse() %>%                       # view data
+  select(species_id, year) %>%        # limit columns
+  filter(species_id  == 'NL') %>%     # limit rows
+  group_by(year) %>%                  # get count by first grouping
+  summarize(n = n()) %>%              #   then summarize
+  write_csv('data/surveys_bbest.csv') # write out csv
+
+```
+
