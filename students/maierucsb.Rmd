@@ -36,14 +36,27 @@ I think collaborative model building and interactive plots and maps will be very
   
   ![](images/maierucsb_2016.png)
   
-  As can be seen, Derrick Rose's overall shooting efficiency has plummeted... This decline can aslo be seen in his overall [stats](http://stats.nba.com/player/#!/201565/)... The future looks tragically quite dim for the former MVP.
+As can be seen, Derrick Rose's statistical climb has regressed... This decline can aslo be seen in his overall [stats](http://stats.nba.com/player/#!/201565/)... The future looks tragically quite dim for the former MVP.
   
 ```{r, echo=FALSE, warning=FALSE}
+## Data Wrangling
+# load libraries
+library(readr);
+library(dplyr);
+
 # read csv
-d = read.csv(file='data/maierucsb_DRose.csv')
-      
+a = read_csv(file='data/maierucsb_data.csv')
+#filter out data
+a %T>%                          
+  select(Season,DRtg,ORtg) %>%
+  mutate(CombineRtg = ORtg+DRtg) %>%
+  summarise("Average Combined Rating"= mean(CombineRtg),
+            "Minimum Combined Rating"= min(CombineRtg),
+            "Maximum Combined Rating"= max(CombineRtg))
+
 # output barplot
-barplot(as.matrix(d[2:16]),cex.names=0.5, xlab="Statistical Category",ylab="Per Game Averages",legend=d$Year)
+b=select(a,Season,PTS,TRB,AST,STL,BLK,TOV)
+barplot(as.matrix(b[2:7]),cex.names=0.9, xlab="Statistical Category",ylab="Per 100 Possession Averages",legend=a$Season,beside=TRUE)
 
 ```
-  
+
