@@ -35,7 +35,9 @@ Due: Jan 28, Thursday 5pm
 
 ### Individual
 
-- Work through the [**wk03_dplyr**](./wk03_dplyr.html) and [wrangling-webinar.pdf](wrangling-webinar.pdf) pdfs by typing in code as R chunks into your `students/<user>.Rmd`, knit to `students/<user>.html`, _commit_ changes locally with a message, _push_ to your `github.com/<user>/env-info` and submit as a _pull request_ to `github.com/ucsb-bren/env-info`.
+- Ensure you have the latest from `bren-ucsb/env-info` by issuing a _pull request_ to your `<user>/env-info` (You may need to "switch the base".) Since you have write permissions on `<user>/env-info`, you should then _Merge_ changes.
+
+- Work through the [**wk03_dplyr**](../wk03_dplyr.html) and [wrangling-webinar.pdf](wrangling-webinar.pdf) pdfs by typing in code as R chunks into your `env-info/students/<user>.Rmd`. I recommend starting this section with a `## Data Wrangling` header and use subheaders below to match the instructions, like `### Multiple Variables`. Be sure to knit to `students/<user>.html`, _commit_ changes locally with a message, _push_ to your `github.com/<user>/env-info` and submit as a _pull request_ to `github.com/ucsb-bren/env-info`.
 
 ### Group
 
@@ -53,7 +55,16 @@ Due: Jan 28, Thursday 5pm
 
   - Add a `data` folder and csv/xls/etc files inside. (Note that empty folders are not recognized by Git, only when they have files inside.)
 
-  - Apply functions from the `readr`, `dplyr`, `tidyr` packages to analyze your data. I recommend adding markdown headers with specific questions (eg `## Who are the Top 10 Carbon Dioxide Emitting Countries?`) and R chunks of code below to answer. 
+  - At the bottom of your group repo's `index.Rmd`, add a header `## Data Question` and type a question similar to [**wk03_dplyr**](../wk03_dplyr.html) for a csv of your choice (besides `surveys.csv` and hopefully relevant to your group's area of study) like _**How many observations of species 'NL' appear each year?**_. Answering your question should require chaining the following `dplyr` functions:
+
+    - `select()`
+    - `filter()`
+    - `group_by()`
+    - `summarize()`
+    
+    Include the R chunk below the question and knit the `index.Rmd` into `index.html`. Be sure to push your results so they show up on the site `http://<org>.github.io`.
+  
+    When I look at the [Blame](https://help.github.com/articles/using-git-blame-to-trace-changes-in-a-file/) for your `index.Rmd`, I would like to see that every member of the group contributed. You can make up another question, add comments, improve code, etc.
 
 ## Resources
 
