@@ -34,6 +34,13 @@ Currently my team and I are working on developing a model that will show the eff
 Learning how to use Github and applying it to the creation of this model would be a great advantage. We are currently cleaning and organizing the data obtained, therefore there are no preliminary results regarding the bio-economic model of snapper. However, here is a short example of some of the data we have available.
 
 ```{r}
+if (basename(getwd())!='students'){
+  setwd('students')
+}
+```
+
+
+```{r}
 # read csv
 d = read.csv('data/julianaherrera_pricessnapper.csv')
       
@@ -65,9 +72,8 @@ pricedata_3 <- pricedata_2[pricedata_2$fishery == 'Artisanal']
 pricedata_4 <- aggregate(fishery ~ year, data = pricedata_3, FUN='length') # counts values per year
 
  #Reshaping data 
-tunadata<- (fishdata) %>%
+tunadata <- (fishdata) %>%
   select(-total) %>%
   gather('month', 'catch', jan:dec) %>%
-  subset(region == 'Golfito', species == 'ATUN')
+  filter(region == 'Golfito' & species == 'ATUN')
 ```
-
