@@ -107,6 +107,8 @@ See also the [data wrangling cheat sheet with dplyr, tidyr](https://www.rstudio.
 
 Data comes in a wide variety of formats. Literally. You'll learn about "wide" vs "narrow" formats with the [tidyr](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) package, as well as how to handle dates/times with [lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html), and strings with [stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html). We'll throw in a bit about [regular expressions](https://stat545-ubc.github.io/block022_regular-expression.html) for good measure.
 
+<a href="wk04_tidyr/" class="btn btn-primary btn-sm">Tidying up Data...</a>
+
 ### 5. Visualizing Data
 
 #### Feb 5 [NT]

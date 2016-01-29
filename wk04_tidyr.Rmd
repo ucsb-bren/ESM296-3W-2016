@@ -1,30 +1,48 @@
 ---
-title: 'Week 4: Wrangling Data II'
+title: 'Week 4: Tidying up Data'
 author: "Ben Best"
 date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
 output: html_document
 ---
 
-## Schedule
-
-- 8:30 - 9:15 [BB] **demo** functions from dplyr, tidyr, lubridate, and stringr libraries by walking through examples all together
-
-- 9:15 - 9:45 [BB] **individual** exercises answering questions from datasets on [CO2 emissions by country 1970-2014](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9)
-
-- 9:45 - 10:00 **break**
-
-- 10:00 - 10:30 [BB] **group** work asking questions and answering them with your own datasets
-
-- 10:30 - 11:30 [NT] **programming concepts**
-
 ## Precursors
 
 ### Invitations
 
-- **organizations**: invite @bbest and @ctague to your https://github.com/<organization> so we can directly _push_ to your site (vs _fork_ & _pull request_)
-- **auditors**: add to GauchoSpace to use announcements there
+- **organizations**: invite @bbest and @naomitague to your `github.com/<org>` so we can directly _push_ to your site (vs _fork_ & _pull request_)
 
-## Materials
+- **auditors**: email bbest@gmail.com to ensure you get announcements via GauchoSpace
+
+### `setwd()`
+
+As mentioned in [wk03_dplyr](./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line), the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for `env-info/students/bbest.Rmd` the working directory is `env-info/students`. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie `env-info`. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I recommend using the following R chunk at the top of your `env-info/students/<user>.Rmd`:
+
+```{r setwd students}
+# set working directory to students if in parent dir
+if ('students' %in% list.files()){
+  setwd('students')
+}
+```
+
+This then ensures that "relative" paths will work the same in your R Console as when knitting your Rmarkdown to HTML. For instance:
+
+```{r, eval=FALSE}
+# absolute: /Users/bbest/github/env-info/students/data/bbest_ports-bc.csv
+d = read.csv('./data/bbest_ports-bc.csv')     # ./data is child of students
+
+# absolute: /Users/bbest/github/env-info/data/r-ecology/surveys.csv
+d = read.csv('../data/r-ecology/surveys.csv') # ../data is sibling of students
+```
+
+The first path uses this folder `.` since that `data` folder is a "child" of the `students` folder, whereas the second path backs up a folder `..` before descending into the `data` folder that is a "sibling" of the `students` folder.
+
+### Assignment (Individual)
+
+For the data wrangling portion of today, append the header `## 4. Tidying up Data` to your `env-info/students/<user>.Rmd` and include R chunks to run the demo and exercise in [**wk04_tidyr**](../wk04_tidyr.html). You'll find it easiest to copy and paste the demo portion from [`env-info/wk04_tidyr.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd) but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.
+
+## [Materials]
+
+To be removed by Jan 29, just for @bbest for now...
 
 - [vignette: Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
 - [vignette: Tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
@@ -37,8 +55,8 @@ output: html_document
 - [Software Carpentry: R for reproducible scientific analysis](http://swcarpentry.github.io/r-novice-gapminder/)
   - [Dataframe manipulation with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html)
   - [Dataframe manipulation with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html)
-  
-## Demo
+
+## dplyr
 
 ### `nycflights13`
 
@@ -96,6 +114,8 @@ flights %>%
 flights %>%
   filter(dest %in% c("MSN", "ORD", "MDW"))
 ```
+
+- 
 
 ### `arrange`
 
@@ -268,13 +288,12 @@ flights %>%
 - join, inner, outer, anti. vs merge. relational database.
 - middleware abstraction. try with sqlite as relational db.
 
-### tidyr...
+## tidyr...
 
 - what is an observation? wide vs long format
 
-## Assignment
 
-### Individual
+## CO<sub>2</sub> Emissions
 
 Answer the following questions using `dplyr` and `tidyr` about GHG emissions since 1970...
 
@@ -317,6 +336,9 @@ sources:
 - just USA
 
 
-### Group
+## References
 
+### Data Wrangling in R
 
+- [Data Wrangling (dplyr, readr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+- [wrangling-webinar.pdf](wrangling-webinar.pdf)

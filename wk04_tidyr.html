@@ -11,7 +11,7 @@
 <meta name="author" content="Ben Best" />
 
 
-<title>Week 4: Wrangling Data II</title>
+<title>Week 4: Tidying up Data</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -145,34 +145,44 @@ img {
   <div class="main-content span9 col-md-9">
 
 <div id="header">
-<h1 class="title">Week 4: Wrangling Data II</h1>
+<h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-27 15:59</em></h4>
+<h4 class="date"><em>2016-01-28 16:15</em></h4>
 </div>
 
 
-<div id="schedule" class="section level2">
-<h2>Schedule</h2>
-<ul>
-<li><p>8:30 - 9:15 [BB] <strong>demo</strong> functions from dplyr, tidyr, lubridate, and stringr libraries by walking through examples all together</p></li>
-<li><p>9:15 - 9:45 [BB] <strong>individual</strong> exercises answering questions from datasets on <a href="http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&amp;sort=des9">CO2 emissions by country 1970-2014</a></p></li>
-<li><p>9:45 - 10:00 <strong>break</strong></p></li>
-<li><p>10:00 - 10:30 [BB] <strong>group</strong> work asking questions and answering them with your own datasets</p></li>
-<li><p>10:30 - 11:30 [NT] <strong>programming concepts</strong></p></li>
-</ul>
-</div>
 <div id="precursors" class="section level2">
 <h2>Precursors</h2>
 <div id="invitations" class="section level3">
 <h3>Invitations</h3>
 <ul>
-<li><strong>organizations</strong>: invite <span class="citation">@bbest</span> and <span class="citation">@ctague</span> to your <a href="https://github.com/" class="uri">https://github.com/</a><organization> so we can directly <em>push</em> to your site (vs <em>fork</em> &amp; <em>pull request</em>)</li>
-<li><strong>auditors</strong>: add to GauchoSpace to use announcements there</li>
+<li><p><strong>organizations</strong>: invite <span class="citation">@bbest</span> and <span class="citation">@naomitague</span> to your <code>github.com/&lt;org&gt;</code> so we can directly <em>push</em> to your site (vs <em>fork</em> &amp; <em>pull request</em>)</p></li>
+<li><p><strong>auditors</strong>: email <a href="mailto:bbest@gmail.com">bbest@gmail.com</a> to ensure you get announcements via GauchoSpace</p></li>
 </ul>
+</div>
+<div id="setwd" class="section level3">
+<h3><code>setwd()</code></h3>
+<p>As mentioned in <a href="./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line">wk03_dplyr</a>, the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for <code>env-info/students/bbest.Rmd</code> the working directory is <code>env-info/students</code>. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie <code>env-info</code>. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I recommend using the following R chunk at the top of your <code>env-info/students/&lt;user&gt;.Rmd</code>:</p>
+<pre class="r"><code># set working directory to students if in parent dir
+if (&#39;students&#39; %in% list.files()){
+  setwd(&#39;students&#39;)
+}</code></pre>
+<p>This then ensures that “relative” paths will work the same in your R Console as when knitting your Rmarkdown to HTML. For instance:</p>
+<pre class="r"><code># absolute: /Users/bbest/github/env-info/students/data/bbest_ports-bc.csv
+d = read.csv(&#39;./data/bbest_ports-bc.csv&#39;)     # ./data is child of students
+
+# absolute: /Users/bbest/github/env-info/data/r-ecology/surveys.csv
+d = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) # ../data is sibling of students</code></pre>
+<p>The first path uses this folder <code>.</code> since that <code>data</code> folder is a “child” of the <code>students</code> folder, whereas the second path backs up a folder <code>..</code> before descending into the <code>data</code> folder that is a “sibling” of the <code>students</code> folder.</p>
+</div>
+<div id="assignment-individual" class="section level3">
+<h3>Assignment (Individual)</h3>
+<p>For the data wrangling portion of today, append the header <code>## 4. Tidying up Data</code> to your <code>env-info/students/&lt;user&gt;.Rmd</code> and include R chunks to run the demo and exercise in <a href="../wk04_tidyr.html"><strong>wk04_tidyr</strong></a>. You’ll find it easiest to copy and paste the demo portion from <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd"><code>env-info/wk04_tidyr.Rmd</code></a> but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.</p>
 </div>
 </div>
 <div id="materials" class="section level2">
-<h2>Materials</h2>
+<h2>[Materials]</h2>
+<p>To be removed by Jan 29, just for <span class="citation">@bbest</span> for now…</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">vignette: Introduction to dplyr</a></li>
 <li><a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">vignette: Tidy data</a></li>
@@ -187,8 +197,8 @@ img {
 <li><a href="http://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html">Dataframe manipulation with tidyr</a></li>
 </ul>
 </div>
-<div id="demo" class="section level2">
-<h2>Demo</h2>
+<div id="dplyr" class="section level2">
+<h2>dplyr</h2>
 <div id="nycflights13" class="section level3">
 <h3><code>nycflights13</code></h3>
 <p>flights departing NYC in 2013</p>
@@ -231,6 +241,9 @@ flights %&gt;%
 # For more complicated checks, I would try a set operation.
 flights %&gt;%
   filter(dest %in% c(&quot;MSN&quot;, &quot;ORD&quot;, &quot;MDW&quot;))</code></pre>
+<ul>
+<li></li>
+</ul>
 </div>
 <div id="arrange" class="section level3">
 <h3><code>arrange</code></h3>
@@ -386,17 +399,15 @@ flights %&gt;%
 <li><p>middleware abstraction. try with sqlite as relational db.</p></li>
 </ul>
 </div>
-<div id="tidyr" class="section level3">
-<h3>tidyr…</h3>
+</div>
+<div id="tidyr" class="section level2">
+<h2>tidyr…</h2>
 <ul>
 <li>what is an observation? wide vs long format</li>
 </ul>
 </div>
-</div>
-<div id="assignment" class="section level2">
-<h2>Assignment</h2>
-<div id="individual" class="section level3">
-<h3>Individual</h3>
+<div id="co2-emissions" class="section level2">
+<h2>CO<sub>2</sub> Emissions</h2>
 <p>Answer the following questions using <code>dplyr</code> and <code>tidyr</code> about GHG emissions since 1970…</p>
 <pre class="r"><code>library(readxl) # install.packages(&#39;readxl&#39;)
 
@@ -428,8 +439,14 @@ co2 = read_excel(xls, skip=12)</code></pre>
 <li><p>just USA</p></li>
 </ul>
 </div>
-<div id="group" class="section level3">
-<h3>Group</h3>
+<div id="references" class="section level2">
+<h2>References</h2>
+<div id="data-wrangling-in-r" class="section level3">
+<h3>Data Wrangling in R</h3>
+<ul>
+<li><a href="{{%20site.baseurl%20}}/refs/cheatsheets/data-wrangling-cheatsheet.pdf">Data Wrangling (dplyr, readr) cheat sheet</a></li>
+<li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
+</ul>
 </div>
 </div>
 
@@ -468,7 +485,7 @@ $(function() {
 });
 </script>
 
-<div style="color:gray">
+<div style="color:gray; text-align: right;" >
   <span class="octicon octicon-repo-forked"></span> <b>Fork</b> me at <a href="http://github.com/ucsb-bren/env-info">github.com/<b>ucsb-bren/env-info</b></a>
 </div>
 

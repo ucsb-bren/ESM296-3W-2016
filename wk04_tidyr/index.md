@@ -1,24 +1,28 @@
 ---
-title: "Week 4: Programming Concepts, Tidying up Data"
+title: "Week 4: Tidying up Data, Programming Concepts"
 layout: default
 ---
 
 ## Schedule
 
-1. 8:30 - 9:30 am
+- 8:30 - 9:15 [BB] **data wrangling demo** [**wk04_tidyr**](../wk04_tidyr.html) functions from dplyr, tidyr, lubridate, and stringr libraries by walking through examples all together
 
-    Programming concepts lecture [Programming Lecture](../wk02_program/programming.full.pdf) [10 min, NT]
-    Programming exercise I [15 min, individually]
-    More on Programming [15 min, NT]
-    Programming exercise II [20 min, individually]
-    
-1. 9:30 - 10:30 am
+- 9:15 - 9:45 [BB] **data wrangling individual** exercises answering questions from dataset on [CO<sub>2</sub> emissions by country 1970-2014](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9)
 
-1. 10:30 - 11:30 am
+- 9:45 - 10:00 **break**
+
+- 10:00 - 10:30 [BB] **data wrangling group** work asking questions and answering them with your own datasets
+
+- 10:30 - 11:30 [NT] **programming concepts**
+
+  - [Programming Lecture](../wk02_program/programming.full.pdf) [10 min]
+  - Programming group exercise [30 min]
 
 ## Assignment
 
-### Tidyr Assignment (Individual)
+### Data Wrangling Assignment (Individual)
+
+1. Append the header `## 4. Tidying up Data` to your `env-info/students/<user>.Rmd` and include R chunks to run the demo and exercise in [**wk04_tidyr**](../wk04_tidyr.html). You'll find it easiest to copy and paste the demo portion from [`env-info/wk04_tidyr.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd) but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.
 
 ### Programing Assignment (Group)
 
@@ -31,4 +35,7 @@ layout: default
 
 ## Resources
 
-## Footnotes
+Data Wrangling:
+
+- [Data Wrangling (dplyr, readr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+- [wrangling-webinar.pdf](wrangling-webinar.pdf)
