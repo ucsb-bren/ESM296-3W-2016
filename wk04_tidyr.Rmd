@@ -7,6 +7,14 @@ output: html_document
 
 ## Precursors
 
+### Final Project
+
+The instructions for your class group's [Final Project](./#final-project) have been updated.
+
+### Schedule
+
+The class for week 9 on March 4th conflicts with the [Bren Group Project](http://www.bren.ucsb.edu/research/gp_submit.html) presentations, so we'll be extending the classes before and after by 1 hour.
+
 ### Invitations
 
 - **organizations**: invite @bbest and @naomitague to your `github.com/<org>` so we can directly _push_ to your site (vs _fork_ & _pull request_)
@@ -38,7 +46,7 @@ The first path uses this folder `.` since that `data` folder is a "child" of the
 
 ### Assignment (Individual)
 
-For the data wrangling portion of today, append the header `## 4. Tidying up Data` to your `env-info/students/<user>.Rmd` and include R chunks to run the demo and exercise in [**wk04_tidyr**](../wk04_tidyr.html). You'll find it easiest to copy and paste the demo portion from [`env-info/wk04_tidyr.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd) but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.
+For the data wrangling portion of today, append the header `## 4. Tidying up Data` to your `env-info/students/<user>.Rmd` and include R chunks to run the demo below and answer questions. You'll find it easiest to copy and paste the demo portion from [`env-info/wk04_tidyr.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd) but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.
 
 ## [Materials]
 
@@ -303,10 +311,7 @@ library(readxl) # install.packages('readxl')
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
 xls = '../data/co2_europa.xls'
 
-if (basename(getwd())=='env-info'){
-  setwd('students')
-}
-
+print(getwd())
 if (!file.exists(xls)){
   download.file(url, xls)
 }

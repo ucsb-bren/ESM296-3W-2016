@@ -43,7 +43,7 @@ You will work in small groups for the final project. There will also be a short 
 - presentation: 20 min (incl. 5 min for questions)
 - paper: 5 pages
 
-The "live" paper will live on your class group website <org>.github.io, to be rendered from Rmarkdown to HTML, and contain the following headers:
+The "live" paper will live on your class group website `<org>.github.io`, to be rendered from Rmarkdown to HTML, and contain the following headers:
 
 - **Introduction**
   Introduce your topic, providing specific scientific questions and problem statements.
@@ -61,7 +61,7 @@ The "live" paper will live on your class group website <org>.github.io, to be re
   Discuss the implications of your findings. Include recommendations for future analysis.
   
 - **References**
-  Include at least 5 references, which can be any combination of scientific literature and/or websites.
+  Mention at least 5 references above and provide the proper ctiations here. These can be any combination of scientific literature and/or websites.
 
 ## Schedule
 
