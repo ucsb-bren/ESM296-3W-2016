@@ -4,71 +4,69 @@ author: "Elise"
 date: "January 18, 2056"
 output: html_document
 ---
+```{r SetExpectations, echo=F, results='hide'}
 
-#### <span style="color:red">**Content**</span>
+# set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}
+
+print(getwd()) # Is this in env-info/students?
+
+suppressPackageStartupMessages({
+  library(readr)
+  library(dplyr)
+  library(tidyr)
+})
+
+```
+
+### **Content**
         
 I am interested in environmental remediation: pollution modeling and the data analysis that comes with that are my jam. I also think that the tools we are learning in this class are useful in the corporate setting -- performance metrics, etc. could all be run through tools like this.
 
 I also have a [blog](www.elisewall.com) where I post projects and classwork I'm particularly passionate about.
 
-But for practice, I thought I would tell you a little bit about Bill Murray!
-
 ![](images/sparrow925_groundhogday.gif)
 
-**How Bill Murray's Part Affects Box Office Profits**
-
-```{r echo=FALSE, comment=NA}
-col1 = c("Leading Actor", "Supporting Actor", "Cameo")
-col2 = c(964264090, 671063320, 321027122)
-col3 = c(24, 16, 5)
-df=data.frame(col1, col2, col3)
-colnames(df) = c("Bill Murray's Role", "Domestic Box Office (US dollars)", "Number of Movies")
-
-df
-
-```
-
-<small>Data for Bill Murray's Box Office numbers sourced from [here](http://www.the-numbers.com/person/103790401-Bill-Murray#tab=summary)</small>
-
 ***
+## Assignment 3
+### **Data Wrangling**
 
-#### <span style="color:red">**Techniques**</span>
-        
-Creating code that pushes graphs reflecting up-to-date datasets without doing more than clicking a button resonates deeply with me. Bring on the pretty graphs!
+####How does using read_csv from the readr package improve data readability?
 
-***
-        
-#### <span style="color:red">**Data**</span>
-        
-So far our group is only working with data samples given in RStudio, but as we evolve this quarter I'm excited to see what we dig up!
+Using read.csv (the default) is pretty messy and unhelpful
 
-***
-#### <span style="color:red">**Data Wrangling**</span>
-
-```{r}
-library(readr)
-library(dplyr)
-
-# setwd('students')
-# Hard to parse what head and summary are spitting out
+```{r read.csv, eval=F}
 d = read.csv('./data/sparrow925_EUSO2.csv')
 head(d)
 summary(d)
+```
 
+Compare that to using read_csv, which gives you usefull info!
+
+```{r read_csv}
 # Oh man the head and summary here are so much more usable
 d2 = read_csv('./data/sparrow925_EUSO2.csv')
 head(d2)
-summary(d2)
+# summary(d2)
 ```
 
+Now, lets use dplyr.
 Let's ask ourselves, how many cities are measured for each country?
 
-```{r}
+#### Using Multiple Variables (The Old Way)
+
+```{r messyway, eval=F}
 # read in csv
 d = read_csv('./data/sparrow925_EUSO2.csv')
-# view data
-head(d)
-summary(d)
 # limit columns to country and city
 d2=d[,c('country_code','city_name')]
 # get count per country
@@ -76,17 +74,37 @@ d3=aggregate(city_name ~ country_code, data=d2, FUN='length')
 # write out csv
 write.csv(d3, './data/sparrow925_EUSO2_citycount.csv', row.names = FALSE)
 ```
-...There is a better way to format this...
 
+#### Using dplyr to Write Compact Code
 
+```{r cleanway, eval=F}
 # read in csv
-#... be careful, there is something wrong here and it crashes R
 sparrow925_EUSO2_dplyr = read_csv('./data/sparrow925_EUSO2.csv')
 sparrow925_EUSO2_dplyr %T>%
   glimpse() %>% # view 
   select(country_code, city_name) %>% # limit columns
-  #filter(country_code='DE') %>% # limit rows
   group_by(city_name) %>% # get count by grouping
   summarize(n=n()) %>% # then summarize
   write.csv('./data/sparrow925_EUSO2_citycount.csv')
+```
+
+***
+### Assignment 4: Tidy CO2 Emissions
+
+```{r Assn4, eval=F}
+library(readxl) # install.packages('readxl')
+
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+# This download seems to corrupt on PCs... look at download.file helpfile, maybe try another method? For now we'll use a workaround I guess.
+print(getwd())
+if (!file.exists(xls)){
+  download.file(url, xls)
+}
+co2 = read_excel(xls, skip=12)
+co2
+
+```
+
 
