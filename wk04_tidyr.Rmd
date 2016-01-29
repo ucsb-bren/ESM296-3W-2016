@@ -23,19 +23,17 @@ The class for week 9 on March 4th conflicts with the [Bren Group Project](http:/
 
 ### `setwd()`
 
-As mentioned in [wk03_dplyr](./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line), the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for `env-info/students/bbest.Rmd` the working directory is `env-info/students`. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie `env-info`. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I recommend using the following R chunk at the top of your `env-info/students/<user>.Rmd`:
+As mentioned in [wk03_dplyr](./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line), the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for `env-info/students/bbest.Rmd` the working directory is `env-info/students`. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie `env-info`. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I **REQUIRE** you to insert the following R chunk near the beginning (but after the Rmarkdown front matter surrounded by the rows `---`) at the top of your `env-info/students/<user>.Rmd`:
 
-```{r setwd students, eval=T, echo=T, include=T}
-# set working directory if has child directory
-dir_child = 'students' 
-if (dir_child %in% list.files()){
-  if (interactive()) {  
-    # R Console
-    setwd(dir_child)
-  } else {              
-    # knitting
-    knitr::opts_knit$set(root.dir=dir_child)  
-  }
+```{r setwd students, eval=F, echo=T}
+# set working directory if has students directory and at R Console (vs knitting)
+if ('students' %in% list.files() & interactive()){
+    setwd('students' )
+}
+
+# ensure working directory is students
+if (basename(getwd()) != 'students'){
+  stop(sprintf("WHOAH! Your working directory is not in 'students'!\n   getwd(): %s", getwd()))
 }
 ```
 
@@ -165,15 +163,13 @@ From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheat
 _**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
 
 ```{r read co2, eval=F}
+library(dplyr)
 library(readxl) # install.packages('readxl')
 
-url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
 xls = '../data/co2_europa.xls'
 
 print(getwd())
-if (!file.exists(xls)){
-  download.file(url, xls)
-}
 co2 = read_excel(xls, skip=12)
 co2
 ```

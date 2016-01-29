@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-29 10:37</em></h4>
+<h4 class="date"><em>2016-01-29 11:00</em></h4>
 </div>
 
 
@@ -170,17 +170,15 @@ img {
 </div>
 <div id="setwd" class="section level3">
 <h3><code>setwd()</code></h3>
-<p>As mentioned in <a href="./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line">wk03_dplyr</a>, the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for <code>env-info/students/bbest.Rmd</code> the working directory is <code>env-info/students</code>. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie <code>env-info</code>. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I recommend using the following R chunk at the top of your <code>env-info/students/&lt;user&gt;.Rmd</code>:</p>
-<pre class="r"><code># set working directory if has child directory
-dir_child = &#39;students&#39; 
-if (dir_child %in% list.files()){
-  if (interactive()) {  
-    # R Console
-    setwd(dir_child)
-  } else {              
-    # knitting
-    knitr::opts_knit$set(root.dir=dir_child)  
-  }
+<p>As mentioned in <a href="./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line">wk03_dplyr</a>, the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for <code>env-info/students/bbest.Rmd</code> the working directory is <code>env-info/students</code>. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie <code>env-info</code>. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I <strong>REQUIRE</strong> you to insert the following R chunk near the beginning (but after the Rmarkdown front matter surrounded by the rows <code>---</code>) at the top of your <code>env-info/students/&lt;user&gt;.Rmd</code>:</p>
+<pre class="r"><code># set working directory if has students directory and at R Console (vs knitting)
+if (&#39;students&#39; %in% list.files() &amp; interactive()){
+    setwd(&#39;students&#39; )
+}
+
+# ensure working directory is students
+if (basename(getwd()) != &#39;students&#39;){
+  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;students&#39;!\n   getwd(): %s&quot;, getwd()))
 }</code></pre>
 <p>This then ensures that “relative” paths will work the same in your R Console as when knitting your Rmarkdown to HTML. For instance:</p>
 <pre class="r"><code># absolute: /Users/bbest/github/env-info/students/data/bbest_ports-bc.csv
