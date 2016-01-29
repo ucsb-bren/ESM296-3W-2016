@@ -16,6 +16,7 @@ layout: default
 - 10:30 - 11:30 [NT] **programming concepts**
 
   - [Programming lecture](../wk02_program/programming.full.pdf) [30 min]
+  
   - Programming group exercise [30 min]
 
 ## Assignments

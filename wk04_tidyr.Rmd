@@ -25,10 +25,17 @@ The class for week 9 on March 4th conflicts with the [Bren Group Project](http:/
 
 As mentioned in [wk03_dplyr](./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line), the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for `env-info/students/bbest.Rmd` the working directory is `env-info/students`. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie `env-info`. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I recommend using the following R chunk at the top of your `env-info/students/<user>.Rmd`:
 
-```{r setwd students}
-# set working directory to students if in parent dir
-if ('students' %in% list.files()){
-  setwd('students')
+```{r setwd students, eval=T, echo=T, include=T}
+# set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
 }
 ```
 
@@ -48,264 +55,105 @@ The first path uses this folder `.` since that `data` folder is a "child" of the
 
 For the data wrangling portion of today, append the header `## 4. Tidying up Data` to your `env-info/students/<user>.Rmd` and include R chunks to run the demo below and answer questions. You'll find it easiest to copy and paste the demo portion from [`env-info/wk04_tidyr.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd) but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.
 
-## [Materials]
+## data
 
-To be removed by Jan 29, just for @bbest for now...
+### EDAWR
 
-- [vignette: Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
-- [vignette: Tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
-- [dplyr: verbs for manipulating data-frames](http://rpubs.com/tjmahr/dplyr_2015) (source: [tjmahr/MadR_Pipelines](https://github.com/tjmahr/MadR_Pipelines))
-- [stat545-ubc: Data wrangling, exploration, and analysis with R](https://stat545-ubc.github.io/)
-  - [Introduction to dplyr](http://stat545-ubc.github.io/block009_dplyr-intro.html)
-  - [dplyr functions for a single dataset](http://stat545-ubc.github.io/block010_dplyr-end-single-table.html)
-  - [Homework 03: Use dplyr to manipulate and explore data (also use ggplot2)](http://stat545-ubc.github.io/hw03_dplyr-and-more-ggplot2.html)
-  - [regular expressions & character data in R](http://stat545-ubc.github.io/cm102_regular-expressions.html)
-- [Software Carpentry: R for reproducible scientific analysis](http://swcarpentry.github.io/r-novice-gapminder/)
-  - [Dataframe manipulation with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html)
-  - [Dataframe manipulation with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html)
-
-## dplyr
-
-### `nycflights13`
-
-flights departing NYC in 2013
-
-We'll use this example dataset to play with functions in the `dplyr` package, with code extracted from the excellent presentation by [\@tjmahr](https://github.com/tjmahr): [`dplyr` -- verbs for manipulating data-frames](http://rpubs.com/tjmahr/dplyr_2015).
-
-```{r dplyr nycflights13, eval=F}
-# load libraries
-library(dplyr)
-library(nycflights13) # install.packages('nycflights13')
+```{r EDAWR, eval=F}
+# install.packages("devtools")
+# devtools::install_github("rstudio/EDAWR")
+library(EDAWR)
+help(package='EDAWR')
+?storms    # wind speed data for 6 hurricanes
+?cases     # subset of WHO tuberculosis
+?pollution # pollution data from WHO Ambient Air Pollution, 2014
+?tb        # tuberculosis data
+Viewd(storms)
+View(cases)
+View(pollution)
 ```
 
-### `tbl_df`
+### slicing
 
-create a "data frame tbl"
+```{r traditional R slicing, eval=F}
+# storms
+storms$storm
+storms$wind
+storms$pressure
+storms$date
 
-The main advantage to using a `tbl_df` over a regular `data.frame` is the printing: tbl objects only print a few rows and all the columns that fit on one screen, describing the rest of it as text and including the data type.
+# cases
+cases$country
+names(cases)[-1]
+unlist(cases[1:3, 2:4])
 
-```{r dplyr tbl_df, eval=F}
-# Convert data to a tbl_df so that it uses dplyr's nice print method
-flights <- tbl_df(flights)
-flights
+# pollution
+pollution$city[1,3,5]
+pollution$amount[1,3,5]
+pollution$amount[2,4,6]
+
+# ratio
+storms$pressure / storms$wind
 ```
 
-### `glimpse`
+## tidyr
 
-view data horizontally
+Two main functions: gather() and spread() 
 
-```{r dplyr glimpse, eval=F}
-# Use glimpse to few some values in each column
-glimpse(flights)
+```{r tidyr, eval=F}
+# install.packages("tidyr")
+library(tidyr)
+?gather # gather to long
+?spread # spread to wide
 ```
 
-### `filter`
+### `gather`
 
-limit rows
-
-```{r dplyr filter, eval=F}
-# How many flights flew to Madison in 2013?
-flights %>%
-  filter(dest == "MSN")
-
-# filter: multiple conditions
-# How many flights flew to Madison in first week of January?
-# Comma separated conditions are combined with '&'
-flights %>%
-  filter(dest == "MSN", month == 1, day <= 7)
-
-# Question: Commas in the filter statement are implicit & (and) operators. Is there anything similar for | (or)?
-# Logical OR statements are supported, but there's no shorthand.
-flights %>%
-  filter(dest == "MSN" | dest == "ORD" | dest == "MDW")
-# For more complicated checks, I would try a set operation.
-flights %>%
-  filter(dest %in% c("MSN", "ORD", "MDW"))
+```{r gather, eval=F}
+cases
+gather(cases, "year", "n", 2:4)
 ```
 
-`filter()` is similar to the base function `subset()`, but preferred since each argument is AND'ed together, whereas `subset()` interprets the second argument as columns to select, which is better handled seperately with the dplyr's `select()` function.
+### `spread`
 
-### `arrange`
-
-sort rows by columns
-
-```{r dplyr arrange, eval=F}
-# Sort by which airport they departed from in NYC, then year, month, day.
-flights %>%
-  arrange(origin, year, month, day)
-
-# desc: reverses sorting of a column
-# Find longest delayed flights to Madison.
-flights %>%
-  filter(dest == "MSN") %>%
-  arrange(desc(dep_delay))
+```{r spread, eval=F}
+pollution
+spread(pollution, size, amount)
 ```
 
-### `select`
+Other functions to extract and combine columns...
 
-select/rename columns
+### `separate`
 
-```{r dplyr select, eval=F}
-# Select the columns you want.
-flights %>%
-  select(origin, year, month, day)
-
-# select's helpers
-# select has many helper functions. See ?select.
-flights %>%
-  select(origin, year:day, starts_with("dep"))
-
-# negative selecting
-# We can drop columns by “negating” the name. Since helpers give us column names, we can negate them too.
-flights %>%
-  select(-dest, -starts_with("arr"),
-         -ends_with("time"))
+```{r separate, eval=F}
+storms
+storms2 = separate(storms, date, c("year", "month", "day"), sep = "-")
 ```
 
-**Recap** verbs for inspecting data:
+### `unite`
 
-- convert to a `tbl_df` - nice print method
-- `glimpse` - some of each column
-- `filter` - subsetting
-- `arrange` - sorting (desc to reverse the sort)
-- `select` - picking (and omiting) columns
-
-**Next**: verbs for manipulating data:
-
-- convert to a `tbl_df` - nice print method
-- `glimpse` - some of each column
-- `filter` - subsetting
-- `arrange` - sorting (desc to reverse the sort)
-- `select` - picking (and omiting) columns
-
-
-### `rename`
-
-rename columns
-
-```{r dplyr rename, eval=F}
-# Rename columns with rename(NewName = OldName). To keep the order correct, read/remember the renaming = as “was”.
-flights %>%
-  rename(y = year, m = month, d = day)
+```{r unite, eval=F}
+storms2
+unite(storms2, "date", year, month, day, sep = "-")
 ```
 
-### `mutate`
+**Recap: tidyr**:
 
-add new variables
+- A package that reshapes the layout of data sets.
 
-```{r dplyr mutate, eval=F}
-# How much departure delay did the flight make up for in the air?
-flights %>%
-  mutate(
-    gain = arr_delay - dep_delay,
-    speed = (distance / air_time) * 60,
-    gain_per_hour = gain / (air_time / 60)) %>%
-  select(gain:gain_per_hour)
-```
+- Make observations from variables with `gather()` Make variables from observations with `spread()`
 
-### `group_by`, `summarise`
+- Split and merge columns with `unite()` and `separate()`
 
-aggregate rows
+From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
 
-```{r dplyr group_by, eval=F}
-# Let's compute the average delay per month of flights to Madison.
+  ![](wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png)
 
-# Normally–in aggregate, by or plyr's d*ply functions–you specify the grouping as an argument to the aggregation function.
-aggregate(dep_delay ~ month, flights, mean,
-          subset = flights$dest == "MSN")
+### tidy CO<sub>2</sub> emissions
 
-# group_by
-# In dplyr, grouping is its own action. It is done as its own step in the pipeline. Here, we filter to the flights to Madison and group_by month.
-msn_by_month <- flights %>%
-  filter(dest == "MSN") %>%
-  group_by(month)
-msn_by_month
+_**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
 
-# summarise
-# Now we use summarise to compute (several) aggregate values within each group (month). summarise returns one row per group.
-msn_by_month %>%
-  summarise(
-    flights = n(),
-    avg_delay = mean(dep_delay, na.rm = TRUE),
-    n_planes = n_distinct(tailnum))
-
-# tally
-# tally is a shortcut for counting number of items per group.
-# Number of flights from NYC by destination by month:
-flights %>%
-  group_by(dest, month) %>%
-  tally
-
-# ungroup
-# Remove the grouping structure with ungroup.
-msn_by_month %>% ungroup
-
-# Summarizing undoes grouping.
-# Each summarise statement peels off one layer of grouping (from the right of the list of groups).
-# day gets peeled off
-per_day <- flights %>%
-  group_by(dest, year, month, day) %>%
-  summarise(flights = n())
-per_day
-
-# Peel off month grouping
-per_month <- per_day %>%
-  summarise(flights = sum(flights))
-per_month
-
-# mutate also respects grouping
-
-# Rank flight delays within each destination and month. (dplyr provides
-# a bunch of ranking functions. See the [cheatsheet][cheatsheets].)
-flights %>%
-  group_by(dest, month) %>%
-  mutate(timely = row_number(dep_delay),
-         late = row_number(desc(dep_delay))) %>%
-  select(dep_delay, timely:late)
-
-# This is also good for mean-centering variables within groups.
-mean_center <- function(xs) {
-  xs - mean(xs, na.rm = TRUE)
-}
-flights %>%
-  group_by(dest, month) %>%
-  mutate(c_delay = mean_center(dep_delay)) %>%
-  select(dep_delay, c_delay)
-```
-
-**Recap**: That covers 80% of dplyr:
-
-- `select`
-- `filter`
-- `arrange`
-- `glimpse`
-- `rename`
-- `mutate`
-- `group_by`, `ungroup`
-- `summarise`
-
-**Other** 20%:
-
-- assembly: `bind_rows`, `bind_cols`
-- column-wise operations: `mutate_each`, `summarise_each`
-- join tables together: `left_join`, `right_join`, `inner_join`, `full_join`
-- filtering joins: `semi_join`, `anti_join
-- `do`: arbitrary code on each chunk
-- different types of tabular data (databases, data.tables)
-
-- join, inner, outer, anti. vs merge. relational database.
-- middleware abstraction. try with sqlite as relational db.
-
-## tidyr...
-
-- what is an observation? wide vs long format
-
-
-## CO<sub>2</sub> Emissions
-
-Answer the following questions using `dplyr` and `tidyr` about GHG emissions since 1970...
-
-```{r get-CO2, results='hide'}
+```{r read co2, eval=F}
 library(readxl) # install.packages('readxl')
 
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
@@ -316,30 +164,210 @@ if (!file.exists(xls)){
   download.file(url, xls)
 }
 co2 = read_excel(xls, skip=12)
+co2
 ```
 
-_Question. Why use `skip=12` argument in `read_excel()`?_
+_**Question**. Why use `skip=12` argument in `read_excel()`?_
 
-sources:
-- [CO2 time series per region/country \| EUROPA](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9)
-- [List of countries by carbon dioxide emissions - Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions)
+## dplyr
 
-- top 3 emitters in last year?  compared to rest of world?
+A package that helps transform tabular data
 
-- cumulative emissions?
+```{r dplyr, eval=F}
+# install.packages("dplyr")
+library(dplyr)
+?select
+?filter
+?arrange
+?mutate
+?group_by
+?summarise
+```
 
-- per capita? join
+See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
 
-- join with population over time. get at emissions per capita
-- rank worst 10
-- get at cumulative emissions
-- join with GDP. fit model, who excessively bad/goodget?
-- references relevant to UCOP21:
-  - [United Nations Framework Convention on Climate Change - Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/United_Nations_Framework_Convention_on_Climate_Change#Paris_Agreement)
-  - [6 Graphs Explain the World’s Top 10 Emitters | World Resources Institute](http://www.wri.org/blog/2014/11/6-graphs-explain-world%E2%80%99s-top-10-emitters)
-  - [Global Emissions | Climate Change | US EPA](http://www3.epa.gov/climatechange/ghgemissions/global.html)
-- just USA
+- Subset Variables (Columns), eg `select()`
+- Subset Observations (Rows), eg `filter()`
+- Reshaping Data - Change the layout of a data set, eg `arrange()`
+- Make New Variables, eg `mutate()`
+- Group Data, eg `group_by()` and `summarise()`
 
+### `select`
+
+```{r select, eval=F}
+storms
+select(storms, storm, pressure)
+storms %>% select(storm, pressure)
+```
+
+### `filter`
+
+```{r filter, eval=F}
+storms
+filter(storms, wind >= 50)
+storms %>% filter(wind >= 50)
+
+storms %>%
+  filter(wind >= 50) %>%
+  select(storm, pressure)
+```
+
+### `mutate`
+
+```{r mutate, eval=F}
+storms %>%
+  mutate(ratio = pressure / wind) %>%
+  select(storm, ratio)
+```
+
+### `group_by`
+
+```{r group_by, eval=F}
+pollution
+pollution %>% group_by(city)
+```
+
+### `summarise`
+
+```{r summarise, eval=F}
+# by city
+pollution %>% 
+  group_by(city) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+
+# by size
+pollution %>% 
+  group_by(size) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+```
+
+note that `summarize` synonymously works
+
+### `ungroup`
+
+```{r ungroup, eval=F}
+pollution %>% 
+  group_by(size)
+
+pollution %>% 
+  group_by(size) %>%
+  ungroup()
+```
+
+### multiple groups
+
+```{r multiple groups, eval=F}
+tb %>%
+  group_by(country, year) %>%
+  summarise(cases = sum(cases))
+  summarise(cases = sum(cases))
+```
+
+**Recap: dplyr**:
+
+- Extract columns with `select()` and rows with `filter()`
+
+- Sort rows by column with `arrange()`
+
+- Make new columns with `mutate()`
+
+- Group rows by column with `group_by()` and `summarise()`
+
+See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+- Subset Variables (Columns), eg `select()`
+
+- Subset Observations (Rows), eg `filter()`
+
+- Reshaping Data - Change the layout of a data set, eg `arrange()`
+
+- Make New Variables, eg `mutate()`
+
+- Group Data, eg `group_by()` and `summarise()`
+
+
+### summarize CO<sub>2</sub> emissions
+
+_**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+_**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+
+## joining data
+
+### `bind_cols`
+
+```{r bind_cols, eval=F}
+y = data.frame(
+  x1 = c('A','B','C'), 
+  x2 = c( 1 , 2 , 3), 
+  stringsAsFactors=F)
+z = data.frame(
+  x1 = c('B','C','D'), 
+  x2 = c( 2 , 3 , 4), 
+  stringsAsFactors=F)
+y
+z
+bind_cols(y, z)
+```
+
+### `bind_rows`
+
+```{r bind_rows, eval=F}
+y
+z
+bind_rows(y, z)
+```
+
+### `union`
+
+```{r union, eval=F}
+y
+z
+union(y, z)
+```
+
+### `intersect`
+
+```{r intersect, eval=F}
+y
+z
+intersect(y, z)
+```
+
+### `setdiff`
+
+```{r setdiff, eval=F}
+y
+z
+setdiff(y, z)
+```
+
+### `left_join`
+
+### `inner_join`
+
+### `semi_join`
+
+### `anti_join`
+
+### summarize per capita CO<sub>2</sub> emissions 
+
+You'll join the [gapminder](https://github.com/jennybc/gapminder) datasets to get world population per country.
+
+_**Task**. Report the top 5 emitting countries (not World or EU28) per capita using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+_**Task**. Summarize the total emissions by country  (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+```{r gapminder, eval=F}
+library(gapminder) # install.packages('gapminder')
+```
 
 ## References
 

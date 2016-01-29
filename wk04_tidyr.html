@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-28 16:37</em></h4>
+<h4 class="date"><em>2016-01-29 08:04</em></h4>
 </div>
 
 
@@ -171,9 +171,16 @@ img {
 <div id="setwd" class="section level3">
 <h3><code>setwd()</code></h3>
 <p>As mentioned in <a href="./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line">wk03_dplyr</a>, the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for <code>env-info/students/bbest.Rmd</code> the working directory is <code>env-info/students</code>. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie <code>env-info</code>. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I recommend using the following R chunk at the top of your <code>env-info/students/&lt;user&gt;.Rmd</code>:</p>
-<pre class="r"><code># set working directory to students if in parent dir
-if (&#39;students&#39; %in% list.files()){
-  setwd(&#39;students&#39;)
+<pre class="r"><code># set working directory if has child directory
+dir_child = &#39;students&#39; 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
 }</code></pre>
 <p>This then ensures that “relative” paths will work the same in your R Console as when knitting your Rmarkdown to HTML. For instance:</p>
 <pre class="r"><code># absolute: /Users/bbest/github/env-info/students/data/bbest_ports-bc.csv
@@ -188,262 +195,260 @@ d = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) # ../data is sibling of st
 <p>For the data wrangling portion of today, append the header <code>## 4. Tidying up Data</code> to your <code>env-info/students/&lt;user&gt;.Rmd</code> and include R chunks to run the demo below and answer questions. You’ll find it easiest to copy and paste the demo portion from <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd"><code>env-info/wk04_tidyr.Rmd</code></a> but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.</p>
 </div>
 </div>
-<div id="materials" class="section level2">
-<h2>[Materials]</h2>
-<p>To be removed by Jan 29, just for <span class="citation">@bbest</span> for now…</p>
-<ul>
-<li><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">vignette: Introduction to dplyr</a></li>
-<li><a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">vignette: Tidy data</a></li>
-<li><a href="http://rpubs.com/tjmahr/dplyr_2015">dplyr: verbs for manipulating data-frames</a> (source: <a href="https://github.com/tjmahr/MadR_Pipelines">tjmahr/MadR_Pipelines</a>)</li>
-<li><a href="https://stat545-ubc.github.io/">stat545-ubc: Data wrangling, exploration, and analysis with R</a></li>
-<li><a href="http://stat545-ubc.github.io/block009_dplyr-intro.html">Introduction to dplyr</a></li>
-<li><a href="http://stat545-ubc.github.io/block010_dplyr-end-single-table.html">dplyr functions for a single dataset</a></li>
-<li><a href="http://stat545-ubc.github.io/hw03_dplyr-and-more-ggplot2.html">Homework 03: Use dplyr to manipulate and explore data (also use ggplot2)</a></li>
-<li><a href="http://stat545-ubc.github.io/cm102_regular-expressions.html">regular expressions &amp; character data in R</a></li>
-<li><a href="http://swcarpentry.github.io/r-novice-gapminder/">Software Carpentry: R for reproducible scientific analysis</a></li>
-<li><a href="http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html">Dataframe manipulation with dplyr</a></li>
-<li><a href="http://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html">Dataframe manipulation with tidyr</a></li>
-</ul>
+<div id="data" class="section level2">
+<h2>data</h2>
+<div id="edawr" class="section level3">
+<h3>EDAWR</h3>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+# devtools::install_github(&quot;rstudio/EDAWR&quot;)
+library(EDAWR)
+help(package=&#39;EDAWR&#39;)
+?storms    # wind speed data for 6 hurricanes
+?cases     # subset of WHO tuberculosis
+?pollution # pollution data from WHO Ambient Air Pollution, 2014
+?tb        # tuberculosis data
+Viewd(storms)
+View(cases)
+View(pollution)</code></pre>
 </div>
-<div id="dplyr" class="section level2">
-<h2>dplyr</h2>
-<div id="nycflights13" class="section level3">
-<h3><code>nycflights13</code></h3>
-<p>flights departing NYC in 2013</p>
-<p>We’ll use this example dataset to play with functions in the <code>dplyr</code> package, with code extracted from the excellent presentation by <a href="https://github.com/tjmahr">@tjmahr</a>: <a href="http://rpubs.com/tjmahr/dplyr_2015"><code>dplyr</code> – verbs for manipulating data-frames</a>.</p>
-<pre class="r"><code># load libraries
-library(dplyr)
-library(nycflights13) # install.packages(&#39;nycflights13&#39;)</code></pre>
-</div>
-<div id="tbl_df" class="section level3">
-<h3><code>tbl_df</code></h3>
-<p>create a “data frame tbl”</p>
-<p>The main advantage to using a <code>tbl_df</code> over a regular <code>data.frame</code> is the printing: tbl objects only print a few rows and all the columns that fit on one screen, describing the rest of it as text and including the data type.</p>
-<pre class="r"><code># Convert data to a tbl_df so that it uses dplyr&#39;s nice print method
-flights &lt;- tbl_df(flights)
-flights</code></pre>
-</div>
-<div id="glimpse" class="section level3">
-<h3><code>glimpse</code></h3>
-<p>view data horizontally</p>
-<pre class="r"><code># Use glimpse to few some values in each column
-glimpse(flights)</code></pre>
-</div>
-<div id="filter" class="section level3">
-<h3><code>filter</code></h3>
-<p>limit rows</p>
-<pre class="r"><code># How many flights flew to Madison in 2013?
-flights %&gt;%
-  filter(dest == &quot;MSN&quot;)
+<div id="slicing" class="section level3">
+<h3>slicing</h3>
+<pre class="r"><code># storms
+storms$storm
+storms$wind
+storms$pressure
+storms$date
 
-# filter: multiple conditions
-# How many flights flew to Madison in first week of January?
-# Comma separated conditions are combined with &#39;&amp;&#39;
-flights %&gt;%
-  filter(dest == &quot;MSN&quot;, month == 1, day &lt;= 7)
+# cases
+cases$country
+names(cases)[-1]
+unlist(cases[1:3, 2:4])
 
-# Question: Commas in the filter statement are implicit &amp; (and) operators. Is there anything similar for | (or)?
-# Logical OR statements are supported, but there&#39;s no shorthand.
-flights %&gt;%
-  filter(dest == &quot;MSN&quot; | dest == &quot;ORD&quot; | dest == &quot;MDW&quot;)
-# For more complicated checks, I would try a set operation.
-flights %&gt;%
-  filter(dest %in% c(&quot;MSN&quot;, &quot;ORD&quot;, &quot;MDW&quot;))</code></pre>
-<p><code>filter()</code> is similar to the base function <code>subset()</code>, but preferred since each argument is AND’ed together, whereas <code>subset()</code> interprets the second argument as columns to select, which is better handled seperately with the dplyr’s <code>select()</code> function.</p>
-</div>
-<div id="arrange" class="section level3">
-<h3><code>arrange</code></h3>
-<p>sort rows by columns</p>
-<pre class="r"><code># Sort by which airport they departed from in NYC, then year, month, day.
-flights %&gt;%
-  arrange(origin, year, month, day)
+# pollution
+pollution$city[1,3,5]
+pollution$amount[1,3,5]
+pollution$amount[2,4,6]
 
-# desc: reverses sorting of a column
-# Find longest delayed flights to Madison.
-flights %&gt;%
-  filter(dest == &quot;MSN&quot;) %&gt;%
-  arrange(desc(dep_delay))</code></pre>
-</div>
-<div id="select" class="section level3">
-<h3><code>select</code></h3>
-<p>select/rename columns</p>
-<pre class="r"><code># Select the columns you want.
-flights %&gt;%
-  select(origin, year, month, day)
-
-# select&#39;s helpers
-# select has many helper functions. See ?select.
-flights %&gt;%
-  select(origin, year:day, starts_with(&quot;dep&quot;))
-
-# negative selecting
-# We can drop columns by “negating” the name. Since helpers give us column names, we can negate them too.
-flights %&gt;%
-  select(-dest, -starts_with(&quot;arr&quot;),
-         -ends_with(&quot;time&quot;))</code></pre>
-<p><strong>Recap</strong> verbs for inspecting data:</p>
-<ul>
-<li>convert to a <code>tbl_df</code> - nice print method</li>
-<li><code>glimpse</code> - some of each column</li>
-<li><code>filter</code> - subsetting</li>
-<li><code>arrange</code> - sorting (desc to reverse the sort)</li>
-<li><code>select</code> - picking (and omiting) columns</li>
-</ul>
-<p><strong>Next</strong>: verbs for manipulating data:</p>
-<ul>
-<li>convert to a <code>tbl_df</code> - nice print method</li>
-<li><code>glimpse</code> - some of each column</li>
-<li><code>filter</code> - subsetting</li>
-<li><code>arrange</code> - sorting (desc to reverse the sort)</li>
-<li><code>select</code> - picking (and omiting) columns</li>
-</ul>
-</div>
-<div id="rename" class="section level3">
-<h3><code>rename</code></h3>
-<p>rename columns</p>
-<pre class="r"><code># Rename columns with rename(NewName = OldName). To keep the order correct, read/remember the renaming = as “was”.
-flights %&gt;%
-  rename(y = year, m = month, d = day)</code></pre>
-</div>
-<div id="mutate" class="section level3">
-<h3><code>mutate</code></h3>
-<p>add new variables</p>
-<pre class="r"><code># How much departure delay did the flight make up for in the air?
-flights %&gt;%
-  mutate(
-    gain = arr_delay - dep_delay,
-    speed = (distance / air_time) * 60,
-    gain_per_hour = gain / (air_time / 60)) %&gt;%
-  select(gain:gain_per_hour)</code></pre>
-</div>
-<div id="group_by-summarise" class="section level3">
-<h3><code>group_by</code>, <code>summarise</code></h3>
-<p>aggregate rows</p>
-<pre class="r"><code># Let&#39;s compute the average delay per month of flights to Madison.
-
-# Normally–in aggregate, by or plyr&#39;s d*ply functions–you specify the grouping as an argument to the aggregation function.
-aggregate(dep_delay ~ month, flights, mean,
-          subset = flights$dest == &quot;MSN&quot;)
-
-# group_by
-# In dplyr, grouping is its own action. It is done as its own step in the pipeline. Here, we filter to the flights to Madison and group_by month.
-msn_by_month &lt;- flights %&gt;%
-  filter(dest == &quot;MSN&quot;) %&gt;%
-  group_by(month)
-msn_by_month
-
-# summarise
-# Now we use summarise to compute (several) aggregate values within each group (month). summarise returns one row per group.
-msn_by_month %&gt;%
-  summarise(
-    flights = n(),
-    avg_delay = mean(dep_delay, na.rm = TRUE),
-    n_planes = n_distinct(tailnum))
-
-# tally
-# tally is a shortcut for counting number of items per group.
-# Number of flights from NYC by destination by month:
-flights %&gt;%
-  group_by(dest, month) %&gt;%
-  tally
-
-# ungroup
-# Remove the grouping structure with ungroup.
-msn_by_month %&gt;% ungroup
-
-# Summarizing undoes grouping.
-# Each summarise statement peels off one layer of grouping (from the right of the list of groups).
-# day gets peeled off
-per_day &lt;- flights %&gt;%
-  group_by(dest, year, month, day) %&gt;%
-  summarise(flights = n())
-per_day
-
-# Peel off month grouping
-per_month &lt;- per_day %&gt;%
-  summarise(flights = sum(flights))
-per_month
-
-# mutate also respects grouping
-
-# Rank flight delays within each destination and month. (dplyr provides
-# a bunch of ranking functions. See the [cheatsheet][cheatsheets].)
-flights %&gt;%
-  group_by(dest, month) %&gt;%
-  mutate(timely = row_number(dep_delay),
-         late = row_number(desc(dep_delay))) %&gt;%
-  select(dep_delay, timely:late)
-
-# This is also good for mean-centering variables within groups.
-mean_center &lt;- function(xs) {
-  xs - mean(xs, na.rm = TRUE)
-}
-flights %&gt;%
-  group_by(dest, month) %&gt;%
-  mutate(c_delay = mean_center(dep_delay)) %&gt;%
-  select(dep_delay, c_delay)</code></pre>
-<p><strong>Recap</strong>: That covers 80% of dplyr:</p>
-<ul>
-<li><code>select</code></li>
-<li><code>filter</code></li>
-<li><code>arrange</code></li>
-<li><code>glimpse</code></li>
-<li><code>rename</code></li>
-<li><code>mutate</code></li>
-<li><code>group_by</code>, <code>ungroup</code></li>
-<li><code>summarise</code></li>
-</ul>
-<p><strong>Other</strong> 20%:</p>
-<ul>
-<li>assembly: <code>bind_rows</code>, <code>bind_cols</code></li>
-<li>column-wise operations: <code>mutate_each</code>, <code>summarise_each</code></li>
-<li>join tables together: <code>left_join</code>, <code>right_join</code>, <code>inner_join</code>, <code>full_join</code></li>
-<li>filtering joins: <code>semi_join</code>, `anti_join</li>
-<li><code>do</code>: arbitrary code on each chunk</li>
-<li><p>different types of tabular data (databases, data.tables)</p></li>
-<li>join, inner, outer, anti. vs merge. relational database.</li>
-<li><p>middleware abstraction. try with sqlite as relational db.</p></li>
-</ul>
+# ratio
+storms$pressure / storms$wind</code></pre>
 </div>
 </div>
 <div id="tidyr" class="section level2">
-<h2>tidyr…</h2>
-<ul>
-<li>what is an observation? wide vs long format</li>
-</ul>
+<h2>tidyr</h2>
+<p>Two main functions: gather() and spread()</p>
+<pre class="r"><code># install.packages(&quot;tidyr&quot;)
+library(tidyr)
+?gather # gather to long
+?spread # spread to wide</code></pre>
+<div id="gather" class="section level3">
+<h3><code>gather</code></h3>
+<pre class="r"><code>cases
+gather(cases, &quot;year&quot;, &quot;n&quot;, 2:4)</code></pre>
 </div>
-<div id="co2-emissions" class="section level2">
-<h2>CO<sub>2</sub> Emissions</h2>
-<p>Answer the following questions using <code>dplyr</code> and <code>tidyr</code> about GHG emissions since 1970…</p>
+<div id="spread" class="section level3">
+<h3><code>spread</code></h3>
+<pre class="r"><code>pollution
+spread(pollution, size, amount)</code></pre>
+<p>Other functions to extract and combine columns…</p>
+</div>
+<div id="separate" class="section level3">
+<h3><code>separate</code></h3>
+<pre class="r"><code>storms
+storms2 = separate(storms, date, c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;)</code></pre>
+</div>
+<div id="unite" class="section level3">
+<h3><code>unite</code></h3>
+<pre class="r"><code>storms2
+unite(storms2, &quot;date&quot;, year, month, day, sep = &quot;-&quot;)</code></pre>
+<p><strong>Recap: tidyr</strong>:</p>
+<ul>
+<li><p>A package that reshapes the layout of data sets.</p></li>
+<li><p>Make observations from variables with <code>gather()</code> Make variables from observations with <code>spread()</code></p></li>
+<li><p>Split and merge columns with <code>unite()</code> and <code>separate()</code></p></li>
+</ul>
+<p>From the <a href="./refs/cheatsheets/data-wrangling-cheatsheet.pdf">data-wrangling-cheatsheet.pdf</a>:</p>
+<div class="figure">
+<img src="wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png" />
+</div>
+</div>
+<div id="tidy-co2-emissions" class="section level3">
+<h3>tidy CO<sub>2</sub> emissions</h3>
+<p><em><strong>Task</strong>. Convert the following table <a href="http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&amp;sort=des9">CO<sub>2</sub> emissions per country since 1970</a> from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting <code>?gather</code> and you should have 3 columns in your output.</em></p>
 <pre class="r"><code>library(readxl) # install.packages(&#39;readxl&#39;)
 
 url = &#39;http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls&#39;
 xls = &#39;../data/co2_europa.xls&#39;
 
-if (basename(getwd())==&#39;env-info&#39;){
-  setwd(&#39;students&#39;)
-}
-
+print(getwd())
 if (!file.exists(xls)){
   download.file(url, xls)
 }
-co2 = read_excel(xls, skip=12)</code></pre>
-<p><em>Question. Why use <code>skip=12</code> argument in <code>read_excel()</code>?</em></p>
-<p>sources: - <a href="http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&amp;sort=des9">CO2 time series per region/country | EUROPA</a> - <a href="https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions">List of countries by carbon dioxide emissions - Wikipedia, the free encyclopedia</a></p>
+co2 = read_excel(xls, skip=12)
+co2</code></pre>
+<p><em><strong>Question</strong>. Why use <code>skip=12</code> argument in <code>read_excel()</code>?</em></p>
+</div>
+</div>
+<div id="dplyr" class="section level2">
+<h2>dplyr</h2>
+<p>A package that helps transform tabular data</p>
+<pre class="r"><code># install.packages(&quot;dplyr&quot;)
+library(dplyr)
+?select
+?filter
+?arrange
+?mutate
+?group_by
+?summarise</code></pre>
+<p>See sections in the <a href="./refs/cheatsheets/data-wrangling-cheatsheet.pdf">data-wrangling-cheatsheet.pdf</a>:</p>
 <ul>
-<li><p>top 3 emitters in last year? compared to rest of world?</p></li>
-<li><p>cumulative emissions?</p></li>
-<li><p>per capita? join</p></li>
-<li>join with population over time. get at emissions per capita</li>
-<li>rank worst 10</li>
-<li>get at cumulative emissions</li>
-<li>join with GDP. fit model, who excessively bad/goodget?</li>
-<li>references relevant to UCOP21:</li>
-<li><a href="https://en.wikipedia.org/wiki/United_Nations_Framework_Convention_on_Climate_Change#Paris_Agreement">United Nations Framework Convention on Climate Change - Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://www.wri.org/blog/2014/11/6-graphs-explain-world%E2%80%99s-top-10-emitters">6 Graphs Explain the World’s Top 10 Emitters | World Resources Institute</a></li>
-<li><a href="http://www3.epa.gov/climatechange/ghgemissions/global.html">Global Emissions | Climate Change | US EPA</a></li>
-<li><p>just USA</p></li>
+<li>Subset Variables (Columns), eg <code>select()</code></li>
+<li>Subset Observations (Rows), eg <code>filter()</code></li>
+<li>Reshaping Data - Change the layout of a data set, eg <code>arrange()</code></li>
+<li>Make New Variables, eg <code>mutate()</code></li>
+<li>Group Data, eg <code>group_by()</code> and <code>summarise()</code></li>
 </ul>
+<div id="select" class="section level3">
+<h3><code>select</code></h3>
+<pre class="r"><code>storms
+select(storms, storm, pressure)
+storms %&gt;% select(storm, pressure)</code></pre>
+</div>
+<div id="filter" class="section level3">
+<h3><code>filter</code></h3>
+<pre class="r"><code>storms
+filter(storms, wind &gt;= 50)
+storms %&gt;% filter(wind &gt;= 50)
+
+storms %&gt;%
+  filter(wind &gt;= 50) %&gt;%
+  select(storm, pressure)</code></pre>
+</div>
+<div id="mutate" class="section level3">
+<h3><code>mutate</code></h3>
+<pre class="r"><code>storms %&gt;%
+  mutate(ratio = pressure / wind) %&gt;%
+  select(storm, ratio)</code></pre>
+</div>
+<div id="group_by" class="section level3">
+<h3><code>group_by</code></h3>
+<pre class="r"><code>pollution
+pollution %&gt;% group_by(city)</code></pre>
+</div>
+<div id="summarise" class="section level3">
+<h3><code>summarise</code></h3>
+<pre class="r"><code># by city
+pollution %&gt;% 
+  group_by(city) %&gt;%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+
+# by size
+pollution %&gt;% 
+  group_by(size) %&gt;%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())</code></pre>
+<p>note that <code>summarize</code> synonymously works</p>
+</div>
+<div id="ungroup" class="section level3">
+<h3><code>ungroup</code></h3>
+<pre class="r"><code>pollution %&gt;% 
+  group_by(size)
+
+pollution %&gt;% 
+  group_by(size) %&gt;%
+  ungroup()</code></pre>
+</div>
+<div id="multiple-groups" class="section level3">
+<h3>multiple groups</h3>
+<pre class="r"><code>tb %&gt;%
+  group_by(country, year) %&gt;%
+  summarise(cases = sum(cases))
+  summarise(cases = sum(cases))</code></pre>
+<p><strong>Recap: dplyr</strong>:</p>
+<ul>
+<li><p>Extract columns with <code>select()</code> and rows with <code>filter()</code></p></li>
+<li><p>Sort rows by column with <code>arrange()</code></p></li>
+<li><p>Make new columns with <code>mutate()</code></p></li>
+<li><p>Group rows by column with <code>group_by()</code> and <code>summarise()</code></p></li>
+</ul>
+<p>See sections in the <a href="./refs/cheatsheets/data-wrangling-cheatsheet.pdf">data-wrangling-cheatsheet.pdf</a>:</p>
+<ul>
+<li><p>Subset Variables (Columns), eg <code>select()</code></p></li>
+<li><p>Subset Observations (Rows), eg <code>filter()</code></p></li>
+<li><p>Reshaping Data - Change the layout of a data set, eg <code>arrange()</code></p></li>
+<li><p>Make New Variables, eg <code>mutate()</code></p></li>
+<li><p>Group Data, eg <code>group_by()</code> and <code>summarise()</code></p></li>
+</ul>
+</div>
+<div id="summarize-co2-emissions" class="section level3">
+<h3>summarize CO<sub>2</sub> emissions</h3>
+<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+</div>
+</div>
+<div id="joining-data" class="section level2">
+<h2>joining data</h2>
+<div id="bind_cols" class="section level3">
+<h3><code>bind_cols</code></h3>
+<pre class="r"><code>y = data.frame(
+  x1 = c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;), 
+  x2 = c( 1 , 2 , 3), 
+  stringsAsFactors=F)
+z = data.frame(
+  x1 = c(&#39;B&#39;,&#39;C&#39;,&#39;D&#39;), 
+  x2 = c( 2 , 3 , 4), 
+  stringsAsFactors=F)
+y
+z
+bind_cols(y, z)</code></pre>
+</div>
+<div id="bind_rows" class="section level3">
+<h3><code>bind_rows</code></h3>
+<pre class="r"><code>y
+z
+bind_rows(y, z)</code></pre>
+</div>
+<div id="union" class="section level3">
+<h3><code>union</code></h3>
+<pre class="r"><code>y
+z
+union(y, z)</code></pre>
+</div>
+<div id="intersect" class="section level3">
+<h3><code>intersect</code></h3>
+<pre class="r"><code>y
+z
+intersect(y, z)</code></pre>
+</div>
+<div id="setdiff" class="section level3">
+<h3><code>setdiff</code></h3>
+<pre class="r"><code>y
+z
+setdiff(y, z)</code></pre>
+</div>
+<div id="left_join" class="section level3">
+<h3><code>left_join</code></h3>
+</div>
+<div id="inner_join" class="section level3">
+<h3><code>inner_join</code></h3>
+</div>
+<div id="semi_join" class="section level3">
+<h3><code>semi_join</code></h3>
+</div>
+<div id="anti_join" class="section level3">
+<h3><code>anti_join</code></h3>
+</div>
+<div id="summarize-per-capita-co2-emissions" class="section level3">
+<h3>summarize per capita CO<sub>2</sub> emissions</h3>
+<p>You’ll join the <a href="https://github.com/jennybc/gapminder">gapminder</a> datasets to get world population per country.</p>
+<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) per capita using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<pre class="r"><code>library(gapminder) # install.packages(&#39;gapminder&#39;)</code></pre>
+</div>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
