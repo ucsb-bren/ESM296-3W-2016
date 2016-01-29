@@ -15,7 +15,8 @@ layout: default
 
 - 10:30 - 11:30 [NT] **programming concepts**
 
-  - [Programming lecture](../wk02_program/programming.full.pdf) [30 min]
+  - [Programming lecture](programming1.pdf) [30 min]
+  - [Programming examples](programming.examples.Rmd)
   - Programming group exercise [30 min]
 
 ## Assignments
@@ -26,10 +27,9 @@ layout: default
 
 ### Programming (Group)
 
-1. Write a function in R to do some data analysis or simulation that your group will find interesting
+1. Write a function in R to do some data analysis or simulation that your group will find interesting (use this to start on your project)
     * include at least two different data types
     * return a list
-    * include at least two different control structures
     * make sure you document your program
 1. Add this function to your organization's github repository - Note this is how we will check to make sure you have completed the assignment - so make sure that you have committed and pushed your function to that organization's repository.
 
