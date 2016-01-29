@@ -251,13 +251,11 @@ unite(storms2, "date", year, month, day, sep = "-")
 
 From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
 
-  ![](wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png)
-
 ### tidy CO<sub>2</sub> emissions
 
 _**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
 
-```{r read co2, eval=F}
+```{r read co2}
 library(readxl) # install.packages('readxl')
 
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
@@ -405,8 +403,10 @@ _**Task**. Summarize the total emissions by country  (not World or EU28) across 
 
 ## Assignment 4
 ```{r Assignment 4}
+# Task 1
   names(co2) = c('country', 1970:2014) # get rid of extra decimal places in column names
- 
+  library(dplyr)
+  library(tidyr)
   co2
   co2 %>%
     gather("year","n", 2:46) %>%
@@ -414,6 +414,9 @@ _**Task**. Summarize the total emissions by country  (not World or EU28) across 
     subset(country != c("World","EU28")) %>%
     arrange(desc(n)) %>% 
     head(n=5)
+  
+# Task 2
+  
 ```
 
 ## joining data
