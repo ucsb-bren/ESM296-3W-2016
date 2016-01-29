@@ -78,6 +78,20 @@ img {
 </ul>
 </div>
 
+<div id="managing-the-working-directory-in-r-markdown" class="section level4">
+<h4>Managing the working directory in R markdown</h4>
+<pre class="r"><code># set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}</code></pre>
+</div>
 <div id="content" class="section level2">
 <h2>Content</h2>
 <p>For this class, the group will be working to create a program to take in survey data in real time, reorganize it, and output summary statistics. For my group project (on Santa Barbara water supply) and future work, I’m most interested in learning data management strategies and ways to visualize data.</p>
