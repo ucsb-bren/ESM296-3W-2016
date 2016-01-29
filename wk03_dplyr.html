@@ -101,14 +101,14 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
 }
 </style>
 <div class="container-fluid main-container">
 
-<!--- https://codepo8.github.io/css-fork-on-github-ribbon/ 
+<!--- https://codepo8.github.io/css-fork-on-github-ribbon/
 <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/ucsb-bren/env-info">Fork me on GitHub</a></span>
 -->
 <div class="row-fluid">
@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 3: Reading and Wrangling Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-25 18:44</em></h4>
+<h4 class="date"><em>2016-01-26 15:32</em></h4>
 </div>
 
 
@@ -297,7 +297,7 @@ summary(d)</code></pre>
 <h3>Multiple Variables</h3>
 <p>Now let’s approach this code sequentially using base functions, ie natively loaded functions in R without need for additional libraries.</p>
 <pre class="r"><code># read in csv
-surveys = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) 
+surveys = read.csv(&#39;../data/r-ecology/surveys.csv&#39;)
 
 # view data
 head(surveys)
@@ -315,13 +315,13 @@ surveys_4 = aggregate(species_id ~ year, data=surveys_3, FUN=&#39;length&#39;)
 # write to csv
 write.csv(surveys_4, &#39;data/surveys_bbest.csv&#39;, row.names = FALSE)</code></pre>
 <p>Because the variables are named sequentially, ie <code>surveys_2</code> to <code>surveys_4</code>, it is relatively easy to follow, but so often in the course of playing with data these names are very different. And then we quickly lose track of which operations get applied to which variables.</p>
-<p>Even with obvious variable names, there is a redunancy to assigning a new variable new to the output of each operation.</p>
+<p>Even with obvious variable names, there is a redunancy, as we’ll see shortly, to assigning a new variable name to the output of each operation and input of each subsequent operation.</p>
 </div>
 <div id="nested-functions" class="section level3">
 <h3>Nested Functions</h3>
 <p>Another common programming trick to reduce variable naming space is to nest the output of one function as the input of the next one.</p>
 <pre class="r"><code># read in data
-surveys = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) 
+surveys = read.csv(&#39;../data/r-ecology/surveys.csv&#39;)
 
 # view data
 head(surveys)
@@ -330,16 +330,16 @@ summary(surveys)
 # limit data with [], aggregate to count, write to csv
 write.csv(
   aggregate(
-    species_id ~ year, 
-    data = surveys[surveys_2$species_id  == &#39;NL&#39;, c(&#39;species_id&#39;, &#39;year&#39;)], 
-    FUN = &#39;length&#39;), 
+    species_id ~ year,
+    data = surveys[surveys_2$species_id  == &#39;NL&#39;, c(&#39;species_id&#39;, &#39;year&#39;)],
+    FUN = &#39;length&#39;),
   &#39;data/surveys_bbest.csv&#39;,
   row.names = FALSE)</code></pre>
 <p>So the code started the same, and continues using the same functions, but these functions get applied from the input arguments to the outer containing functions, ie in a nested manner:</p>
 <ol style="list-style-type: decimal">
 <li><p>surveys gets sliced <code>[]</code> into rows and columns in one call, which gets used as the <code>data =</code> argument to</p></li>
 <li><p><code>aggregate()</code>, which applies the <code>length()</code> function to get a count to the formula <code>species_id ~ year</code> in which the <code>species_id</code> gets split into groups based on <code>year</code>, which gets further applied as the unnamed first argument to</p></li>
-<li><p><code>write.csv()</code> which has the additional unnamed arguments specifying the output file and turning off the default option to write row numbers as names.</p></li>
+<li><p><code>write.csv()</code> which has the additional unnamed argument specifying the output file and named argument turning off the default option to prefix row numbers.</p></li>
 </ol>
 <p>Although we’ve saved space from not performing the extra naming of variables, we’ve made the code very difficult to read, needing to parse which functions are arguments to subsequent functions. The indentation helps readability a bit, but now let’s examine a far better solution to either approaches above with <code>dplyr</code>.</p>
 </div>
@@ -351,7 +351,7 @@ library(readr)
 library(dplyr)
 
 # read in csv
-surveys = read_csv(&#39;../data/r-ecology/surveys.csv&#39;) 
+surveys = read_csv(&#39;../data/r-ecology/surveys.csv&#39;)
 
 # dplyr elegance
 surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
@@ -377,7 +377,7 @@ surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
 <div id="presentation" class="section level2">
 <h2>Presentation</h2>
 <ul>
-<li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
+<li><a href="wk03_dplyr/wrangling-webinar.pdf">wrangling-webinar.pdf</a></li>
 </ul>
 </div>
 <div id="references" class="section level2">
@@ -399,7 +399,7 @@ surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
 <div id="data-wrangling-in-r" class="section level3">
 <h3>Data Wrangling in R</h3>
 <ul>
-<li><a href="{{%20site.baseurl%20}}/refs/cheatsheets/data-wrangling-cheatsheet.pdf">Data Wrangling (dplyr, readr) cheat sheet</a></li>
+<li><a href="{{%20site.baseurl%20}}/refs/cheatsheets/data-wrangling-cheatsheet.pdf">Data Wrangling (dplyr, tidyr) cheat sheet</a></li>
 <li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
 </ul>
 </div>
