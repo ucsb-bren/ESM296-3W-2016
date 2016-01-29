@@ -62,7 +62,7 @@ To be removed by Jan 29, just for @bbest for now...
 
 flights departing NYC in 2013
 
-We'll use this example dataset to play with functions in the `dplyr` package, "borrowing" heavily from the excellent presentation by @tjmahr [dplyr: verbs for manipulating data-frames](http://rpubs.com/tjmahr/dplyr_2015).
+We'll use this example dataset to play with functions in the `dplyr` package, with code extracted from the excellent presentation by [\@tjmahr](https://github.com/tjmahr): [`dplyr` -- verbs for manipulating data-frames](http://rpubs.com/tjmahr/dplyr_2015).
 
 ```{r dplyr nycflights13, eval=F}
 # load libraries
@@ -115,7 +115,7 @@ flights %>%
   filter(dest %in% c("MSN", "ORD", "MDW"))
 ```
 
-- 
+`filter()` is similar to the base function `subset()`, but preferred since each argument is AND'ed together, whereas `subset()` interprets the second argument as columns to select, which is better handled seperately with the dplyr's `select()` function.
 
 ### `arrange`
 

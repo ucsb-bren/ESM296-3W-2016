@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-28 16:15</em></h4>
+<h4 class="date"><em>2016-01-28 16:23</em></h4>
 </div>
 
 
@@ -202,7 +202,7 @@ d = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) # ../data is sibling of st
 <div id="nycflights13" class="section level3">
 <h3><code>nycflights13</code></h3>
 <p>flights departing NYC in 2013</p>
-<p>We’ll use this example dataset to play with functions in the <code>dplyr</code> package, “borrowing” heavily from the excellent presentation by <span class="citation">@tjmahr [dplyr: verbs for manipulating data-frames]</span>(<a href="http://rpubs.com/tjmahr/dplyr_2015" class="uri">http://rpubs.com/tjmahr/dplyr_2015</a>).</p>
+<p>We’ll use this example dataset to play with functions in the <code>dplyr</code> package, with code extracted from the excellent presentation by <a href="https://github.com/tjmahr">@tjmahr</a>: <a href="http://rpubs.com/tjmahr/dplyr_2015"><code>dplyr</code> – verbs for manipulating data-frames</a>.</p>
 <pre class="r"><code># load libraries
 library(dplyr)
 library(nycflights13) # install.packages(&#39;nycflights13&#39;)</code></pre>
@@ -241,9 +241,7 @@ flights %&gt;%
 # For more complicated checks, I would try a set operation.
 flights %&gt;%
   filter(dest %in% c(&quot;MSN&quot;, &quot;ORD&quot;, &quot;MDW&quot;))</code></pre>
-<ul>
-<li></li>
-</ul>
+<p><code>filter()</code> is similar to the base function <code>subset()</code>, but preferred since each argument is AND’ed together, whereas <code>subset()</code> interprets the second argument as columns to select, which is better handled seperately with the dplyr’s <code>select()</code> function.</p>
 </div>
 <div id="arrange" class="section level3">
 <h3><code>arrange</code></h3>
