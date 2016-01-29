@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-29 08:04</em></h4>
+<h4 class="date"><em>2016-01-29 08:29</em></h4>
 </div>
 
 
@@ -432,15 +432,27 @@ setdiff(y, z)</code></pre>
 </div>
 <div id="left_join" class="section level3">
 <h3><code>left_join</code></h3>
+<pre class="r"><code>songs = data.frame(
+  song = c(&#39;Across the Universe&#39;,&#39;Come Together&#39;, &#39;Hello, Goodbye&#39;, &#39;Peggy Sue&#39;),
+  name = c(&#39;John&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Buddy&#39;), 
+  stringsAsFactors=F)
+artists = data.frame(
+  name = c(&#39;George&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Ringo&#39;),
+  plays = c(&#39;sitar&#39;,&#39;guitar&#39;,&#39;bass&#39;,&#39;drums&#39;), 
+  stringsAsFactors=F)
+left_join(songs, artists, by=&#39;name&#39;)</code></pre>
 </div>
 <div id="inner_join" class="section level3">
 <h3><code>inner_join</code></h3>
+<pre class="r"><code>inner_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="semi_join" class="section level3">
 <h3><code>semi_join</code></h3>
+<pre class="r"><code>semi_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="anti_join" class="section level3">
 <h3><code>anti_join</code></h3>
+<pre class="r"><code>anti_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="summarize-per-capita-co2-emissions" class="section level3">
 <h3>summarize per capita CO<sub>2</sub> emissions</h3>

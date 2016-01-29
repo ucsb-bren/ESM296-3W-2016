@@ -16,7 +16,7 @@ layout: default
 - 10:30 - 11:30 [NT] **programming concepts**
 
   - [Programming lecture](programming1.pdf) [30 min]
-  - [Programming examples](programming.examples.Rmd)
+  - [Programming examples](programming.examples.html) ( [Rmd](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr/programming.examples.Rmd))
   - Programming group exercise [30 min]
 
 ## Assignments
