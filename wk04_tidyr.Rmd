@@ -57,7 +57,7 @@ A couple of notes about copying these R chunks:
 
 - You will want to change the R chunk option from evaluate = FALSE `{r, eval=F}` to evaluate = TRUE `{r, eval=T}`. This is especially the case for `read co2` R chunk which reads in the `co2` data frame, since you will create additional R chunks which expect this object to already exist.
 
-- You will want to first synchronize with `ucsb-bren/env-info` (ie _pull request_ `ucsb-bren/env-info` to `<user>/env-info`, _merge_ the pull request in `<user>/env-info`, and _pull_ to update your local machine), in order to successfully knit your `env-info/students/<user>.Rmd`, which may expect  `env-info/wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png` and `env-info/data/co2_europa.xls`.
+- You will want to synchronize with `ucsb-bren/env-info` (ie _pull request_ `ucsb-bren/env-info` to `<user>/env-info`, _merge_ the pull request in `<user>/env-info`, and _pull_ to update your local machine), in order to successfully knit your `env-info/students/<user>.Rmd`, which may expect  `env-info/wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png` and `env-info/data/co2_europa.xls`.
 
 ## data
 
