@@ -80,7 +80,7 @@ Due: Jan 28, Thursday 5pm
 
 ### Data Wrangling in R
 
-- [Data Wrangling (dplyr, readr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+- [Data Wrangling (dplyr, tidyr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
 
 ### Git, Github and RStudio
 
