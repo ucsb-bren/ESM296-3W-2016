@@ -2,5 +2,9 @@ _site
 Gemfile.lock
 .Rproj.user
 .Rhistory
+<<<<<<< HEAD
+alxsmith.R
+=======
 .DS_Store
+>>>>>>> 724f8e5405dc84444690b153bed8d53eb185c18a
 .RData
