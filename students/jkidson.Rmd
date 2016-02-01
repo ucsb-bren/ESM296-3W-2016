@@ -420,9 +420,32 @@ _**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 usin
 
 Task 2
 _**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_.
-```{r, Assignment 4 Task 2}
-
+```{r Assignment 4 Task 2}
+co2 %>%
+    gather("year","n", 2:46)%>%
+    group_by(country) %>%
+    subset(country != c("World","EU28")) %>%
+    summarise(
+      sum=sum(n)) %>%
+    arrange(desc(sum)) %>%
+    head
 ```
+
+# by city
+pollution %>% 
+  group_by(city) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+
+# by size
+pollution %>% 
+  group_by(size) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
 
 ## joining data
 

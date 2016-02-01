@@ -75,8 +75,11 @@ img {
 <li><a href="#tidyr">tidyr</a></li>
 <li><a href="#dplyr">dplyr</a></li>
 <li><a href="#assignment-4">Assignment 4</a></li>
+<li><a href="#by-city">by city</a></li>
+<li><a href="#by-size">by size</a><ul>
 <li><a href="#joining-data">joining data</a></li>
 <li><a href="#assignment-4-1">Assignment 4</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -540,14 +543,12 @@ pollution %&gt;%
 </div>
 <div id="summarize-co2-emissions" class="section level3">
 <h3>summarize CO<sub>2</sub> emissions</h3>
-<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
 </div>
 </div>
 <div id="assignment-4" class="section level2">
 <h2>Assignment 4</h2>
-<pre class="r"><code># Task 1
-  names(co2) = c('country', 1970:2014) # get rid of extra decimal places in column names
+<p>Task 1 <em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<pre class="r"><code>  names(co2) = c('country', 1970:2014) # get rid of extra decimal places in column names
   library(dplyr)
   library(tidyr)
   co2</code></pre>
@@ -589,8 +590,33 @@ pollution %&gt;%
 ## 3                    India  2014  2341897
 ## 4       Russian Federation  2014  1766427
 ## 5                    Japan  2014  1278922</code></pre>
-<pre class="r"><code># Task 2</code></pre>
+<p>Task 2 <em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<pre class="r"><code>co2 %&gt;%
+    gather(&quot;year&quot;,&quot;n&quot;, 2:46)%&gt;%
+    group_by(country) %&gt;%
+    subset(country != c(&quot;World&quot;,&quot;EU28&quot;)) %&gt;%
+    summarise(
+      sum=sum(n)) %&gt;%
+    arrange(desc(sum)) %&gt;%
+    head</code></pre>
+<pre><code>## Source: local data frame [6 x 2]
+## 
+##                    country       sum
+##                      (chr)     (dbl)
+## 1 United States of America 231948899
+## 2                    China 174045927
+## 3       Russian Federation  81242427
+## 4                    Japan  51276329
+## 5                  Germany  43382205
+## 6                    India  39004218</code></pre>
 </div>
+<div id="by-city" class="section level1">
+<h1>by city</h1>
+<p>pollution %&gt;% group_by(city) %&gt;% summarise( mean = mean(amount), sum = sum(amount), n = n())</p>
+</div>
+<div id="by-size" class="section level1">
+<h1>by size</h1>
+<p>pollution %&gt;% group_by(size) %&gt;% summarise( mean = mean(amount), sum = sum(amount), n = n())</p>
 <div id="joining-data" class="section level2">
 <h2>joining data</h2>
 <div id="bind_cols" class="section level3">
@@ -665,6 +691,7 @@ left_join(songs, artists, by='name')</code></pre>
 </div>
 <div id="assignment-4-1" class="section level2">
 <h2>Assignment 4</h2>
+</div>
 </div>
 
 
