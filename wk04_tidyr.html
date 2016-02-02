@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-01-29 11:52</em></h4>
+<h4 class="date"><em>2016-02-02 10:24</em></h4>
 </div>
 
 
@@ -170,7 +170,7 @@ img {
 </div>
 <div id="setwd" class="section level3">
 <h3><code>setwd()</code></h3>
-<p>As mentioned in <a href="./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line">wk03_dplyr</a>, the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for <code>env-info/students/bbest.Rmd</code> the working directory is <code>env-info/students</code>. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie <code>env-info</code>. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I <strong>REQUIRE</strong> you to insert the following R chunk near the beginning (but after the Rmarkdown front matter surrounded by the rows <code>---</code>) at the top of your <code>env-info/students/&lt;user&gt;.Rmd</code>:</p>
+<p>As mentioned in <a href="./wk03_dplyr.html#where-am-i?-getting-around-in-the-command-line">wk03_dplyr</a>, the working directory when knitting your Rmarkdown file is always the folder in which it is contained, eg for <code>env-info/students/bbest.Rmd</code> the working directory is <code>env-info/students</code>. This may be different from your R Console in RStudio which defaults to the working directory to the top level folder of your project, ie <code>env-info</code>. To get the two to be the same as you test code in the Console before knitting the Rmarkdown to HTML, I <strong>REQUIRE</strong> you to insert the following R chunk near the beginning (but after the Rmarkdown front matter surrounded by the rows <code>---</code>) of your <code>env-info/students/&lt;user&gt;.Rmd</code>:</p>
 <pre class="r"><code># set working directory if has students directory and at R Console (vs knitting)
 if (&#39;students&#39; %in% list.files() &amp; interactive()){
     setwd(&#39;students&#39; )
@@ -186,20 +186,18 @@ d = read.csv(&#39;./data/bbest_ports-bc.csv&#39;)     # ./data is child of stude
 
 # absolute: /Users/bbest/github/env-info/data/r-ecology/surveys.csv
 d = read.csv(&#39;../data/r-ecology/surveys.csv&#39;) # ../data is sibling of students</code></pre>
-<p>The first path uses this folder <code>.</code> since that <code>data</code> folder is a “child” of the <code>students</code> folder, whereas the second path backs up a folder <code>..</code> before descending into the <code>data</code> folder that is a “sibling” of the <code>students</code> folder.</p>
+<p>The first path uses this folder <code>.</code> since that <code>data</code> folder is a “child” of the <code>students</code> folder, whereas the second path backs up a folder <code>..</code> before descending into the other <code>data</code> folder that is a “sibling” of the <code>students</code> folder.</p>
 </div>
 <div id="assignment-individual" class="section level3">
 <h3>Assignment (Individual)</h3>
-<p>For the data wrangling portion of today, append the header <code>## 4. Tidying up Data</code> to your <code>env-info/students/&lt;user&gt;.Rmd</code> and include R chunks to run the demo below and answer questions. You’ll find it easiest to copy and paste the demo portion from <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd"><code>env-info/wk04_tidyr.Rmd</code></a> but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.</p>
-<p>A couple of notes about copying these R chunks:</p>
-<ul>
-<li><p>You will want to change the R chunk option from evaluate = FALSE <code>{r, eval=F}</code> to evaluate = TRUE <code>{r, eval=T}</code>. This is especially the case for <code>read co2</code> R chunk which reads in the <code>co2</code> data frame, since you will create additional R chunks which expect this object to already exist.</p></li>
-<li><p>You will want to synchronize with <code>ucsb-bren/env-info</code> (ie <em>pull request</em> <code>ucsb-bren/env-info</code> to <code>&lt;user&gt;/env-info</code>, <em>merge</em> the pull request in <code>&lt;user&gt;/env-info</code>, and <em>pull</em> to update your local machine), in order to successfully knit your <code>env-info/students/&lt;user&gt;.Rmd</code>, which may expect <code>env-info/wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png</code> and <code>env-info/data/co2_europa.xls</code>.</p></li>
-</ul>
+<p>For the data wrangling portion of today, append the header <code>## 4. Tidying up Data</code> to your <code>env-info/students/&lt;user&gt;.Rmd</code> and include R chunks to run the demo below and give yourself the opportunity to try out possibilities with the code. Please set aside another header below this section <code>## 4. Answers and Tasks</code> where you answer questions and perform tasks on applying the functions to the CO<sub>2</sub> dataset as R chunks. Please include the question or task above the R chunk or answer.</p>
+<p>You’ll find it easiest to copy and paste the demo portion from <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd"><code>env-info/wk04_tidyr.Rmd</code></a> but will need to understand this material enough to apply to the questions and tasks.</p>
+<p>You will want to synchronize with <code>ucsb-bren/env-info</code> (ie <em>pull request</em> <code>ucsb-bren/env-info</code> to <code>&lt;user&gt;/env-info</code>, <em>merge</em> the pull request in <code>&lt;user&gt;/env-info</code>, and <em>pull</em> to update your local machine), in order to successfully knit your <code>env-info/students/&lt;user&gt;.Rmd</code>. The Rmarkdown below expects <code>env-info/wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png</code> and <code>env-info/data/co2_europa.xls</code> which are in the updated <code>ucsb-bren/env-info</code>.</p>
 </div>
 </div>
 <div id="data" class="section level2">
 <h2>data</h2>
+<p>The R chunks explaining the <code>dplyr</code> and <code>tidyr</code> functions below are pulled from the excellent <a href="wk03_dplyr/wrangling-webinar.pdf"><strong>wrangling-webinar.pdf</strong></a> presentation, which you should consult as you execute (see shortcuts in <a href="refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet.pdf</a>).</p>
 <div id="edawr" class="section level3">
 <h3>EDAWR</h3>
 <pre class="r"><code># install.packages(&quot;devtools&quot;)

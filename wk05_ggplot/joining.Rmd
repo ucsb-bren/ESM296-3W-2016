@@ -5,6 +5,38 @@ date: "January 29, 2016"
 output: html_document
 ---
 
+## Precursors
+
+### RStudio Heroes
+
+Last weekend at 1st annual [shinydevcon](https://www.rstudio.com/shinydevcon/). Left to right, @github (affiliation): 
+
+- Winston Chang @wch (RStudio)
+- Hadley Wickham @hadley (RStudio)
+- Julie Lowndes @jules32 (OHI)
+- Jamie Afflerbach @jafflerbach (OHI)
+- Joe Cheng @jcheng5 (RStudio)
+- Ben Best @bbest (OHI)
+- Herman Strop @FrissAnalytics (FrissAnalytics)
+
+![](./img/rstudio_shinydevcon_wch-hadley-jcheng5-FrissAnalytics.JPG)
+
+Brought some of these stickers for ya:
+
+[![](img/rstudio_stickers.png)](https://www.rstudio.com/about/gear/)
+
+### RStudio Shortcuts
+
+- [rstudio-IDE-cheatsheet.pdf](../refs/cheatsheets/rstudio-IDE-cheatsheet.pdf)
+    - Show Keyboard Shortcuts `?`: Alt+Shift+**K** (Win), Option+Shift+**K** (Mac)
+    - (Un)Comment lines `# `: Ctrl+Shift+**C** (Win), Cmd+Shift+**C** (Mac)
+    - Insert `%>%`: Ctrl+Shift+**M** (Win), Cmd+Shift+**M** (Mac)
+    - Attempt completion: **Tab** or Ctrl+Space (Win), **Tab** or Cmd+Space (Mac), 
+    - Knit Document: Ctrl+Shift+**K** (Win), Cmd+Shift+**K** (Mac)
+    - Copy Lines Up/Down: Shift+Alt+**$\uparrow$**/**$\downarrow$** (Win), Cmd+Option+**$\uparrow$**/**$\downarrow$** (Mac)
+
+## joining data
+
 
 ### `bind_cols`
 
