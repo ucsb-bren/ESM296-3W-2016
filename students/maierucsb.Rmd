@@ -97,8 +97,11 @@ co2class = read_excel(xls, skip=12)
 library(dplyr)
 library(tidyr)
 gatherco2=co2class%>%
-  gather('year','emissions',2:46)
-slice(gatherco2,1:3)
+  gather('year','emissions',2:46);
+table1=slice(gatherco2,1:3);
+library(knitr)
+
+kable(table1,digits=0,caption='wide to long format of emmissions')
 ```
 
 ```{r topfiveco2, echo=FALSE}
@@ -107,8 +110,7 @@ topfive=gatherco2 %>%
   filter(Country != 'World' & Country != 'EU28' & year == 2014) %>%
   arrange(desc(emissions)) %>%
   slice(1:5)
-print("top five emitting countries in 2014")
-topfive
+kable(topfive,digits=0,caption="top five emitting countries in 2014",col.names=c('Country','Year','Emissions'))
 ```
 
 ```{r totalemissions, echo=FALSE}
@@ -119,8 +121,7 @@ totalemit=gatherco2 %>%
   summarise(totalemissions = sum(emissions))%>%
   arrange(desc(totalemissions)) %>%
   slice(1:5)
-print("top five emitting countries from 1970-2014")
-totalemit
+kable(totalemit,digits=0,caption="top five emitting countries from 1970-2014",col.names=c('Country','Total Emissions'))
 ```
 
 
