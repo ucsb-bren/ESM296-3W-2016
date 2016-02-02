@@ -469,204 +469,24 @@ See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wran
 - Reshaping Data - Change the layout of a data set, eg `arrange()`
 - Make New Variables, eg `mutate()`
 - Group Data, eg `group_by()` and `summarise()`
+```{r}
+co2 %>% 
+  mutate(total_emissions= sum(2:46)) %>% 
+  select(Country, total_emissions)
 
-### `select`
-
-```{r select, eval=F}
-storms
-select(storms, storm, pressure)
-storms %>% select(storm, pressure)
 ```
-
-### `filter`
-
-```{r filter, eval=F}
-storms
-filter(storms, wind >= 50)
-storms %>% filter(wind >= 50)
-
-storms %>%
-  filter(wind >= 50) %>%
-  select(storm, pressure)
-```
-
-### `mutate`
-
-```{r mutate, eval=F}
-storms %>%
-  mutate(ratio = pressure / wind) %>%
-  select(storm, ratio)
-```
-
-### `group_by`
-
-```{r group_by, eval=F}
-pollution
-pollution %>% group_by(city)
-```
-
-### `summarise`
-
-```{r summarise, eval=F}
-# by city
-pollution %>% 
-  group_by(city) %>%
-  summarise(
-    mean = mean(amount), 
-    sum = sum(amount), 
-    n = n())
-
-# by size
-pollution %>% 
-  group_by(size) %>%
-  summarise(
-    mean = mean(amount), 
-    sum = sum(amount), 
-    n = n())
-```
-
-note that `summarize` synonymously works
-
-### `ungroup`
-
-```{r ungroup, eval=F}
-pollution %>% 
-  group_by(size)
-
-pollution %>% 
-  group_by(size) %>%
-  ungroup()
-```
-
-### multiple groups
-
-```{r multiple groups, eval=F}
-tb %>%
-  group_by(country, year) %>%
-  summarise(cases = sum(cases))
-  summarise(cases = sum(cases))
-```
-
-**Recap: dplyr**:
-
-- Extract columns with `select()` and rows with `filter()`
-
-- Sort rows by column with `arrange()`
-
-- Make new columns with `mutate()`
-
-- Group rows by column with `group_by()` and `summarise()`
-
-See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
-
-- Subset Variables (Columns), eg `select()`
-
-- Subset Observations (Rows), eg `filter()`
-
-- Reshaping Data - Change the layout of a data set, eg `arrange()`
-
-- Make New Variables, eg `mutate()`
-
-- Group Data, eg `group_by()` and `summarise()`
 
 
 ### summarize CO<sub>2</sub> emissions
 
 _**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
 
+```{r}
+co2 %>% 
+  mutate(year = as.numeric(as.character(year)))
+
+```
+
+
 _**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
 
-
-## joining data
-
-### `bind_cols`
-
-```{r bind_cols, eval=F}
-y = data.frame(
-  x1 = c('A','B','C'), 
-  x2 = c( 1 , 2 , 3), 
-  stringsAsFactors=F)
-z = data.frame(
-  x1 = c('B','C','D'), 
-  x2 = c( 2 , 3 , 4), 
-  stringsAsFactors=F)
-y
-z
-bind_cols(y, z)
-```
-
-### `bind_rows`
-
-```{r bind_rows, eval=F}
-y
-z
-bind_rows(y, z)
-```
-
-### `union`
-
-```{r union, eval=F}
-y
-z
-union(y, z)
-```
-
-### `intersect`
-
-```{r intersect, eval=F}
-y
-z
-intersect(y, z)
-```
-
-### `setdiff`
-
-```{r setdiff, eval=F}
-y
-z
-setdiff(y, z)
-```
-
-### `left_join`
-
-```{r left_join, eval=F}
-songs = data.frame(
-  song = c('Across the Universe','Come Together', 'Hello, Goodbye', 'Peggy Sue'),
-  name = c('John','John','Paul','Buddy'), 
-  stringsAsFactors=F)
-artists = data.frame(
-  name = c('George','John','Paul','Ringo'),
-  plays = c('sitar','guitar','bass','drums'), 
-  stringsAsFactors=F)
-left_join(songs, artists, by='name')
-```
-
-### `inner_join`
-
-```{r inner_join, eval=F}
-inner_join(songs, artists, by = "name")
-```
-
-### `semi_join`
-
-```{r semi_join, eval=F}
-semi_join(songs, artists, by = "name")
-```
-
-### `anti_join`
-
-```{r anti_join, eval=F}
-anti_join(songs, artists, by = "name")
-```
-
-### summarize per capita CO<sub>2</sub> emissions 
-
-You'll join the [gapminder](https://github.com/jennybc/gapminder) datasets to get world population per country.
-
-_**Task**. Report the top 5 emitting countries (not World or EU28) per capita using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
-
-_**Task**. Summarize the total emissions by country  (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
-
-```{r gapminder, eval=F}
-library(gapminder) # install.packages('gapminder')
-```
