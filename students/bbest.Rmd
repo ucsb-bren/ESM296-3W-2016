@@ -2,7 +2,10 @@
 title: "bbest"
 author: "Ben Best"
 date: "January 15, 2016"
-output: html_document
+output:
+  html_document:
+    theme: united
+    highlight: tango
 ---
 
 ## Content
@@ -26,3 +29,118 @@ ports_bc = read.csv('data/bbest_ports-bc.csv')
 summary(ports_bc)
 ```
 
+## Data Wrangling
+
+```{r, eval=FALSE}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+```
+
+# Install Packages
+
+```{r, eval=FALSE}
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}
+```
+
+
+## utils::read.csv
+
+Traditionally, you would read a CSV like so:
+
+```{r}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+## readr::read_csv
+
+Better yet, try read_csv:
+
+```{r}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+
+## dplry::tbl_df
+
+Now convert to a dplyr table:
+
+```{r}
+library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d = tbl_df(d)
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+
+d = tbl_df(read_csv('../data/r-ecology/species.csv'))
+d
+head(d)
+summary(d)
+glimpse(d)
+
+```
+
+## dplyr loosely
+
+### What year does species 'NL' show up in the surveys.csv?
+
+
+```{r}
+library(readr)
+library(dplyr)
+
+read_csv('../data/r-ecology/surveys.csv') %>%
+  select(species_id, year) %>%
+  #filter(species_id == 'NL') %>%
+  group_by(species_id, year) %>%
+  summarize(count = n())
+
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df()
+
+d = tbl_df(read_csv('../data/r-ecology/species.csv'))
+d
+head(d)
+summary(d)
+glimpse(d)
+
+```
