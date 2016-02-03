@@ -33,13 +33,189 @@ Currently, I don't have data related to the specific research question stated ab
 
 ```{r}
 # read csv
-d = read.csv('data/juanmayorgahenao_hunterdata.csv')
-surgeon <- subset(d, Species == "Surgeonfish")
-trout <- subset(d, Species == "Coral Trout")
-spotted <- subset(d, Species == "Spotted Damselfish")
-yellow <- subset(d, Species == "Yellow Damselfish")
+d1 = read.csv('data/juanmayorgahenao_hunterdata.csv')
+surgeon <- subset(d1, Species == "Surgeonfish")
+trout <- subset(d1, Species == "Coral Trout")
+spotted <- subset(d1, Species == "Spotted Damselfish")
+yellow <- subset(d1, Species == "Yellow Damselfish")
 densities <- data.frame(surgeon$Adults, trout$Adults, spotted$Adults, yellow$Adults)
 colnames(densities) <- c("Surgeon", "Coral Trout", "Spotted Damselfish", "Yellow Damselfish")
 # output summary
 summary(densities)
 ```
+
+
+
+## Wrangling data ----
+
+### Reading Data with readr and dplyr
+```{r, results = 'asis'}
+suppressWarnings(library(readr))
+suppressWarnings(suppressMessages(library(dplyr)))
+d = read_csv('../data/r-ecology/species.csv') %>%
+  tbl_df() 
+
+knitr::kable(head(d))
+knitr::kable(summary(d))
+```
+
+### Gather() and Spread()
+```{r}
+# Loading all the required packages
+suppressWarnings(library(readr))
+suppressWarnings(library(tidyr))
+suppressWarnings(library(knitr))
+suppressWarnings(library(readxl))
+library(dplyr)
+library(EDAWR)
+library(nycflights13)
+
+# This is the data set being used
+kable(cases) 
+
+# Using the gather() function
+cases %>% 
+  gather("year","n",2:4) %>% # params : the name of the new key column (string), name of the new value column, which rows to collapse
+  kable() 
+
+# Using the spread() function
+
+casesLong <- gather(cases,"year","n",2:4)
+casesLong %>% 
+  spread(year,n) %>%  # params:column to use for new keys, column to use for values
+  kable()
+
+```
+
+### Separate() and Unite()
+```{r}
+storms %>% 
+  kable()
+
+MDYstorms <- separate(storms, date, c("year","month","day"), sep = "-") 
+kable(MDYstorms) 
+
+StormsUnite <- unite(MDYstorms, "date", year, month, day, sep = "-")
+kable(StormsUnite)
+```
+
+### Using dplyr
+
+```{r}
+storms %>%
+  select(storm, pressure) %>% # Selects some columns from the table 
+  kable()
+
+storms %>%
+  filter(wind >= 50, storm %in% c("Alberto", "Alex", "Allison")) %>% # %in% is group membership
+  kable()
+
+storms %>%
+  mutate(ratio = pressure/wind, inverse = ratio^-1) %>%  # This function creates a new variable column by making operations between other columns. 
+  kable(digits = 2)
+
+pollution %>%
+  summarise(median = median(amount), variance = var(amount), n = n()) %>%  # creates a summary table with the specified stats
+  kable()
+
+storms %>% 
+  arrange(desc(wind)) %>%   # This AWESOME function arranges data from min to max or max to min (desc())
+  arrange(wind, date) %>% 
+  kable()
+```
+
+### Selecting the unit of analysis
+```{r}
+pollution %>% 
+  group_by(city) %>% 
+  summarise(mean = mean(amount), sum = sum(amount), n = n()) %>% 
+  kable()
+
+pollution %>% 
+  group_by(size) %>% 
+  summarise(mean = mean(amount), sum = sum(amount), n = n()) %>% 
+  kable()
+
+tb %>% 
+  group_by(country, year) %>% 
+  head() %>% 
+  kable()
+
+```
+
+### Joining data ----
+```{r}
+bind_cols(y,z) %>% # adds all the columns into one df
+  kable()
+
+bind_rows(y,z) %>%  # adds all rows into a df
+  kable()
+
+union(y,z) %>% # unites 2 df without producing replicates
+  kable()
+
+intersect(y,z) %>% # find the replicates between df
+  kable()
+
+setdiff(y,z) %>% # find the different entries between df
+  kable()
+
+
+left_join(songs, artists, by = 'name') %>% # joins artists to songs using the variable "name" to relate both df
+  kable()
+
+left_join(songs2, artists2, by = c('first','last')) %>% 
+  kable()
+
+inner_join(songs, artists, by = 'name')  %>% # same as left_join() but rows that are not related are eliminated
+  kable()
+semi_join(songs, artists, by = 'name') %>% # same as join but doesnt add new variable
+  kable()
+
+anti_join(songs, artists, by = 'name') %>%  # returns the entries that are not related in both df
+  kable()
+
+```
+
+
+## 4. Tidying data: Answers and Tasks
+ 
+### Transforming the CO<sub>2</sub> data set
+```{r}
+xls = '../data/co2_europa.xls'
+co2 = read_excel(xls, skip=12)
+co2Long <- co2 %>% 
+  gather("Year","Emissions", -Country) %>% 
+  mutate(Year = as.numeric(Year))
+
+kable(head(co2Long), digits = 2)
+```
+
+### What are the top 5 emitting countries for 2014 ? 
+
+```{r}
+
+co2Long %>% 
+  filter(Year == 2014, Country != "World", Country != "EU28") %>% 
+  arrange(desc(Emissions)) %>% 
+  head(n = 5) %>% 
+  kable()
+  
+  
+```
+
+### What are the total emissions of the top 5 emitting countries ?
+
+```{r}
+
+co2Long %>% 
+  filter(Country != "World", Country != "EU28") %>% 
+  group_by(Country) %>% 
+  summarise(Total = sum(Emissions)) %>% 
+  arrange(desc(Total)) %>% 
+  head(n = 5) %>% 
+  kable(format.args = list(big.mark = ","))
+  
+
+```
+

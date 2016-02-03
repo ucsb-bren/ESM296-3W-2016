@@ -31,6 +31,82 @@ To address this question, I will apply multiple data-limited assessment techniqu
         
 ## Data
         
-The data set I will be using is from Karimunjawa National Park, Indonesia. This site is a prototype site for the Fish Forever intervention. The data set runs from 2010-2014 and includes catch, effort, and length-composition data.
+The data set I will be using is from Karimunjawa National Park, Indonesia. This site is a prototype site for the Fish Forever intervention. The data set runs from 2010-2015 and includes catch, effort, and length-composition data. Wildlife Conservation Society (WCS) and Rare contributed to the data collection of this data set.
 
   ![](images/karimunjawa.jpg)
+  
+## Data Wrangling
+
+Working in R and the terminal  
+```{r, eval=FALSE}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+
+setwd('students')
+```
+Installing packages  
+```{r, eval=FALSE}
+# Run this chunk only once in your Console
+# Do not evaluate when knitting Rmarkdown
+
+# list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}
+```
+Reading in csvs with utils::read.csv  
+```{r, eval=FALSE}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+Reading in csvs with readr::read_csv  
+```{r,eval=FALSE}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+Formatting tables with dplry::tbl_df  
+```{r,eval=TRUE}
+library(readr)
+library(dplyr)
+
+d = read_csv('../data/r-ecology/surveys.csv') %>%
+  tbl_df() %>%
+  select(species_id,year) %>%
+  #filter(species_id == "NL") %>%
+  group_by(species_id,year) %>%
+  summarize(count = n())
+d
+head(d)
+summary(d)
+glimpse(d)
+```
+
