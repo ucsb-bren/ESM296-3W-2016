@@ -46,7 +46,7 @@ summary(densities)
 
 
 
-## Wrangling data
+## Wrangling data ----
 
 ### Reading Data with readr and dplyr
 ```{r, results = 'asis'}
@@ -65,6 +65,7 @@ knitr::kable(summary(d))
 suppressWarnings(library(readr))
 suppressWarnings(library(tidyr))
 suppressWarnings(library(knitr))
+suppressWarnings(library(readxl))
 library(dplyr)
 library(EDAWR)
 library(nycflights13)
@@ -142,7 +143,7 @@ tb %>%
 
 ```
 
-### Joining data
+### Joining data ----
 ```{r}
 bind_cols(y,z) %>% # adds all the columns into one df
   kable()
@@ -177,5 +178,44 @@ anti_join(songs, artists, by = 'name') %>%  # returns the entries that are not r
 ```
 
 
+## 4. Tidying data: Answers and Tasks
+ 
+### Transforming the CO<sub>2</sub> data set
+```{r}
+xls = '../data/co2_europa.xls'
+co2 = read_excel(xls, skip=12)
+co2Long <- co2 %>% 
+  gather("Year","Emissions", -Country) %>% 
+  mutate(Year = as.numeric(Year))
 
+kable(head(co2Long), digits = 2)
+```
+
+### What are the top 5 emitting countries for 2014 ? 
+
+```{r}
+
+co2Long %>% 
+  filter(Year == 2014, Country != "World", Country != "EU28") %>% 
+  arrange(desc(Emissions)) %>% 
+  head(n = 5) %>% 
+  kable()
+  
+  
+```
+
+### What are the total emissions of the top 5 emitting countries ?
+
+```{r}
+
+co2Long %>% 
+  filter(Country != "World", Country != "EU28") %>% 
+  group_by(Country) %>% 
+  summarise(Total = sum(Emissions)) %>% 
+  arrange(desc(Total)) %>% 
+  head(n = 5) %>% 
+  kable(format.args = list(big.mark = ","))
+  
+
+```
 
