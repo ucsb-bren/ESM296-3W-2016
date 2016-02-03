@@ -9,7 +9,6 @@ output:
 ---
 
 ```{r echo=F}
-setwd
 # set working directory if has child directory
 dir_child = 'students' 
 if (dir_child %in% list.files()){
@@ -448,7 +447,7 @@ The 'skip-12' command in the read_excel because the first 12 rows of the excel f
 
 ```{r gather ERROR}
 co2_long<- co2 %>% 
-  gather("Year", "CO2", 2:46) %>% 
+  gather("Year", "CO2", 2:46)
  
 head(co2_long)
 ###this code, though it works in R, returns the error "Error in eval(expr, envir, enclos): not compatible with STRSXP calls: <Anonymous>...<Anonymous> -> select_Vars_ -> combine_vars ->.Call
