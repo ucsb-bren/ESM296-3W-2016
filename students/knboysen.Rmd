@@ -428,7 +428,7 @@ From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheat
 
 _**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
 
-```{r read co2, eval=F}
+```{r read co2, eval=T}
 library(readxl) # install.packages('readxl')
 
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
@@ -439,7 +439,6 @@ if (!file.exists(xls)){
   download.file(url, xls, method='internal')
 }
 co2 = read_excel(xls, skip=12)
-co2
 ```
 
 _**Question**. Why use `skip=12` argument in `read_excel()`?_
@@ -448,8 +447,7 @@ The 'skip-12' command in the read_excel because the first 12 rows of the excel f
 
 ```{r gather ERROR}
 co2_long<- co2 %>% 
-  gather("Year", "CO2", 2:46) %>% 
- 
+  gather("Year", "CO2", 2:46)
 head(co2_long)
 ###this code, though it works in R, returns the error "Error in eval(expr, envir, enclos): not compatible with STRSXP calls: <Anonymous>...<Anonymous> -> select_Vars_ -> combine_vars ->.Call
 
