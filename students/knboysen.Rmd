@@ -314,15 +314,15 @@ inner_join(songs, artists, by="name")
 ##Week 04-- Tidyr
 ### EDAWR
 
-```{r EDAWR, eval=F}
-# install.packages("devtools")
-# devtools::install_github("rstudio/EDAWR")
-library(EDAWR)
-help(package='EDAWR')
-?storms    # wind speed data for 6 hurricanes
-?cases     # subset of WHO tuberculosis
-?pollution # pollution data from WHO Ambient Air Pollution, 2014
-?tb        # tuberculosis data
+```{r EDAWR}
+#install.packages("devtools")
+#devtools::install_github("rstudio/EDAWR")
+#library(EDAWR)
+#help(package='EDAWR')
+#?storms    # wind speed data for 6 hurricanes
+#?cases     # subset of WHO tuberculosis
+#?pollution # pollution data from WHO Ambient Air Pollution, 2014
+#?tb        # tuberculosis data
 #Viewd(storms)
 #View(cases)
 #View(pollution)
@@ -402,7 +402,6 @@ storms2 <- separate(storms, date, c("year", "month", "day"), sep = "-")
 storms %>% 
   mutate(date_str= as.character(date))
 
-
 storms3 <- separate(storms, date, c("year", "month", "day"), sep = c(4,6))
 ```
 
@@ -423,7 +422,6 @@ unite(storms2, "date", year, month, day, sep = "-")
 
 From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
 
-  ![](wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png)
 
 ### tidy CO<sub>2</sub> emissions
 ##Assignment 4
@@ -447,46 +445,60 @@ co2
 _**Question**. Why use `skip=12` argument in `read_excel()`?_
 The 'skip-12' command in the read_excel because the first 12 rows of the excel file are metadata-- titles, information about where the data came from etc. 
 
-## dplyr
 
-A package that helps transform tabular data
+```{r gather ERROR}
+co2_long<- co2 %>% 
+  gather("Year", "CO2", 2:46) %>% 
+ 
+head(co2_long)
+###this code, though it works in R, returns the error "Error in eval(expr, envir, enclos): not compatible with STRSXP calls: <Anonymous>...<Anonymous> -> select_Vars_ -> combine_vars ->.Call
 
-```{r dplyr, eval=F}
-# install.packages("dplyr")
-library(dplyr)
-?select
-?filter
-?arrange
-?mutate
-?group_by
-?summarise
+##halp!
 ```
-
-See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
-
-- Subset Variables (Columns), eg `select()`
-- Subset Observations (Rows), eg `filter()`
-- Reshaping Data - Change the layout of a data set, eg `arrange()`
-- Make New Variables, eg `mutate()`
-- Group Data, eg `group_by()` and `summarise()`
-```{r}
-co2 %>% 
-  mutate(total_emissions= sum(2:46)) %>% 
-  select(Country, total_emissions)
-
-```
-
 
 ### summarize CO<sub>2</sub> emissions
 
 _**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
 
-```{r}
-co2 %>% 
-  mutate(year = as.numeric(as.character(year)))
+```{r Task 2}
+co2_long %>% 
+  mutate(Year = as.numeric(as.character(Year))) %>%
+  filter(Year==2014) %>%
+  filter(Country!="EU28", Country!="World") %>% 
+  top_n(5, CO2) %>% 
+  arrange(desc(CO2)) %>% 
+  head
 
+         #        Country  Year      CO2
+          #           (chr) (dbl)    (dbl)
+          #          China  2014 10540750
+# United States of America  2014  5334530
+#                    India  2014  2341897
+#       Russian Federation  2014  1766427
+#                    Japan  2014  1278922
+  
 ```
 
 
 _**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+```{r Task 3}
+co2_long %>% 
+  filter(Country!="EU28", Country!="World") %>% 
+  group_by(Country) %>% 
+  summarise(total_emissions=sum(CO2)) %>% 
+  arrange(desc(total_emissions)) %>% 
+  head()
+
+#                   Country total_emissions
+                  #   (chr)           (dbl)
+#United States of America       231948899
+#                    China       174045927
+#       Russian Federation        81242427
+#                    Japan        51276329
+#                  Germany        43382205
+#                    India        39004218
+
+```
+
 
