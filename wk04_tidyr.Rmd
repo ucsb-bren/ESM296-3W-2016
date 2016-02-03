@@ -76,7 +76,7 @@ help(package='EDAWR')
 ?cases     # subset of WHO tuberculosis
 ?pollution # pollution data from WHO Ambient Air Pollution, 2014
 ?tb        # tuberculosis data
-Viewd(storms)
+View(storms)
 View(cases)
 View(pollution)
 ```

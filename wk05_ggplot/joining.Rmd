@@ -35,6 +35,10 @@ Brought some of these stickers for ya:
     - Knit Document: Ctrl+Shift+**K** (Win), Cmd+Shift+**K** (Mac)
     - Copy Lines Up/Down: Shift+Alt+**$\uparrow$**/**$\downarrow$** (Win), Cmd+Option+**$\uparrow$**/**$\downarrow$** (Mac)
 
+### Dealing with Merge Conflicts
+
+[Git and GitHub · R packages -- Working with others](http://r-pkgs.had.co.nz/git.html#git-pull)
+
 ## joining data
 
 
