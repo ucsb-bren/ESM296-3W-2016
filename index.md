@@ -116,6 +116,8 @@ Data comes in a wide variety of formats. Literally. You'll learn about "wide" vs
 Visualization allows you to find patterns in your data. Good visualization allows you to communicate what your learn from data to others.  New tools provide users with efficient and flexible ways to generate elegant informative visualizations of their data. We will introduce you 'best practices' and R's powerful visualization "grammar"
  [ggplot2](https://github.com/jennybc/ggplot2-tutorial) which allows you too quickly generate some pretty fancy plots and tailor them to your audience. See the [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/11/ggplot2-cheatsheet.pdf).
 
+<a href="wk05_ggplot/" class="btn btn-primary btn-sm">Visualizing Data...</a>
+
 ### 6. Interactive Plots and Maps
 
 #### Feb 12 [BB]
