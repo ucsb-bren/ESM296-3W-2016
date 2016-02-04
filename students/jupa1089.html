@@ -72,6 +72,8 @@ img {
 <li><a href="#content">Content</a></li>
 <li><a href="#techniques">Techniques</a></li>
 <li><a href="#data">Data</a></li>
+<li><a href="#data-wrangling">Data Wrangling</a></li>
+<li><a href="#wrangling-webinar">Wrangling Webinar</a></li>
 </ul>
 </div>
 
@@ -114,6 +116,394 @@ summary(d)</code></pre>
 ##  very_satisfied: 43             
 ##                                 
 ## </code></pre>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2>Data Wrangling</h2>
+<pre class="r"><code>#present working directory
+getwd()
+
+#change working directory
+setwd('C:/Users/paltsev/Documents/gitsnorlax/env-info')
+
+#list files
+list.files()
+
+#list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+#file exists
+file.exists('test.png')
+
+setwd('students')</code></pre>
+<div id="install-packages" class="section level3">
+<h3>Install Packages</h3>
+<pre class="r"><code>#run this chunk only once in your Console
+#do not evaluate when knitting Rmarkdown
+
+#list of packages
+pkgs = c(
+  'readr',
+  'readxl',
+  'dplyr',
+  'tidyr',
+  'nycflights13',
+  'gapminder')
+  
+#install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}</code></pre>
+</div>
+<div id="utilsread.csv" class="section level3">
+<h3>utils::read.csv</h3>
+<p>Traditionally, you would read a CSV like so:</p>
+<pre class="r"><code>d = read.csv('../data/r-ecology/species.csv')
+d</code></pre>
+<pre><code>##    species_id            genus         species    taxa
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## 11         CV         Crotalus         viridis Reptile
+## 12         DM        Dipodomys        merriami  Rodent
+## 13         DO        Dipodomys           ordii  Rodent
+## 14         DS        Dipodomys     spectabilis  Rodent
+## 15         DX        Dipodomys             sp.  Rodent
+## 16         EO          Eumeces       obsoletus Reptile
+## 17         GS         Gambelia           silus Reptile
+## 18         NL          Neotoma        albigula  Rodent
+## 19         NX          Neotoma             sp.  Rodent
+## 20         OL        Onychomys     leucogaster  Rodent
+## 21         OT        Onychomys        torridus  Rodent
+## 22         OX        Onychomys             sp.  Rodent
+## 23         PB      Chaetodipus         baileyi  Rodent
+## 24         PC           Pipilo       chlorurus    Bird
+## 25         PE       Peromyscus        eremicus  Rodent
+## 26         PF      Perognathus          flavus  Rodent
+## 27         PG        Pooecetes       gramineus    Bird
+## 28         PH      Perognathus        hispidus  Rodent
+## 29         PI      Chaetodipus     intermedius  Rodent
+## 30         PL       Peromyscus        leucopus  Rodent
+## 31         PM       Peromyscus     maniculatus  Rodent
+## 32         PP      Chaetodipus    penicillatus  Rodent
+## 33         PU           Pipilo          fuscus    Bird
+## 34         PX      Chaetodipus             sp.  Rodent
+## 35         RF  Reithrodontomys      fulvescens  Rodent
+## 36         RM  Reithrodontomys       megalotis  Rodent
+## 37         RO  Reithrodontomys        montanus  Rodent
+## 38         RX  Reithrodontomys             sp.  Rodent
+## 39         SA       Sylvilagus       audubonii  Rabbit
+## 40         SB         Spizella         breweri    Bird
+## 41         SC       Sceloporus          clarki Reptile
+## 42         SF         Sigmodon     fulviventer  Rodent
+## 43         SH         Sigmodon        hispidus  Rodent
+## 44         SO         Sigmodon    ochrognathus  Rodent
+## 45         SS     Spermophilus       spilosoma  Rodent
+## 46         ST     Spermophilus    tereticaudus  Rodent
+## 47         SU       Sceloporus       undulatus Reptile
+## 48         SX         Sigmodon             sp.  Rodent
+## 49         UL           Lizard             sp. Reptile
+## 50         UP           Pipilo             sp.    Bird
+## 51         UR           Rodent             sp.  Rodent
+## 52         US          Sparrow             sp.    Bird
+## 53         ZL      Zonotrichia      leucophrys    Bird
+## 54         ZM          Zenaida        macroura    Bird</code></pre>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>##   species_id            genus         species   taxa
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##    species_id             genus         species        taxa   
+##  AB     : 1   Chaetodipus    : 4   sp.      :10   Bird   :13  
+##  AH     : 1   Dipodomys      : 4   hispidus : 2   Rabbit : 1  
+##  AS     : 1   Reithrodontomys: 4   albigula : 1   Reptile: 9  
+##  BA     : 1   Sigmodon       : 4   audubonii: 1   Rodent :31  
+##  CB     : 1   Onychomys      : 3   baileyi  : 1               
+##  CM     : 1   Peromyscus     : 3   bilineata: 1               
+##  (Other):48   (Other)        :32   (Other)  :38</code></pre>
+</div>
+<div id="readrread_csv" class="section level3">
+<h3>readr::read_csv</h3>
+<p>Better yet, try read_csv:</p>
+<pre class="r"><code>library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d</code></pre>
+<pre><code>##    species_id            genus         species    taxa
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## 11         CV         Crotalus         viridis Reptile
+## 12         DM        Dipodomys        merriami  Rodent
+## 13         DO        Dipodomys           ordii  Rodent
+## 14         DS        Dipodomys     spectabilis  Rodent
+## 15         DX        Dipodomys             sp.  Rodent
+## 16         EO          Eumeces       obsoletus Reptile
+## 17         GS         Gambelia           silus Reptile
+## 18         NL          Neotoma        albigula  Rodent
+## 19         NX          Neotoma             sp.  Rodent
+## 20         OL        Onychomys     leucogaster  Rodent
+## 21         OT        Onychomys        torridus  Rodent
+## 22         OX        Onychomys             sp.  Rodent
+## 23         PB      Chaetodipus         baileyi  Rodent
+## 24         PC           Pipilo       chlorurus    Bird
+## 25         PE       Peromyscus        eremicus  Rodent
+## 26         PF      Perognathus          flavus  Rodent
+## 27         PG        Pooecetes       gramineus    Bird
+## 28         PH      Perognathus        hispidus  Rodent
+## 29         PI      Chaetodipus     intermedius  Rodent
+## 30         PL       Peromyscus        leucopus  Rodent
+## 31         PM       Peromyscus     maniculatus  Rodent
+## 32         PP      Chaetodipus    penicillatus  Rodent
+## 33         PU           Pipilo          fuscus    Bird
+## 34         PX      Chaetodipus             sp.  Rodent
+## 35         RF  Reithrodontomys      fulvescens  Rodent
+## 36         RM  Reithrodontomys       megalotis  Rodent
+## 37         RO  Reithrodontomys        montanus  Rodent
+## 38         RX  Reithrodontomys             sp.  Rodent
+## 39         SA       Sylvilagus       audubonii  Rabbit
+## 40         SB         Spizella         breweri    Bird
+## 41         SC       Sceloporus          clarki Reptile
+## 42         SF         Sigmodon     fulviventer  Rodent
+## 43         SH         Sigmodon        hispidus  Rodent
+## 44         SO         Sigmodon    ochrognathus  Rodent
+## 45         SS     Spermophilus       spilosoma  Rodent
+## 46         ST     Spermophilus    tereticaudus  Rodent
+## 47         SU       Sceloporus       undulatus Reptile
+## 48         SX         Sigmodon             sp.  Rodent
+## 49         UL           Lizard             sp. Reptile
+## 50         UP           Pipilo             sp.    Bird
+## 51         UR           Rodent             sp.  Rodent
+## 52         US          Sparrow             sp.    Bird
+## 53         ZL      Zonotrichia      leucophrys    Bird
+## 54         ZM          Zenaida        macroura    Bird</code></pre>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>##   species_id            genus         species   taxa
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##   species_id           genus             species         
+##  Length:54          Length:54          Length:54         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##      taxa          
+##  Length:54         
+##  Class :character  
+##  Mode  :character</code></pre>
+</div>
+<div id="dplrytbl_df" class="section level3">
+<h3>dplry::tbl_df</h3>
+<p>Now convert to a dplyr table:</p>
+<pre class="r"><code>library(readr)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>d = read_csv('../data/r-ecology/species.csv')
+d = tbl_df(d)
+
+d = read_csv('../data/r-ecology/species.csv') %&gt;%
+  tbl_df()
+
+d</code></pre>
+<pre><code>## Source: local data frame [54 x 4]
+## 
+##    species_id            genus         species    taxa
+##         (chr)            (chr)           (chr)   (chr)
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## ..        ...              ...             ...     ...</code></pre>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 4]
+## 
+##   species_id            genus         species   taxa
+##        (chr)            (chr)           (chr)  (chr)
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##   species_id           genus             species         
+##  Length:54          Length:54          Length:54         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##      taxa          
+##  Length:54         
+##  Class :character  
+##  Mode  :character</code></pre>
+<pre class="r"><code>glimpse(d)</code></pre>
+<pre><code>## Observations: 54
+## Variables: 4
+## $ species_id (chr) &quot;AB&quot;, &quot;AH&quot;, &quot;AS&quot;, &quot;BA&quot;, &quot;CB&quot;, &quot;CM&quot;, &quot;CQ&quot;, &quot;CS&quot;, &quot;CT...
+## $ genus      (chr) &quot;Amphispiza&quot;, &quot;Ammospermophilus&quot;, &quot;Ammodramus&quot;, &quot;Ba...
+## $ species    (chr) &quot;bilineata&quot;, &quot;harrisi&quot;, &quot;savannarum&quot;, &quot;taylori&quot;, &quot;b...
+## $ taxa       (chr) &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Bird&quot;,...</code></pre>
+</div>
+<div id="dplry-loosely" class="section level3">
+<h3>dplry loosely</h3>
+<div id="what-year-does-species-nl-show-up-in-survey.csv" class="section level4">
+<h4>What year does species “NL” show up in survey.csv?</h4>
+<pre class="r"><code>library(readr)
+library(dplyr)
+
+read_csv('../data/r-ecology/surveys.csv') %&gt;%
+  select(species_id, year) %&gt;%
+  #filter(species_id == 'NL') %&gt;%
+  group_by(year) %&gt;%
+  summarize(count = n())</code></pre>
+<pre><code>## Source: local data frame [26 x 2]
+## 
+##     year count
+##    (int) (int)
+## 1   1977   503
+## 2   1978  1048
+## 3   1979   719
+## 4   1980  1415
+## 5   1981  1472
+## 6   1982  1978
+## 7   1983  1673
+## 8   1984   981
+## 9   1985  1438
+## 10  1986   942
+## ..   ...   ...</code></pre>
+<pre class="r"><code>d = read_csv('../data/r-ecology/surveys.csv') %&gt;%
+  tbl_df()
+
+d</code></pre>
+<pre><code>## Source: local data frame [35,549 x 9]
+## 
+##    record_id month   day  year plot_id species_id   sex hindfoot_length
+##        (int) (int) (int) (int)   (int)      (chr) (chr)           (int)
+## 1          1     7    16  1977       2         NL     M              32
+## 2          2     7    16  1977       3         NL     M              33
+## 3          3     7    16  1977       2         DM     F              37
+## 4          4     7    16  1977       7         DM     M              36
+## 5          5     7    16  1977       3         DM     M              35
+## 6          6     7    16  1977       1         PF     M              14
+## 7          7     7    16  1977       2         PE     F              NA
+## 8          8     7    16  1977       1         DM     M              37
+## 9          9     7    16  1977       1         DM     F              34
+## 10        10     7    16  1977       6         PF     F              20
+## ..       ...   ...   ...   ...     ...        ...   ...             ...
+## Variables not shown: weight (int)</code></pre>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>## Source: local data frame [6 x 9]
+## 
+##   record_id month   day  year plot_id species_id   sex hindfoot_length
+##       (int) (int) (int) (int)   (int)      (chr) (chr)           (int)
+## 1         1     7    16  1977       2         NL     M              32
+## 2         2     7    16  1977       3         NL     M              33
+## 3         3     7    16  1977       2         DM     F              37
+## 4         4     7    16  1977       7         DM     M              36
+## 5         5     7    16  1977       3         DM     M              35
+## 6         6     7    16  1977       1         PF     M              14
+## Variables not shown: weight (int)</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##    record_id         month             day             year     
+##  Min.   :    1   Min.   : 1.000   Min.   : 1.00   Min.   :1977  
+##  1st Qu.: 8888   1st Qu.: 4.000   1st Qu.: 9.00   1st Qu.:1984  
+##  Median :17775   Median : 6.000   Median :16.00   Median :1990  
+##  Mean   :17775   Mean   : 6.474   Mean   :16.11   Mean   :1990  
+##  3rd Qu.:26662   3rd Qu.: 9.000   3rd Qu.:23.00   3rd Qu.:1997  
+##  Max.   :35549   Max.   :12.000   Max.   :31.00   Max.   :2002  
+##                                                                 
+##     plot_id      species_id            sex            hindfoot_length
+##  Min.   : 1.0   Length:35549       Length:35549       Min.   : 2.00  
+##  1st Qu.: 5.0   Class :character   Class :character   1st Qu.:21.00  
+##  Median :11.0   Mode  :character   Mode  :character   Median :32.00  
+##  Mean   :11.4                                         Mean   :29.29  
+##  3rd Qu.:17.0                                         3rd Qu.:36.00  
+##  Max.   :24.0                                         Max.   :70.00  
+##                                                       NA's   :4111   
+##      weight      
+##  Min.   :  4.00  
+##  1st Qu.: 20.00  
+##  Median : 37.00  
+##  Mean   : 42.67  
+##  3rd Qu.: 48.00  
+##  Max.   :280.00  
+##  NA's   :3266</code></pre>
+<pre class="r"><code>glimpse(d)</code></pre>
+<pre><code>## Observations: 35,549
+## Variables: 9
+## $ record_id       (int) 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,...
+## $ month           (int) 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7...
+## $ day             (int) 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16...
+## $ year            (int) 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977...
+## $ plot_id         (int) 2, 3, 2, 7, 3, 1, 2, 1, 1, 6, 5, 7, 3, 8, 6, 4...
+## $ species_id      (chr) &quot;NL&quot;, &quot;NL&quot;, &quot;DM&quot;, &quot;DM&quot;, &quot;DM&quot;, &quot;PF&quot;, &quot;PE&quot;, &quot;DM&quot;...
+## $ sex             (chr) &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;...
+## $ hindfoot_length (int) 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38...
+## $ weight          (int) NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...</code></pre>
+</div>
+</div>
+</div>
+<div id="wrangling-webinar" class="section level2">
+<h2>Wrangling Webinar</h2>
+<pre class="r"><code>#View(iris)
+#iris %&gt;%
+  #select(Species, Petal.Length)
+
+#install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;rstudio/EDAWR&quot;)
+#library(EDAWR)
+#View(storms)
+#View(cases)
+#View(pollution)
+#storms$storm
+#storms$wind
+#storms$pressure
+#storms$date
+#cases$country
+#names(cases)[-1]
+#unlist(cases[1:3, 2:4])
+#pollution$amount[1:5]
+#storms$pressure / storms$wind
+#library(tidyr)
+#?gather
+#?spread
+#gather(cases, &quot;year&quot;, &quot;n&quot;, 2:4)
+#spread(pollution, size, amount)
+#storms2 &lt;- separate(storms, date, c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;)
+#unite(storms2, &quot;date&quot;, year, month, day, sep = &quot;-&quot;)</code></pre>
 </div>
 
 
