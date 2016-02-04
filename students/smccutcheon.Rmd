@@ -542,7 +542,7 @@ co2
 ```
 
 
-####Top 5 Countries by CO2 Emissions
+####Top 6 Countries by CO2 Emissions
 
 ```{r}
 library(dplyr)
