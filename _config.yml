@@ -10,9 +10,9 @@ gems: # https://pages.github.com/versions/
   - jekyll-feed
   - jemoji
 #  - jekyll-last-modified-at
-  
+
 # Conversion
 markdown:    kramdown
-highlighter: pygments
+highlighter: rouge
 kramdown:
   input: GFM
