@@ -37,26 +37,3 @@ s = read.csv('data/sgriff_loadyields.tsv') #sgriff_loadyields indicates annual N
 # output summary
 summary(s)
 ```
-
-#########################################
-#Data Wrangling
-
-```{r}
-library(readr)
-library(dplyr)
-library(tidyr)
-library(stringr)
-read.csv('sgriff_loadyields.csv')
-#limit columns to just state and nitrogen 
-#limit rows to states with nitrogen levels >= 1000 kg/yr/km^2
-#get number of states with N >= 1000 kg/yr/km^2
-#get list of states with N >= 1000 kg/yr/km^2
-
-sgriff_loadyields %>% 
-  select(state:nitrogen) %>%  
-  mutate(nitrogen = as.numeric(stringr::str_replace_all(nitrogen, ',', ''))) %>% 
-  filter(nitrogen >= 1000) %>% 
-  summarize(n = n()) 
-
-write.csv('env-info/sgriff_N1000yields')
-```

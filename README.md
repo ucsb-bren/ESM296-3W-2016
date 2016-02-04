@@ -20,10 +20,9 @@ The content on this site draws extensively from these repositories:
 - https://github.com/advanced-js/students
 - https://github.com/datacarpentry/R-ecology
 
-## Testing Site
-
-This repo uses [Github Pages](https://pages.github.com/) and it's templating [Jekyll](http://jekyllrb.com/) system, to render the site <http://ucsb-bren.github.io/env-info>. To run it locally (eg to check edits), run:
+## Testing
 
 ```bash
 bundle exec jekyll serve --baseurl ''
+/usr/local/bin/jekyll serve --baseurl ''
 ```

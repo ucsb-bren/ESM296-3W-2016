@@ -2,5 +2,3 @@ _site
 Gemfile.lock
 .Rproj.user
 .Rhistory
-.DS_Store
-.RData

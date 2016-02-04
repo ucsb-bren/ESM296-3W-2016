@@ -72,7 +72,6 @@ img {
 <li><a href="#content"><em>Content</em></a></li>
 <li><a href="#techniques"><em>Techniques</em></a></li>
 <li><a href="#data"><em>Data</em></a></li>
-<li><a href="#data-wrangling"><em>Data Wrangling</em></a></li>
 </ul>
 </div>
 
@@ -90,52 +89,50 @@ img {
 <p>At the present moment I’m not participating in any MESM project. However, when searching for a opportunity to write my proposal I looked at The International Comission for the Conservation of Atlantic Tunas (ICCAT) database on shark captures, which I’ll be using for this assignment.</p>
 <pre class="r"><code># read csv
 d = read.csv('data/caio-faro_ICCATSharks.csv')
-Brazil &lt;- subset(d, PartyName == &quot;BRAZIL&quot;)</code></pre>
-</div>
-<div id="data-wrangling" class="section level2">
-<h2><em>Data Wrangling</em></h2>
-<pre class="r"><code>suppressWarnings(suppressMessages(require(readr)))
-suppressWarnings(suppressMessages(require(dplyr)))
-
-tbl_df(Brazil)</code></pre>
-<pre><code>## Source: local data frame [1,224 x 18]
-## 
-##    Species                 ScieName       SpeciesGrp YearC Decade Status
-##     (fctr)                   (fctr)           (fctr) (int)  (int) (fctr)
-## 1      BSH          Prionace glauca 4-Sharks (major)  2002   2000     CP
-## 2      SMA        Isurus oxyrinchus 4-Sharks (major)  2002   2000     CP
-## 3      SHX             Squaliformes 5-Sharks (other)  2002   2000     CP
-## 4      BSH          Prionace glauca 4-Sharks (major)  2002   2000     CP
-## 5      FAL Carcharhinus falciformis 5-Sharks (other)  2002   2000     CP
-## 6      BTH    Alopias superciliosus 5-Sharks (other)  2002   2000     CP
-## 7      SMA        Isurus oxyrinchus 4-Sharks (major)  2002   2000     CP
-## 8      SHX             Squaliformes 5-Sharks (other)  2002   2000     CP
-## 9      BSH          Prionace glauca 4-Sharks (major)  2002   2000     CP
-## 10     FAL Carcharhinus falciformis 5-Sharks (other)  2002   2000     CP
-## ..     ...                      ...              ...   ...    ...    ...
-## Variables not shown: PartyName (fctr), Flag (fctr), Fleet (fctr), Stock
-##   (fctr), SampArea (fctr), AreaT1 (fctr), SpcGearGrp (fctr), GearGrp
-##   (fctr), GearCode (fctr), CatchTypeCode (fctr), QualInfoCode (fctr),
-##   Qty_t (dbl)</code></pre>
-<pre class="r"><code>Brazil %&gt;%
-  select(ScieName, YearC, Status, Fleet, Stock, GearCode, Qty_t) %&gt;%
-  group_by(ScieName) %&gt;%
-  summarize(Total_Catch_t = sum(Qty_t))</code></pre>
-<pre><code>## Source: local data frame [27 x 2]
-## 
-##                    ScieName Total_Catch_t
-##                      (fctr)         (dbl)
-## 1               Alopias spp    148.827000
-## 2     Alopias superciliosus    747.963952
-## 3            Carcharhinidae   1600.884882
-## 4         Carcharhiniformes   6132.138284
-## 5  Carcharhinus falciformis   1811.366600
-## 6       Carcharhinus leucas      8.237015
-## 7   Carcharhinus longimanus   2155.981042
-## 8     Carcharhinus signatus     23.374000
-## 9         Carcharias taurus      9.272000
-## 10       Coastal Sharks nei    411.040000
-## ..                      ...           ...</code></pre>
+Brazil &lt;- subset(d, PartyName == &quot;BRAZIL&quot;)
+      
+# output summary
+summary(Brazil)</code></pre>
+<pre><code>##     Species                     ScieName              SpeciesGrp 
+##  BSH    :211   Prionace glauca      :211   4-Sharks (major):403  
+##  SMA    :191   Isurus oxyrinchus    :191   5-Sharks (other):821  
+##  SPN    :133   Sphyrna spp          :133                         
+##  BTH    :130   Alopias superciliosus:130                         
+##  SHX    : 92   Squaliformes         : 92                         
+##  RSK    : 85   Carcharhinidae       : 85                         
+##  (Other):382   (Other)              :382                         
+##      YearC          Decade     Status                PartyName   
+##  Min.   :1994   Min.   :1990   CP :1224   BRAZIL          :1224  
+##  1st Qu.:2003   1st Qu.:2000   NCC:   0   ALG&lt;c9&gt;RIE      :   0  
+##  Median :2005   Median :2000   NCO:   0   ANGOLA          :   0  
+##  Mean   :2006   Mean   :2002              BARBADOS        :   0  
+##  3rd Qu.:2009   3rd Qu.:2000              BELIZE          :   0  
+##  Max.   :2014   Max.   :2010              C&lt;d4&gt;TE D'IVOIRE:   0  
+##                                           (Other)         :   0  
+##         Flag                  Fleet     Stock        SampArea   
+##  Brazil   :1224   BRA-BRA-ITAJAI :138   A+M:821   unkn   :1213  
+##  Algerie  :   0   BRA-BRA-NATAL  :114   ATN:  6   BIL96  :  11  
+##  Angola   :   0   BRA-BRA-RJANERO: 92   ATS:397   BIL91  :   0  
+##  Argentina:   0   BRA            : 67   MED:  0   BIL92  :   0  
+##  Barbados :   0   BRA-BRA-SANTOS : 64             BIL93  :   0  
+##  Belize   :   0   BRA-ESP-NATAL  : 60             BIL94  :   0  
+##  (Other)  :   0   (Other)        :689             (Other):   0  
+##      AreaT1           SpcGearGrp     GearGrp       GearCode  
+##  SW     :1206   All gears  :822   LL     :998   LL     :839  
+##  NW     :  17   Longline   :330   UN     : 77   LLFB   :137  
+##  GOFM   :   1   Other surf.: 72   BB     : 46   UNCL   : 77  
+##  ATL    :   0                     SU     : 36   BB     : 46  
+##  AZOR   :   0                     HL     : 35   SURF   : 36  
+##  BLACK  :   0                     PS     : 19   HAND   : 35  
+##  (Other):   0                     (Other): 13   (Other): 54  
+##  CatchTypeCode  QualInfoCode      Qty_t         
+##  C :977        RPT1   :1158   Min.   :   0.000  
+##  DD: 13        UNKN   :  47   1st Qu.:   0.300  
+##  L :234        RCSP   :  19   Median :   3.366  
+##                OBSH   :   0   Mean   :  56.081  
+##                RCAR   :   0   3rd Qu.:  21.776  
+##                RCGR   :   0   Max.   :2609.500  
+##                (Other):   0</code></pre>
 </div>
 
 

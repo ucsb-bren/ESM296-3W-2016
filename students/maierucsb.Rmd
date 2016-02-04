@@ -7,21 +7,6 @@ output:
     toc: true
     toc_depth: 2
 ---
-```{r setwd, echo=FALSE, warning=FALSE}
-# set working directory if has child directory
-dir_child = 'students' 
-if (dir_child %in% list.files()){
-  if (interactive()) {  
-    # R Console
-    setwd(dir_child)
-  } else {              
-    # knitting
-    knitr::opts_knit$set(root.dir=dir_child)  
-  }
-}
-```
-
-
 
   ## **Content**
         
@@ -51,77 +36,14 @@ I think collaborative model building and interactive plots and maps will be very
   
   ![](images/maierucsb_2016.png)
   
-As can be seen, Derrick Rose's statistical climb has regressed... This decline can aslo be seen in his overall [stats](http://stats.nba.com/player/#!/201565/)... The future looks tragically quite dim for the former MVP.
-
-
-```{r Data, echo=FALSE, warning=FALSE, message=FALSE,}
-## Data Wrangling
-# load libraries
-library(readr);
-library(dplyr);
-
+  As can be seen, Derrick Rose's overall shooting efficiency has plummeted... This decline can aslo be seen in his overall [stats](http://stats.nba.com/player/#!/201565/)... The future looks tragically quite dim for the former MVP.
+  
+```{r, echo=FALSE, warning=FALSE}
 # read csv
-a = read_csv(file='data/maierucsb_data.csv')
-#filter out data
-a %T>%                          
-  select(Season,DRtg,ORtg) %>%
-  mutate(CombineRtg = ORtg+DRtg) %>%
-  summarise("Average Combined Rating"= mean(CombineRtg),
-            "Minimum Combined Rating"= min(CombineRtg),
-            "Maximum Combined Rating"= max(CombineRtg))
-
+d = read.csv(file='data/maierucsb_DRose.csv')
+      
 # output barplot
-b=select(a,Season,PTS,TRB,AST,STL,BLK,TOV)
-barplot(as.matrix(b[2:7]),cex.names=0.9, xlab="Statistical Category",ylab="Per 100 Possession Averages",legend=a$Season,beside=TRUE)
+barplot(as.matrix(d[2:16]),cex.names=0.5, xlab="Statistical Category",ylab="Per Game Averages",legend=d$Year)
 
 ```
-
-##Assignment4
-
-```{r insertco2, echo=FALSE, message=FALSE, results='hide'}
-library(readxl) # install.packages('readxl')
-
-# url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
-xls = '../data/co2_europa.xls'
-
-# print(getwd())
-# if (!file.exists(xls)){
-#  download.file(url, xls)
-# }
-
-co2class = read_excel(xls, skip=12)
-
-```
-
-```{r widetolong, echo=FALSE}
-library(dplyr)
-library(tidyr)
-gatherco2=co2class%>%
-  gather('year','emissions',2:46);
-table1=slice(gatherco2,1:3);
-library(knitr)
-
-kable(table1,digits=0,caption='wide to long format of emmissions')
-```
-
-```{r topfiveco2, echo=FALSE}
-topfive=gatherco2 %>%
-  mutate(year = as.numeric(as.character(year))) %>%
-  filter(Country != 'World' & Country != 'EU28' & year == 2014) %>%
-  arrange(desc(emissions)) %>%
-  slice(1:5)
-kable(topfive,digits=0,caption="top five emitting countries in 2014",col.names=c('Country','Year','Emissions'))
-```
-
-```{r totalemissions, echo=FALSE}
-totalemit=gatherco2 %>%
-  mutate(year = as.numeric(as.character(year))) %>%
-  filter(Country != 'World' & Country != 'EU28') %>%
-  group_by(Country) %>%
-  summarise(totalemissions = sum(emissions))%>%
-  arrange(desc(totalemissions)) %>%
-  slice(1:5)
-kable(totalemit,digits=0,caption="top five emitting countries from 1970-2014",col.names=c('Country','Total Emissions'))
-```
-
-
+  

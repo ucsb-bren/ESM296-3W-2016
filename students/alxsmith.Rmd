@@ -9,8 +9,7 @@ output:
 ---
 ## Organization
 
-
-[Fisheries Managment](fishmgt.github.io/index.html)
+[Fisheries Managment](http://github.com/fishmgt)
 
 @fishmgt
 
@@ -19,7 +18,6 @@ output:
 ![Awesome Sea Cucumber](images/alxsmith_cucumber.png)
 
 ## Interest
-
 
 - Tools for Stock Assessment and development of MSY models
 - Supply Chain
@@ -53,9 +51,7 @@ Still deciding on which data to use. Below is sample data which includes:
 
 ```{r}
 #read csv
-
 data = read.csv("data/alxsmith_fishermen.csv")
-
 
 #output summary 
 summary(data)
@@ -67,61 +63,3 @@ Here's a sample plot:
 fishfactor=factor(data$fishpart, levels = c(0,1,2,3), labels=c("No Fish", "Mussle Tissue", "Whole Fish\n(sometimes)", "Whole Fish"))
 plot(fishfactor, pch=15, col=rainbow(4), main="Fish Part Consumption")
 ```
-
-
-##Data Wrangling
-
-```{r}
-#getwd()
-#setwd('students')
-
-
-list.files()
-
-list.files(pattern=glob2rx('*.png'))
-
-file.exists('test.png')
-```
-
-
-###Reading CSV
-```{r}
-d = read.csv('../data/r-ecology/species.csv')
-d
-head(d)
-summary(d)
-class(d$species_id)
-#factor
-```
-
-###Reading CSV with readr
-
-```{r}
-library(readr)
-
-d = read_csv('../data/r-ecology/species.csv')
-d
-head(d)
-summary(d)
-class(d$species_id)
-
-
-```
-
-```{r}
-library(dplyr)
-
-#read in csv
-surveys=read_csv('../data/r-ecology/surveys.csv')
-
-#dplyr elegance
-
-  surveys %T>%                       # note tee operator %T>% for glimpse
-  glimpse() %>%                       # view data
-  select(species_id, year) %>%        # limit columns
-  filter(species_id  == 'NL') %>%     # limit rows
-  group_by(year) %>%                  # get count by first grouping
-  summarize(n = n()) %>%              #   then summarize
-  write_csv('data/surveys_bbest.csv') # write out csv
-```
-
