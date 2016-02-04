@@ -74,6 +74,14 @@ img {
 <li><a href="#data">Data</a><ul>
 <li><a href="#organization">Organization</a></li>
 </ul></li>
+<li><a href="#reading-and-wrangling-data">Reading and Wrangling Data</a></li>
+<li><a href="#present-working-directory">present working directory</a></li>
+<li><a href="#change-working-directory">change working directory</a></li>
+<li><a href="#list-files">list files</a></li>
+<li><a href="#list-files-that-end-in-.jpg">list files that end in ‘.jpg’</a></li>
+<li><a href="#install-packages">Install Packages</a></li>
+<li><a href="#readings">Readings</a></li>
+<li><a href="#multiple-variables">Multiple Variables</a></li>
 </ul>
 </div>
 
@@ -110,6 +118,305 @@ summary(d)</code></pre>
 <h3>Organization</h3>
 <p><a href="https://github.com/marinehealth">Marine Health Indexes</a></p>
 </div>
+</div>
+<div id="reading-and-wrangling-data" class="section level2">
+<h2>Reading and Wrangling Data</h2>
+<p>Where am I? Getting around in the Command Line Knowing your present working directory is critical to using “relative” paths, ie relative to your present working directory. Relative paths (eg somedir/somefile.csv are often preferred over “absolute” paths (eg C:/somedir/somefile.csv) since the project’s root folder can move around on the machine or even to a different machine and still work, whereas an absolute path is locked down to a very exact machine-specific path. Here are a couple of aspects to keep in mind however when knitting Rmarkdown (*.Rmd) files:</p>
+<p>When you open an RStudio project, the default present working directory is the top level folder for that project (and contains the *.Rproj file).</p>
+<p>When you “Knit” an Rmarkdown file (<em>.Rmd), the working directory is set to the folder containing the </em>.Rmd and a new workspace is used.</p>
+<p>The above differences mean that when writing chunks of R code, a path can work in the Console and fail when you go to “Knit” the Rmarkdown file (*.Rmd), or vice versa.</p>
+<p>So let’s review some basic commands for navigating directories in both shell commands and R commands.</p>
+<p>Bash Shell The bash shell is the most common Unix-based command shell, found in Linux and Mac machines. It gets emulated for Windows in the Git Bash Shell application when installing git. Natively, Windows uses the less powerful Windows DOS command prompt, which uses cd (for pwd and cd) and dir (instead of ls).</p>
+</div>
+<div id="present-working-directory" class="section level1">
+<h1>present working directory</h1>
+<p>pwd</p>
+</div>
+<div id="change-working-directory" class="section level1">
+<h1>change working directory</h1>
+<p>cd</p>
+</div>
+<div id="list-files" class="section level1">
+<h1>list files</h1>
+<p>ls</p>
+</div>
+<div id="list-files-that-end-in-.jpg" class="section level1">
+<h1>list files that end in ‘.jpg’</h1>
+<p>ls <em>.jpg Note the use of the wildcard </em> to indicate any set of characters.</p>
+<p>R Now play with the same commands commented above, but in R.</p>
+<pre class="r"><code># present working directory
+getwd()</code></pre>
+<pre><code>## [1] &quot;C:/Users/Patricia/Desktop/Environmental Informatics/env-info/students&quot;</code></pre>
+<pre class="r"><code># change working directory
+setwd('.')
+
+# list files
+list.files()</code></pre>
+<pre><code>##  [1] &quot;adam1993.html&quot;         &quot;adam1993.Rmd&quot;         
+##  [3] &quot;alxsmith.html&quot;         &quot;alxsmith.Rmd&quot;         
+##  [5] &quot;bbest.html&quot;            &quot;bbest.Rmd&quot;            
+##  [7] &quot;caio-faro.html&quot;        &quot;caio-faro.Rmd&quot;        
+##  [9] &quot;daalbu.Rmd&quot;            &quot;data&quot;                 
+## [11] &quot;faundez.html&quot;          &quot;faundez.Rmd&quot;          
+## [13] &quot;gmcdonald-sfg.html&quot;    &quot;gmcdonald-sfg.Rmd&quot;    
+## [15] &quot;images&quot;                &quot;index.md&quot;             
+## [17] &quot;jcvdav.html&quot;           &quot;jcvdav.Rmd&quot;           
+## [19] &quot;jebone.html&quot;           &quot;jebone.Rmd&quot;           
+## [21] &quot;jepa.html&quot;             &quot;jepa.Rmd&quot;             
+## [23] &quot;jkidson.html&quot;          &quot;jkidson.Rmd&quot;          
+## [25] &quot;juanmayorgahenao.html&quot; &quot;juanmayorgahenao.Rmd&quot; 
+## [27] &quot;julianaherrera.html&quot;   &quot;julianaherrera.Rmd&quot;   
+## [29] &quot;julimatos.html&quot;        &quot;julimatos.Rmd&quot;        
+## [31] &quot;jupa1089.html&quot;         &quot;jupa1089.Rmd&quot;         
+## [33] &quot;knboysen.html&quot;         &quot;knboysen.Rmd&quot;         
+## [35] &quot;maierucsb.html&quot;        &quot;maierucsb.Rmd&quot;        
+## [37] &quot;nhartline.html&quot;        &quot;nhartline.Rmd&quot;        
+## [39] &quot;pricessnapper.csv&quot;     &quot;sgriff.html&quot;          
+## [41] &quot;sgriff.Rmd&quot;            &quot;smccutcheon.html&quot;     
+## [43] &quot;smccutcheon.Rmd&quot;       &quot;snappermap.png&quot;       
+## [45] &quot;sparrow925.html&quot;       &quot;sparrow925.Rmd&quot;       
+## [47] &quot;wag7.html&quot;             &quot;wag7.Rmd&quot;</code></pre>
+<pre class="r"><code># list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))</code></pre>
+<pre><code>## character(0)</code></pre>
+<pre class="r"><code># file exists
+file.exists('test.png')</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>Look at the help for list.files() (?list.files or F1 with cursor over list.files() in editing window) to see that the pattern argument expects a regular expression and glob2rx() changes the wildcard or globbing pattern into a regular expression.</p>
+<p>To work on your students/<user>.Rmd, I recomend you get the Console and your Rmarkdown file using the same working directory:</p>
+<pre><code>setwd('students')</code></pre>
+</div>
+<div id="install-packages" class="section level1">
+<h1>Install Packages</h1>
+<pre class="r"><code># list of packages
+pkgs = c(
+  'readr',        # read csv
+  'readxl',       # read xls
+  'dplyr',        # data frame manipulation
+  'tidyr',        # data tidying
+  'nycflights13', # test dataset of NYC flights for 2013
+  'gapminder')    # test dataset of life expectancy and popultion
+
+# install packages if not found
+for (p in pkgs){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+  }
+}</code></pre>
+<pre><code>## Loading required package: readr</code></pre>
+<pre><code>## Warning: package 'readr' was built under R version 3.2.3</code></pre>
+<pre><code>## Loading required package: readxl</code></pre>
+<pre><code>## Warning: package 'readxl' was built under R version 3.2.3</code></pre>
+<pre><code>## Loading required package: dplyr
+## 
+## Attaching package: 'dplyr'
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+## 
+## Loading required package: tidyr
+## Loading required package: nycflights13</code></pre>
+<pre><code>## Warning: package 'nycflights13' was built under R version 3.2.3</code></pre>
+<pre><code>## Loading required package: gapminder</code></pre>
+<pre><code>## Warning: package 'gapminder' was built under R version 3.2.3</code></pre>
+<p>The gapminder dataset is “an excerpt of the data available at Gapminder.org. For each of 142 countries, the package provides values for life expectancy, GDP per capita, and population, every five years, from 1952 to 2007” (CRAN). Gapminder was the brain child of Hans Rosling who famously gave the TED Talk: The best stats you’ve ever seen - Hans Rosling.</p>
+</div>
+<div id="readings" class="section level1">
+<h1>Readings</h1>
+<p>These are the main R packages we’ll be learning about this week:</p>
+<p>readr: column types dplyr: introduction tidyr: tidy data dplyr &amp; tidyr: data wrangling cheatsheet Reading CSV utils::read.csv Traditionally, you would read a CSV like so:</p>
+<pre class="r"><code>d = read.csv('../data/r-ecology/species.csv')
+d</code></pre>
+<pre><code>##    species_id            genus         species    taxa
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile
+## 11         CV         Crotalus         viridis Reptile
+## 12         DM        Dipodomys        merriami  Rodent
+## 13         DO        Dipodomys           ordii  Rodent
+## 14         DS        Dipodomys     spectabilis  Rodent
+## 15         DX        Dipodomys             sp.  Rodent
+## 16         EO          Eumeces       obsoletus Reptile
+## 17         GS         Gambelia           silus Reptile
+## 18         NL          Neotoma        albigula  Rodent
+## 19         NX          Neotoma             sp.  Rodent
+## 20         OL        Onychomys     leucogaster  Rodent
+## 21         OT        Onychomys        torridus  Rodent
+## 22         OX        Onychomys             sp.  Rodent
+## 23         PB      Chaetodipus         baileyi  Rodent
+## 24         PC           Pipilo       chlorurus    Bird
+## 25         PE       Peromyscus        eremicus  Rodent
+## 26         PF      Perognathus          flavus  Rodent
+## 27         PG        Pooecetes       gramineus    Bird
+## 28         PH      Perognathus        hispidus  Rodent
+## 29         PI      Chaetodipus     intermedius  Rodent
+## 30         PL       Peromyscus        leucopus  Rodent
+## 31         PM       Peromyscus     maniculatus  Rodent
+## 32         PP      Chaetodipus    penicillatus  Rodent
+## 33         PU           Pipilo          fuscus    Bird
+## 34         PX      Chaetodipus             sp.  Rodent
+## 35         RF  Reithrodontomys      fulvescens  Rodent
+## 36         RM  Reithrodontomys       megalotis  Rodent
+## 37         RO  Reithrodontomys        montanus  Rodent
+## 38         RX  Reithrodontomys             sp.  Rodent
+## 39         SA       Sylvilagus       audubonii  Rabbit
+## 40         SB         Spizella         breweri    Bird
+## 41         SC       Sceloporus          clarki Reptile
+## 42         SF         Sigmodon     fulviventer  Rodent
+## 43         SH         Sigmodon        hispidus  Rodent
+## 44         SO         Sigmodon    ochrognathus  Rodent
+## 45         SS     Spermophilus       spilosoma  Rodent
+## 46         ST     Spermophilus    tereticaudus  Rodent
+## 47         SU       Sceloporus       undulatus Reptile
+## 48         SX         Sigmodon             sp.  Rodent
+## 49         UL           Lizard             sp. Reptile
+## 50         UP           Pipilo             sp.    Bird
+## 51         UR           Rodent             sp.  Rodent
+## 52         US          Sparrow             sp.    Bird
+## 53         ZL      Zonotrichia      leucophrys    Bird
+## 54         ZM          Zenaida        macroura    Bird</code></pre>
+<pre class="r"><code>head(d)</code></pre>
+<pre><code>##   species_id            genus         species   taxa
+## 1         AB       Amphispiza       bilineata   Bird
+## 2         AH Ammospermophilus         harrisi Rodent
+## 3         AS       Ammodramus      savannarum   Bird
+## 4         BA          Baiomys         taylori Rodent
+## 5         CB  Campylorhynchus brunneicapillus   Bird
+## 6         CM      Calamospiza     melanocorys   Bird</code></pre>
+<pre class="r"><code>summary(d)</code></pre>
+<pre><code>##    species_id             genus         species        taxa   
+##  AB     : 1   Chaetodipus    : 4   sp.      :10   Bird   :13  
+##  AH     : 1   Dipodomys      : 4   hispidus : 2   Rabbit : 1  
+##  AS     : 1   Reithrodontomys: 4   albigula : 1   Reptile: 9  
+##  BA     : 1   Sigmodon       : 4   audubonii: 1   Rodent :31  
+##  CB     : 1   Onychomys      : 3   baileyi  : 1               
+##  CM     : 1   Peromyscus     : 3   bilineata: 1               
+##  (Other):48   (Other)        :32   (Other)  :38</code></pre>
+</div>
+<div id="multiple-variables" class="section level1">
+<h1>Multiple Variables</h1>
+<p>Now let’s approach this code sequentially using base functions, ie natively loaded functions in R without need for additional libraries.</p>
+<pre class="r"><code># read in csv
+surveys = read.csv(&quot;C:/Users/Patricia/Desktop/Environmental Informatics/env-info/data/r-ecology/surveys.csv&quot;) 
+
+# view data
+head(surveys)</code></pre>
+<pre><code>##   record_id month day year plot_id species_id sex hindfoot_length weight
+## 1         1     7  16 1977       2         NL   M              32     NA
+## 2         2     7  16 1977       3         NL   M              33     NA
+## 3         3     7  16 1977       2         DM   F              37     NA
+## 4         4     7  16 1977       7         DM   M              36     NA
+## 5         5     7  16 1977       3         DM   M              35     NA
+## 6         6     7  16 1977       1         PF   M              14     NA</code></pre>
+<pre class="r"><code>summary(surveys)</code></pre>
+<pre><code>##    record_id         month             day             year     
+##  Min.   :    1   Min.   : 1.000   Min.   : 1.00   Min.   :1977  
+##  1st Qu.: 8888   1st Qu.: 4.000   1st Qu.: 9.00   1st Qu.:1984  
+##  Median :17775   Median : 6.000   Median :16.00   Median :1990  
+##  Mean   :17775   Mean   : 6.474   Mean   :16.11   Mean   :1990  
+##  3rd Qu.:26662   3rd Qu.: 9.000   3rd Qu.:23.00   3rd Qu.:1997  
+##  Max.   :35549   Max.   :12.000   Max.   :31.00   Max.   :2002  
+##                                                                 
+##     plot_id       species_id    sex       hindfoot_length     weight      
+##  Min.   : 1.0   DM     :10596    : 2506   Min.   : 2.00   Min.   :  4.00  
+##  1st Qu.: 5.0   PP     : 3123   F:15690   1st Qu.:21.00   1st Qu.: 20.00  
+##  Median :11.0   DO     : 3027   M:17348   Median :32.00   Median : 37.00  
+##  Mean   :11.4   PB     : 2891   P:    1   Mean   :29.29   Mean   : 42.67  
+##  3rd Qu.:17.0   RM     : 2609   R:    3   3rd Qu.:36.00   3rd Qu.: 48.00  
+##  Max.   :24.0   DS     : 2504   Z:    1   Max.   :70.00   Max.   :280.00  
+##                 (Other):10799             NA's   :4111    NA's   :3266</code></pre>
+<pre class="r"><code># limit columns to species and year
+surveys_2 = surveys[,c('species_id', 'year')]
+
+# limit rows to just species &quot;NL&quot;
+surveys_3 = surveys_2[surveys_2$species_id  == 'NL',]
+
+# get count per year
+surveys_4 = aggregate(species_id ~ year, data=surveys_3, FUN='length')
+
+# write to csv
+write.csv(surveys_4, &quot;C:/Users/Patricia/Desktop/Environmental Informatics/env-info/data/surveys_faundez.csv&quot;, row.names = FALSE)</code></pre>
+<p>Because the variables are named sequentially, ie surveys_2 to surveys_4, it is relatively easy to follow, but so often in the course of playing with data these names are very different. And then we quickly lose track of which operations get applied to which variables.</p>
+<p>Even with obvious variable names, there is a redunancy, as we’ll see shortly, to assigning a new variable name to the output of each operation and input of each subsequent operation.</p>
+<p>Nested Functions Another common programming trick to reduce variable naming space is to nest the output of one function as the input of the next one.</p>
+<pre class="r"><code># read in data
+surveys = read.csv(&quot;C:/Users/Patricia/Desktop/Environmental Informatics/env-info/data/r-ecology/surveys.csv&quot;) 
+
+# view data
+head(surveys)</code></pre>
+<pre><code>##   record_id month day year plot_id species_id sex hindfoot_length weight
+## 1         1     7  16 1977       2         NL   M              32     NA
+## 2         2     7  16 1977       3         NL   M              33     NA
+## 3         3     7  16 1977       2         DM   F              37     NA
+## 4         4     7  16 1977       7         DM   M              36     NA
+## 5         5     7  16 1977       3         DM   M              35     NA
+## 6         6     7  16 1977       1         PF   M              14     NA</code></pre>
+<pre class="r"><code>summary(surveys)</code></pre>
+<pre><code>##    record_id         month             day             year     
+##  Min.   :    1   Min.   : 1.000   Min.   : 1.00   Min.   :1977  
+##  1st Qu.: 8888   1st Qu.: 4.000   1st Qu.: 9.00   1st Qu.:1984  
+##  Median :17775   Median : 6.000   Median :16.00   Median :1990  
+##  Mean   :17775   Mean   : 6.474   Mean   :16.11   Mean   :1990  
+##  3rd Qu.:26662   3rd Qu.: 9.000   3rd Qu.:23.00   3rd Qu.:1997  
+##  Max.   :35549   Max.   :12.000   Max.   :31.00   Max.   :2002  
+##                                                                 
+##     plot_id       species_id    sex       hindfoot_length     weight      
+##  Min.   : 1.0   DM     :10596    : 2506   Min.   : 2.00   Min.   :  4.00  
+##  1st Qu.: 5.0   PP     : 3123   F:15690   1st Qu.:21.00   1st Qu.: 20.00  
+##  Median :11.0   DO     : 3027   M:17348   Median :32.00   Median : 37.00  
+##  Mean   :11.4   PB     : 2891   P:    1   Mean   :29.29   Mean   : 42.67  
+##  3rd Qu.:17.0   RM     : 2609   R:    3   3rd Qu.:36.00   3rd Qu.: 48.00  
+##  Max.   :24.0   DS     : 2504   Z:    1   Max.   :70.00   Max.   :280.00  
+##                 (Other):10799             NA's   :4111    NA's   :3266</code></pre>
+<pre class="r"><code># limit data with [], aggregate to count, write to csv
+write.csv(
+  aggregate(
+    species_id ~ year, 
+    data = surveys[surveys_2$species_id  == 'NL', c('species_id', 'year')], 
+    FUN = 'length'), 
+  &quot;C:/Users/Patricia/Desktop/Environmental Informatics/env-info/data/surveys_faundez.csv&quot;,
+  row.names = FALSE)</code></pre>
+<p>So the code started the same, and continues using the same functions, but these functions get applied from the input arguments to the outer containing functions, ie in a nested manner:</p>
+<p>surveys gets sliced [] into rows and columns in one call, which gets used as the data = argument to</p>
+<p>aggregate(), which applies the length() function to get a count to the formula species_id ~ year in which the species_id gets split into groups based on year, which gets further applied as the unnamed first argument to</p>
+<p>write.csv() which has the additional unnamed argument specifying the output file and named argument turning off the default option to prefix row numbers.</p>
+<p>Although we’ve saved space from not performing the extra naming of variables, we’ve made the code very difficult to read, needing to parse which functions are arguments to subsequent functions. The indentation helps readability a bit, but now let’s examine a far better solution to either approaches above with dplyr.</p>
+<p>Elegance with dplyr Next, we’ll use the libraries readrfor improved versions of reading and writing csv files, and dplyr for advanced data frame manipulation. Most importantly, dplyr uses the “then” operator %&gt;% which transfers the output on the left to the first argument of the function on the right. Most simply surveys %&gt;% summary() transfers the surveys data frame into the first argument of the summary function. Use of this chaining operator seems excessive in this simple example, but is powerful when chaining together many operations on the same data frame. We’re able to efficiently write out operations, get past the previous problem of multiple variable names without the obfuscation of nesting.</p>
+<pre class="r"><code># load libraries
+library(readr)
+library(dplyr)
+
+# read in csv
+surveys = read_csv( &quot;C:/Users/Patricia/Desktop/Environmental Informatics/env-info/data/surveys_faundez.csv&quot;) 
+
+# dplyr elegance
+surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
+  glimpse() %&gt;%                       # view data
+  select(species_id, year) %&gt;%        # limit columns
+  filter(species_id  == 'NL') %&gt;%     # limit rows
+  group_by(year) %&gt;%                  # get count by first grouping
+  summarize(n = n()) %&gt;%              #   then summarize
+  write_csv('data/surveys_bbest.csv') # write out csv</code></pre>
+<pre><code>## Observations: 26
+## Variables: 2
+## $ year       (int) 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 198...
+## $ species_id (int) 31, 48, 30, 57, 63, 111, 98, 64, 45, 60, 128, 102, ...</code></pre>
+<p>Now we can read from the top, starting with the data frame surveys, to see a very clear sequence of operations:</p>
+<p>glimpse() select() filter() group_by() summarize() write_csv()</p>
+<p>Arguments are minimal without repeating the name of the data frame, or even needing quotations in the case of column names.</p>
+<p>The “tee” operator %T&gt;% is similar to the “then” operator %&gt;% in that the left side is passed to the right, but is then also teed off as the output of the right side. This is useful in this case for glimpse since its output is simply printed to the Console and does not otherwise return the data frame needed to continue the sequence of operations. So the “tee” operator %T&gt;% is most useful for injecting intermediate operations like printing or plotting that wouldn’t otherwise output a return object for continuing operations.</p>
 </div>
 
 
