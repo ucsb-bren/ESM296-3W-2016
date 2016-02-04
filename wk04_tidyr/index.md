@@ -23,7 +23,7 @@ layout: default
 
 ### Data Wrangling (Individual)
 
-1. Append the header `## 4. Tidying up Data` to your `env-info/students/<user>.Rmd` and include R chunks to run the demo and answer the questions in [wk04_tidyr](../wk04_tidyr.html). You'll find it easiest to copy and paste the demo portion from the raw [env-info/wk04_tidyr.Rmd](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr.Rmd) but will need to understand this material enough to apply the functions to the CO<sub>2</sub> dataset as R chunks and answer all the questions.
+See [wk04_tidyr - Assignment (Individual)](http://ucsb-bren.github.io/env-info/wk04_tidyr.html#assignment-(individual)).
 
 ### Programming (Group)
 
