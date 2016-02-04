@@ -14,6 +14,19 @@ output:
   "organization": "pollute" 
 }  
 
+```{r}
+# set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}
+```
 ## **Content**
         
   + My [GP](www2.bren.ucsb.edu/~sbwater) focuses on local water supply sustainability. 
@@ -39,7 +52,7 @@ summary(s)
 ```
 
 #########################################
-#Data Wrangling
+#Data Wrangling: 
 
 ```{r}
 library(readr)
@@ -60,3 +73,644 @@ sgriff_loadyields %>%
 
 write.csv('env-info/sgriff_N1000yields')
 ```
+
+### EDAWR: Class 4 (1/29/2016)
+
+```{r EDAWR, eval=F}
+# install.packages("devtools")
+# devtools::install_github("rstudio/EDAWR")
+library(EDAWR)
+help(package='EDAWR')
+?storms    # wind speed data for 6 hurricanes
+?cases     # subset of WHO tuberculosis
+?pollution # pollution data from WHO Ambient Air Pollution, 2014
+?tb        # tuberculosis data
+View(storms)
+View(cases)
+View(pollution)
+```
+
+### slicing
+
+```{r traditional R slicing, eval=F}
+# storms
+storms$storm
+storms$wind
+storms$pressure
+storms$date
+
+# cases
+cases$country
+names(cases)[-1]
+unlist(cases[1:3, 2:4])
+
+# pollution
+pollution$city[c(1,3,5)]
+pollution$city[pollution$city != 'New York']
+pollution %>%
+  filter(city !='New York')
+pollution$amount[c(1,3,5)]
+pollution$amount[c(2,4,6)]
+
+# ratio
+storms$pressure / storms$wind
+```
+
+## tidyr
+
+#Two main functions: gather() and spread() 
+
+```{r tidyr, eval=F}
+# install.packages("tidyr")
+library(tidyr)
+?gather # gather to long
+?spread # spread to wide
+```
+
+### `gather`
+
+```{r gather, eval=F}
+cases
+gather(cases, "year", "n", 2:4)
+
+cases %>% 
+  gather("year", "n", -country) %>%  
+  filter(
+    year %in% c(2011,2013) &
+    !country %in% c('FR','US')) 
+
+```
+
+### `spread`
+
+```{r spread, eval=F}
+pollution
+spread(pollution, size, amount)
+```
+
+#Other functions to extract and combine columns...
+
+### `separate`
+
+```{r separate, eval=F}
+storms
+storms2 = separate(storms, date, c("year", "month", "day"), sep = "-")
+
+library(stringr)
+library(dplyr)
+storms %>% 
+  mutate(date_str = as.character(date))
+```
+
+### `unite`
+
+```{r unite, eval=F}
+storms2
+unite(storms2, "date", year, month, day, sep = "-")
+```
+
+**Recap: tidyr**:
+
+- A package that reshapes the layout of data sets.
+
+- Make observations from variables with `gather()` Make variables from observations with `spread()`
+
+- Split and merge columns with `unite()` and `separate()`
+
+From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+  ![](wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png)
+
+### tidy CO<sub>2</sub> emissions
+
+_**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
+
+```setwd()
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}
+```
+```{r read co2, eval=F}
+library(readxl) # install.packages('readxl')
+
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+print(getwd())
+if (!file.exists(xls)){
+  download.file(url, xls)
+}
+co2 = read_excel(xls, skip=12)
+co2
+```
+
+_**Question**. Why use `skip=12` argument in `read_excel()`?_
+
+## dplyr
+
+A package that helps transform tabular data
+
+```{r dplyr, eval=F}
+# install.packages("dplyr")
+library(dplyr)
+?select
+?filter
+?arrange
+?mutate
+?group_by
+?summarise
+```
+
+See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+- Subset Variables (Columns), eg `select()`
+- Subset Observations (Rows), eg `filter()`
+- Reshaping Data - Change the layout of a data set, eg `arrange()`
+- Make New Variables, eg `mutate()`
+- Group Data, eg `group_by()` and `summarise()`
+
+### `select`
+
+```{r select, eval=F}
+storms
+select(storms, storm, pressure)
+storms %>% select(storm, pressure)
+```
+
+### `filter`
+
+```{r filter, eval=F}
+storms
+filter(storms, wind >= 50)
+storms %>% filter(wind >= 50)
+
+storms %>%
+  filter(wind >= 50) %>%
+  select(storm, pressure)
+```
+
+### `mutate`
+
+```{r mutate, eval=F}
+storms %>%
+  mutate(ratio = pressure / wind) %>%
+  select(storm, ratio)
+```
+
+### `group_by`
+
+```{r group_by, eval=F}
+pollution
+pollution %>% group_by(city)
+```
+
+### `summarise`
+
+```{r summarise, eval = F}
+# by city
+pollution %>% 
+  group_by(city) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+
+# by size
+pollution %>% 
+  group_by(size) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+```
+
+note that `summarize` synonymously works
+
+### `ungroup`
+
+```{r ungroup, eval=F}
+pollution %>% 
+  group_by(size)
+
+pollution %>% 
+  group_by(size) %>%
+  ungroup()
+```
+
+### multiple groups
+
+```{r multiple groups, eval=F}
+tb %>%
+  group_by(country, year) %>%
+  summarise(cases = sum(cases))
+  summarise(cases = sum(cases))
+```
+
+**Recap: dplyr**:
+
+- Extract columns with `select()` and rows with `filter()`
+
+- Sort rows by column with `arrange()`
+
+- Make new columns with `mutate()`
+
+- Group rows by column with `group_by()` and `summarise()`
+
+See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+- Subset Variables (Columns), eg `select()`
+
+- Subset Observations (Rows), eg `filter()`
+
+- Reshaping Data - Change the layout of a data set, eg `arrange()`
+
+- Make New Variables, eg `mutate()`
+
+- Group Data, eg `group_by()` and `summarise()`
+
+
+### summarize CO<sub>2</sub> emissions
+
+_**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+_**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+
+## joining data
+
+### `bind_cols`
+
+```{r bind_cols, eval=F}
+y = data.frame(
+  x1 = c('A','B','C'), 
+  x2 = c( 1 , 2 , 3), 
+  stringsAsFactors=F)
+z = data.frame(
+  x1 = c('B','C','D'), 
+  x2 = c( 2 , 3 , 4), 
+  stringsAsFactors=F)
+y
+z
+bind_cols(y, z)
+```
+
+### `bind_rows`
+
+```{r bind_rows, eval=F}
+y
+z
+bind_rows(y, z)
+```
+
+### `union`
+
+```{r union, eval=F}
+y
+z
+union(y, z)
+```
+
+### `intersect`
+
+```{r intersect, eval=F}
+y
+z
+intersect(y, z)
+```
+
+### `setdiff`
+
+```{r setdiff, eval=F}
+y
+z
+setdiff(y, z)
+```
+
+### `left_join`
+
+```{r left_join, eval=F}
+songs = data.frame(
+  song = c('Across the Universe','Come Together', 'Hello, Goodbye', 'Peggy Sue'),
+  name = c('John','John','Paul','Buddy'), 
+  stringsAsFactors=F)
+artists = data.frame(
+  name = c('George','John','Paul','Ringo'),
+  plays = c('sitar','guitar','bass','drums'), 
+  stringsAsFactors=F)
+left_join(songs, artists, by='name')
+```
+
+### `inner_join`
+
+```{r inner_join, eval=F}
+inner_join(songs, artists, by = "name")
+```
+
+### `semi_join`
+
+```{r semi_join, eval=F}
+semi_join(songs, artists, by = "name")
+```
+
+### `anti_join`
+
+```{r anti_join, eval=F}
+anti_join(songs, artists, by = "name")
+```
+
+### summarize per capita CO<sub>2</sub> emissions 
+
+You'll join the [gapminder](https://github.com/jennybc/gapminder) datasets to get world population per country.
+
+_**Task**. Summarize the total emissions by country  (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+```{r gapminder, eval=F}
+library(gapminder) # install.packages('gapminder')
+```
+
+## References
+
+### Data Wrangling in R
+
+- [Data Wrangling (dplyr, tidyr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+- [wrangling-webinar.pdf](wrangling-webinar.pdf)
+
+
+## 4. Tidying Up Data
+
+### EDAWR
+
+```{r EDAWR}
+# install.packages("devtools")
+# devtools::install_github("rstudio/EDAWR")
+library(EDAWR)
+help(package='EDAWR')
+?storms    # wind speed data for 6 hurricanes
+?cases     # subset of WHO tuberculosis
+?pollution # pollution data from WHO Ambient Air Pollution, 2014
+?tb        # tuberculosis data
+View(storms)
+View(cases)
+View(pollution)
+```
+
+### slicing
+
+```{r traditional R slicing}
+# storms
+storms$storm
+storms$wind
+storms$pressure
+storms$date
+
+# cases
+cases$country
+names(cases)[-1]
+unlist(cases[1:3, 2:4])
+
+# pollution
+pollution$city[c(1,3,5)]
+pollution$amount[c(1,3,5)]
+pollution$amount[c(2,4,6)]
+
+# ratio
+storms$pressure / storms$wind
+```
+
+```{r dplyr on storms}
+# better yet
+library(dplyr)
+
+storms %>%
+  filter(storm != 'Ana') %>%
+  mutate(
+    ratio = pressure / wind)
+```
+
+
+## tidyr
+
+Two main functions: gather() and spread() 
+
+```{r tidyr}
+# install.packages("tidyr")
+library(tidyr)
+?gather # gather to long
+?spread # spread to wide
+```
+
+### `gather`
+
+```{r gather}
+cases
+gather(cases, "year", "n", 2:4)
+```
+
+### `spread`
+
+```{r spread}
+pollution
+spread(pollution, size, amount)
+```
+
+Other functions to extract and combine columns...
+
+### `separate`
+
+```{r separate}
+storms
+storms2 = separate(storms, date, c("year", "month", "day"), sep = "-")
+```
+
+### `unite`
+
+```{r unite}
+storms2
+unite(storms2, "date", year, month, day, sep = "-")
+```
+
+**Recap: tidyr**:
+
+- A package that reshapes the layout of data sets.
+
+- Make observations from variables with `gather()` Make variables from observations with `spread()`
+
+- Split and merge columns with `unite()` and `separate()`
+
+From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+  ![](wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png)
+
+### tidy CO<sub>2</sub> emissions
+
+_**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
+
+```{r read co2}
+library(dplyr)
+library(readxl) # install.packages('readxl')
+
+# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
+xls = '../data/co2_europa.xls'
+
+print(getwd())
+co2 = read_excel(xls, skip=12)
+co2
+```
+co2Long = gather(co2, "Year", "CO2", 2:46)
+as.numeric(as.character(co2Long$CO2))
+head(co2Long)
+
+_**Question**. Why use `skip=12` argument in `read_excel()`?_ The data is entered on line 13. "Skip=12" omits the first 12 lines of the Excel sheet.
+
+## dplyr
+
+A package that helps transform tabular data
+
+```{r dplyr}
+# install.packages("dplyr")
+library(dplyr)
+?select
+?filter
+?arrange
+?mutate
+?group_by
+?summarise
+```
+
+See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+- Subset Variables (Columns), eg `select()`
+- Subset Observations (Rows), eg `filter()`
+- Reshaping Data - Change the layout of a data set, eg `arrange()`
+- Make New Variables, eg `mutate()`
+- Group Data, eg `group_by()` and `summarise()`
+
+### `select`
+
+```{r select}
+storms
+select(storms, storm, pressure)
+storms %>% select(storm, pressure)
+```
+
+### `filter`
+
+```{r filter}
+storms
+filter(storms, wind >= 50)
+storms %>% filter(wind >= 50)
+
+storms %>%
+  filter(wind >= 50) %>%
+  select(storm, pressure)
+```
+
+### `mutate`
+
+```{r mutate}
+storms %>%
+  mutate(ratio = pressure / wind) %>%
+  select(storm, ratio)
+```
+
+### `group_by`
+
+```{r group_by}
+pollution
+pollution %>% group_by(city)
+```
+
+### `summarise`
+
+```{r summarise}
+# by city
+pollution %>% 
+  group_by(city) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+
+# by size
+pollution %>% 
+  group_by(size) %>%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+```
+
+note that `summarize` synonymously works
+
+### `ungroup`
+
+```{r ungroup}
+pollution %>% 
+  group_by(size)
+
+pollution %>% 
+  group_by(size) %>%
+  ungroup()
+```
+
+### multiple groups
+
+```{r multiple groups}
+tb %>%
+  group_by(country, year) %>%
+  summarise(cases = sum(cases))
+  summarise(cases = sum(cases))
+```
+
+**Recap: dplyr**:
+
+- Extract columns with `select()` and rows with `filter()`
+
+- Sort rows by column with `arrange()`
+
+- Make new columns with `mutate()`
+
+- Group rows by column with `group_by()` and `summarise()`
+
+See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+- Subset Variables (Columns), eg `select()`
+
+- Subset Observations (Rows), eg `filter()`
+
+- Reshaping Data - Change the layout of a data set, eg `arrange()`
+
+- Make New Variables, eg `mutate()`
+
+- Group Data, eg `group_by()` and `summarise()`
+
+
+### summarize CO<sub>2</sub> emissions
+
+## 4. Answers and Tasks
+
+_**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+co2Long %>% 
+  mutate(as.numeric(as.character(CO2))) %>% 
+  filter(Country != 'EU28', Country != 'World', Country != 'Int. Aviation', Country != 'Int. Shipping') %>% 
+  filter(Year %in% '2014') %>% 
+  arrange(desc(CO2)) %>% 
+  View(head)
+  
+_**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+co2Long %>% 
+  mutate(as.numeric(as.character(CO2))) %>% 
+  filter(Country != 'EU28', Country != 'World', Country != 'Int. Aviation',     Country != 'Int. Shipping') %>%
+  group_by(Country) %>% 
+  mutate(Total = CO2) %>% 
+  arrange(desc(CO2)) %>% 
+  View(head)
