@@ -131,6 +131,7 @@ library(tidyr)
 ```{r gather}
 cases
 gather(cases, "year", "n", 2:4)
+gather(cases, "year", "n", -1)
 ```
 
 ### `spread`
