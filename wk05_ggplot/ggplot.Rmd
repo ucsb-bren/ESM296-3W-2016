@@ -125,11 +125,13 @@ p2
 
 p3 = ggplot(clim, aes(x=year,y=rain))+stat_summary(fun.y="sum", geom="bar", col="blue")
 p3
-p3 = ggplot(clim, aes(x=month,y=rain))+stat_summary(fun.y="mean", geom="bar")
+p3 = ggplot(clim, aes(x=as.factor(month),y=rain))+stat_summary(fun.y="mean", geom="bar")
+
+p3 = p3 + scale_x_discrete(labels=abbreviate) + labs(x="Months",y="Rain(mm/day)")
 p3
 p3 = p3 + facet_wrap(~year)
 p3
-p4 = p3 + theme(axis.text.y=element_blank(), strip.text = element_blank(), strip.background = element_blank())
+p4 = p3 + theme(axis.text=element_blank(), strip.text = element_blank(), strip.background = element_blank())
 p4
 ```
 
