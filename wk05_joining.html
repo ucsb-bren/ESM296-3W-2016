@@ -289,7 +289,7 @@ if (wd %in% list.files() &amp; interactive()){
 
 # ensure working directory
 if (basename(getwd()) != wd){
-  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;%s&#39;!\n   getwd(): %s&quot;, getwd(), wd))
+  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;%s&#39;!\n   getwd(): %s&quot;, wd, getwd()))
 }</code></pre>
 </div>
 <div id="bind_cols" class="section level3">
@@ -356,13 +356,24 @@ left_join(songs, artists, by=&#39;name&#39;)</code></pre>
 </div>
 <div id="per-capita-co2-emissions" class="section level3">
 <h3>per capita CO<sub>2</sub> emissions</h3>
-<p>You’ll join the <a href="https://github.com/jennybc/gapminder">gapminder</a> datasets to get world population per country.</p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
-<pre class="r"><code>library(gapminder) # install.packages(&#39;gapminder&#39;)</code></pre>
+<p>You’ll join the <a href="http://data.okfn.org/data/core/population">population</a> dataset to calculate per capita CO<sub>2</sub> emissions.</p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries for <strong>2014</strong>.</em></p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries on <strong>average</strong> across all years.</em></p>
+<pre class="r"><code>library(dplyr)
+library(readxl) # install.packages(&#39;readxl&#39;)
+
+# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
+xls = &#39;../data/co2_europa.xls&#39;
+
+print(getwd())
+co2 = read_excel(xls, skip=12)
+co2</code></pre>
+<pre class="r"><code>library(readr)
+library(tidyr)
+
+popn = read_csv(
+  &#39;https://raw.githubusercontent.com/datasets/population/master/data/population.csv&#39;)</code></pre>
 </div>
-</div>
-<div id="todo-lubridate-and-stringr" class="section level2">
-<h2>TODO: lubridate, and stringr</h2>
 </div>
 
   </div> <!--span-9-->
