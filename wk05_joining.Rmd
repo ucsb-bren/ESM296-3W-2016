@@ -86,6 +86,8 @@ Again, it is important that you use the exact spelling above. Otherwise, we won'
 
 For this portion of the individual assignment, similar to last week, you'll find it easiest to copy and paste from `## joining data` onwards in  [`env-info/wk05_joining.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd) to your `env-info_hw/wk05_ggplot.Rmd`. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.
 
+The R chunks explaining the `dplyr` join functions below are pulled from the excellent [**wrangling-webinar.pdf**](wk03_dplyr/wrangling-webinar.pdf) presentation, which you should consult as you execute (see shortcuts in [rstudio-IDE-cheatsheet.pdf](refs/cheatsheets/rstudio-IDE-cheatsheet.pdf)). 
+
 ### setup
 
 Ensure that you're in the same working directory `env-info_hw` when you Knit HTML as when you test code in the Console.
@@ -103,7 +105,6 @@ if (basename(getwd()) != wd){
   stop(sprintf("WHOAH! Your working directory is not in '%s'!\n   getwd(): %s", getwd(), wd))
 }
 ```
-
 
 ### `bind_cols`
 
