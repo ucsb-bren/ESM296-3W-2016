@@ -279,14 +279,16 @@ img {
 <div id="setup" class="section level3">
 <h3>setup</h3>
 <p>Ensure that you’re in the same working directory <code>env-info_hw</code> when you Knit HTML as when you test code in the Console.</p>
-<pre class="r"><code># set working directory if has env-info_hw directory and at R Console (vs knitting)
-if (&#39;env-info_hw&#39; %in% list.files() &amp; interactive()){
-    setwd(&#39;env-info_hw&#39;)
+<pre class="r"><code>wd = &#39;env-info_hw&#39;
+
+# set working directory for Console (vs Rmd)
+if (wd %in% list.files() &amp; interactive()){
+    setwd(wd)
 }
 
-# ensure working directory is students
-if (basename(getwd()) != &#39;env-info_hw&#39;){
-  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;env-info_hw&#39;!\n   getwd(): %s&quot;, getwd()))
+# ensure working directory
+if (basename(getwd()) != wd){
+  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;%s&#39;!\n   getwd(): %s&quot;, getwd(), wd))
 }</code></pre>
 </div>
 <div id="bind_cols" class="section level3">

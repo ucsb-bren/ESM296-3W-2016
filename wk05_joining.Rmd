@@ -91,14 +91,16 @@ For this portion of the individual assignment, similar to last week, you'll find
 Ensure that you're in the same working directory `env-info_hw` when you Knit HTML as when you test code in the Console.
 
 ```{r setwd students}
-# set working directory if has env-info_hw directory and at R Console (vs knitting)
-if ('env-info_hw' %in% list.files() & interactive()){
-    setwd('env-info_hw')
+wd = 'env-info_hw'
+
+# set working directory for Console (vs Rmd)
+if (wd %in% list.files() & interactive()){
+    setwd(wd)
 }
 
-# ensure working directory is students
-if (basename(getwd()) != 'env-info_hw'){
-  stop(sprintf("WHOAH! Your working directory is not in 'env-info_hw'!\n   getwd(): %s", getwd()))
+# ensure working directory
+if (basename(getwd()) != wd){
+  stop(sprintf("WHOAH! Your working directory is not in '%s'!\n   getwd(): %s", getwd(), wd))
 }
 ```
 
