@@ -6,15 +6,15 @@ output:
     toc_depth: 2
 ---
 
- ## Content
+## Content
   
   Our [group project](http://sbfire.weebly.com/) is an *assessment* of the benefits of fire mitigation programs cities in the **wildland urban interface**, using Santa Barbara as a case study. We have already distributed a survey to the residents of the City of Santa Barbara's Wildland Fire Suppression Assessment District in order to gauge the attitudes of the residents toward the program. We have also ran fire modeling programs to determine the effectiveness of the vegetation treatments of the program. The final component of our project will be looking at the transferability of the program, and we are trying to determine what other cities in California may benefit from a similar program. 
   
   The picture below shows the extent of the Wildland Fire Suppression Assessment District in the City of Santa Barbara.
-  ![](/Users/julianamatos/Desktop/WFSAD.png)
+  ![](images/julimatos_WFSAD.png)
   
         
-  ## Techniques
+## Techniques
         
   We plan on using AHP to determine the weights that should be given to the variables we have deemed as most important for the transferability of this program. My group chose 5 variables of interest, and we will be giving fire experts the AHP survey to give us their opinion on their relative importances. Learning to be more fluent with writing code for models will help us turn the AHP information into a GIS model that picks cities with similar traits to Santa Barbara. I look forward to learning how to make an interactive map that can clearly and concisely explain our findings.
   
@@ -25,16 +25,116 @@ output:
     + Topography
     + Demographics
         
-  ## Data
+## Data
   
   We have found GIS data layers and historic fire data from CalFire for       the 5 variables of interest with which we will create the model to narrow down to the cities that could benefit from a similar program.
   
 ```{r}
 # read csv
-d = read.csv('data/julimatos_FullData.csv')
+d = read.csv('./data/julimatos_FullData.csv')
       
 # output summary
 summary(d)
 ```
 
 [My Organization](http://fire-mitigation.github.io/)
+
+
+## Data Wrangling
+
+```{r}
+# present working directory
+getwd()
+
+# change working directory
+setwd('.')
+
+# list files
+list.files()
+
+# list files that end in '.jpg'
+list.files(pattern=glob2rx('*.jpg'))
+
+# file exists
+file.exists('test.png')
+```
+
+## Read a CSV
+```{r}
+d = read.csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+## Read a CSV a better way
+```{r}
+library(readr)
+
+d = read_csv('../data/r-ecology/species.csv')
+d
+head(d)
+summary(d)
+```
+
+### Multiple Variables
+```{r}
+# read in csv
+surveys = read.csv('../data/r-ecology/surveys.csv') 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit columns to species and year
+surveys_2 = surveys[,c('species_id', 'year')]
+
+# limit rows to just species "NL"
+surveys_3 = surveys_2[surveys_2$species_id  == 'NL',]
+
+# get count per year
+surveys_4 = aggregate(species_id ~ year, data=surveys_3, FUN='length')
+
+# write to csv
+write.csv(surveys_4, 'data/surveys_bbest.csv', row.names = FALSE)
+```
+
+### Nested Functions
+```{r}
+# read in data
+surveys = read.csv('../data/r-ecology/surveys.csv') 
+
+# view data
+head(surveys)
+summary(surveys)
+
+# limit data with [], aggregate to count, write to csv
+write.csv(
+  aggregate(
+    species_id ~ year, 
+    data = surveys[surveys_2$species_id  == 'NL', c('species_id', 'year')], 
+    FUN = 'length'), 
+  'data/surveys_bbest.csv',
+  row.names = FALSE)
+```
+
+### Elegance with dplyr
+```{r}
+# load libraries
+library(readr)
+library(dplyr)
+
+# read in csv
+surveys = read_csv('../data/r-ecology/surveys.csv') 
+
+# dplyr elegance
+surveys %T>%                          # note tee operator %T>% for glimpse
+  glimpse() %>%                       # view data
+  select(species_id, year) %>%        # limit columns
+  filter(species_id  == 'NL') %>%     # limit rows
+  group_by(year) %>%                  # get count by first grouping
+  summarize(n = n()) %>%              #   then summarize
+  write_csv('data/surveys_bbest.csv') # write out csv
+
+```
+

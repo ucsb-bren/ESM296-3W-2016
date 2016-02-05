@@ -6,6 +6,7 @@ layout: default
 ## Bibliographies
 
 - [Datasets - Environmental Engineering - Research Guides at Georgia Institute of Technology](http://libguides.gatech.edu/c.php?g=54014&p=349002)
+- [A Plethora of Open Data Repositories (i.e., thousands!) - Data Science Central](http://www.datasciencecentral.com/profiles/blogs/a-plethora-of-open-data-repositories-i-e-thousands)
 
 ## Portals
 
@@ -96,6 +97,10 @@ open-source data portal platform
 
 
 ## Specific Datasets
+
+- [Landsat on AWS](http://aws.amazon.com/public-data-sets/landsat/)
+- [NASA NEX](http://aws.amazon.com/nasa/nex/)
+- [CCAFS-Climate Data - AWS Public Data Set](http://aws.amazon.com/datasets/ccafs-climate-data/): IPCC's 5th Assessment Report (AR5), which includes a complete dataset of GCM for four Representative Concentration Pathways and four time periods (2030s, 2050s, 2070s and 2080s) that can reach resolutions as fine as 1km
 
 - [datasets in R, by package](https://vincentarelbundock.github.io/Rdatasets/datasets.html)
 

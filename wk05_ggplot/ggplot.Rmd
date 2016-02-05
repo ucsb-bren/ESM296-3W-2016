@@ -1,0 +1,135 @@
+---
+title: "ggplot"
+author: "Naomi Tague"
+date: "Feb 2, 2016"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+#read in data
+thin = read.table("thinning.csv", sep=",", header=T)
+clim=read.csv("clim.csv")
+#make sure you have libraries
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(gridExtra)
+library(lubridate)
+
+```
+*GGPLOT* is a "grammer of graphics", in other words a set of elements (like words, phrases) that you can put together to make a plot. A "grammer" is more flexible than standard plotting; but a bit harder to learn
+In ggplot, we combine the following element:
+
+* *data* a data set used to generate the plot
+
+* *geoms* visual character of the plot- boxplot, scatter plot
+
+* *aesthetics* what gets put into the geom
+
+* *themes* characteristics of plotting environment (axis label font...)
+
+*GGPLOT* is organized in a way that you can build a very complex plot by adding pieces to it
+
+ A simple example
+
+```{r basic example}
+# basic plot
+ggplot(clim, aes(y=tmax, x=month))+geom_point()
+# save the basic plot so we can add to it
+p = ggplot(clim, aes(y=tmax, x=month))+geom_point()
+p
+p+labs(y="Maximum Temperature", x="Month")
+p = p + labs(y="Maximum Temperature", x="Month")
+# themes are used to control character of the plot
+pclr = p+theme(axis.text= element_text(face="bold", colour="red", size=14))
+
+# to display more than one plot (a "matrix" or grid of plots)
+
+grid.arrange(p,pclr)
+# or to control to make by col
+grid.arrange(p, pclr, ncol=2)
+
+# there are also built in themes
+pclr = pclr+theme_bw()
+pclr
+```
+There are many different geoms (geometries) - lets try the standard ones
+
+```{r plot types}
+
+# note the use of as factor (boxplot need factors to organize)
+p1=ggplot(clim, aes(y=tmax, x=as.factor(month)))+geom_boxplot(colour="green", fill="purple")
+p1=p1+labs(y="Max Temp C", x="Month")
+p1
+
+# scatter plot
+p2=ggplot(clim, aes(x=tmax, y=tmin))+geom_point(col="blue", shape=9, size=rel(4))
+p2
+  p2=p2+labs(x="Max Temp C", y="Min Temp C") 
+  p2 = p2+ ggtitle("How does daily maximim and min temp compare")
+  p2 = p2 + geom_abline(intercept=0,slope=1, colour="yellow", size=4)
+p2
+
+#density plot
+p3=ggplot(clim, aes(x=rain))+geom_density()
+p3
+p3 = ggplot(subset(clim, clim$rain > 0), aes(x=rain))+geom_density(fill="blue")
+#p4=ggplot(clim, aes(x=date,y=rain))+geom_line()+ggtitle("Line Graph")
+p3
+#fix issue with date
+clim$date = mdy(paste(clim$month, clim$day, clim$year, sep="/"))
+p4=ggplot(clim, aes(x=date,y=rain))+geom_line()+ggtitle("Line Graph")
+p4
+grid.arrange(p1,p2,p3,p4)
+```
+One of the most useful things about GGPLOT is that it makes it easy to visualize your data in ways that highlight different attributes - this can help you to see multiple dimensions at once
+There are multiple ways to do this
+
+* color/size/shape (within plots)
+* facets  (between plots)
+
+Lets start with color
+We can use a more interesting data set *thin*
+
+
+
+```{r color}
+p1=ggplot(thin, aes(x=as.factor(postyears), y=cpool, col=as.factor(thin)))+geom_boxplot()
+p1 = p1+labs(x="Years since thinning", y="Carbon Sequestration")
+p1
+p1 = p1 + scale_fill_discrete(name="Thinning %")
+
+```
+
+Not so pretty, but what if we look at mean over all possible startyears instead - averaging over climate variability
+```{r aggregate}
+
+p1 = ggplot(thin, aes(x=as.factor(postyears), y=cpool, fill=as.factor(postyears))) + stat_summary(fun.y="mean", geom="bar") + labs(x="Time since thinning", y="Carbon Sequestration")
+p1 = p1 + theme(legend.position="none")
+p1
+p1 = ggplot(thin, aes(x=as.factor(postyears), y=cpool, col=as.factor(thin))) + stat_summary(fun.y="mean", geom="point")
+p1
+p1 = ggplot(thin, aes(x=postyears, y=cpool, col=as.factor(thin))) + stat_summary(fun.y="mean", geom="line")
+
+```
+
+Now lets try *facets* or different graphs and play a bit with aggregating data by summing
+```{r facet}
+p2 = ggplot(thin, aes(x=postyears, y=cpool))+stat_summary(fun.y="mean", geom="line")
+p2= p2+facet_wrap(~thin)
+
+p2 = ggplot(thin, aes(x=as.factor(postyears), y=cpool))+geom_boxplot()
+p2
+p2= p2+facet_wrap(~thin)
+p2
+
+p3 = ggplot(clim, aes(x=year,y=rain))+stat_summary(fun.y="sum", geom="bar", col="blue")
+p3
+p3 = ggplot(clim, aes(x=month,y=rain))+stat_summary(fun.y="mean", geom="bar")
+p3
+p3 = p3 + facet_wrap(~year)
+p3
+p4 = p3 + theme(axis.text.y=element_blank(), strip.text = element_blank(), strip.background = element_blank())
+p4
+```
+
