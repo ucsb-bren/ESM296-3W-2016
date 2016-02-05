@@ -68,16 +68,34 @@ img {
 <li><a href="#lab-2-hw-1">Lab 2, HW 1</a><ul>
 <li><a href="#content">Content</a></li>
 <li><a href="#techniques">Techniques</a></li>
-<li><a href="#data">Data</a></li>
 <li><a href="#image">Image</a></li>
 <li><a href="#data-file">Data File</a></li>
 </ul></li>
 <li><a href="#lab-3-hw-2">Lab 3, HW 2</a><ul>
 <li><a href="#data-wrangling">Data Wrangling</a></li>
 </ul></li>
+<li><a href="#week-4-tidy-data">Week 4, Tidy Data</a><ul>
+<li><a href="#slicing">slicing</a></li>
+<li><a href="#gather"><code>gather</code></a></li>
+<li><a href="#spread"><code>spread</code></a></li>
+<li><a href="#separate"><code>separate</code></a></li>
+<li><a href="#unite"><code>unite</code></a></li>
+</ul></li>
+<li><a href="#assignment-4">Assignment 4</a></li>
 </ul>
 </div>
 
+<pre class="r"><code># set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}</code></pre>
 <div id="lab-2-hw-1" class="section level2">
 <h2>Lab 2, HW 1</h2>
 <div id="organization" class="section level4">
@@ -93,11 +111,11 @@ img {
 <h3>Techniques</h3>
 <pre><code>What techniques from the course do you think will be most applicable?</code></pre>
 <p>I think the lessons on interactive plots and maps will be most useful to my specific question. I also believe, that the wrangling data and visualizing data lessons will be useful overall to my future career.</p>
-</div>
-<div id="data" class="section level3">
-<h3>Data</h3>
+<div id="data" class="section level4">
+<h4>Data</h4>
 <pre><code>What data have you already identified? Feel free to provide a link and/or details on the variables of interest.</code></pre>
 <p>The data that we will use for our weighted model will come from two sources. One will be the various data layers that we have for GIS (e.g. vegetation, wildland urban interface, census, fire history, and jurisdictional layers). Our second data source will be a collective weight that is assigned to each of those variables based on the expert opinion. We are collecting that information on Thursday, January 21st from members of the Santa Barbara Fire Safe Council using the <a href="https://en.wikipedia.org/wiki/Analytic_hierarchy_process">analytical hierarchy process</a>.</p>
+</div>
 <div id="our-process" class="section level4">
 <h4>Our Process</h4>
 <ol style="list-style-type: decimal">
@@ -448,6 +466,345 @@ surveys %T&gt;%                          # note tee operator %T&gt;% for glimpse
 ## $ hindfoot_length (int) 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38...
 ## $ weight          (int) NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...</code></pre>
 </div>
+</div>
+</div>
+<div id="week-4-tidy-data" class="section level2">
+<h2>Week 4, Tidy Data</h2>
+<div id="data-1" class="section level4">
+<h4>data</h4>
+</div>
+<div id="edawr" class="section level4">
+<h4>EDAWR</h4>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;rstudio/EDAWR&quot;)
+library(EDAWR)
+help(package='EDAWR')
+?storms    # wind speed data for 6 hurricanes
+?cases     # subset of WHO tuberculosis
+?pollution # pollution data from WHO Ambient Air Pollution, 2014
+?tb        # tuberculosis data
+View(storms)
+View(cases)
+View(pollution)</code></pre>
+</div>
+<div id="slicing" class="section level3">
+<h3>slicing</h3>
+<pre class="r"><code># storms
+storms$storm
+storms$wind
+storms$pressure
+storms$date
+
+# cases
+cases$country
+names(cases)[-1]
+unlist(cases[1:3, 2:4])
+
+# pollution
+pollution$city[c(1,3,5)]
+pollution$amount[c(1,3,5)]
+pollution$amount[c(2,4,6)]
+
+# ratio
+storms$pressure / storms$wind</code></pre>
+<div id="tidyr" class="section level4">
+<h4>tidyr</h4>
+<p>Two main functions: gather() and spread()</p>
+<pre class="r"><code># install.packages(&quot;tidyr&quot;)
+library(tidyr)
+??gather # gather to long
+??spread # spread to wide</code></pre>
+</div>
+</div>
+<div id="gather" class="section level3">
+<h3><code>gather</code></h3>
+<pre class="r"><code>cases
+gather(cases, &quot;year&quot;, &quot;n&quot;, 2:4)
+
+cases
+
+library(dplyr)
+d2&lt;-cases %&gt;%
+  gather(&quot;year&quot;, &quot;n&quot;, -country) %&gt;%
+  filter(
+    year %in% c(2011, 2013) &amp;
+      !country %in% c('FR', 'US'))
+d2</code></pre>
+</div>
+<div id="spread" class="section level3">
+<h3><code>spread</code></h3>
+<pre class="r"><code>pollution
+spread(pollution, size, amount)</code></pre>
+<p>Other functions to extract and combine columns…</p>
+</div>
+<div id="separate" class="section level3">
+<h3><code>separate</code></h3>
+<pre class="r"><code>storms
+storms2 = separate(storms, date, c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;)</code></pre>
+</div>
+<div id="unite" class="section level3">
+<h3><code>unite</code></h3>
+<pre class="r"><code>storms2
+unite(storms2, &quot;date&quot;, year, month, day, sep = &quot;-&quot;)</code></pre>
+<div id="tidy-co2-emissions" class="section level4">
+<h4>tidy CO<sub>2</sub> emissions</h4>
+</div>
+<div id="task.-convert-the-following-table-co2-emissions-per-country-since-1970-from-wide-to-long-format-and-output-the-first-few-rows-into-your-rmarkdown.-i-recommend-consulting-gather-and-you-should-have-3-columns-in-your-output._" class="section level4">
+<h4><strong>Task</strong>. Convert the following table <a href="http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&amp;sort=des9">CO<sub>2</sub> emissions per country since 1970</a> from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting <code>?gather</code> and you should have 3 columns in your output._</h4>
+<pre class="r"><code>library(readxl) # install.packages('readxl')
+
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+print(getwd())
+if (!file.exists(xls)){
+  download.file(url, xls)
+}
+co2 = read_excel(xls, skip=12)
+co2</code></pre>
+<p><em><strong>Question</strong>. Why use <code>skip=12</code> argument in <code>read_excel()</code>?</em></p>
+</div>
+<div id="dplyr" class="section level4">
+<h4>dplyr</h4>
+<p>A package that helps transform tabular data</p>
+<pre class="r"><code># install.packages(&quot;dplyr&quot;)
+library(dplyr)
+?select
+?filter
+?arrange
+?mutate
+?group_by
+?summarise</code></pre>
+<p>See sections in the <a href="./refs/cheatsheets/data-wrangling-cheatsheet.pdf">data-wrangling-cheatsheet.pdf</a>:</p>
+<ul>
+<li>Subset Variables (Columns), eg <code>select()</code></li>
+<li>Subset Observations (Rows), eg <code>filter()</code></li>
+<li>Reshaping Data - Change the layout of a data set, eg <code>arrange()</code></li>
+<li>Make New Variables, eg <code>mutate()</code></li>
+<li>Group Data, eg <code>group_by()</code> and <code>summarise()</code></li>
+</ul>
+</div>
+<div id="select" class="section level4">
+<h4><code>select</code></h4>
+<pre class="r"><code>storms
+select(storms, storm, pressure)
+storms %&gt;% select(storm, pressure)</code></pre>
+</div>
+<div id="filter" class="section level4">
+<h4><code>filter</code></h4>
+<pre class="r"><code>storms
+filter(storms, wind &gt;= 50)
+storms %&gt;% filter(wind &gt;= 50)
+
+storms %&gt;%
+  filter(wind &gt;= 50) %&gt;%
+  select(storm, pressure)</code></pre>
+</div>
+<div id="mutate" class="section level4">
+<h4><code>mutate</code></h4>
+<pre class="r"><code>storms %&gt;%
+  mutate(ratio = pressure / wind) %&gt;%
+  select(storm, ratio)</code></pre>
+</div>
+<div id="group_by" class="section level4">
+<h4><code>group_by</code></h4>
+<pre class="r"><code>pollution
+pollution %&gt;% group_by(city)</code></pre>
+</div>
+<div id="summarise" class="section level4">
+<h4><code>summarise</code></h4>
+<pre class="r"><code># by city
+pollution %&gt;% 
+  group_by(city) %&gt;%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())
+
+# by size
+pollution %&gt;% 
+  group_by(size) %&gt;%
+  summarise(
+    mean = mean(amount), 
+    sum = sum(amount), 
+    n = n())</code></pre>
+<p>note that <code>summarize</code> synonymously works</p>
+</div>
+<div id="ungroup" class="section level4">
+<h4><code>ungroup</code></h4>
+<pre class="r"><code>pollution %&gt;% 
+  group_by(size)
+
+pollution %&gt;% 
+  group_by(size) %&gt;%
+  ungroup()</code></pre>
+</div>
+<div id="multiple-groups" class="section level4">
+<h4>multiple groups</h4>
+<pre class="r"><code>tb %&gt;%
+  group_by(country, year) %&gt;%
+  summarise(cases = sum(cases))
+  summarise(cases = sum(cases))</code></pre>
+<p><strong>Recap: dplyr</strong>:</p>
+<ul>
+<li><p>Extract columns with <code>select()</code> and rows with <code>filter()</code></p></li>
+<li><p>Sort rows by column with <code>arrange()</code></p></li>
+<li><p>Make new columns with <code>mutate()</code></p></li>
+<li><p>Group rows by column with <code>group_by()</code> and <code>summarise()</code></p></li>
+</ul>
+</div>
+<div id="summarize-co2-emissions" class="section level4">
+<h4>summarize CO<sub>2</sub> emissions</h4>
+<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+</div>
+<div id="joining-data" class="section level4">
+<h4>joining data</h4>
+</div>
+<div id="bind_cols" class="section level4">
+<h4><code>bind_cols</code></h4>
+<pre class="r"><code>y = data.frame(
+  x1 = c('A','B','C'), 
+  x2 = c( 1 , 2 , 3), 
+  stringsAsFactors=F)
+z = data.frame(
+  x1 = c('B','C','D'), 
+  x2 = c( 2 , 3 , 4), 
+  stringsAsFactors=F)
+y
+z
+bind_cols(y, z)</code></pre>
+</div>
+<div id="bind_rows" class="section level4">
+<h4><code>bind_rows</code></h4>
+<pre class="r"><code>y
+z
+bind_rows(y, z)</code></pre>
+</div>
+<div id="union" class="section level4">
+<h4><code>union</code></h4>
+<pre class="r"><code>y
+z
+union(y, z)</code></pre>
+</div>
+<div id="intersect" class="section level4">
+<h4><code>intersect</code></h4>
+<pre class="r"><code>y
+z
+intersect(y, z)</code></pre>
+</div>
+<div id="setdiff" class="section level4">
+<h4><code>setdiff</code></h4>
+<pre class="r"><code>y
+z
+setdiff(y, z)</code></pre>
+</div>
+<div id="left_join" class="section level4">
+<h4><code>left_join</code></h4>
+<pre class="r"><code>songs = data.frame(
+  song = c('Across the Universe','Come Together', 'Hello, Goodbye', 'Peggy Sue'),
+  name = c('John','John','Paul','Buddy'), 
+  stringsAsFactors=F)
+artists = data.frame(
+  name = c('George','John','Paul','Ringo'),
+  plays = c('sitar','guitar','bass','drums'), 
+  stringsAsFactors=F)
+left_join(songs, artists, by='name')</code></pre>
+</div>
+<div id="inner_join" class="section level4">
+<h4><code>inner_join</code></h4>
+<pre class="r"><code>inner_join(songs, artists, by = &quot;name&quot;)</code></pre>
+</div>
+<div id="semi_join" class="section level4">
+<h4><code>semi_join</code></h4>
+<pre class="r"><code>semi_join(songs, artists, by = &quot;name&quot;)</code></pre>
+</div>
+<div id="anti_join" class="section level4">
+<h4><code>anti_join</code></h4>
+<pre class="r"><code>anti_join(songs, artists, by = &quot;name&quot;)</code></pre>
+</div>
+<div id="summarize-per-capita-co2-emissions" class="section level4">
+<h4>summarize per capita CO<sub>2</sub> emissions</h4>
+<p>You’ll join the <a href="https://github.com/jennybc/gapminder">gapminder</a> datasets to get world population per country.</p>
+<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) per capita using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<pre class="r"><code>library(gapminder) # install.packages('gapminder')</code></pre>
+</div>
+</div>
+</div>
+<div id="assignment-4" class="section level2">
+<h2>Assignment 4</h2>
+<p>*Task. Report the top 5 emitting countries (not World or EU28) per capita using your long format table. (You may need to convert your year column from factor to numeric, eg mutate(year = as.numeric(as.character(year))). As with most analyses, there are multiple ways to do this. I used the following functions: filter, arrange, desc, head).</p>
+<p>*Task. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: filter, arrange, desc, head).</p>
+<pre class="r"><code>library(dplyr)
+library(readxl) # install.packages('readxl')
+
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+print(getwd())</code></pre>
+<pre><code>## [1] &quot;C:/Users/sarah/Documents/296/env-info/students&quot;</code></pre>
+<pre class="r"><code>if (!file.exists(xls)){
+  download.file(url, xls)
+}
+co2 = read_excel(xls, skip=12)</code></pre>
+<pre><code>## DEFINEDNAME: 21 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 0d 3b 00 00 0c 00 e0 00 00 00 2c 00 
+## DEFINEDNAME: 21 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 0d 3b 00 00 0c 00 e0 00 00 00 2c 00 
+## DEFINEDNAME: 21 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 0d 3b 00 00 0c 00 e0 00 00 00 2c 00 
+## DEFINEDNAME: 21 00 00 01 0b 00 00 00 01 00 00 00 00 00 00 0d 3b 00 00 0c 00 e0 00 00 00 2c 00</code></pre>
+<pre class="r"><code>co2</code></pre>
+<pre><code>## Source: local data frame [220 x 46]
+## 
+##                Country  1970.000000  1971.000000  1972.000000  1973.000000
+##                  (chr)        (dbl)        (dbl)        (dbl)        (dbl)
+## 1          Afghanistan  1813.981234  1840.794051  1794.831482  1817.997422
+## 2              Albania  4435.433037  4425.968296  5035.309230  4638.057137
+## 3              Algeria 18850.745443 22226.320843 34278.432478 46375.728534
+## 4       American Samoa     6.183023     6.327022     6.462429     6.587474
+## 5               Angola  8946.495011  8532.101439 10382.218539 11365.512295
+## 6             Anguilla     2.168006     2.168036     2.263426     2.108604
+## 7  Antigua and Barbuda   196.161773   203.964395   244.721752   263.402867
+## 8            Argentina 87478.401090 87827.313960 88888.066154 93076.186184
+## 9              Armenia 10951.012839 10972.887313 11783.384976 12844.589903
+## 10               Aruba    40.380782    40.635025    41.138578    41.949184
+## ..                 ...          ...          ...          ...          ...
+## Variables not shown: 1974.000000 (dbl), 1975.000000 (dbl), 1976.000000
+##   (dbl), 1977.000000 (dbl), 1978.000000 (dbl), 1979.000000 (dbl),
+##   1980.000000 (dbl), 1981.000000 (dbl), 1982.000000 (dbl), 1983.000000
+##   (dbl), 1984.000000 (dbl), 1985.000000 (dbl), 1986.000000 (dbl),
+##   1987.000000 (dbl), 1988.000000 (dbl), 1989.000000 (dbl), 1990.000000
+##   (dbl), 1991.000000 (dbl), 1992.000000 (dbl), 1993.000000 (dbl),
+##   1994.000000 (dbl), 1995.000000 (dbl), 1996.000000 (dbl), 1997.000000
+##   (dbl), 1998.000000 (dbl), 1999.000000 (dbl), 2000.000000 (dbl),
+##   2001.000000 (dbl), 2002.000000 (dbl), 2003.000000 (dbl), 2004.000000
+##   (dbl), 2005.000000 (dbl), 2006.000000 (dbl), 2007.000000 (dbl),
+##   2008.000000 (dbl), 2009.000000 (dbl), 2010.000000 (dbl), 2011.000000
+##   (dbl), 2012.000000 (dbl), 2013.000000 (dbl), 2014.000000 (dbl)</code></pre>
+<div id="top-6-countries-by-co2-emissions" class="section level4">
+<h4>Top 6 Countries by CO2 Emissions</h4>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+co2long&lt;-co2 %&gt;%
+  gather(Year, &quot;Emissions&quot;,  -Country) %&gt;%
+  filter(
+      !Country %in% c('World', 'EU28'))%&gt;%
+  mutate(Year = as.numeric(as.character(Year)))%&gt;%
+  group_by(Country)%&gt;%
+  summarise(
+    TotalEmissions = sum(Emissions))%&gt;%
+  arrange(desc(TotalEmissions))
+  
+head(co2long)</code></pre>
+<pre><code>## Source: local data frame [6 x 2]
+## 
+##                    Country TotalEmissions
+##                      (chr)          (dbl)
+## 1 United States of America      231948899
+## 2                    China      174045927
+## 3       Russian Federation       81242427
+## 4                    Japan       51276329
+## 5                  Germany       43382205
+## 6                    India       39004218</code></pre>
 </div>
 </div>
 
