@@ -104,7 +104,8 @@ p1 = p1 + scale_fill_discrete(name="Thinning %")
 Not so pretty, but what if we look at mean over all possible startyears instead - averaging over climate variability
 ```{r aggregate}
 
-p1 = ggplot(thin, aes(x=as.factor(postyears), y=cpool)) + stat_summary(fun.y="mean", geom="bar")
+p1 = ggplot(thin, aes(x=as.factor(postyears), y=cpool, fill=as.factor(postyears))) + stat_summary(fun.y="mean", geom="bar") + labs(x="Time since thinning", y="Carbon Sequestration")
+p1 = p1 + theme(legend.position="none")
 p1
 p1 = ggplot(thin, aes(x=as.factor(postyears), y=cpool, col=as.factor(thin))) + stat_summary(fun.y="mean", geom="point")
 p1
@@ -122,9 +123,9 @@ p2
 p2= p2+facet_wrap(~thin)
 p2
 
-p3 = ggplot(clim, aes(x=year,y=rain))+stat_summary(fun.y="mean", geom="bar")
+p3 = ggplot(clim, aes(x=year,y=rain))+stat_summary(fun.y="sum", geom="bar", col="blue")
 p3
-p3 = ggplot(clim, aes(x=month,y=rain))+stat_summary(fun.y="sum", geom="bar")
+p3 = ggplot(clim, aes(x=month,y=rain))+stat_summary(fun.y="mean", geom="bar")
 p3
 p3 + facet_wrap(~year)
 ```
