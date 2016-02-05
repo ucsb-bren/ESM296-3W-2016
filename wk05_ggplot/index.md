@@ -7,12 +7,12 @@ layout: default
 
 - 8:30 - 9:00 [BB] **joining data** [wk05_joining](../wk05_joining.html) with functions from dplyr
 
-- 9:00 - 9:45 [NT] **visualization** [Intro](vizualization.pdf) 
+- 9:00 - 9:45 [NT] **visualization** [Intro](visualization.pdf) 
 
 - 9:45 - 10:00 **break**
 
-- 10:00 - 10:15 [NT] **case study**[Slides](Visualization2.pdf)
-- 10:15 - 11:30 [NT] **ggplot2**[Examples](ggplot.html)]
+- 10:00 - 10:15 [NT] **case study** [Slides](Visualization2.pdf)
+- 10:15 - 11:30 [NT] **ggplot2** [Examples](ggplot.html)
 
 ## Assignments
 
