@@ -16,11 +16,15 @@ layout: default
 
 ## Assignments
 
-See [New Assignment Github Workflow \| wk05_joining](../wk05_joining.html#new-assignment-github-workflow).
+- See [New Assignment Github Workflow \| wk05_joining](../wk05_joining.html#new-assignment-github-workflow).
 
 ### Joining Data (Individual)
 
-See [Individual Assignment `wk05_ggplot` \| wk05_joining](../wk05_joining.html#individual-assignment-wk05_ggplot).
+- See [Individual Assignment `wk05_ggplot` \| wk05_joining](../wk05_joining.html#individual-assignment-wk05_ggplot).
+
+### Visualizing Data (Group)
+
+- Submit 2 plots: one based "thin" data set; the other based on data of interest to your group; utilize some of the features from ggplot2 presented in class.
 
 ## Resources
 
