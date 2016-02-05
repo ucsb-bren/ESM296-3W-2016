@@ -5,6 +5,12 @@ date: "January 29, 2016"
 output: html_document
 ---
 
+```{r setup, echo=F}
+# NOTE: This chunk sets the default to eval=F for all following chunks.
+#       Am just using this for instructions. Please exclude in your assignment to see all results.
+knitr::opts_chunk$set(eval=FALSE)
+```
+
 ## Precursors
 
 ### RStudio Heroes
@@ -60,33 +66,35 @@ Similar to your class group project repo `<org>/<org>.github.io` which serves a 
 
 1. Run the equivalent of `git clone http://github.com/<user>/<user>.github.io` from RStudio menu File, New Project…, Version Control, Git. 
 
-1. Create a new folder `env-info` inside your local repository `<user>.github.io`. 
+1. Create a new folder `env-info_hw` inside your local repository `<user>.github.io`.
 
-Now, for every week's assignment you'll create a new Rmarkdown file inside the `env-info` folder of your `<user>.github.io` repo. This week create one called `wk05_ggplot.Rmd` with File, New File..., R Markdown...
+It is important that you use the exact spelling for all of the above. Otherwise, we won't be able to find your homework.
 
-We'll be able to grade assignments, because we have a roster of students by Github username, and so presume we'll find your assignment by visiting `http://<user>.github.io/env-info/wk05_dplyr.html`, eg `http://bbest.github.io/env-info/wk05_dplyr.html`. 
+### Individual Assignment `wk05_ggplot`
+
+Now, for every week's assignment you'll create a new Rmarkdown file inside the `env-info_hw` folder of your `<user>.github.io` repo. This week create one called `wk05_ggplot.Rmd` with File, New File..., R Markdown...
+
+We'll be able to grade assignments, because we have a roster of students by Github username, and so presume we'll find your assignment by visiting `http://<user>.github.io/env-info_hw/wk05_ggplot.html`, eg `http://bbest.github.io/env-info_hw/wk05_ggplot.html`. 
+
+Again, it is important that you use the exact spelling above. Otherwise, we won't be able to find your homework.
 
 ## joining data
 
-For this assignment, you can similarly ....
+For this portion of the individual assignment, similar to last week, you'll find it easiest to copy and paste from `## joining data` onwards in  [`env-info/wk05_joining.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd) to your `env-info_hw/wk05_ggplot.Rmd`. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.
 
 ### setup
 
-```{r setup, echo=F}
-# NOTE: This chunk sets the default to eval=F for all following chunks.
-#       Am just using this for instructions. Please exclude in your assignment.
-knitr::opts_chunk$set(eval=FALSE)
-```
+Ensure that you're in the same working directory `env-info_hw` when you Knit HTML as when you test code in the Console.
 
 ```{r setwd students}
-# set working directory if has students directory and at R Console (vs knitting)
-if ('students' %in% list.files() & interactive()){
-    setwd('students' )
+# set working directory if has env-info_hw directory and at R Console (vs knitting)
+if ('env-info_hw' %in% list.files() & interactive()){
+    setwd('env-info_hw')
 }
 
 # ensure working directory is students
-if (basename(getwd()) != 'students'){
-  stop(sprintf("WHOAH! Your working directory is not in 'students'!\n   getwd(): %s", getwd()))
+if (basename(getwd()) != 'env-info_hw'){
+  stop(sprintf("WHOAH! Your working directory is not in 'env-info_hw'!\n   getwd(): %s", getwd()))
 }
 ```
 

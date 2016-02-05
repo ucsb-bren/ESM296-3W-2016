@@ -256,25 +256,31 @@ img {
 <li><p><a href="https://help.github.com/articles/create-a-repo/">Create a repository</a> <code>&lt;user&gt;/&lt;user&gt;.github.io</code> where you’ll replace <code>&lt;user&gt;</code> with your Github username (eg I created a repository <code>bbest.github.io</code> in which <code>bbest</code> is the owner). If you already have this repository created, you can simply move on. Otherwise, please also tick the box to initialize this repository with a README.</p></li>
 <li><p>Go to <span class="octicon octicon-gear"></span> Settings, Collaborators and add <code>bbest</code> and <code>naomitague</code> as collaborators. This will give us write permissions on your repository, enabling us to more easily help you fix code.</p></li>
 <li><p>Run the equivalent of <code>git clone http://github.com/&lt;user&gt;/&lt;user&gt;.github.io</code> from RStudio menu File, New Project…, Version Control, Git.</p></li>
-<li><p>Create a new folder <code>env-info</code> inside your local repository <code>&lt;user&gt;.github.io</code>.</p></li>
+<li><p>Create a new folder <code>env-info_hw</code> inside your local repository <code>&lt;user&gt;.github.io</code>.</p></li>
 </ol>
-<p>Now, for every week’s assignment you’ll create a new Rmarkdown file inside the <code>env-info</code> folder of your <code>&lt;user&gt;.github.io</code> repo. This week create one called <code>wk05_ggplot.Rmd</code> with File, New File…, R Markdown…</p>
-<p>We’ll be able to grade assignments, because we have a roster of students by Github username, and so presume we’ll find your assignment by visiting <code>http://&lt;user&gt;.github.io/env-info/wk05_dplyr.html</code>, eg <code>http://bbest.github.io/env-info/wk05_dplyr.html</code>.</p>
+<p>It is important that you use the exact spelling for all of the above. Otherwise, we won’t be able to find your homework.</p>
+</div>
+<div id="individual-assignment-wk05_ggplot" class="section level3">
+<h3>Individual Assignment <code>wk05_ggplot</code></h3>
+<p>Now, for every week’s assignment you’ll create a new Rmarkdown file inside the <code>env-info_hw</code> folder of your <code>&lt;user&gt;.github.io</code> repo. This week create one called <code>wk05_ggplot.Rmd</code> with File, New File…, R Markdown…</p>
+<p>We’ll be able to grade assignments, because we have a roster of students by Github username, and so presume we’ll find your assignment by visiting <code>http://&lt;user&gt;.github.io/env-info_hw/wk05_ggplot.html</code>, eg <code>http://bbest.github.io/env-info_hw/wk05_ggplot.html</code>.</p>
+<p>Again, it is important that you use the exact spelling above. Otherwise, we won’t be able to find your homework.</p>
 </div>
 </div>
 <div id="joining-data" class="section level2">
 <h2>joining data</h2>
-<p>For this assignment, you can similarly ….</p>
+<p>For this portion of the individual assignment, similar to last week, you’ll find it easiest to copy and paste from <code>## joining data</code> onwards in <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd"><code>env-info/wk05_joining.Rmd</code></a> to your <code>env-info_hw/wk05_ggplot.Rmd</code>. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.</p>
 <div id="setup" class="section level3">
 <h3>setup</h3>
-<pre class="r"><code># set working directory if has students directory and at R Console (vs knitting)
-if (&#39;students&#39; %in% list.files() &amp; interactive()){
-    setwd(&#39;students&#39; )
+<p>Ensure that you’re in the same working directory <code>env-info_hw</code> when you Knit HTML as when you test code in the Console.</p>
+<pre class="r"><code># set working directory if has env-info_hw directory and at R Console (vs knitting)
+if (&#39;env-info_hw&#39; %in% list.files() &amp; interactive()){
+    setwd(&#39;env-info_hw&#39;)
 }
 
 # ensure working directory is students
-if (basename(getwd()) != &#39;students&#39;){
-  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;students&#39;!\n   getwd(): %s&quot;, getwd()))
+if (basename(getwd()) != &#39;env-info_hw&#39;){
+  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;env-info_hw&#39;!\n   getwd(): %s&quot;, getwd()))
 }</code></pre>
 </div>
 <div id="bind_cols" class="section level3">

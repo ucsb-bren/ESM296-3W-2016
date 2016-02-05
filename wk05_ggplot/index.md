@@ -15,17 +15,11 @@ layout: default
 
 ## Assignments
 
-### Data Wrangling (Individual)
+See [New Assignment Github Workflow \| wk05_joining](../wk05_joining.html#new-assignment-github-workflow).
 
-See [wk04_tidyr - Assignment (Individual)](http://ucsb-bren.github.io/env-info/wk04_tidyr.html#assignment-(individual)).
+### Joining Data (Individual)
 
-### Programming (Group)
-
-1. Write a function in R to do some data analysis or simulation that your group will find interesting (use this to start on your project)
-    * include at least two different data types
-    * return a list
-    * make sure you document your program
-1. Add this function to your organization's github repository - Note this is how we will check to make sure you have completed the assignment - so make sure that you have committed and pushed your function to that organization's repository.
+See [Individual Assignment `wk05_ggplot` \| wk05_joining](../wk05_joining.html#individual-assignment-wk05_ggplot).
 
 ## Resources
 
