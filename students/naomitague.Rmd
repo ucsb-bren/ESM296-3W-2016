@@ -28,8 +28,15 @@ Here is some data from [Water data](http://waterdata.usgs.gov/nwis/rt):
   
 ```{r}
 
-pcp = read.csv('data/pcp.txt', header=T)
+pcp = read.table('data/pcp.txt', header=T)
 summary(pcp)
+library(lubridate)
+pcp$dater = mdy(pcp$date)
+pcp$month = months(pcp$dater)
+pcp$year  = year(pcp$dater)
+pcp$day = day(pcp$dater)
+small = pcp %>% select(month:day)
+tmp = gather(pcp, "year","n", c(4:6))
 ```
 
 ## Data Wrangling
