@@ -7,7 +7,7 @@ layout: default
 
 - 8:30 - 9:00 [BB] **joining data** [wk05_joining](../wk05_joining.html) with functions from dplyr
 
-- 9:00 - 9:45 [NT] **visualization** [Intro](visualization.pdf) 
+- 9:00 - 9:45 [NT] **visualization** [Intro](visualization.pdf)
 
 - 9:45 - 10:00 **break**
 
@@ -38,4 +38,6 @@ Visualizing with `ggplot2`:
 - [A Simple Introduction to the Graphing Philosophy of ggplot2 \| R-bloggers](http://www.r-bloggers.com/a-simple-introduction-to-the-graphing-philosophy-of-ggplot2/)
 - [Grammar of Graphics \| Introduction to R](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html)
 - [Wickham, H (2010) A Layered Grammar of Graphics. _Journal of Computational and Graphical Statistics_](http://ucsb-bren.github.io/env-info/refs/lit/Wickham%20-%202010%20-%20A%20Layered%20Grammar%20of%20Graphics.pdf)
-
+- [15 Data Visualizations That Will Blow Your Mind | Udacity](http://blog.udacity.com/2015/01/15-data-visualizations-will-blow-mind.html)
+- [Improving R Data Visualisations Through Design | Spatial.ly](http://spatial.ly/2014/11/r-visualisations-design/)
+- [Inkscape](https://inkscape.org/en/) - open-source vector graphics editor to spruce pdf plot outputs like [above](http://spatial.ly/2014/11/r-visualisations-design/)
