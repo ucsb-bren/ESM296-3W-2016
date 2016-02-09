@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Ben Best" />
+
+<meta name="date" content="2016-01-29" />
+
+<title>joining</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<!-- http://www.favicon-generator.org/ -->
+<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+<link rel="manifest" href="favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
+<script src="libs/tocify-1.9.1/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="libs/tocify-1.9.1/jquery.tocify.min.js"></script>
+
+<link href="libs/lightbox-2.8.2/css/lightbox.min.css" rel="stylesheet">
+
+<!--
+Font Awesome: http://fortawesome.github.io/Font-Awesome/icons
+Octicons:     https://octicons.github.com
+-->
+<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css">
+
+<style type="text/css">
+@media (max-width: 992px) {
+#toc {
+  position: relative;
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+}
+}
+</style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css" type="text/css" />
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<!--- https://codepo8.github.io/css-fork-on-github-ribbon/ 
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/ucsb-bren/env-info">Fork me on GitHub</a></span>
+-->
+<div class="row-fluid">
+<div class="navbar navbar-default navbar-fixed-top navbar-transparent">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="http://ucsb-bren.github.io/env-info/" class="navbar-brand"><i class="fa fa-home"></i> env-info</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <!--
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/#schedule"><i class="fa fa-calendar"></i> schedule</a>
+        </li>
+      </ul>
+      -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/students"><i class="fa fa-users"></i> students</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row-fluid">
+  <div class="span3 col-md-3">
+    <div id="toc"></div>
+  </div>
+  <div class="main-content span9 col-md-9">
+
+<div id="header">
+<h1 class="title">joining</h1>
+<h4 class="author"><em>Ben Best</em></h4>
+<h4 class="date"><em>January 29, 2016</em></h4>
+</div>
+
+
+<div id="precursors" class="section level2">
+<h2>Precursors</h2>
+<div id="rstudio-heroes" class="section level3">
+<h3>RStudio Heroes</h3>
+<p>Last weekend at 1st annual <a href="https://www.rstudio.com/shinydevcon/">shinydevcon</a>. Left to right, <span class="citation">@github</span> (affiliation):</p>
+<ul>
+<li>Winston Chang <span class="citation">@wch</span> (RStudio)</li>
+<li>Hadley Wickham <span class="citation">@hadley</span> (RStudio)</li>
+<li>Julie Lowndes <span class="citation">@jules32</span> (OHI)</li>
+<li>Jamie Afflerbach <span class="citation">@jafflerbach</span> (OHI)</li>
+<li>Joe Cheng <span class="citation">@jcheng5</span> (RStudio)</li>
+<li>Ben Best <span class="citation">@bbest</span> (OHI)</li>
+<li>Herman Strop <span class="citation">@FrissAnalytics</span> (FrissAnalytics)</li>
+</ul>
+<div class="figure">
+<img src="wk05_ggplot/img/rstudio_shinydevcon_wch-hadley-jcheng5-FrissAnalytics.JPG" />
+</div>
+<p>Brought some of these stickers for ya:</p>
+<p><a href="https://www.rstudio.com/about/gear/"><img src="wk05_ggplot/img/rstudio_stickers.png" /></a></p>
+</div>
+<div id="rstudio-shortcuts" class="section level3">
+<h3>RStudio Shortcuts</h3>
+<ul>
+<li><a href="./refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet.pdf</a>
+<ul>
+<li>Show Keyboard Shortcuts <code>?</code>: Alt+Shift+<strong>K</strong> (Win), Option+Shift+<strong>K</strong> (Mac)</li>
+<li>(Un)Comment lines <code>#</code>: Ctrl+Shift+<strong>C</strong> (Win), Cmd+Shift+<strong>C</strong> (Mac)</li>
+<li>Insert <code>%&gt;%</code>: Ctrl+Shift+<strong>M</strong> (Win), Cmd+Shift+<strong>M</strong> (Mac)</li>
+<li>Attempt completion: <strong>Tab</strong> or Ctrl+Space (Win), <strong>Tab</strong> or Cmd+Space (Mac),</li>
+<li>Knit Document: Ctrl+Shift+<strong>K</strong> (Win), Cmd+Shift+<strong>K</strong> (Mac)</li>
+<li>Copy Lines Up/Down: Shift+Alt+<strong><span class="math">\(\uparrow\)</span></strong>/<strong><span class="math">\(\downarrow\)</span></strong> (Win), Cmd+Option+<strong><span class="math">\(\uparrow\)</span></strong>/<strong><span class="math">\(\downarrow\)</span></strong> (Mac)</li>
+</ul></li>
+</ul>
+</div>
+<div id="new-assignment-github-workflow" class="section level3">
+<h3>New Assignment Github Workflow</h3>
+<div id="old" class="section level4">
+<h4>OLD</h4>
+<p>So far to turn in individual assignments, you’ve been editing <code>env-info/students/&lt;user&gt;.Rmd</code> and knitting to <code>env-info/students/&lt;user&gt;.html</code>. Then you push to your repo <code>&lt;user&gt;/env-info</code> before submitting to the course repo <code>ucsb-bren/env-info</code> with a push, and pull request. To update your <code>&lt;user&gt;/env-info</code> with the latest from <code>ucsb-bren/env-info</code>, you also need to do an additional pull request, merge, and pull.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">repo location</th>
+<th align="center"><code>&lt;user&gt;</code> permission</th>
+<th align="center">initialize <i class="fa fa-arrow-down"></i></th>
+<th align="center">edit <i class="fa fa-arrow-up"></i></th>
+<th align="center">update <i class="fa fa-arrow-down"></i></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><i class="fa fa-cloud"></i> <code>github.com/ucsb-bren/env-info</code></td>
+<td align="center">read only</td>
+<td align="center"></td>
+<td align="center"><a href="https://help.github.com/articles/merging-a-pull-request"><strong>merge</strong></a> <span class="octicon octicon-git-merge"></span> [BB]</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"><i class="fa fa-cloud"></i> <code>github.com/&lt;user&gt;/env-info</code></td>
+<td align="center">read + write</td>
+<td align="center"><a href="https://help.github.com/articles/fork-a-repo"><strong>fork</strong></a> <span class="octicon octicon-repo-forked"></span></td>
+<td align="center"><a href="https://help.github.com/articles/creating-a-pull-request/"><strong>pull request</strong></a> <span class="octicon octicon-git-pull-request"></span></td>
+<td align="center"><a href="https://help.github.com/articles/creating-a-pull-request/"><strong>pull request</strong></a> <span class="octicon octicon-git-pull-request"></span>, <a href="https://help.github.com/articles/merging-a-pull-request"><strong>merge</strong></a> <span class="octicon octicon-git-merge"></span></td>
+</tr>
+<tr class="odd">
+<td align="left"><i class="fa fa-desktop"></i> <code>~/localdir/&lt;user&gt;.github.io</code></td>
+<td align="center">read + write</td>
+<td align="center"><a href="https://help.github.com/articles/fetching-a-remote"><strong>clone</strong></a> <span class="octicon octicon-desktop-download"></span></td>
+<td align="center"><a href="http://git-scm.com/docs/git-commit"><strong>commit</strong></a> <span class="octicon octicon-git-commit"></span>, <a href="https://help.github.com/articles/pushing-to-a-remote/"><strong>push</strong></a> <span class="octicon octicon-cloud-upload"></span></td>
+<td align="center"><a href="https://help.github.com/articles/fetching-a-remote/#pull"><strong>pull</strong></a> <span class="octicon octicon-cloud-download"></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="new" class="section level4">
+<h4>NEW</h4>
+<p>For future assignments, you’ll use a much simpler Github workflow with less possibilities for <a href="http://r-pkgs.had.co.nz/git.html#git-pull">merge conflicts</a>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">repo location</th>
+<th align="center"><code>&lt;user&gt;</code> permission</th>
+<th align="center">initialize <i class="fa fa-arrow-down"></i></th>
+<th align="center">edit <i class="fa fa-arrow-up"></i></th>
+<th align="center">update <i class="fa fa-arrow-down"></i></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><i class="fa fa-cloud"></i> <code>github.com/&lt;user&gt;/&lt;user&gt;.github.io</code></td>
+<td align="center">read + write</td>
+<td align="center"><a href="https://help.github.com/articles/create-a-repo/"><strong>create</strong></a> <span class="octicon octicon-plus"></span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left"><i class="fa fa-desktop"></i> <code>~/localdir/&lt;user&gt;.github.io</code></td>
+<td align="center">read + write</td>
+<td align="center"><a href="https://help.github.com/articles/fetching-a-remote"><strong>clone</strong></a> <span class="octicon octicon-desktop-download"></span></td>
+<td align="center"><a href="http://git-scm.com/docs/git-commit"><strong>commit</strong></a> <span class="octicon octicon-git-commit"></span>, <a href="https://help.github.com/articles/pushing-to-a-remote/"><strong>push</strong></a> <span class="octicon octicon-cloud-upload"></span></td>
+<td align="center"><a href="https://help.github.com/articles/fetching-a-remote/#pull"><strong>pull</strong></a> <span class="octicon octicon-cloud-download"></span></td>
+</tr>
+</tbody>
+</table>
+<p>Similar to your class group project repo <code>&lt;org&gt;/&lt;org&gt;.github.io</code> which serves a web site at <code>http://&lt;org&gt;.github.io</code>, you want to initialize:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://help.github.com/articles/create-a-repo/">Create a repository</a> <code>&lt;user&gt;/&lt;user&gt;.github.io</code> where you’ll replace <code>&lt;user&gt;</code> with your Github username (eg I created a repository <code>bbest.github.io</code> in which <code>bbest</code> is the owner). If you already have this repository created, you can simply move on. Otherwise, please also tick the box to initialize this repository with a README.</p></li>
+<li><p>Go to <span class="octicon octicon-gear"></span> Settings, Collaborators and add <code>bbest</code> and <code>naomitague</code> as collaborators. This will give us write permissions on your repository, enabling us to more easily help you fix code.</p></li>
+<li><p>Run the equivalent of <code>git clone http://github.com/&lt;user&gt;/&lt;user&gt;.github.io</code> from RStudio menu File, New Project…, Version Control, Git.</p></li>
+<li><p>Create a new folder <code>env-info_hw</code> inside your local repository <code>&lt;user&gt;.github.io</code>.</p></li>
+</ol>
+<p>It is important that you use the exact spelling for all of the above. Otherwise, we won’t be able to find your homework.</p>
+</div>
+</div>
+<div id="individual-assignment-wk05_ggplot" class="section level3">
+<h3>Individual Assignment <code>wk05_ggplot</code></h3>
+<p>Now, for every week’s assignment you’ll create a new Rmarkdown file inside the <code>env-info_hw</code> folder of your <code>&lt;user&gt;.github.io</code> repo. This week create one called <code>wk05_ggplot.Rmd</code> with File, New File…, R Markdown…</p>
+<p>We’ll be able to grade assignments, because we have a roster of students by Github username, and so presume we’ll find your assignment by visiting <code>http://&lt;user&gt;.github.io/env-info_hw/wk05_ggplot.html</code>, eg <code>http://bbest.github.io/env-info_hw/wk05_ggplot.html</code>.</p>
+<p>Again, it is important that you use the exact spelling above. Otherwise, we won’t be able to find your homework.</p>
+</div>
+</div>
+<div id="joining-data" class="section level2">
+<h2>joining data</h2>
+<p>For this portion of the individual assignment, similar to last week, you’ll find it easiest to copy and paste from <code>## joining data</code> onwards in <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd"><code>env-info/wk05_joining.Rmd</code></a> to your <code>env-info_hw/wk05_ggplot.Rmd</code>. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.</p>
+<p>The R chunks explaining the <code>dplyr</code> join functions below are pulled from the excellent <a href="wk03_dplyr/wrangling-webinar.pdf"><strong>wrangling-webinar.pdf</strong></a> presentation, which you should consult as you execute (see shortcuts in <a href="refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet.pdf</a>).</p>
+<div id="setup" class="section level3">
+<h3>setup</h3>
+<p>Ensure that you’re in the same working directory <code>env-info_hw</code> when you Knit HTML as when you test code in the Console.</p>
+<pre class="r"><code>wd = &#39;env-info_hw&#39;
+
+# set working directory for Console (vs Rmd)
+if (wd %in% list.files() &amp; interactive()){
+    setwd(wd)
+}
+
+# ensure working directory
+if (basename(getwd()) != wd){
+  stop(sprintf(&quot;WHOAH! Your working directory is not in &#39;%s&#39;!\n   getwd(): %s&quot;, wd, getwd()))
+}</code></pre>
+</div>
+<div id="bind_cols" class="section level3">
+<h3><code>bind_cols</code></h3>
+<pre class="r"><code>y = data.frame(
+  x1 = c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;), 
+  x2 = c( 1 , 2 , 3), 
+  stringsAsFactors=F)
+z = data.frame(
+  x1 = c(&#39;B&#39;,&#39;C&#39;,&#39;D&#39;), 
+  x2 = c( 2 , 3 , 4), 
+  stringsAsFactors=F)
+y
+z
+bind_cols(y, z)</code></pre>
+</div>
+<div id="bind_rows" class="section level3">
+<h3><code>bind_rows</code></h3>
+<pre class="r"><code>y
+z
+bind_rows(y, z)</code></pre>
+</div>
+<div id="union" class="section level3">
+<h3><code>union</code></h3>
+<pre class="r"><code>y
+z
+union(y, z)</code></pre>
+</div>
+<div id="intersect" class="section level3">
+<h3><code>intersect</code></h3>
+<pre class="r"><code>y
+z
+intersect(y, z)</code></pre>
+</div>
+<div id="setdiff" class="section level3">
+<h3><code>setdiff</code></h3>
+<pre class="r"><code>y
+z
+setdiff(y, z)</code></pre>
+</div>
+<div id="left_join" class="section level3">
+<h3><code>left_join</code></h3>
+<pre class="r"><code>songs = data.frame(
+  song = c(&#39;Across the Universe&#39;,&#39;Come Together&#39;, &#39;Hello, Goodbye&#39;, &#39;Peggy Sue&#39;),
+  name = c(&#39;John&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Buddy&#39;), 
+  stringsAsFactors=F)
+artists = data.frame(
+  name = c(&#39;George&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Ringo&#39;),
+  plays = c(&#39;sitar&#39;,&#39;guitar&#39;,&#39;bass&#39;,&#39;drums&#39;), 
+  stringsAsFactors=F)
+left_join(songs, artists, by=&#39;name&#39;)</code></pre>
+</div>
+<div id="inner_join" class="section level3">
+<h3><code>inner_join</code></h3>
+<pre class="r"><code>inner_join(songs, artists, by = &quot;name&quot;)</code></pre>
+</div>
+<div id="semi_join" class="section level3">
+<h3><code>semi_join</code></h3>
+<pre class="r"><code>semi_join(songs, artists, by = &quot;name&quot;)</code></pre>
+</div>
+<div id="anti_join" class="section level3">
+<h3><code>anti_join</code></h3>
+<pre class="r"><code>anti_join(songs, artists, by = &quot;name&quot;)</code></pre>
+</div>
+<div id="per-capita-co2-emissions" class="section level3">
+<h3>per capita CO<sub>2</sub> emissions</h3>
+<p>You’ll join the <a href="http://data.okfn.org/data/core/population">population</a> dataset to calculate per capita CO<sub>2</sub> emissions.</p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries for <strong>2014</strong>.</em></p>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries on <strong>average</strong> across all years.</em></p>
+<pre class="r"><code>library(dplyr)
+library(readxl) # install.packages(&#39;readxl&#39;)
+
+# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
+xls = &#39;../data/co2_europa.xls&#39;
+
+print(getwd())
+co2 = read_excel(xls, skip=12)
+co2</code></pre>
+<pre class="r"><code>library(readr)
+library(tidyr)
+
+popn = read_csv(
+  &#39;https://raw.githubusercontent.com/datasets/population/master/data/population.csv&#39;)</code></pre>
+</div>
+</div>
+
+  </div> <!--span-9-->
+</div> <!--row-fluid-->
+
+<!--
+<script src="{{ site.baseurl }}/libs/lightbox-2.8.2/js/lightbox.min.js"></script>
+
+<script>
+    lightbox.option({
+      'albumLabel': 'Example %1 of %2',
+      'resizeDuration': 200,
+      'fadeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+-->
+
+<style type="text/css">
+.main-container {
+  max-width: none;
+}
+</style>
+
+<script>
+$(function() {
+    var toc = $("#toc").tocify({
+      selectors: "h2,h3",
+      theme: "bootstrap3",
+      context: '.main-content',
+      hashGenerator: 'pretty',
+      showAndHide: false
+    }).data("toc-tocify");
+    $(".optionName").popover({ trigger: "hover" });
+});
+</script>
+
+<div style="color:gray; text-align: right;" >
+  <span class="octicon octicon-repo-forked"></span> <b>Fork</b> me at <a href="http://github.com/ucsb-bren/env-info">github.com/<b>ucsb-bren/env-info</b></a>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

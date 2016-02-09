@@ -1,0 +1,215 @@
+---
+title: "joining"
+author: "Ben Best"
+date: "January 29, 2016"
+output: html_document
+---
+
+```{r setup, echo=F}
+# NOTE: This chunk sets the default to eval=F for all following chunks.
+#       Am just using this for instructions. Please exclude in your assignment to see all results.
+knitr::opts_chunk$set(eval=FALSE)
+```
+
+## Precursors
+
+### RStudio Heroes
+
+Last weekend at 1st annual [shinydevcon](https://www.rstudio.com/shinydevcon/). Left to right, @github (affiliation): 
+
+- Winston Chang @wch (RStudio)
+- Hadley Wickham @hadley (RStudio)
+- Julie Lowndes @jules32 (OHI)
+- Jamie Afflerbach @jafflerbach (OHI)
+- Joe Cheng @jcheng5 (RStudio)
+- Ben Best @bbest (OHI)
+- Herman Strop @FrissAnalytics (FrissAnalytics)
+
+![](./wk05_ggplot/img/rstudio_shinydevcon_wch-hadley-jcheng5-FrissAnalytics.JPG)
+
+Brought some of these stickers for ya:
+
+[![](./wk05_ggplot/img/rstudio_stickers.png)](https://www.rstudio.com/about/gear/)
+
+### RStudio Shortcuts
+
+- [rstudio-IDE-cheatsheet.pdf](./refs/cheatsheets/rstudio-IDE-cheatsheet.pdf)
+    - Show Keyboard Shortcuts `?`: Alt+Shift+**K** (Win), Option+Shift+**K** (Mac)
+    - (Un)Comment lines `# `: Ctrl+Shift+**C** (Win), Cmd+Shift+**C** (Mac)
+    - Insert `%>%`: Ctrl+Shift+**M** (Win), Cmd+Shift+**M** (Mac)
+    - Attempt completion: **Tab** or Ctrl+Space (Win), **Tab** or Cmd+Space (Mac), 
+    - Knit Document: Ctrl+Shift+**K** (Win), Cmd+Shift+**K** (Mac)
+    - Copy Lines Up/Down: Shift+Alt+**$\uparrow$**/**$\downarrow$** (Win), Cmd+Option+**$\uparrow$**/**$\downarrow$** (Mac)
+
+### New Assignment Github Workflow
+
+#### OLD
+
+So far to turn in individual assignments, you've been editing `env-info/students/<user>.Rmd` and knitting to `env-info/students/<user>.html`. Then you push to your repo `<user>/env-info` before submitting to the course repo `ucsb-bren/env-info` with a push, and pull request. To update your `<user>/env-info` with the latest from `ucsb-bren/env-info`, you also need to do an additional pull request, merge, and pull. 
+
+| repo location | `<user>` permission | initialize <i class="fa fa-arrow-down"></i> | edit <i class="fa fa-arrow-up"></i> | update <i class="fa fa-arrow-down"></i> |
+|---------------|:-------------------:|:-------------------------------------------:|:-----------------------------------:|:---------------------------------------:|  
+| <i class="fa fa-cloud"></i> `github.com/ucsb-bren/env-info` | read only |  | [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="octicon octicon-git-merge"></span> [BB]  | |
+| <i class="fa fa-cloud"></i> `github.com/<user>/env-info`    | read + write | [**fork**](https://help.github.com/articles/fork-a-repo) <span class="octicon octicon-repo-forked"></span> | [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="octicon octicon-git-pull-request"></span> | [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="octicon octicon-git-pull-request"></span>, [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="octicon octicon-git-merge"></span> |
+| <i class="fa fa-desktop"></i> `~/localdir/<user>.github.io` | read + write | [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="octicon octicon-desktop-download"></span> | [**commit**](http://git-scm.com/docs/git-commit) <span class="octicon octicon-git-commit"></span>,  [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="octicon octicon-cloud-upload"></span> | [**pull**](https://help.github.com/articles/fetching-a-remote/#pull) <span class="octicon octicon-cloud-download"></span> |
+
+#### NEW
+
+For future assignments, you'll use a much simpler Github workflow with less possibilities for [merge conflicts](http://r-pkgs.had.co.nz/git.html#git-pull):
+
+| repo location | `<user>` permission | initialize <i class="fa fa-arrow-down"></i> | edit <i class="fa fa-arrow-up"></i> | update <i class="fa fa-arrow-down"></i> |
+|---------------|:-------------------:|:----------:|:----:|:------:|  
+| <i class="fa fa-cloud"></i> `github.com/<user>/<user>.github.io` | read + write | [**create**](https://help.github.com/articles/create-a-repo/) <span class="octicon octicon-plus"></span> |   |   |
+| <i class="fa fa-desktop"></i> `~/localdir/<user>.github.io`      | read + write | [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="octicon octicon-desktop-download"></span> | [**commit**](http://git-scm.com/docs/git-commit) <span class="octicon octicon-git-commit"></span>,  [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="octicon octicon-cloud-upload"></span> | [**pull**](https://help.github.com/articles/fetching-a-remote/#pull) <span class="octicon octicon-cloud-download"></span> |
+
+Similar to your class group project repo `<org>/<org>.github.io` which serves a web site at `http://<org>.github.io`, you want to initialize:
+
+1. [Create a repository](https://help.github.com/articles/create-a-repo/) `<user>/<user>.github.io` where you'll replace `<user>` with your Github username (eg I created a repository `bbest.github.io` in which `bbest` is the owner). If you already have this repository created, you can simply move on. Otherwise, please also tick the box to initialize this repository with a README.
+
+1. Go to <span class="octicon octicon-gear"></span> Settings, Collaborators and add `bbest` and `naomitague` as collaborators. This will give us write permissions on your repository, enabling us to more easily help you fix code.
+
+1. Run the equivalent of `git clone http://github.com/<user>/<user>.github.io` from RStudio menu File, New Project…, Version Control, Git. 
+
+1. Create a new folder `env-info_hw` inside your local repository `<user>.github.io`.
+
+It is important that you use the exact spelling for all of the above. Otherwise, we won't be able to find your homework.
+
+### Individual Assignment `wk05_ggplot`
+
+Now, for every week's assignment you'll create a new Rmarkdown file inside the `env-info_hw` folder of your `<user>.github.io` repo. This week create one called `wk05_ggplot.Rmd` with File, New File..., R Markdown...
+
+We'll be able to grade assignments, because we have a roster of students by Github username, and so presume we'll find your assignment by visiting `http://<user>.github.io/env-info_hw/wk05_ggplot.html`, eg `http://bbest.github.io/env-info_hw/wk05_ggplot.html`. 
+
+Again, it is important that you use the exact spelling above. Otherwise, we won't be able to find your homework.
+
+## joining data
+
+For this portion of the individual assignment, similar to last week, you'll find it easiest to copy and paste from `## joining data` onwards in  [`env-info/wk05_joining.Rmd`](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd) to your `env-info_hw/wk05_ggplot.Rmd`. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.
+
+The R chunks explaining the `dplyr` join functions below are pulled from the excellent [**wrangling-webinar.pdf**](wk03_dplyr/wrangling-webinar.pdf) presentation, which you should consult as you execute (see shortcuts in [rstudio-IDE-cheatsheet.pdf](refs/cheatsheets/rstudio-IDE-cheatsheet.pdf)). 
+
+### setup
+
+Ensure that you're in the same working directory `env-info_hw` when you Knit HTML as when you test code in the Console.
+
+```{r setwd students}
+wd = 'env-info_hw'
+
+# set working directory for Console (vs Rmd)
+if (wd %in% list.files() & interactive()){
+    setwd(wd)
+}
+
+# ensure working directory
+if (basename(getwd()) != wd){
+  stop(sprintf("WHOAH! Your working directory is not in '%s'!\n   getwd(): %s", wd, getwd()))
+}
+```
+
+### `bind_cols`
+
+```{r bind_cols}
+y = data.frame(
+  x1 = c('A','B','C'), 
+  x2 = c( 1 , 2 , 3), 
+  stringsAsFactors=F)
+z = data.frame(
+  x1 = c('B','C','D'), 
+  x2 = c( 2 , 3 , 4), 
+  stringsAsFactors=F)
+y
+z
+bind_cols(y, z)
+```
+
+### `bind_rows`
+
+```{r bind_rows}
+y
+z
+bind_rows(y, z)
+```
+
+### `union`
+
+```{r union}
+y
+z
+union(y, z)
+```
+
+### `intersect`
+
+```{r intersect}
+y
+z
+intersect(y, z)
+```
+
+### `setdiff`
+
+```{r setdiff}
+y
+z
+setdiff(y, z)
+```
+
+### `left_join`
+
+```{r left_join}
+songs = data.frame(
+  song = c('Across the Universe','Come Together', 'Hello, Goodbye', 'Peggy Sue'),
+  name = c('John','John','Paul','Buddy'), 
+  stringsAsFactors=F)
+artists = data.frame(
+  name = c('George','John','Paul','Ringo'),
+  plays = c('sitar','guitar','bass','drums'), 
+  stringsAsFactors=F)
+left_join(songs, artists, by='name')
+```
+
+### `inner_join`
+
+```{r inner_join}
+inner_join(songs, artists, by = "name")
+```
+
+### `semi_join`
+
+```{r semi_join}
+semi_join(songs, artists, by = "name")
+```
+
+### `anti_join`
+
+```{r anti_join}
+anti_join(songs, artists, by = "name")
+```
+
+### per capita CO<sub>2</sub> emissions 
+
+You'll join the [population](http://data.okfn.org/data/core/population) dataset to calculate per capita CO<sub>2</sub> emissions.
+
+_**Task**. Summarize the total emissions by country  (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries for **2014**._
+
+_**Task**. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries on **average** across all years._ 
+
+```{r read co2}
+library(dplyr)
+library(readxl) # install.packages('readxl')
+
+# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
+xls = '../data/co2_europa.xls'
+
+print(getwd())
+co2 = read_excel(xls, skip=12)
+co2
+```
+
+```{r popn}
+library(readr)
+library(tidyr)
+
+popn = read_csv(
+  'https://raw.githubusercontent.com/datasets/population/master/data/population.csv')
+```

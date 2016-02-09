@@ -4,40 +4,150 @@ author: "Elise"
 date: "January 18, 2056"
 output: html_document
 ---
+```{r SetExpectations, echo=F, results='hide'}
 
-#### <span style="color:red">**Content**</span>
+# set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}
+
+print(getwd()) # Is this in env-info/students?
+
+suppressPackageStartupMessages({
+  library(readr)
+  library(dplyr)
+  library(tidyr)
+})
+
+```
+
+### **Content**
         
 I am interested in environmental remediation: pollution modeling and the data analysis that comes with that are my jam. I also think that the tools we are learning in this class are useful in the corporate setting -- performance metrics, etc. could all be run through tools like this.
 
 I also have a [blog](www.elisewall.com) where I post projects and classwork I'm particularly passionate about.
 
-But for practice, I thought I would tell you a little bit about Bill Murray!
-
 ![](images/sparrow925_groundhogday.gif)
 
-**How Bill Murray's Part Affects Box Office Profits**
+***
+## Assignment 3
+### **Data Wrangling**
 
-```{r echo=FALSE, comment=NA}
-col1 = c("Leading Actor", "Supporting Actor", "Cameo")
-col2 = c(964264090, 671063320, 321027122)
-col3 = c(24, 16, 5)
-df=data.frame(col1, col2, col3)
-colnames(df) = c("Bill Murray's Role", "Domestic Box Office (US dollars)", "Number of Movies")
+####How does using read_csv from the readr package improve data readability?
 
-df
+Using read.csv (the default) is pretty messy and unhelpful
+
+```{r read.csv, eval=F}
+d = read.csv('./data/sparrow925_EUSO2.csv')
+head(d)
+summary(d)
+```
+
+Compare that to using read_csv, which gives you usefull info!
+
+```{r read_csv}
+# Oh man the head and summary here are so much more usable
+d2 = read_csv('./data/sparrow925_EUSO2.csv')
+head(d2)
+# summary(d2)
+```
+
+Now, lets use dplyr.
+Let's ask ourselves, how many cities are measured for each country?
+
+#### Using Multiple Variables (The Old Way)
+
+```{r messyway, eval=F}
+# read in csv
+d = read_csv('./data/sparrow925_EUSO2.csv')
+# limit columns to country and city
+d2=d[,c('country_code','city_name')]
+# get count per country
+d3=aggregate(city_name ~ country_code, data=d2, FUN='length')
+# write out csv
+write.csv(d3, './data/sparrow925_EUSO2_citycount.csv', row.names = FALSE)
+```
+
+#### Using dplyr to Write Compact Code
+
+```{r cleanway, eval=F}
+# read in csv
+sparrow925_EUSO2_dplyr = read_csv('./data/sparrow925_EUSO2.csv')
+sparrow925_EUSO2_dplyr %T>%
+  glimpse() %>% # view 
+  select(country_code, city_name) %>% # limit columns
+  group_by(city_name) %>% # get count by grouping
+  summarize(n=n()) %>% # then summarize
+  write.csv('./data/sparrow925_EUSO2_citycount.csv')
+```
+
+***
+## 4. Tidying up Data / Answers and Tasks
+_**Task 1**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown._
+
+```{r Assn4, eval=F}
+library(readxl) # install.packages('readxl')
+
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+# This download seems to corrupt on PCs... look at download.file helpfile, maybe try another method? For now we'll use a workaround I guess.
+print(getwd())
+if (!file.exists(xls)){
+  download.file(url, xls)
+}
+
+```
+Quick workaround (not downloading from online)
+```{r}
+library(readxl) # install.packages('readxl')
+library(readr)
+library(dplyr)
+library(tidyr)
+xls = '../data/co2_europa.xls'
+co2=read_excel(xls, skip=12)
+
+#Convert to long format. Display a few rows as example.
+task1 = co2 %>%
+  gather("year", "n", -1)
+
+head(task1)
+```
+
+_**Task 2**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`._
+```{r}
+task2=co2 %>%
+  gather("year", "n", -1) %>%
+  mutate(year = as.numeric(as.character(year))) %>%
+  arrange(desc(n)) %>%
+  filter (year==2014) %>%
+  filter(Country != "World") %>%
+  filter(Country != "EU28")
+  
+head(task2)
+```
+
+_**Task 3**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+```{r}
+task3=co2 %>%
+  gather("year", "n", -1) %>%
+  mutate(year = as.numeric(as.character(year))) %>%
+  group_by(Country) %>%
+  summarise(Sum = sum(n)) %>%
+  arrange(desc(Sum)) %>%
+  filter(Country != "World") %>%
+  filter(Country != "EU28")
+
+colnames(task3)[colnames(task3)=="Sum"] <- "Sum of CO2 Emissions, 1970-2014 (kton CO2)"
+
+head(task3)
 
 ```
 
-<small>Data for Bill Murray's Box Office numbers sourced from [here](http://www.the-numbers.com/person/103790401-Bill-Murray#tab=summary)</small>
-
-***
-
-#### <span style="color:red">**Techniques**</span>
-        
-Creating code that pushes graphs reflecting up-to-date datasets without doing more than clicking a button resonates deeply with me. Bring on the pretty graphs!
-
-***
-        
-#### <span style="color:red">**Data**</span>
-        
-So far our group is only working with data samples given in RStudio, but as we evolve this quarter I'm excited to see what we dig up!
