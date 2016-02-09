@@ -210,9 +210,9 @@ anti_join(songs, artists, by = "name")
 
 You'll join the [population](http://data.okfn.org/data/core/population) dataset to calculate per capita CO<sub>2</sub> emissions.
 
-_**Task**. Summarize the total emissions by country  (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries for **2014**._
+_**Task**. Calculate the per capita emissions by country (not World or EU28) and return the top 5 emitting countries for **2014**._
 
-_**Task**. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries on **average** across all years._ 
+_**Task**. Summarize the per capita emissions by country (not World or EU28) as the mean (ie average)  value across all years and return the top 5 emitting countries._ 
 
 ```{r read co2 & popn}
 library(readr)

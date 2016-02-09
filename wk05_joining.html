@@ -383,8 +383,8 @@ left_join(songs, artists, by=&#39;name&#39;)</code></pre>
 <div id="per-capita-co2-emissions" class="section level3">
 <h3>per capita CO<sub>2</sub> emissions</h3>
 <p>You’ll join the <a href="http://data.okfn.org/data/core/population">population</a> dataset to calculate per capita CO<sub>2</sub> emissions.</p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries for <strong>2014</strong>.</em></p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries on <strong>average</strong> across all years.</em></p>
+<p><em><strong>Task</strong>. Calculate the per capita emissions by country (not World or EU28) and return the top 5 emitting countries for <strong>2014</strong>.</em></p>
+<p><em><strong>Task</strong>. Summarize the per capita emissions by country (not World or EU28) as the mean (ie average) value across all years and return the top 5 emitting countries.</em></p>
 <pre class="r"><code>library(readr)
 library(readxl) # install.packages(&#39;readxl&#39;)
 library(dplyr)
