@@ -47,20 +47,20 @@ Brought some of these stickers for ya:
 
 So far to turn in individual assignments, you've been editing `env-info/students/<user>.Rmd` and knitting to `env-info/students/<user>.html`. Then you push to your repo `<user>/env-info` before submitting to the course repo `ucsb-bren/env-info` with a push, and pull request. To update your `<user>/env-info` with the latest from `ucsb-bren/env-info`, you also need to do an additional pull request, merge, and pull. 
 
-| repo location | `<user>` permission | initialize <i class="fa fa-arrow-down"></i> | edit <i class="fa fa-arrow-up"></i> | update <i class="fa fa-arrow-down"></i> |
-|---------------|:-------------------:|:-------------------------------------------:|:-----------------------------------:|:---------------------------------------:|  
-| <i class="fa fa-cloud"></i> `github.com/ucsb-bren/env-info` | read only |  | [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="octicon octicon-git-merge"></span> [BB]  | |
-| <i class="fa fa-cloud"></i> `github.com/<user>/env-info`    | read + write | [**fork**](https://help.github.com/articles/fork-a-repo) <span class="octicon octicon-repo-forked"></span> | [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="octicon octicon-git-pull-request"></span> | [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="octicon octicon-git-pull-request"></span>, [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="octicon octicon-git-merge"></span> |
-| <i class="fa fa-desktop"></i> `~/localdir/<user>.github.io` | read + write | [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="octicon octicon-desktop-download"></span> | [**commit**](http://git-scm.com/docs/git-commit) <span class="octicon octicon-git-commit"></span>,  [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="octicon octicon-cloud-upload"></span> | [**pull**](https://help.github.com/articles/fetching-a-remote/#pull) <span class="octicon octicon-cloud-download"></span> |
+repo location | `<user>` permission | initialize <i class="fa fa-arrow-down"></i> | edit <i class="fa fa-arrow-up"></i> | update <i class="fa fa-arrow-down"></i>
+-----------|:-----------:|:-----------:|:-----------:|:-----------:
+<i class="fa fa-cloud"></i> `github.com/ucsb-bren/env-info` | read only |  | [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="octicon octicon-git-merge"></span> [BB]  | 
+<i class="fa fa-cloud"></i> `github.com/<user>/env-info`    | read + write | [**fork**](https://help.github.com/articles/fork-a-repo) <span class="octicon octicon-repo-forked"></span> | [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="octicon octicon-git-pull-request"></span> | [**pull request**](https://help.github.com/articles/creating-a-pull-request/) <span class="octicon octicon-git-pull-request"></span>, [**merge**](https://help.github.com/articles/merging-a-pull-request) <span class="octicon octicon-git-merge"></span>
+<i class="fa fa-desktop"></i> `~/localdir/<user>.github.io` | read + write | [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="octicon octicon-desktop-download"></span> | [**commit**](http://git-scm.com/docs/git-commit) <span class="octicon octicon-git-commit"></span>,  [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="octicon octicon-cloud-upload"></span> | [**pull**](https://help.github.com/articles/fetching-a-remote/#pull) <span class="octicon octicon-cloud-download"></span>
 
 #### NEW
 
 For future assignments, you'll use a much simpler Github workflow with less possibilities for [merge conflicts](http://r-pkgs.had.co.nz/git.html#git-pull):
 
-| repo location | `<user>` permission | initialize <i class="fa fa-arrow-down"></i> | edit <i class="fa fa-arrow-up"></i> | update <i class="fa fa-arrow-down"></i> |
-|---------------|:-------------------:|:----------:|:----:|:------:|  
-| <i class="fa fa-cloud"></i> `github.com/<user>/<user>.github.io` | read + write | [**create**](https://help.github.com/articles/create-a-repo/) <span class="octicon octicon-plus"></span> |   |   |
-| <i class="fa fa-desktop"></i> `~/localdir/<user>.github.io`      | read + write | [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="octicon octicon-desktop-download"></span> | [**commit**](http://git-scm.com/docs/git-commit) <span class="octicon octicon-git-commit"></span>,  [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="octicon octicon-cloud-upload"></span> | [**pull**](https://help.github.com/articles/fetching-a-remote/#pull) <span class="octicon octicon-cloud-download"></span> |
+repo location | `<user>` permission | initialize <i class="fa fa-arrow-down"></i> | edit <i class="fa fa-arrow-up"></i> | update <i class="fa fa-arrow-down"></i>
+-----------|:-----------:|:-----------:|:-----------:|:-----------:
+<i class="fa fa-cloud"></i> `github.com/<user>/<user>.github.io` | read + write | [**create**](https://help.github.com/articles/create-a-repo/) <span class="octicon octicon-plus"></span> |   |
+<i class="fa fa-desktop"></i> `~/localdir/<user>.github.io`      | read + write | [**clone**](https://help.github.com/articles/fetching-a-remote) <span class="octicon octicon-desktop-download"></span> | [**commit**](http://git-scm.com/docs/git-commit) <span class="octicon octicon-git-commit"></span>,  [**push**](https://help.github.com/articles/pushing-to-a-remote/) <span class="octicon octicon-cloud-upload"></span> | [**pull**](https://help.github.com/articles/fetching-a-remote/#pull) <span class="octicon octicon-cloud-download"></span>
 
 Similar to your class group project repo `<org>/<org>.github.io` which serves a web site at `http://<org>.github.io`, you want to initialize:
 
