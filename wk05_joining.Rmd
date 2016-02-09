@@ -108,6 +108,8 @@ if (basename(getwd()) != wd){
 
 ### `bind_cols`
 
+bind columns between data frames
+
 ```{r bind_cols}
 library(dplyr)
 
@@ -126,6 +128,8 @@ bind_cols(y, z)
 
 ### `bind_rows`
 
+bind rows of data frames
+
 ```{r bind_rows}
 y
 z
@@ -133,6 +137,8 @@ bind_rows(y, z)
 ```
 
 ### `union`
+
+set operation on data frames, returning all unique rows
 
 ```{r union}
 y
@@ -142,6 +148,8 @@ union(y, z)
 
 ### `intersect`
 
+set operation on data frames, returning those rows in common
+
 ```{r intersect}
 y
 z
@@ -150,6 +158,8 @@ intersect(y, z)
 
 ### `setdiff`
 
+set operation on data frames, returning all mismatched rows
+
 ```{r setdiff}
 y
 z
@@ -157,6 +167,8 @@ setdiff(y, z)
 ```
 
 ### `left_join`
+
+return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.
 
 ```{r left_join}
 songs = data.frame(
@@ -172,17 +184,23 @@ left_join(songs, artists, by='name')
 
 ### `inner_join`
 
+return all rows from x where there are matching values in y, and all columns from x and y
+
 ```{r inner_join}
 inner_join(songs, artists, by = "name")
 ```
 
 ### `semi_join`
 
+return all rows from x where there are matching values in y, keeping just columns from x
+
 ```{r semi_join}
 semi_join(songs, artists, by = "name")
 ```
 
 ### `anti_join`
+
+return all rows from x where there are not matching values in y, keeping just columns from x
 
 ```{r anti_join}
 anti_join(songs, artists, by = "name")

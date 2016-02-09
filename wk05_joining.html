@@ -309,6 +309,7 @@ if (basename(getwd()) != wd){
 </div>
 <div id="bind_cols" class="section level3">
 <h3><code>bind_cols</code></h3>
+<p>bind columns between data frames</p>
 <pre class="r"><code>library(dplyr)
 
 y = data.frame(
@@ -325,30 +326,35 @@ bind_cols(y, z)</code></pre>
 </div>
 <div id="bind_rows" class="section level3">
 <h3><code>bind_rows</code></h3>
+<p>bind rows of data frames</p>
 <pre class="r"><code>y
 z
 bind_rows(y, z)</code></pre>
 </div>
 <div id="union" class="section level3">
 <h3><code>union</code></h3>
+<p>set operation on data frames, returning all unique rows</p>
 <pre class="r"><code>y
 z
 union(y, z)</code></pre>
 </div>
 <div id="intersect" class="section level3">
 <h3><code>intersect</code></h3>
+<p>set operation on data frames, returning those rows in common</p>
 <pre class="r"><code>y
 z
 intersect(y, z)</code></pre>
 </div>
 <div id="setdiff" class="section level3">
 <h3><code>setdiff</code></h3>
+<p>set operation on data frames, returning all mismatched rows</p>
 <pre class="r"><code>y
 z
 setdiff(y, z)</code></pre>
 </div>
 <div id="left_join" class="section level3">
 <h3><code>left_join</code></h3>
+<p>return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.</p>
 <pre class="r"><code>songs = data.frame(
   song = c(&#39;Across the Universe&#39;,&#39;Come Together&#39;, &#39;Hello, Goodbye&#39;, &#39;Peggy Sue&#39;),
   name = c(&#39;John&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Buddy&#39;), 
@@ -361,14 +367,17 @@ left_join(songs, artists, by=&#39;name&#39;)</code></pre>
 </div>
 <div id="inner_join" class="section level3">
 <h3><code>inner_join</code></h3>
+<p>return all rows from x where there are matching values in y, and all columns from x and y</p>
 <pre class="r"><code>inner_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="semi_join" class="section level3">
 <h3><code>semi_join</code></h3>
+<p>return all rows from x where there are matching values in y, keeping just columns from x</p>
 <pre class="r"><code>semi_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="anti_join" class="section level3">
 <h3><code>anti_join</code></h3>
+<p>return all rows from x where there are not matching values in y, keeping just columns from x</p>
 <pre class="r"><code>anti_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="per-capita-co2-emissions" class="section level3">
