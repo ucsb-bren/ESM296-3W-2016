@@ -147,7 +147,7 @@ img {
 <div id="header">
 <h1 class="title">Week 4: Tidying up Data</h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-02-03 15:45</em></h4>
+<h4 class="date"><em>2016-02-09 14:34</em></h4>
 </div>
 
 
@@ -251,7 +251,8 @@ library(tidyr)
 <div id="gather" class="section level3">
 <h3><code>gather</code></h3>
 <pre class="r"><code>cases
-gather(cases, &quot;year&quot;, &quot;n&quot;, 2:4)</code></pre>
+gather(cases, &quot;year&quot;, &quot;n&quot;, 2:4)
+gather(cases, &quot;year&quot;, &quot;n&quot;, -1)</code></pre>
 </div>
 <div id="spread" class="section level3">
 <h3><code>spread</code></h3>
@@ -276,7 +277,8 @@ unite(storms2, &quot;date&quot;, year, month, day, sep = &quot;-&quot;)</code></
 </ul>
 <p>From the <a href="./refs/cheatsheets/data-wrangling-cheatsheet.pdf">data-wrangling-cheatsheet.pdf</a>:</p>
 <div class="figure">
-<img src="wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png" />
+<img src="wk04_tidyr/img/data-wrangling-cheatsheet_tidyr.png" alt="" />
+
 </div>
 </div>
 <div id="tidy-co2-emissions" class="section level3">
@@ -392,8 +394,8 @@ pollution %&gt;%
 </div>
 <div id="summarize-co2-emissions" class="section level3">
 <h3>summarize CO<sub>2</sub> emissions</h3>
-<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for <strong>2014</strong> using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following additional functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<p><em><strong>Task</strong>. Summarize the <strong>total</strong> emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>group_by</code>, <code>summarize</code>, <code>sum</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
 </div>
 </div>
 <div id="joining-data" class="section level2">
@@ -405,7 +407,7 @@ pollution %&gt;%
 <div id="data-wrangling-in-r" class="section level3">
 <h3>Data Wrangling in R</h3>
 <ul>
-<li><a href="{{%20site.baseurl%20}}/refs/cheatsheets/data-wrangling-cheatsheet.pdf">Data Wrangling (dplyr, tidyr) cheat sheet</a></li>
+<li><a href="%7B%7B%20site.baseurl%20%7D%7D/refs/cheatsheets/data-wrangling-cheatsheet.pdf">Data Wrangling (dplyr, tidyr) cheat sheet</a></li>
 <li><a href="wrangling-webinar.pdf" class="uri">wrangling-webinar.pdf</a></li>
 </ul>
 </div>

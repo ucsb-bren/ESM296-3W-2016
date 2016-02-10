@@ -28,48 +28,6 @@ I think that GitHub will be a great tool for mi present and future work. At Bren
 I still have no data for my proyect. I Could use some of the FAOStats available data. I would like to address climate change impacts to a certain species or may be a group of.
 
 ``` {r}
-
- # read csv
-Data = read.csv("data/jepa_ReefPerch.csv")
-      
-# output summary
-summary(Data)
-```
-
-```{r}
-plot(Data)
-```
----
-title: "Some things about me"
-author: Juliano Palacios Abrantes - http://www.laff.bren.ucsb.edu/laff-network/juliano-palacios-abrantes
-output:
-  html_document:
-    toc: true
-    toc_depth: 6
----
-
-![I dont like cold](images/jepa.jpg)
-
-## General Information
-
-### Content
-
-I am interested in human driven impacts (with special attention to climate change) on fisheries resources in Latin America. How impacts of environmental change affect social structures, such as food security and local economies, how they can be measured, and how to create social adaptive capacity to such changes. 
-
-As of today, I'm on my second year of the Master program at the Bren School of Environmental Science & MAnagement. My group proyect looks to develop a Citizen Science program for the rocky intertidal zone
-
-More about our project in:
-http://intertidalteam.weebly.com
-
-### Techniques
-
-I think that GitHub will be a great tool for mi present and future work. At Bren, I've been envolved to coding projects. Learning how to use GitHub will provide me a new tool to organize my group-work.
-
-### Data
-
-I still have no data for my proyect. I Could use some of the FAOStats available data. I would like to address climate change impacts to a certain species or may be a group of.
-
-``` {r}
 suppressWarnings(library(readr))
 suppressWarnings(library(knitr))
 

@@ -167,10 +167,11 @@ img {
 <li>Herman Strop <span class="citation">@FrissAnalytics</span> (FrissAnalytics)</li>
 </ul>
 <div class="figure">
-<img src="wk05_ggplot/img/rstudio_shinydevcon_wch-hadley-jcheng5-FrissAnalytics.JPG" />
+<img src="wk05_ggplot/img/rstudio_shinydevcon_wch-hadley-jcheng5-FrissAnalytics.JPG" alt="" />
+
 </div>
 <p>Brought some of these stickers for ya:</p>
-<p><a href="https://www.rstudio.com/about/gear/"><img src="wk05_ggplot/img/rstudio_stickers.png" /></a></p>
+<p><a href="https://www.rstudio.com/about/gear/"><img src="wk05_ggplot/img/rstudio_stickers.png" alt="" /></a></p>
 </div>
 <div id="rstudio-shortcuts" class="section level3">
 <h3>RStudio Shortcuts</h3>
@@ -182,7 +183,7 @@ img {
 <li>Insert <code>%&gt;%</code>: Ctrl+Shift+<strong>M</strong> (Win), Cmd+Shift+<strong>M</strong> (Mac)</li>
 <li>Attempt completion: <strong>Tab</strong> or Ctrl+Space (Win), <strong>Tab</strong> or Cmd+Space (Mac),</li>
 <li>Knit Document: Ctrl+Shift+<strong>K</strong> (Win), Cmd+Shift+<strong>K</strong> (Mac)</li>
-<li>Copy Lines Up/Down: Shift+Alt+<strong><span class="math">\(\uparrow\)</span></strong>/<strong><span class="math">\(\downarrow\)</span></strong> (Win), Cmd+Option+<strong><span class="math">\(\uparrow\)</span></strong>/<strong><span class="math">\(\downarrow\)</span></strong> (Mac)</li>
+<li>Copy Lines Up/Down: Shift+Alt+<strong><span class="math inline">\(\uparrow\)</span></strong>/<strong><span class="math inline">\(\downarrow\)</span></strong> (Win), Cmd+Option+<strong><span class="math inline">\(\uparrow\)</span></strong>/<strong><span class="math inline">\(\downarrow\)</span></strong> (Mac)</li>
 </ul></li>
 </ul>
 </div>
@@ -191,7 +192,14 @@ img {
 <div id="old" class="section level4">
 <h4>OLD</h4>
 <p>So far to turn in individual assignments, you’ve been editing <code>env-info/students/&lt;user&gt;.Rmd</code> and knitting to <code>env-info/students/&lt;user&gt;.html</code>. Then you push to your repo <code>&lt;user&gt;/env-info</code> before submitting to the course repo <code>ucsb-bren/env-info</code> with a push, and pull request. To update your <code>&lt;user&gt;/env-info</code> with the latest from <code>ucsb-bren/env-info</code>, you also need to do an additional pull request, merge, and pull.</p>
-<table>
+<table style="width:94%;">
+<colgroup>
+<col width="16%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">repo location</th>
@@ -207,7 +215,6 @@ img {
 <td align="center">read only</td>
 <td align="center"></td>
 <td align="center"><a href="https://help.github.com/articles/merging-a-pull-request"><strong>merge</strong></a> <span class="octicon octicon-git-merge"></span> [BB]</td>
-<td align="center"></td>
 </tr>
 <tr class="even">
 <td align="left"><i class="fa fa-cloud"></i> <code>github.com/&lt;user&gt;/env-info</code></td>
@@ -229,7 +236,14 @@ img {
 <div id="new" class="section level4">
 <h4>NEW</h4>
 <p>For future assignments, you’ll use a much simpler Github workflow with less possibilities for <a href="http://r-pkgs.had.co.nz/git.html#git-pull">merge conflicts</a>:</p>
-<table>
+<table style="width:94%;">
+<colgroup>
+<col width="16%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">repo location</th>
@@ -244,7 +258,6 @@ img {
 <td align="left"><i class="fa fa-cloud"></i> <code>github.com/&lt;user&gt;/&lt;user&gt;.github.io</code></td>
 <td align="center">read + write</td>
 <td align="center"><a href="https://help.github.com/articles/create-a-repo/"><strong>create</strong></a> <span class="octicon octicon-plus"></span></td>
-<td align="center"></td>
 <td align="center"></td>
 </tr>
 <tr class="even">
@@ -275,7 +288,7 @@ img {
 </div>
 <div id="joining-data" class="section level2">
 <h2>joining data</h2>
-<p>For this portion of the individual assignment, similar to last week, you’ll find it easiest to copy and paste from <code>## joining data</code> onwards in <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd"><code>env-info/wk05_joining.Rmd</code></a> to your <code>env-info_hw/wk05_ggplot.Rmd</code>. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.</p>
+<p>For this portion of the individual assignment, similar to last week, you’ll find it easiest to copy and paste from <code>## joining data</code> onwards in <a href="https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk05_joining.Rmd"><code>env-info/wk05_joining.Rmd</code></a> to your <code>&lt;user&gt;.github.io/env-info_hw/wk05_ggplot.Rmd</code>. Then you can play with different chunks of the code. Please be sure to answer all tasks and questions at the bottom.</p>
 <p>The R chunks explaining the <code>dplyr</code> join functions below are pulled from the excellent <a href="wk03_dplyr/wrangling-webinar.pdf"><strong>wrangling-webinar.pdf</strong></a> presentation, which you should consult as you execute (see shortcuts in <a href="refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet.pdf</a>).</p>
 <div id="setup" class="section level3">
 <h3>setup</h3>
@@ -294,7 +307,10 @@ if (basename(getwd()) != wd){
 </div>
 <div id="bind_cols" class="section level3">
 <h3><code>bind_cols</code></h3>
-<pre class="r"><code>y = data.frame(
+<p>bind columns between data frames</p>
+<pre class="r"><code>library(dplyr)
+
+y = data.frame(
   x1 = c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;), 
   x2 = c( 1 , 2 , 3), 
   stringsAsFactors=F)
@@ -308,30 +324,35 @@ bind_cols(y, z)</code></pre>
 </div>
 <div id="bind_rows" class="section level3">
 <h3><code>bind_rows</code></h3>
+<p>bind rows of data frames</p>
 <pre class="r"><code>y
 z
 bind_rows(y, z)</code></pre>
 </div>
 <div id="union" class="section level3">
 <h3><code>union</code></h3>
+<p>set operation on data frames, returning all unique rows</p>
 <pre class="r"><code>y
 z
 union(y, z)</code></pre>
 </div>
 <div id="intersect" class="section level3">
 <h3><code>intersect</code></h3>
+<p>set operation on data frames, returning those rows in common</p>
 <pre class="r"><code>y
 z
 intersect(y, z)</code></pre>
 </div>
 <div id="setdiff" class="section level3">
 <h3><code>setdiff</code></h3>
+<p>set operation on data frames, returning all mismatched rows</p>
 <pre class="r"><code>y
 z
 setdiff(y, z)</code></pre>
 </div>
 <div id="left_join" class="section level3">
 <h3><code>left_join</code></h3>
+<p>return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.</p>
 <pre class="r"><code>songs = data.frame(
   song = c(&#39;Across the Universe&#39;,&#39;Come Together&#39;, &#39;Hello, Goodbye&#39;, &#39;Peggy Sue&#39;),
   name = c(&#39;John&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Buddy&#39;), 
@@ -344,35 +365,56 @@ left_join(songs, artists, by=&#39;name&#39;)</code></pre>
 </div>
 <div id="inner_join" class="section level3">
 <h3><code>inner_join</code></h3>
+<p>return all rows from x where there are matching values in y, and all columns from x and y</p>
 <pre class="r"><code>inner_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="semi_join" class="section level3">
 <h3><code>semi_join</code></h3>
+<p>return all rows from x where there are matching values in y, keeping just columns from x</p>
 <pre class="r"><code>semi_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="anti_join" class="section level3">
 <h3><code>anti_join</code></h3>
+<p>return all rows from x where there are not matching values in y, keeping just columns from x</p>
 <pre class="r"><code>anti_join(songs, artists, by = &quot;name&quot;)</code></pre>
 </div>
 <div id="per-capita-co2-emissions" class="section level3">
 <h3>per capita CO<sub>2</sub> emissions</h3>
 <p>You’ll join the <a href="http://data.okfn.org/data/core/population">population</a> dataset to calculate per capita CO<sub>2</sub> emissions.</p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries for <strong>2014</strong>.</em></p>
-<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) per capita across years from your long format table and return the top 5 emitting countries on <strong>average</strong> across all years.</em></p>
-<pre class="r"><code>library(dplyr)
+<p><em><strong>Task</strong>. Calculate the per capita emissions by country (not World or EU28) and return the top 5 emitting countries for <strong>2014</strong>.</em></p>
+<p><em><strong>Task</strong>. Summarize the per capita emissions by country (not World or EU28) as the mean (ie average) value across all years and return the top 5 emitting countries.</em></p>
+<pre class="r"><code>library(readr)
 library(readxl) # install.packages(&#39;readxl&#39;)
-
-# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
-xls = &#39;../data/co2_europa.xls&#39;
+library(dplyr)
+library(tidyr)
+library(httr)   # install.packages(&#39;httr&#39;)
+library(plyr)   # install.packages(&#39;plyr&#39;)
 
 print(getwd())
-co2 = read_excel(xls, skip=12)
-co2</code></pre>
-<pre class="r"><code>library(readr)
-library(tidyr)
 
-popn = read_csv(
-  &#39;https://raw.githubusercontent.com/datasets/population/master/data/population.csv&#39;)</code></pre>
+# population Excel file
+url = &#39;http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls&#39;
+out = &#39;co2_europa.xls&#39;
+if (!file.exists(out)) writeBin(content(GET(url), &#39;raw&#39;), out)
+
+# country lookup csv file
+url = &#39;https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/co2_country_to_popn.csv&#39;
+out = &#39;co2_country_to_popn.csv&#39;
+if (!file.exists(out)) writeBin(content(GET(url), &#39;raw&#39;), out)
+
+# read in carbon dioxide emissions file
+co2 = read_excel(xls, skip=12)
+
+# get lookup table to translate some country names in popn to those in co2 table
+cntry = read_csv(&#39;co2_country_to_popn.csv&#39;)
+
+# read in population and revalue some country names to match co2 table
+popn = read_csv(&#39;https://raw.githubusercontent.com/datasets/population/master/data/population.csv&#39;) %&gt;%
+  select(country=`Country Name`, year=Year, popn=Value) %&gt;%
+  mutate(
+    country = plyr::revalue(
+      country, 
+      setNames(cntry$country_co2, cntry$country_popn)))</code></pre>
 </div>
 </div>
 

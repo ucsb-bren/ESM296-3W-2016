@@ -312,9 +312,9 @@ See sections in the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wran
 
 ### summarize CO<sub>2</sub> emissions
 
-_**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+_**Task**. Report the top 5 emitting countries (not World or EU28) for **2014** using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following additional  functions: `filter`, `arrange`, `desc`, `head`)_. 
 
-_**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+_**Task**. Summarize the **total** emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `group_by`, `summarize`, `sum`, `arrange`, `desc`, `head`)_. 
 
 
 ## joining data
