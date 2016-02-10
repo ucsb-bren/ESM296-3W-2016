@@ -26,6 +26,7 @@ layout: default
 
 - Submit 2 plots: one based "thin" data set; the other based on data of interest to your group; utilize some of the features from ggplot2 presented in class.
 - Link to files **clim.csv** [clim](clim.csv) and **thin.csv** [thin](thinning.csv)
+- Meta data on **thin.csv**[meta](metadata.thin.txt)
 
 ## Resources
 
