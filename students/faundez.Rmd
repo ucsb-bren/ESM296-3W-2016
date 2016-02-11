@@ -306,9 +306,9 @@ spread # spread to wide
 
 ```{r gather}
 co2
-d = gather(co2, "year", "n", -Country)
+d = gather(co2, "year", "n", -1)
 d
-# Other way to do the same: gather(co2, "year", "n", 2:ncol(co2)) or gather(co2, "year", "n", -1)
+# Other way to do the same: gather(co2, "year", "n", 2:ncol(co2)) or gather(co2, "year", "n", -Country)
 ```
 
 Converting my year column from factor to numeric
@@ -339,15 +339,17 @@ head(new4)
 ```
 
 
-#I tried the elegant way but didn't work
+# dplyr
 
-# dplyr elegance
+```{r eval=TRUE}
 e %T>%                                           # note tee operator %T>% for glimpse
   glimpse() %>%                                  # view data
   filter(year > 2013) %>%                        # limit rows
   arrange(desc(n)) %>%                           # descendent order
   filter(Country != c("World", "EU28")) %>%      # limit rows
-  write_xls('data/co2_faundez.xls')              # write out csv
-  head(co2_faundez.xls)
+  write_csv('data/co2_faundez.csv')              # write out csv
+  head(co2_faundez)
 ```
+
+
 

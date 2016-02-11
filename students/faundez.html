@@ -328,21 +328,23 @@ print(getwd())</code></pre>
 <h2>tidyr</h2>
 <p>Two main functions: gather() and spread()</p>
 <pre class="r"><code># install.packages(&quot;tidyr&quot;)
-library(tidyr)
-gather # gather to long</code></pre>
-<pre><code>## function (data, key, value, ..., na.rm = FALSE, convert = FALSE) 
+library(tidyr)</code></pre>
+<pre><code>## Warning: package 'tidyr' was built under R version 3.2.3</code></pre>
+<pre class="r"><code>gather # gather to long</code></pre>
+<pre><code>## function (data, key, value, ..., na.rm = FALSE, convert = FALSE, 
+##     factor_key = FALSE) 
 ## {
 ##     key_col &lt;- col_name(substitute(key), &quot;key&quot;)
 ##     value_col &lt;- col_name(substitute(value), &quot;value&quot;)
 ##     if (n_dots(...) == 0) {
-##         gather_cols &lt;- setdiff(names(data), c(key_col, value_col))
+##         gather_cols &lt;- setdiff(colnames(data), c(key_col, value_col))
 ##     }
 ##     else {
-##         gather_cols &lt;- unname(dplyr::select_vars(names(data), 
+##         gather_cols &lt;- unname(dplyr::select_vars(colnames(data), 
 ##             ...))
 ##     }
 ##     gather_(data, key_col, value_col, gather_cols, na.rm = na.rm, 
-##         convert = convert)
+##         convert = convert, factor_key = factor_key)
 ## }
 ## &lt;environment: namespace:tidyr&gt;</code></pre>
 <pre class="r"><code>spread # spread to wide</code></pre>
@@ -389,7 +391,7 @@ d</code></pre>
 <pre><code>## Source: local data frame [9,900 x 3]
 ## 
 ##                Country        year            n
-##                  (chr)      (fctr)        (dbl)
+##                  (chr)       (chr)        (dbl)
 ## 1          Afghanistan 1970.000000  1813.981234
 ## 2              Albania 1970.000000  4435.433037
 ## 3              Algeria 1970.000000 18850.745443
@@ -437,7 +439,7 @@ head(new4)</code></pre>
 </div>
 <div id="dplyr-elegance" class="section level1">
 <h1>dplyr elegance</h1>
-<p>e %T&gt;% # note tee operator %T&gt;% for glimpse glimpse() %&gt;% # view data filter(year &gt; 2013) %&gt;% # limit rows arrange(desc(n)) %&gt;% # descendent order filter(Country != c(“World”, “EU28”)) %&gt;% # limit rows write_xls(‘data/co2_faundez.xls’) # write out csv head(co2_faundez.xls) ```</p>
+<p>e %T&gt;% # note tee operator %T&gt;% for glimpse glimpse() %&gt;% # view data filter(year &gt; 2013) %&gt;% # limit rows arrange(desc(n)) %&gt;% # descendent order filter(Country != c(“World”, “EU28”)) %&gt;% # limit rows write_csv(‘data/co2_faundez.csv’) # write out csv head(co2_faundez.csv)</p>
 </div>
 
 
