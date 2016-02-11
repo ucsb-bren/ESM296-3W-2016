@@ -73,6 +73,7 @@ img {
 <li><a href="#techniques"><em>Techniques</em></a></li>
 <li><a href="#data"><em>Data</em></a></li>
 <li><a href="#data-wrangling"><em>Data Wrangling</em></a></li>
+<li><a href="#answers-and-taks">4. Answers and Taks</a></li>
 </ul>
 </div>
 
@@ -90,7 +91,49 @@ img {
 <p>At the present moment I’m not participating in any MESM project. However, when searching for a opportunity to write my proposal I looked at The International Comission for the Conservation of Atlantic Tunas (ICCAT) database on shark captures, which I’ll be using for this assignment.</p>
 <pre class="r"><code># read csv
 d = read.csv('data/caio-faro_ICCATSharks.csv')
-Brazil &lt;- subset(d, PartyName == &quot;BRAZIL&quot;)</code></pre>
+Brazil &lt;- subset(d, PartyName == &quot;BRAZIL&quot;)
+
+summary(Brazil)</code></pre>
+<pre><code>##     Species                     ScieName              SpeciesGrp 
+##  BSH    :211   Prionace glauca      :211   4-Sharks (major):403  
+##  SMA    :191   Isurus oxyrinchus    :191   5-Sharks (other):821  
+##  SPN    :133   Sphyrna spp          :133                         
+##  BTH    :130   Alopias superciliosus:130                         
+##  SHX    : 92   Squaliformes         : 92                         
+##  RSK    : 85   Carcharhinidae       : 85                         
+##  (Other):382   (Other)              :382                         
+##      YearC          Decade     Status        PartyName           Flag     
+##  Min.   :1994   Min.   :1990   CP :1224   BRAZIL  :1224   Brazil   :1224  
+##  1st Qu.:2003   1st Qu.:2000   NCC:   0   ALGÉRIE :   0   Algerie  :   0  
+##  Median :2005   Median :2000   NCO:   0   ANGOLA  :   0   Angola   :   0  
+##  Mean   :2006   Mean   :2002              BARBADOS:   0   Argentina:   0  
+##  3rd Qu.:2009   3rd Qu.:2000              BELIZE  :   0   Barbados :   0  
+##  Max.   :2014   Max.   :2010              CANADA  :   0   Belize   :   0  
+##                                           (Other) :   0   (Other)  :   0  
+##              Fleet     Stock        SampArea        AreaT1    
+##  BRA-BRA-ITAJAI :138   A+M:821   unkn   :1213   SW     :1206  
+##  BRA-BRA-NATAL  :114   ATN:  6   BIL96  :  11   NW     :  17  
+##  BRA-BRA-RJANERO: 92   ATS:397   BIL91  :   0   GOFM   :   1  
+##  BRA            : 67   MED:  0   BIL92  :   0   ATL    :   0  
+##  BRA-BRA-SANTOS : 64             BIL93  :   0   AZOR   :   0  
+##  BRA-ESP-NATAL  : 60             BIL94  :   0   BLACK  :   0  
+##  (Other)        :689             (Other):   0   (Other):   0  
+##        SpcGearGrp     GearGrp       GearCode   CatchTypeCode
+##  All gears  :822   LL     :998   LL     :839   C :977       
+##  Longline   :330   UN     : 77   LLFB   :137   DD: 13       
+##  Other surf.: 72   BB     : 46   UNCL   : 77   L :234       
+##                    SU     : 36   BB     : 46                
+##                    HL     : 35   SURF   : 36                
+##                    PS     : 19   HAND   : 35                
+##                    (Other): 13   (Other): 54                
+##   QualInfoCode      Qty_t         
+##  RPT1   :1158   Min.   :   0.000  
+##  UNKN   :  47   1st Qu.:   0.300  
+##  RCSP   :  19   Median :   3.366  
+##  OBSH   :   0   Mean   :  56.081  
+##  RCAR   :   0   3rd Qu.:  21.776  
+##  RCGR   :   0   Max.   :2609.500  
+##  (Other):   0</code></pre>
 </div>
 <div id="data-wrangling" class="section level2">
 <h2><em>Data Wrangling</em></h2>
@@ -136,6 +179,40 @@ tbl_df(Brazil)</code></pre>
 ## 9         Carcharias taurus      9.272000
 ## 10       Coastal Sharks nei    411.040000
 ## ..                      ...           ...</code></pre>
+</div>
+<div id="answers-and-taks" class="section level2">
+<h2>4. Answers and Taks</h2>
+<p><em><strong>Task</strong>. Convert the following table <a href="http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&amp;sort=des9">CO<sub>2</sub> emissions per country since 1970</a> from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting <code>?gather</code> and you should have 3 columns in your output.</em></p>
+<pre class="r"><code>library(dplyr)
+library(readxl) # install.packages('readxl')
+
+# xls downloaded from http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls
+xls = '../data/co2_europa.xls'
+
+require(tidyr)
+require(dplyr)
+
+print(getwd())
+co2 &lt;- read_excel(xls, skip=12)
+Longco2 &lt;- gather(co2, &quot;Year&quot;, &quot;Emissions&quot;, -Country) %&gt;%
+  mutate(Year = as.numeric(Year))
+
+head(Longco2)</code></pre>
+<p><em><strong>Question</strong>. Why use <code>skip=12</code> argument in <code>read_excel()</code>?</em> Because the first 12 rows are metadata and we skip them to read only the data from the table we’re gonna use.</p>
+<p><em><strong>Task</strong>. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg <code>mutate(year = as.numeric(as.character(year)))</code>. As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<pre class="r"><code>Top5 &lt;- Longco2 %&gt;%
+    filter(Year == 2014, Country != &quot;World&quot;, Country != &quot;EU28&quot;) %&gt;%
+    arrange(desc(Emissions))
+
+head(Top5, n=5)</code></pre>
+<p><em><strong>Task</strong>. Summarize the total emissions by country (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: <code>filter</code>, <code>arrange</code>, <code>desc</code>, <code>head</code>)</em>.</p>
+<pre class="r"><code>SumCountries &lt;- Longco2 %&gt;%
+              filter(Country != &quot;World&quot;, Country != &quot;EU28&quot;) %&gt;%
+              group_by(Country) %&gt;%
+              summarise(TotalEmission = sum(Emissions)) %&gt;%
+              arrange(desc(TotalEmission))
+
+head(SumCountries)</code></pre>
 </div>
 
 
