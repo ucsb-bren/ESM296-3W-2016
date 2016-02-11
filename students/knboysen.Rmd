@@ -7,6 +7,21 @@ output:
     toc: true
     toc_depth: 2
 ---
+
+```{r echo=F}
+# set working directory if has child directory
+dir_child = 'students' 
+if (dir_child %in% list.files()){
+  if (interactive()) {  
+    # R Console
+    setwd(dir_child)
+  } else {              
+    # knitting
+    knitr::opts_knit$set(root.dir=dir_child)  
+  }
+}
+```
+
 ## Content
         
 I am interested on climate impacts on a large landscape scale, how ecosystems and species will adapt, and how we as managers can help improve the resilience of these environments. 
@@ -153,6 +168,13 @@ surveys %T>% ##tee operator is good for printing or plotting that wouldn't ouput
 
 ###Wrangling Webinar
 ####Piping
+
+```{r, echo= F}
+library(devtools)
+devtools::install_github("rstudio/EDAWR")
+library(EDAWR)
+```
+
 ```{r}
 library(tidyr)
 library(dplyr)
@@ -163,11 +185,7 @@ tb %>% select(child:elderly)
 #yay piping
 ```
 
-```{r, echo= F}
-#library(devtools)
-#devtools::install_github("rstudio/EDAWR")
-#library(EDAWR)
-```
+
 ###tidyr
 ```{r}
 library(tidyr)
@@ -291,4 +309,195 @@ left_join(songs, artists, by="name")
 
 inner_join(songs, artists, by="name")
 ```
+
+##Week 04-- Tidyr
+### EDAWR
+
+```{r EDAWR}
+#install.packages("devtools")
+#devtools::install_github("rstudio/EDAWR")
+#library(EDAWR)
+#help(package='EDAWR')
+#?storms    # wind speed data for 6 hurricanes
+#?cases     # subset of WHO tuberculosis
+#?pollution # pollution data from WHO Ambient Air Pollution, 2014
+#?tb        # tuberculosis data
+#Viewd(storms)
+#View(cases)
+#View(pollution)
+```
+
+### slicing
+
+```{r traditional R slicing, eval=F}
+# storms
+storms$storm
+storms$wind
+storms$pressure
+storms$date
+
+# cases
+cases$country
+names(cases)[-1]
+unlist(cases[1:3, 2:4])
+
+# pollution
+pollution$city[c(1,3,5)]
+pollution$amount[c(1,3,5)]
+pollution$amount[c(2,4,6)]
+##single equals sign sets the value, double equals sign searches for things with that value
+pollution %>% 
+  filter(city != 'New York')
+
+# ratio
+storms$pressure / storms$wind
+```
+
+## tidyr
+
+Two main functions: gather() and spread() 
+
+```{r tidyr, eval=F}
+# install.packages("tidyr")
+library(tidyr)
+?gather # gather to long
+?spread # spread to wide
+```
+
+### `gather`
+
+```{r gather, eval=F}
+cases
+gather(cases, "year", "n", 2:4)
+gather(cases, "year", "n", -country)
+cases %>% 
+  gather("year", "n", -country) %>% 
+  filter(year %in% c(2011,2013), 
+         country %in% c('FR', 'US'))
+
+## ! flips it all: 
+cases %>%
+  gather("year", "n", -country) %>% 
+  filter(year %in% c(2011,2013), 
+         !country %in% c('FR', 'US')) ##this selects all things NOT FR, US :-) 
+```
+
+### `spread`
+
+```{r spread, eval=F}
+pollution
+spread(pollution, size, amount)
+##data fram, colmn to use as keys, :amount' fills the cells 
+```
+
+Other functions to extract and combine columns...
+
+### `separate`
+
+```{r separate, eval=F}
+storms
+storms2 <- separate(storms, date, c("year", "month", "day"), sep = "-")
+
+storms %>% 
+  mutate(date_str= as.character(date))
+
+storms3 <- separate(storms, date, c("year", "month", "day"), sep = c(4,6))
+```
+
+### `unite`
+
+```{r unite, eval=F}
+storms2
+unite(storms2, "date", year, month, day, sep = "-")
+```
+
+**Recap: tidyr**:
+
+- A package that reshapes the layout of data sets.
+
+- Make observations from variables with `gather()` Make variables from observations with `spread()`
+
+- Split and merge columns with `unite()` and `separate()`
+
+From the [data-wrangling-cheatsheet.pdf](./refs/cheatsheets/data-wrangling-cheatsheet.pdf):
+
+
+### tidy CO<sub>2</sub> emissions
+##Assignment 4
+
+_**Task**. Convert the following table [CO<sub>2</sub> emissions per country since 1970](http://edgar.jrc.ec.europa.eu/overview.php?v=CO2ts1990-2014&sort=des9) from wide to long format and output the first few rows into your Rmarkdown. I recommend consulting `?gather` and you should have 3 columns in your output._
+
+```{r read co2, eval=F}
+library(readxl) # install.packages('readxl')
+
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = '../data/co2_europa.xls'
+
+print(getwd())
+if (!file.exists(xls)){
+  download.file(url, xls, method='internal')
+}
+co2 = read_excel(xls, skip=12)
+co2
+```
+
+_**Question**. Why use `skip=12` argument in `read_excel()`?_
+The 'skip-12' command in the read_excel because the first 12 rows of the excel file are metadata-- titles, information about where the data came from etc. 
+
+
+```{r gather ERROR}
+co2_long<- co2 %>% 
+  gather("Year", "CO2", 2:46)
+ 
+head(co2_long)
+###this code, though it works in R, returns the error "Error in eval(expr, envir, enclos): not compatible with STRSXP calls: <Anonymous>...<Anonymous> -> select_Vars_ -> combine_vars ->.Call
+
+##halp!
+```
+
+### summarize CO<sub>2</sub> emissions
+
+_**Task**. Report the top 5 emitting countries (not World or EU28) for 2014 using your long format table. (You may need to convert your year column from factor to numeric, eg `mutate(year = as.numeric(as.character(year)))`. As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+```{r Task 2}
+co2_long %>% 
+  mutate(Year = as.numeric(as.character(Year))) %>%
+  filter(Year==2014) %>%
+  filter(Country!="EU28", Country!="World") %>% 
+  top_n(5, CO2) %>% 
+  arrange(desc(CO2)) %>% 
+  head
+
+         #        Country  Year      CO2
+          #           (chr) (dbl)    (dbl)
+          #          China  2014 10540750
+# United States of America  2014  5334530
+#                    India  2014  2341897
+#       Russian Federation  2014  1766427
+#                    Japan  2014  1278922
+  
+```
+
+
+_**Task**. Summarize the total emissions by country  (not World or EU28) across years from your long format table and return the top 5 emitting countries. (As with most analyses, there are multiple ways to do this. I used the following functions: `filter`, `arrange`, `desc`, `head`)_. 
+
+```{r Task 3}
+co2_long %>% 
+  filter(Country!="EU28", Country!="World") %>% 
+  group_by(Country) %>% 
+  summarise(total_emissions=sum(CO2)) %>% 
+  arrange(desc(total_emissions)) %>% 
+  head()
+
+#                   Country total_emissions
+                  #   (chr)           (dbl)
+#United States of America       231948899
+#                    China       174045927
+#       Russian Federation        81242427
+#                    Japan        51276329
+#                  Germany        43382205
+#                    India        39004218
+
+```
+
 
