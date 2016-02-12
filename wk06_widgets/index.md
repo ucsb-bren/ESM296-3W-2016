@@ -1,19 +1,21 @@
 ---
-title: "Week 5: Joining, and Visualizing Data"
+title: "Week 6: Interactive Plots and Maps"
 layout: default
 ---
 
 ## Schedule
 
-- 8:30 - 9:00 [BB] **joining data** [wk05_joining](../wk05_joining.html) with functions from dplyr
+- 8:30 - 9:00 [NT] **ggplot2** review
 
-- 9:15 - 9:45 [BB] **data wrangling individual** exercises answering questions from a dataset on CO<sub>2</sub> emissions
+- 9:00 - 9:15 [BB] **joining** review
+
+- 9:15 - 9:45 [BB] **interactive visualization** principles
 
 - 9:45 - 10:00 **break**
 
-- 10:00 - 10:30 [BB] **data wrangling group** work asking questions and answering them with your own datasets
+- 10:00 - 10:30 [BB] **htmlwidgets** demo
 
-- 10:30 - 11:30 [NT] **programming concepts**
+- 10:30 - 11:30 [NT] **htmlwidgets** assignment
 
   - [Programming lecture](programming1.pdf) [30 min]
   - [Programming examples](programming.examples.html) ( [Rmd](https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/wk04_tidyr/programming.examples.Rmd))

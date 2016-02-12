@@ -1,0 +1,522 @@
+---
+title: 'wk06_widgets'
+author: "Ben Best"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+---
+
+```{r setup, echo=F}
+# NOTE: This chunk sets the default to eval=F for all following chunks.
+#       Am just using this for instructions. Please exclude in your assignment to see all results.
+#knitr::opts_chunk$set(eval=FALSE)
+```
+
+## precursors
+
+### new RStudio
+
+- toc menus
+- play, options per R chunk
+
+###  joining review
+
+- note: updated website, answer
+
+- `tidyr::complete`: [You Complete Me | i'm a chordata! urochordata!](http://www.imachordata.com/you-complete-me/)
+
+### setup
+
+Ensure that you're in the same working directory `env-info_hw` when you Knit HTML as when you test code in the Console.
+
+```{r setwd students, eval=F}
+wd = 'env-info_hw'
+
+# set working directory for Console (vs Rmd)
+if (wd %in% list.files() & interactive()){
+    setwd(wd)
+}
+
+# ensure working directory
+if (basename(getwd()) != wd){
+  stop(sprintf("WHOAH! Your working directory is not in '%s'!\n   getwd(): %s", wd, getwd()))
+}
+```
+
+## interactive visualization principles
+
+![](wk06_widgets/img/minority-report_data-wave.jpg)
+
+- original EDA intent
+
+- [KDE Santa Barbara](http://kids.nceas.ucsb.edu/DataandScience/graphtypes.html)
+
+- [Data visualization - Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Data_visualization)
+
+- [Tableau Essentials: Chart Types - Introduction | InterWorks, Inc.](https://www.interworks.com/blog/ccapitula/2014/08/04/tableau-essentials-chart-types-introduction)
+
+- [7 Basic Rules for Making Charts and Graphs | FlowingData](https://flowingdata.com/2010/07/22/7-basic-rules-for-making-charts-and-graphs/)
+- [Real Chart Rules to Follow | FlowingData](http://flowingdata.com/2015/08/11/real-chart-rules-to-follow/)s
+
+- [The Data Visualisation Catalogue](http://www.datavizcatalogue.com/)
+  - [by function](http://www.datavizcatalogue.com/search.html) by function
+  - [by type](http://www.datavizcatalogue.com/home_list.html)
+
+- [Data Visualization for Human Perception » Interaction Design Foundation](https://www.interaction-design.org/literature/book/the-encyclopedia-of-human-computer-interaction-2nd-ed/data-visualization-for-human-perception)
+
+[Principles for Effective Data Visualization - ZingChart Blog](http://www.zingchart.com/blog/2014/09/08/principles-effective-data-visualization/)
+CONVINCE Principles for Effective Data Visualization:
+- Convey Meaning
+- Objectivity
+- Necessity
+- Visual Honesty
+- Imagine the Audience
+- Nimble
+- Context
+- Encourage Interaction
+
+http://www.getbulb.com/element-library.html
+
+[Charting and Information Visualization—Wolfram Language Documentation](http://reference.wolfram.com/language/guide/ChartingAndInformationVisualization.html)
+
+- bar: compare values vertically. Bar charts are one of the most underrated types of visualizations. They're easy to use, and more often than not, a lot clearer for your audience than something fancy.
+- histogram: freq on y
+- scatter plot: relationships. and linear / loess
+- network 
+- streamgraph:. [World Bank Group Education Financing](http://smartereducation.worldbank.org/lending.html)
+- treemap vs pie chart.
+- gantt chart: planning over time
+- heat map: 
+- flow (sankey): Category flow diagrams show movement between people, places, or things.
+- chord: Try a chord diagram when you want to represent movement or change between different groups of entities. It's one of the more difficult types of data visualizations to use, but you can pack a whole lot into a single chart. [GED VIZ – Visualizing Global Economic Relations](http://viz.ged-project.de/)
+- line chart. [What's Really Warming the World? Climate deniers blame natural factors; NASA data proves otherwise](http://www.bloomberg.com/graphics/2015-whats-warming-the-world/)
+
+
+- bonus cool:
+  - [Wind Map](http://hint.fm/wind/)
+
+- [Data Visualization Principles: Lessons from Tufte - Moz](https://moz.com/blog/data-visualization-principles-lessons-from-tufte)
+
+- [Interactive visualization - Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Interactive_visualization)s
+
+### d3
+
+D3.js, short for ‘Data Driven Documents’, is the first name that comes to mind when we think of a Data Visualization Software. It uses HTML, CSS, and SVG to render some amazing charts and diagrams.
+
+- [Mike Bostock](https://bost.ocks.org/mike/) & [https://bl.ocks.org/mbostock](bl.ocks.org)
+
+- [d3 gallery](https://github.com/mbostock/d3/wiki/Gallery) incl [aster](http://bl.ocks.org/bbest/2de0e25d4840c68f2db1)
+
+### google charts
+
+- [Google charts](https://developers.google.com/chart/interactive/docs/gallery)
+
+
+## demo
+
+### tables
+
+Let's first look at a data table interactively.
+
+```{r head}
+dim(iris) # ?datasets::iris
+head(iris)
+```
+
+We can do a prettier job of knitting a table with `kable()` from the `knitr` library.
+
+```{r kable}
+library(dplyr)
+library(knitr) # install.packages('kable')
+
+head(iris) %>% kable()
+```
+
+Note the difference between using `kable()` on the console vs knitting to HTML.
+
+#### `DT::datatable`
+
+But there are many more rows than just the first 6. Which is why an interactive widget could be so helpful.
+
+```{r DT::datatable}
+library(DT) # install.packages('DT')
+
+# default datatable
+datatable(iris)
+
+# remove document elements
+datatable(iris, options = list(dom = 'tp'))
+```
+
+Note how the [`dom` option](http://datatables.net/reference/option/dom) removed other elements from display such as the Show (`l`ength), Search (`f`iltering) and Showing (`i`nformation) elements from the default, but kept the `t`able and `p`agination control.
+
+**Task.** Output the table again with `datatable` and set the `options` to have `pagelength` of just 5 rows. (See `?datatable` and <http://rstudio.github.io/DT/>).
+
+### `manipulate()`
+
+
+```{r hist}
+#?datasets::faithful
+hist(
+  faithful$eruptions, breaks=20, probability = T, 
+  xlab = 'Duration (minutes)',
+  main = 'Geyser eruption duration')
+      
+lines(
+  density(
+    faithful$eruptions, adjust = 1), 
+  col = "blue") # TODO: adjust: 0.2, max = 2, value = 1, step = 0.2
+```
+
+What is the effect of changing the adjustment parameter on the line density?
+
+We can use the `manipulate` function to provide interactive sliders, checkboxes and pickers. It only works within RStudio and does not work in a knitting context, so be sure to set `eval=FALSE` in the R chunk options.
+
+Let's use the [faithful](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/faithful.html) dataset to plot the distribution of eruption A very common way to first evaluate a set of values is looking at a histogram.
+
+
+```{r manipulate, eval=F}
+library(ggplot2)
+library(manipulate) # install.packages('manipulate')
+
+manipulate({
+  
+  faithful %>%
+    ggplot(aes(eruptions)) + 
+    geom_histogram(aes(y = ..density..),  bins = 20) +
+    geom_density(color='blue', adjust=a) +
+    xlab('duration (minutes)') +
+    ylab('frequency density') +
+    title('geyser eruption duration')
+  
+}, a = slider(min = 0, max = 2, initial = 1, label = 'bandwidth adjustment', step = 0.2))
+```
+
+You should see the slider popout of a gear icon in th upper left of your Plots pane in RStudio.
+
+![](wk06_widgets/img/manipulate_gear.png)
+
+**Task.** Add another R chunk with a slider adjusting the number of bins from 5 to 50, with step increments of 5.
+
+### `ggvis`
+
+You can do something similar with [ggvis](http://ggvis.rstudio.com/0.1/quick-examples.html).
+
+```{r ggvis input_slider, eval=FALSE}
+library(ggvis) # install.packages('ggvis')
+head(faithful)
+
+faithful %>%
+  ggvis(~eruptions) %>%
+  layer_histograms(
+    width = input_slider(0.1, 2, step = 0.2, label = 'bin width'),
+    fill = 'blue') %>%
+  add_axis('x', title = 'duration (minutes)') %>%
+  add_axis('y', title = 'count')
+```
+
+The ggvis is slotted to become the feature-rich interactive version of the ggplot2 library. It cannot render to a static HTML document like `manipulate`, but can be used in a Shiny app.
+
+Let's use ggvis `tooltip()` to show values of a scatterplot on mouse hover.
+
+```{r ggvis add_tooltip, eval=FALSE}
+cars = mtcars %>%
+  add_rownames('model') %>%        # dplyr drops rownames
+  mutate(id = row_number()) # add an id column to use ask the key
+
+all_values <- function(x) {
+  if(is.null(x)) return(NULL)
+  row <- cars[mtc$id == x$id, ]
+  paste0(names(row), ": ", format(row), collapse = "<br/>")
+}
+
+cars %>% 
+  ggvis(x = ~wt, y = ~mpg, key := ~id) %>%
+  layer_points() %>%
+  add_tooltip(all_values, 'hover')
+```
+
+**Task.** Add another R chunk that only applies the `add_tooltip` on mouse click.
+
+## htmlwidget concepts
+
+- three modes: 1) RStudio, 2) standalone Rmd -> HTML, 3) Shiny
+
+- HTML + JS + CSS: logos, code snippets, Google Chrome inspect. HTML, then CSS, then JS. with bootstrap (leads to Shiny)
+
+- most JS D3-based. Mike Bostock. NYTimes.
+
+- [htmlwidgets.org](http://www.htmlwidgets.org/)
+  - [htmlwidgets Showcase](http://www.htmlwidgets.org/showcase_leaflet.html)
+http://hafen.github.io/htmlwidgetsgallery/
+
+## htmlwidgets demo
+
+interactive helps...
+
+### datatable
+
+- sort, search
+
+### scatterplot
+
+manipulate
+
+ggvis
+
+
+### map
+
+```{r get co2}
+library(readxl) # install.packages('readxl')
+library(dplyr)
+library(tidyr)
+library(httr)   # install.packages('httr')
+
+print(getwd())
+
+# co2 Excel file
+url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
+xls = 'co2_europa.xls'
+if (!file.exists(xls)) writeBin(content(GET(url), 'raw'), xls)
+
+# read in carbon dioxide emissions
+co2 = read_excel(xls, skip=12) %>%
+  gather(year, ktons_co2, -Country) %>%
+  filter(!Country %in% c('World','EU28') & !is.na(Country)) %>%
+  mutate(year = as.numeric(as.character(year)))
+```
+
+
+```{r leaflet, eval=F, echo=F}
+library(rgdal)
+library(maps)     # install.packages('maps')
+library(leaflet)
+library(jsonlite) # install.packages('jsonlite')
+
+# get countries geojson file
+url = 'https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson'
+json = 'countries.geojson'
+if (!file.exists(json)) writeBin(content(GET(url), 'raw'), json)
+
+geojson <- readLines(json, warn = FALSE) %>%
+  paste(collapse = "\n") %>%
+  fromJSON(simplifyVector = FALSE)
+
+# Default styles for all features
+geojson$style = list(
+  weight = 1,
+  color = "#555555",
+  opacity = 1,
+  fillOpacity = 0.8
+)
+
+# Gather GDP estimate from all countries
+gdp_md_est <- sapply(geojson$features, function(feat) {
+  feat$properties$gdp_md_est
+})
+# Gather population estimate from all countries
+pop_est <- sapply(geojson$features, function(feat) {
+  max(1, feat$properties$pop_est)
+})
+
+# Color by per-capita GDP using quantiles
+pal <- colorQuantile("Greens", gdp_md_est / pop_est)
+# Add a properties$style list to each feature
+geojson$features <- lapply(geojson$features, function(feat) {
+  feat$properties$style <- list(
+    fillColor = pal(
+      feat$properties$gdp_md_est / max(1, feat$properties$pop_est)
+    )
+  )
+  feat
+})
+
+# Add the now-styled GeoJSON object to the map
+leaflet() %>% addGeoJSON(geojson)
+
+
+
+#url = 'https://raw.githubusercontent.com/mbostock/topojson/master/examples/world-110m.json'
+url = 'https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson'
+json = 'countries.geojson'
+if (!file.exists(json)) writeBin(content(GET(url), 'raw'), json)
+
+geoData <- readLines(json) %>% paste(collapse = "\n")
+
+leaflet() %>% # setView(lng = -98.583, lat = 39.833, zoom = 3) %>%
+  addTiles() %>%
+  #addTopoJSON(readLines(json), weight = 1, color = "#444444", fill = FALSE)
+  addGeoJSON(geoData, color = "blue", fill = 'T')
+
+ogrInfo(json)
+
+readOGR(json, 'GeoJSON')
+
+map('world')
+
+leaflet(data = countries2) %>%
+    addTiles(urlTemplate = stamen_tiles,  
+             attribution = stamen_attribution) %>%
+    setView(0, 0, zoom = 3) %>%
+    addPolygons(fillColor = ~pal(countries2[[indicator]]), 
+                fillOpacity = 0.8, 
+                color = "#BDBDC3", 
+                weight = 1, 
+                popup = country_popup)
+
+
+devtools::install_github('htmlwidgets/datamaps')
+
+library(datamaps)
+datamaps()
+```
+
+
+```{r wordcloud}
+library("d3wordcloud") # devtools::install_github("jbkunst/d3wordcloud")
+words <- c("I", "love", "this", "package", "but", "I", "don't", "like", "use", "wordclouds")
+freqs <- sample(seq(length(words)))
+d3wordcloud(words, freqs)
+```
+
+
+```{r streamgraph}
+library(dplyr)
+library(babynames)   # install.packages('babynames')
+library(streamgraph) # devtools::install_github("hrbrmstr/streamgraph")
+
+babynames %>%
+  filter(grepl("^Kr", name)) %>%
+  group_by(year, name) %>%
+  tally(wt=n) %>%
+  streamgraph("name", "n", "year")
+```
+
+
+### googleVis
+
+https://cran.r-project.org/web/packages/googleVis/vignettes/Using_googleVis_with_knitr.html
+
+#### Combo chart
+
+Example of gvisComboChart
+
+```{r gvisComboChart, results='asis', tidy=FALSE}
+library(googleVis) # install.packages('googleVis')
+op <- options(gvis.plot.tag='chart')
+
+## Add the mean
+CityPopularity$Mean=mean(CityPopularity$Popularity)
+CC <- gvisComboChart(CityPopularity, xvar='City',
+          yvar=c('Mean', 'Popularity'),
+          options=list(seriesType='bars',
+                       width=450, height=300,
+                       title='City Popularity',
+                       series='{0: {type:\"line\"}}'))
+plot(CC)
+```
+
+
+#### Place two charts next to each other
+
+Example of a gvisGeoChart with gvisTable and R code hidden.
+
+```{r gvisMergeExample, results='asis', echo=FALSE}
+Geo <- gvisGeoChart(Exports, locationvar='Country', colorvar='Profit', 
+                    options=list(height=300, width=350)) 
+Tbl <- gvisTable(Exports, options=list(height=300, width=200))
+plot(gvisMerge(Geo, Tbl, horizontal=TRUE))
+```
+
+## Motion Chart
+
+Please note that the Motion Chart is only displayed when hosted on a
+web server, or if placed in a directory which has been added to the 
+trusted sources in the [security settings of Macromedia]
+(http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html). 
+See the googleVis package vignette for more details. 
+
+```{r MotionChartExample, results='asis', tidy=FALSE}
+M <- gvisMotionChart(Fruits, 'Fruit', 'Year',
+         options=list(width=400, height=350))
+plot(M)
+```
+
+```{r resetOptions}
+## Set options back to original options
+options(op)
+```
+
+### task: cars
+
+- R [datasets](https://vincentarelbundock.github.io/Rdatasets/datasets.html) 
+
+[Visualization-directed inquiry](http://cs.boisestate.edu/~alark/cs564/assignment1.html
+)
+
+To answer the following questions, create a visualization in your `env-info_hw/wk06_widgets.Rmd`.
+
+- Which car has the highest mpg?
+- Name one car which has the lowest acceleration.
+- Correlation between a cars mpg and its weight?
+- Comment on the relationship between a cars acceleration and its displacement?
+- Find any other interesting relationship among the variables in the dataset
+
+
+
+
+## resources
+
+examples:
+- Hans Rosling GapMinder
+- [Overweight and Obesity Viz](http://vizhub.healthdata.org/obesity/): map + line plot + sunburst
+- [How You Will Die - GAME | FlowingData](https://flowingdata.com/2016/01/19/how-you-will-die/), [Causes of Death - STACKED AREA | FlowingData](http://flowingdata.com/2016/01/05/causes-of-death/)
+- treemap: [The President's 2016 Budget Proposal | Visual.ly](http://visual.ly/presidents-2016-budget-proposal?view=true)
+
+- chloropleth over time: [How America Came to Accept Gay Marriage | Visual.ly](http://visual.ly/how-america-came-accept-gay-marriage)
+
+- line, relationships, map: [Uber Is Taking Millions Of Manhattan Rides Away From Taxis | FiveThirtyEight](http://fivethirtyeight.com/features/uber-is-taking-millions-of-manhattan-rides-away-from-taxis/)
+
+- [**A Year in Search 2015,, - Google Trends](https://www.google.com/trends/story/2015_US):sparklines
+- maps: 
+  - [Ebola crisis page - Humanitarian Data Exchange](https://data.hdx.rwlabs.org/ebola)
+  - [Life Expectancy & Probability of Death | IHME Viz Hub](http://vizhub.healthdata.org/le/)
+- [#SOTU2015: See the State of The Union address minute by minute on Twitter](http://twitter.github.io/interactive/sotu2015/#p35): streamgraph of emphasis over time
+
+- infographics (static):
+  - [Extreme Global Warming Solutions Currently on the Table | Information is Beautiful](http://www.informationisbeautiful.net/visualizations/extreme-global-warming-solutions-currently-on-the-table/)
+
+blogs:
+- [2015 – The Winners — Information is Beautiful Awards](http://www.informationisbeautifulawards.com/news/116-2015-the-winners): interactive
+- [The 9 Best Data Visualization Examples from 2015 | Visually Blog](http://blog.visual.ly/9-best-data-visualization-examples-2015/)
+- [visualcomplexity](http://www.visualcomplexity.com/vc/)
+- [information aesthetics](http://infosthetics.com/)
+- [Flowing Data](http://flowingdata.com/)
+- [Data Basic](https://www.databasic.io/en/): WordCounter, WTFcsv, SameDiff
+- [Interactive - Chart Porn](http://chartporn.org/category/interactive/)
+
+- map to charts: [The United States of Energy | Visual.ly](http://visual.ly/united-states-energy-0?view=true)
+
+web services:
+
+- [Tableau](https://public.tableau.com/s/)
+- [Google charts](https://developers.google.com/chart/interactive/docs/gallery)
+- [DataHero.com](https://datahero.com/)
+- [Infogr.am](https://infogr.am/): [app](https://infogr.am/app/#/library)
+- [OnlineChartTool.com](http://www.onlinecharttool.com/)
+
+infographic creators:
+- [easel.ly | create and share visual ideas online](http://www.easel.ly/)
+- [Create Easy Infographics, Reports, Presentations | Piktochart](http://piktochart.com/)
+
+books:
+
+- [The Encyclopedia of Human-Computer Interaction, 2nd Ed. » Interaction Design Foundation](https://www.interaction-design.org/literature/book/the-encyclopedia-of-human-computer-interaction-2nd-ed)
+- [Visualization Analysis and Design](http://www.cs.ubc.ca/~tmm/vadbook/)
+- [Interactive Data Visualization for the Web](http://chimera.labs.oreilly.com/books/1230000000345)
+
+tools:
+- [Bokeh](http://bokeh.pydata.org/en/latest/) Python interactive visualization library
+
+talks:
+- [Hans Rosling | TED.com](http://www.ted.com/speakers/hans_rosling): [The best stats you've ever seen](http://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen), [Gapminder World](http://www.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=5.59290322580644;ti=2013$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=194;dataMax=96846$map_y;scale=lin;dataMin=23;dataMax=86$map_s;sma=49;smi=2.65$cd;bd=0$inds=;example=75)
+- [David McCandless: The beauty of data visualization | TED Talk | TED.com](http://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization?language=en)

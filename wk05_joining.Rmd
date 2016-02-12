@@ -224,21 +224,16 @@ library(plyr)   # install.packages('plyr')
 
 print(getwd())
 
-# population Excel file
+# co2 Excel file
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
 out = 'co2_europa.xls'
-if (!file.exists(out)) writeBin(content(GET(url), 'raw'), out)
-
-# country lookup csv file
-url = 'https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/co2_country_to_popn.csv'
-out = 'co2_country_to_popn.csv'
 if (!file.exists(out)) writeBin(content(GET(url), 'raw'), out)
 
 # read in carbon dioxide emissions file
 co2 = read_excel(xls, skip=12)
 
 # get lookup table to translate some country names in popn to those in co2 table
-cntry = read_csv('co2_country_to_popn.csv')
+cntry = read_csv('https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/co2_country_to_popn.csv')
 
 # read in population and revalue some country names to match co2 table
 popn = read_csv('https://raw.githubusercontent.com/datasets/population/master/data/population.csv') %>%
