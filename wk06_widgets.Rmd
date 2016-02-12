@@ -25,7 +25,7 @@ For the individual assignment, similar to last week, you'll find it easiest to c
 
 Ensure that you're in the same working directory `env-info_hw` when you Knit HTML as when you test code in the Console.
 
-```{r setwd students, eval=FALSE}
+```{r setwd env-info_hw, eval=FALSE}
 wd = 'env-info_hw'
 
 # set working directory for Console (vs Rmd)
@@ -207,7 +207,7 @@ Note the difference between using `kable()` on the console vs knitting to HTML.
 
 But there are many more rows than just the first 6. Which is why an interactive widget could be so helpful.
 
-```{r DT::datatable}
+```{r datatable}
 library(DT) # install.packages('DT')
 
 # default datatable
@@ -225,7 +225,7 @@ Note how the [`dom` option](http://datatables.net/reference/option/dom) removed 
 
 Now we'll use the htmlwidget [metricsgraphics](http://hrbrmstr.github.io/metricsgraphics/) to enable some hover capability in the HTML output.
 
-```{r}
+```{r mjs_point}
 library(metricsgraphics) # devtools::install_github("hrbrmstr/metricsgraphics")
 
 mtcars %>%
@@ -310,7 +310,7 @@ plot(M)
 
 - THE motion chart example: [Gapminder World](http://www.gapminder.org/world/#$majorMode=chart$is;shi=t;ly=2003;lb=f;il=t;fs=11;al=30;stl=t;st=t;nsl=t;se=t$wst;tts=C$ts;sp=5.59290322580644;ti=2013$zpv;v=0$inc_x;mmid=XCOORDS;iid=phAwcNAVuyj1jiMAkmq1iMg;by=ind$inc_y;mmid=YCOORDS;iid=phAwcNAVuyj2tPLxKvvnNPA;by=ind$inc_s;uniValue=8.21;iid=phAwcNAVuyj0XOoBL_n5tAQ;by=ind$inc_c;uniValue=255;gid=CATID0;by=grp$map_x;scale=log;dataMin=194;dataMax=96846$map_y;scale=lin;dataMin=23;dataMax=86$map_s;sma=49;smi=2.65$cd;bd=0$inds=;example=75)
 
-#### gvisGeoChart
+#### `gvisGeoChart`
 
 ```{r gvisGeoChart, results='asis', tidy=FALSE}
 require(datasets)
@@ -391,11 +391,11 @@ leaflet() %>%
     title = "wind speed at 90m (NREL)")
 ```
 
-### threejs: 3D
+### `threejs`: 3D
 
 You can render 3D with [`threejs`](http://bwlewis.github.io/rthreejs/).
 
-#### globejs
+#### `globejs`
 
 ```{r globejs}
 suppressPackageStartupMessages({
@@ -414,7 +414,7 @@ col <- col[floor(length(col) * (100 - value) / 100) + 1]
 globejs(lat=cities$lat, long=cities$long, value=value, color=col, atmosphere=TRUE)
 ```
 
-#### scatterplot3js
+#### `scatterplot3js`
 
 ```{r scatterplot3js}
 library(threejs) # devtools::install_github('bwlewis/rthreejs')
@@ -530,7 +530,7 @@ chorddiag(m, groupColors = groupColors, groupnamePadding = 20)
 
 - chord diagram example: [GED VIZ – Visualizing Global Economic Relations](http://viz.ged-project.de/)
 
-### streamgraph
+### `streamgraph`
 
 ```{r streamgraph}
 library(dplyr)
@@ -549,7 +549,7 @@ streamgraph examples:
 - [World Bank Group Education Financing](http://smartereducation.worldbank.org/lending.html)
 - [#SOTU2015: See the State of The Union address minute by minute on Twitter](http://twitter.github.io/interactive/sotu2015/#p35)
 
-### wordcloud
+### `wordcloud`
 
 ```{r wordcloud}
 library("d3wordcloud") # devtools::install_github("jbkunst/d3wordcloud")
