@@ -133,6 +133,8 @@ The majority of exciting interactive application development is happening these 
 - [threejs](https://github.com/bwlewis/rthreejs): 3D scatterplots and globes
 - [DiagrammeR](http://rich-iannone.github.io/DiagrammeR/): Diagrams and flowcharts
 
+<a href="wk06_widgets/" class="btn btn-primary btn-sm">Interactive Plots...</a>
+
 ### 7. Advanced Programming
 
 #### Feb 19, 8-noon [NT]
