@@ -44,7 +44,7 @@ if (basename(getwd()) != wd){
 
 ### principles
 
-Interactive visualization has been a mainstay of R since the beginning, but historically referred to as [exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis). The majority of innovation with interactive visualization has been happening with web technologies (HTML, CSS, JS, SVG). Although we're not going full Minority Report (although I'm sure someone has hooked up Oculus Rift to R), we should have fun with trying out these visualizations.
+Interactive visualization has been a mainstay of R since the beginning, but historically referred to as [exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis). The majority of innovation with interactive visualization has been happening with web technologies (HTML, CSS, JS, SVG). We're not as futuristic yet as Minority Report (although I'm sure someone has hooked up Oculus Rift to R), we should have fun with trying out these visualizations.
 
 ![](wk06_widgets/img/minority-report_data-wave.jpg)
 
