@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, echo=F}
 # NOTE: This chunk sets the default to eval=F for all following chunks.
 #       Am just using this for instructions. Please exclude in your assignment to see all results.
-knitr::opts_chunk$set(eval=FALSE)
+knitr::opts_chunk$set(eval=F)
 ```
 
 ## Precursors
@@ -212,35 +212,99 @@ You'll join the [population](http://data.okfn.org/data/core/population) dataset 
 
 _**Task**. Calculate the per capita emissions by country (not World or EU28) and return the top 5 emitting countries for **2014**._
 
-_**Task**. Summarize the per capita emissions by country (not World or EU28) as the mean (ie average)  value across all years and return the top 5 emitting countries._ 
+_**Task**. Summarize the per capita emissions by country (not World or EU28) as the **mean** (ie average)  value across all years and return the top 5 emitting countries._ 
 
-```{r read co2 & popn}
-library(readr)
-library(readxl) # install.packages('readxl')
-library(dplyr)
-library(tidyr)
-library(httr)   # install.packages('httr')
-library(plyr)   # install.packages('plyr')
 
-print(getwd())
+```{r bbest, echo=F, eval=F}
+# setwd('~/github/bbest.github.io/env-info_hw')
+```
+
+```{r read co2 & popn, eval=T}
+suppressPackageStartupMessages({
+  library(readr)
+  library(readxl) # install.packages('readxl')
+  library(dplyr)
+  library(tidyr)
+  library(httr)   # install.packages('httr')
+})
 
 # co2 Excel file
 url = 'http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls'
-out = 'co2_europa.xls'
-if (!file.exists(out)) writeBin(content(GET(url), 'raw'), out)
+xls = 'co2_europa.xls'
+if (!file.exists(xls)) writeBin(content(GET(url), 'raw'), xls)
 
 # read in carbon dioxide emissions file
-co2 = read_excel(xls, skip=12)
+co2 = read_excel(xls, skip=12) %>%
+  gather(year, ktons_co2, -Country) %>%
+  filter(!Country %in% c('World','EU28') & !is.na(Country)) %>%
+  mutate(year = as.integer(as.character(year))) %>%
+  rename(country=Country)
+co2
 
-# get lookup table to translate some country names in popn to those in co2 table
-cntry = read_csv('https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/co2_country_to_popn.csv')
-
-# read in population and revalue some country names to match co2 table
+# read in population
 popn = read_csv('https://raw.githubusercontent.com/datasets/population/master/data/population.csv') %>%
-  select(country=`Country Name`, year=Year, popn=Value) %>%
-  mutate(
-    country = plyr::revalue(
-      country, 
-      setNames(cntry$country_co2, cntry$country_popn)))
+  select(country=`Country Name`, year=Year, popn=Value) 
+popn
 ```
 
+In order to calculate per capita emissions, you'll need to join the `popn` data frame with the `co2` data frame before calculating something like `ktons_co2 / popn`.
+
+One of the trickiest parts about joining data is ensuring that values in the key columns are matching. The column `year` is a simple 4 digit integer in both tables (after converting to `as.integer()` for the gathered `co2`). But what about `country`?
+
+Let's look at just `year==2014` to see what values of `country` in table `co2` are not found in table `popn`, ie `anti_join()`:
+
+```{r co2$popn not in popn$country, eval=T}
+# co2$popn not in popn$country
+co2 %>%
+  filter(year==2014) %>%
+  anti_join(
+    popn %>%
+      filter(year==2014),
+    by='country') %>%
+  arrange(desc(ktons_co2))
+```
+
+Whoah, we're missing 47 "countries", including the "United States of America"! So what is "United States of America" called in  `popn$country`?
+
+```{r popn$country not in co2$popn, eval=T}
+# popn$country not in co2$popn
+popn %>%
+  filter(year==2014) %>%
+  anti_join(
+    co2 %>%
+      filter(year==2014),
+    by='country') %>%
+  arrange(desc(country))
+```
+
+Ok, so in `popn$country` we have "United States" which doesn't get matched with "United States of America" in `co2$country`? How to fix this? We need a lookup table for translating country values between tables. I went ahead and made one for you by copying the two anti_join tables above and matching rows where possible.
+
+```{r cntry, eval=T}
+# get lookup table to translate popn$country to co2$country
+cntry = read_csv('https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/co2_country_to_popn.csv')
+cntry
+```
+
+So before we join the tables `co2` and `popn`, first translate country in one to match the other.
+
+```{r update co2$country to popn$country, eval=T}
+# update co2$country to popn$country
+co2_m = co2 %>%
+  left_join(
+    cntry, 
+    # note use of named vector to columns with different names
+    by = c('country'='country_co2')) %>%    
+  mutate(
+    # note use of ifelse to upated country with popn$country_popn
+    country = ifelse(!is.na(country_popn), country_popn, country))
+
+# check that "United States of America" changed to "United States"
+co2_m %>%
+  filter(year==2014) %>%
+  arrange(desc(country)) %>%
+  head(15)
+```
+
+Ok, so `co2_m$country` got updated with values to match `popn$country`, eg "United States of America" to "United States".
+
+Please use this matching `co2_m` to join with `popn` and calculate per capita emissions.
