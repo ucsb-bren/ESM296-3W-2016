@@ -15,7 +15,7 @@ We'll also hear about best practices for data management from UCSB librarian Ste
 
 1. 8:30 - 9:30 am: **Wrangling Data** (individual)
 
-    - [wk03_dplyr](../wk03_dplyr.html): recap Github, command line navigation, readr, dplyr, tidyr
+    - [wk03_dplyr](./wk03_dplyr.html): recap Github, command line navigation, readr, dplyr, tidyr
     - [wrangling-webinar.pdf](wrangling-webinar.pdf)
     - [individual assignment](#individual) to work on `env-info/students/<user>.Rmd`
 
@@ -80,7 +80,7 @@ Due: Jan 28, Thursday 5pm
 
 ### Data Wrangling in R
 
-- [Data Wrangling (dplyr, tidyr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+- [Data Wrangling (dplyr, readr) cheat sheet]({{ site.baseurl }}/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
 
 ### Git, Github and RStudio
 
