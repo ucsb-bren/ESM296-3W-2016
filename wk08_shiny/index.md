@@ -3,6 +3,12 @@ title: "Week 8: Interactive Applications - Shiny"
 layout: default
 ---
 
+- Shiny app fxns:
+  - slice data by column, filter
+  - animate through time
+http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/
+
+
 ```r
 shiny::runExample('01_hello')
 ```
