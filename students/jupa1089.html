@@ -73,11 +73,7 @@ img {
 <li><a href="#techniques">Techniques</a></li>
 <li><a href="#data">Data</a></li>
 <li><a href="#data-wrangling">Data Wrangling</a></li>
-<li><a href="#install-packages">Install Packages</a></li>
-<li><a href="#utilsread.csv">utils::read.csv</a></li>
-<li><a href="#readrread_csv">readr::read_csv</a></li>
-<li><a href="#dplrytbl_df">dplry::tbl_df</a></li>
-<li><a href="#dplry-loosely">dplry loosely</a></li>
+<li><a href="#wrangling-webinar">Wrangling Webinar</a></li>
 </ul>
 </div>
 
@@ -139,9 +135,8 @@ list.files(pattern=glob2rx('*.jpg'))
 file.exists('test.png')
 
 setwd('students')</code></pre>
-</div>
-<div id="install-packages" class="section level2">
-<h2>Install Packages</h2>
+<div id="install-packages" class="section level3">
+<h3>Install Packages</h3>
 <pre class="r"><code>#run this chunk only once in your Console
 #do not evaluate when knitting Rmarkdown
 
@@ -161,8 +156,8 @@ for (p in pkgs){
   }
 }</code></pre>
 </div>
-<div id="utilsread.csv" class="section level2">
-<h2>utils::read.csv</h2>
+<div id="utilsread.csv" class="section level3">
+<h3>utils::read.csv</h3>
 <p>Traditionally, you would read a CSV like so:</p>
 <pre class="r"><code>d = read.csv('../data/r-ecology/species.csv')
 d</code></pre>
@@ -239,8 +234,8 @@ d</code></pre>
 ##  CM     : 1   Peromyscus     : 3   bilineata: 1               
 ##  (Other):48   (Other)        :32   (Other)  :38</code></pre>
 </div>
-<div id="readrread_csv" class="section level2">
-<h2>readr::read_csv</h2>
+<div id="readrread_csv" class="section level3">
+<h3>readr::read_csv</h3>
 <p>Better yet, try read_csv:</p>
 <pre class="r"><code>library(readr)
 
@@ -319,8 +314,8 @@ d</code></pre>
 ##  Class :character  
 ##  Mode  :character</code></pre>
 </div>
-<div id="dplrytbl_df" class="section level2">
-<h2>dplry::tbl_df</h2>
+<div id="dplrytbl_df" class="section level3">
+<h3>dplry::tbl_df</h3>
 <p>Now convert to a dplyr table:</p>
 <pre class="r"><code>library(readr)
 library(dplyr)</code></pre>
@@ -382,10 +377,10 @@ d</code></pre>
 ## $ species    (chr) &quot;bilineata&quot;, &quot;harrisi&quot;, &quot;savannarum&quot;, &quot;taylori&quot;, &quot;b...
 ## $ taxa       (chr) &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Rodent&quot;, &quot;Bird&quot;, &quot;Bird&quot;,...</code></pre>
 </div>
-<div id="dplry-loosely" class="section level2">
-<h2>dplry loosely</h2>
-<div id="what-year-does-species-nl-show-up-in-survey.csv" class="section level3">
-<h3>What year does species “NL” show up in survey.csv?</h3>
+<div id="dplry-loosely" class="section level3">
+<h3>dplry loosely</h3>
+<div id="what-year-does-species-nl-show-up-in-survey.csv" class="section level4">
+<h4>What year does species “NL” show up in survey.csv?</h4>
 <pre class="r"><code>library(readr)
 library(dplyr)
 
@@ -479,6 +474,36 @@ d</code></pre>
 ## $ hindfoot_length (int) 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38...
 ## $ weight          (int) NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...</code></pre>
 </div>
+</div>
+</div>
+<div id="wrangling-webinar" class="section level2">
+<h2>Wrangling Webinar</h2>
+<pre class="r"><code>#View(iris)
+#iris %&gt;%
+  #select(Species, Petal.Length)
+
+#install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;rstudio/EDAWR&quot;)
+#library(EDAWR)
+#View(storms)
+#View(cases)
+#View(pollution)
+#storms$storm
+#storms$wind
+#storms$pressure
+#storms$date
+#cases$country
+#names(cases)[-1]
+#unlist(cases[1:3, 2:4])
+#pollution$amount[1:5]
+#storms$pressure / storms$wind
+#library(tidyr)
+#?gather
+#?spread
+#gather(cases, &quot;year&quot;, &quot;n&quot;, 2:4)
+#spread(pollution, size, amount)
+#storms2 &lt;- separate(storms, date, c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;)
+#unite(storms2, &quot;date&quot;, year, month, day, sep = &quot;-&quot;)</code></pre>
 </div>
 
 

@@ -58,7 +58,7 @@ file.exists('test.png')
 setwd('students')
 ```
 
-##Install Packages
+###Install Packages
 
 ```{r, eval=FALSE}
 #run this chunk only once in your Console
@@ -81,7 +81,7 @@ for (p in pkgs){
 }
 ```
 
-##utils::read.csv
+###utils::read.csv
 
 Traditionally, you would read a CSV like so:
 
@@ -92,7 +92,7 @@ head(d)
 summary(d)
 ```
 
-##readr::read_csv
+###readr::read_csv
 
 Better yet, try read_csv:
 
@@ -105,7 +105,7 @@ head(d)
 summary(d)
 ```
 
-##dplry::tbl_df
+###dplry::tbl_df
 
 Now convert to a dplyr table:
 
@@ -126,8 +126,8 @@ glimpse(d)
 
 ```
 
-##dplry loosely
-###What year does species "NL" show up in survey.csv?
+###dplry loosely
+####What year does species "NL" show up in survey.csv?
 
 ```{r}
 library(readr)
@@ -146,4 +146,34 @@ d
 head(d)
 summary(d)
 glimpse(d)
+```
+
+##Wrangling Webinar
+```{r}
+#View(iris)
+#iris %>%
+  #select(Species, Petal.Length)
+
+#install.packages("devtools")
+#devtools::install_github("rstudio/EDAWR")
+#library(EDAWR)
+#View(storms)
+#View(cases)
+#View(pollution)
+#storms$storm
+#storms$wind
+#storms$pressure
+#storms$date
+#cases$country
+#names(cases)[-1]
+#unlist(cases[1:3, 2:4])
+#pollution$amount[1:5]
+#storms$pressure / storms$wind
+#library(tidyr)
+#?gather
+#?spread
+#gather(cases, "year", "n", 2:4)
+#spread(pollution, size, amount)
+#storms2 <- separate(storms, date, c("year", "month", "day"), sep = "-")
+#unite(storms2, "date", year, month, day, sep = "-")
 ```
