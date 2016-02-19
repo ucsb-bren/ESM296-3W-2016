@@ -25,4 +25,4 @@ In a new Rmarkdown file inside your user repository `<user>.github.io/env-info_h
 
 ### Interactive Visualization (Group)
 
-In a new Rmarkdown file inside your organization's repository `<org>.github.io/wk06_widgets_grop.Rmd`, apply at least one interactive visualization to your group's data. Be sure to knit to HTML and push.
+In a new Rmarkdown file inside your organization's repository `<org>.github.io/wk06_widgets_group.Rmd`, apply at least one interactive visualization to your group's data. Be sure to knit to HTML and push.
