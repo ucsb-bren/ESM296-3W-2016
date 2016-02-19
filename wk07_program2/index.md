@@ -23,6 +23,7 @@ include at least one nested function
 ## Resources
 
 - [Zip for Rpackage examples](esm237examples.zip)
+
 # coding practice
 - [Commentary on coding best practices](http://simpleprogrammer.com/2013/02/17/principles-are-timeless-best-practices-are-fads/)
 - [Best Practices for Scientific Computing (Wilson et al., 2014) ](bestpractices.wilson.pdf)
