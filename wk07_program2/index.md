@@ -5,7 +5,15 @@ layout: default
 
 ## Schedule
 
-- 8:30 - 9:30 [NT] **programing part 2** [Slides](programming2.pdf) 
+- 8:30 - 8:50 [BB] [**joining** explained](http://ucsb-bren.github.io/env-info/wk05_joining.html#per-capita-co2-emissions), hw, **interactive visualizations** of groups shared:
+
+  * [ccimpacts](https://ccimpacts.github.io/wk06_group.html)
+  * [fish-ecol](https://fish-ecol.github.io/wk06_widgets_group.html)
+  * [fishmgt JHC](http://fishmgt.github.io/wk_06_widgets_JHC.html)
+  * [fishmgt CF](http://fishmgt.github.io/wk06_widgets_CF.html)
+  * [pollute](http://pollute.github.io/wk06_widgets_grop.html)
+
+- 8:50 - 9:30 [NT] **programing part 2** [Slides](programming2.pdf) 
 
 - 9:45 - 10:00 **break**
 
