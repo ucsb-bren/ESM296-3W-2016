@@ -43,3 +43,4 @@ include at least one nested function
 
 # making packages
 - [Really good online book on how to make a package for distribution](http://r-pkgs.had.co.nz/)
+- [Package Development with `devtools` Cheat Sheet](../refs/cheatsheets/devtools-cheatsheet.pdf)
