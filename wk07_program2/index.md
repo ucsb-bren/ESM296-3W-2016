@@ -44,3 +44,6 @@ include at least one nested function
 # making packages
 - [Really good online book on how to make a package for distribution](http://r-pkgs.had.co.nz/)
 - [Package Development with `devtools` Cheat Sheet](../refs/cheatsheets/devtools-cheatsheet.pdf)
+
+# asides
+- [dplyr - window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) like `lead()`, `lag()`, `cumsum()` with `group_by()`, `filter()`, `summarize()`,  and `mutate()` can perform many operations that you might otherwise wrap in a `for` loop or `apply()` function.
