@@ -143,6 +143,8 @@ Developing more complex programs involves breaking data analysis down into key c
 
 Two essential components of programming best practices are documentation and testing. Particularly when programming and data analysis involve multiple steps or collaborative programming, good documentation and testing are essential. We will introduce you to ways to help you to write documentation inline using [roxygen2](http://r-pkgs.had.co.nz/man.html) and ways to automate [testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf) of your programs. 
 
+<a href="wk07_program2/" class="btn btn-primary btn-sm">Programming 2...</a>
+
 ### 8. Interactive Applications
 
 #### Feb 26, 8:30-11:30 [BB]. extra office hours: 11:30-12:30 [NT, BB]

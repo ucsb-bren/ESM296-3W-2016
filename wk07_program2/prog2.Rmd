@@ -1,0 +1,112 @@
+---
+title: "programming"
+author: "Naomi Tague"
+date: "Feb 2, 2016"
+output: html_document
+---
+
+To create a package - start by creating a new project
+
+Name this project - make sure it reflects something about what the project is
+
+Make sure you click to create a git repository with your package
+
+Add any existing source files
+
+```{r setup, echo=FALSE}
+#make sure you have libraries
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(gridExtra)
+library(lubridate)
+library(testthat)
+library(devtools)
+library(roxygen2)
+```
+
+```{r code for spring.summary.R, echo=FALSE}
+
+#' Summary information about spring climate
+#'
+#' computes summary information about spring temperature and precipitation
+#' @param clim.data  data frame with columns tmax, tmin (C)
+#'	rain (precip in mm), year, month (integer), day
+#' @param months (as integer) to include in spring; default 4,5,6
+#' @return returns a list containing, mean spring temperature (mean.springT, (C))
+#' year with lowest spring temperature (coldest.spring (year))
+#' mean spring precipitation (mean.springP (mm))
+#' spring (as year) with highest precip (wettest.spring (year))
+
+
+spring.summary = function(clim.data, spring.months = c(4:6)) {
+  
+  spring = subset(clim.data, clim.data$month %in% spring.months)
+  mean.springT = mean(c(spring$tmax, spring$tmin))
+  lowyear = spring$year[which.min(spring$tmin)]
+  spring.precip = as.data.frame(matrix(nrow=unique(spring$year), ncol=2))
+  colnames(spring.precip)=c("precip","year")
+  
+  spring.precip = aggregate(spring$rain, by=list(spring$year), sum)
+	
+  
+  colnames(spring.precip) = c("year","precip")  
+		mean.spring.precip = mean(spring.precip$precip)
+  wettest.spring = spring.precip$year[which.max(spring.precip$precip)]
+  
+  return(list(mean.springT = mean.springT, coldest.spring=lowyear, 
+              mean.springP=mean.spring.precip,wettest.spring=wettest.spring ))
+}
+```
+
+Code for  functions are in the classexample package
+
+```{r use the function and save data}
+#read in data
+clim=read.csv("../clim.csv")
+
+# load "stuff" in your package including R
+load_all()
+result = spring.summary(clim)
+View(result)
+
+# save data for use in your R package
+save(clim, file="data/clim.RData")
+
+# generate data
+tmp = c("ponderosa","jack","white","lodgepole","douglasfir","oak")
+obs.trees= list(species=sample(tmp, replace=T, size=100))
+
+obs.trees$carbon = runif(min=5, max=20, n=100)
+
+coeff.species.growth = data.frame(species=c("ponderosa","jack","white","lodgepole","douglasfir","oak"),
+maxrate=c(1.2,1.1,1.3,1.6,1.9,1.2), 
+topt = c(9,7,6,5,7,12), pmax = c(300,300,300,400,600,400), pmin = c(100,200,200,250,250,100))
+
+
+
+# run our functions 
+compute_simpson_index(obs.trees$species)
+compute_NPV(value=100, time=20, discount=0.01)
+compute_carbon(obs.trees$carbon, obs.trees$species, coeff.species.growth, 9, 200)
+
+# save data for use in your R package
+save(obs.trees, file="data/obstrees.RData")
+save(coeff.species.growth, file="data/coeff.species.growth.RData")
+
+```
+
+```{r more complex function}
+# more complex use of building blocks
+
+compute_ecobenefit(obs.trees, 20, 10,  coeff.species.growth, clim, 0.01)
+compute_ecobenefit(obs.trees, 20, 10,  coeff.species.growth, clim, 0.05)
+
+# document all functions
+document()
+
+```
+
+
+
+
