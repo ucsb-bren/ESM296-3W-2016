@@ -106,7 +106,11 @@ compute_ecobenefit(obs.trees, 20, 10,  coeff.species.growth, clim, 0.05)
 document()
 
 ```
+Testing
 
+```{r testing}
 
+expect_true(spring.summary(clim.data, spring.months=c(1:4))$coldest.spring > 2)
+test_dir("tests")
 
 
