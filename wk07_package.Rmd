@@ -1,0 +1,202 @@
+---
+title: "Quick Intro to Package Development with `devtools`"
+author: "Ben Best"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = T, eval=F)
+```
+
+## Overview
+
+Packages are the preferred way to bundle up functions, so others can easily use them. You use packages all the time, such as every time you load them with the `library()` function. 
+
+The following quick introduction is based on distilling the most minimal example from the following:
+
+- [book: R packages](http://r-pkgs.had.co.nz/)
+- [cheat sheet: Package Development with `devtools`](../refs/cheatsheets/devtools-cheatsheet.pdf)
+
+The R chunks below will walk you through creation of a package called `mypackage` with the following elements:
+
+- **functions** in `R/*.R` scripts. Functions are written here with input arguments and return objects.
+- **documentation** in `man/*.Rd`. Documentation is automatically generated from the `roxygen2` comments in the R scripts. Help is then available from the console via `?add` (eg for `add()` function).
+- **data** in `data/`. Data can then be loaded via `data(x)` (eg for `x` data).
+- **tests** in `tests/`. Tests ensure checking for consistent behavior as your functions grow.
+- **vignettes** in `vignettes/`. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions are showing plots, tables and richer documentation since it is rendered as Rmarkdown to HTML.
+- **sharing** via `install_github()`. By pushing your code to Github, you can then share a single line of code using the `devtools::install_github()` function so others can install and use your function immediately.
+
+```{r, echo=F, eval=F}
+setwd('~/github/bbest.github.io')
+```
+
+## Load devtools
+
+```{r devtools}
+# load devtools package
+if (!require('devtools')) install.packages('devtools')
+library(devtools)
+```
+
+## Create package
+
+In RStudio create a new package by going to menu File > New Project > New Directory > R Package. I created `mypackage` inside my local directory for my github repository `bbest.github.io`.
+
+![](./wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png)
+
+The equivalent on the R Console is running `devtools::create()`.
+
+```{r create}
+create('mypackage')
+```
+
+If you use `create()`, you should open the `mypackage/mypackage.Rproj` to open RStudio with that working directory. Notice also an extra **Build** tab appears specifically for building packages.
+
+See more:
+
+- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Package Structure, Setup, Write code in R/
+- [Package structure · R packages](http://r-pkgs.had.co.nz/package.html)
+
+## Document to man/
+
+```{r document}
+library(devtools)
+
+# write add function with documentation
+cat(
+"#' Add together two numbers.
+#'
+#' @param x A number.
+#' @param y A number.
+#' @return The sum of \\code{x} and \\code{y}.
+#' @examples
+#' add(1, 1)
+#' @export
+add <- function(x, y) { x+ y
+}", file='R/add.R')
+
+# update R documentation (*.Rd) in manual folder man/ 
+document()
+
+# load the library from source
+load_all()
+
+# try function
+add(1,2)
+
+# check documentation
+?add
+```
+
+Notice how `document()` creates the [`man/add.Rd`](https://github.com/bbest/bbest.github.io/blob/master/mypackage/R/add.R) (and any other `man/*.Rd`) files and updates `DESCRIPTION` and `NAMESPACE`.
+
+```
+Updating roxygen version in  ~/bbest.github.io/mypackage/DESCRIPTION 
+Writing NAMESPACE
+Writing add.Rd
+```
+
+See more:
+
+- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Write code in R/, Document in man/, Organize in NAMESPACE, Setup in DESCRIPTION
+- [R code · R packages](http://r-pkgs.had.co.nz/r.html)
+- [Package basics · R packages](http://r-pkgs.had.co.nz/description.html)
+- [Object documentation · R packages](http://r-pkgs.had.co.nz/man.html)
+
+## Add data to data/
+
+```{r data}
+# create data
+x = 1:10
+y = 1:100
+
+# store in data/*.rda
+use_data(x, y)
+
+# use data in example
+load_all()
+data(x,y)
+add(x,y)
+```
+
+Notice how `use_data()` creates the `data/*.rda` files.
+
+```
+Saving x, y as x.rda, y.rda to ~/bbest.github.io/mypackage/data
+```
+
+See more:
+
+- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Add data in data/
+- [Data · R packages](http://r-pkgs.had.co.nz/data.html)
+
+## Test in tests/
+
+```{r test}
+# setup for tests (one time only)
+use_testthat()
+
+# write test for add function
+cat(
+"context('add')
+test_that('add works', {
+  expect_equal(add(1,1), 2)
+  expect_equal(add(1,2), 3)
+  expect_equal(add(1,100), 101)
+})
+", file = 'tests/testthat/test_add.R')
+
+# run tests
+test()
+```
+
+The `use_testthat()` creates the `test/testthat` folder and `tests/testthat.R` main script. Adding [`tests/testthat/test_add.R`](https://github.com/bbest/bbest.github.io/blob/master/mypackage/tests/testthat/test_add.R) adds 3 tests, each of which get executed when running `test()` which reports success with a single `.` and finishes with `DONE`.
+
+```
+Loading mypackage
+Loading required package: testthat
+Testing mypackage
+add : ...
+
+DONE 
+```
+
+See more:
+
+- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Test in tests/
+- [Testing · R packages](http://r-pkgs.had.co.nz/tests.html)
+
+## Teach with vignettes/
+
+```{r vignette}
+# create a draft vignette
+use_vignette('math')
+
+# build vignettes, install locally
+tgz = build()
+install_local(tgz)
+
+# try vignette
+library(mypackage)
+vignette('math')
+```
+
+Notice how `use_vignette('math')` creates `vignettes/math.Rmd`, an Rmarkdown file which you can freely edit. The default draft with title "Vignette Title" by "Vignette Author" should be customized, but offers some helpful tips on how to craft a vignette. See this example as rendered [math.html](http://bbest.github.io/mypackage/vignettes/math.html).
+
+See more:
+
+- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Teach in vignettes/
+- [Vignettes · R packages](http://r-pkgs.had.co.nz/vignettes.html)
+
+## Share via `github_install()`
+
+Now that you've created a complete R package, it's time to run a git **Commit**, and **Push** to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at [github.com/bbest/bbest.github.io/mypackage](https://github.com/bbest/bbest.github.io/tree/master/mypackage), it would be:
+
+```{r install_github}
+devtools::install_github('bbest/bbest.github.io', subdir='mypackage')
+```
+
+Notice how the first argument is of the form `<owner>/<repository>` and the subdirectory of `mypackage`. For more serious package development, I recommend you dedicate an entire repository so you don't have to use the `subdir` argument.
+
+

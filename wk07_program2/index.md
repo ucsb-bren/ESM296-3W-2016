@@ -20,6 +20,8 @@ layout: default
 - 10:00 - 11:00 [NT] **testing** [Slides](testing.pdf)
 - 11:00 - 11:30 [NT] **documentation** [Slides](documentation.pdf)
 
+- **NEW!** [Quick Intro to Package Development with `devtools`](../wk07_package.html)
+
 ## Assignments (Group)
 
 - Write a set of functions to do some data analysis, data generation or modeling that

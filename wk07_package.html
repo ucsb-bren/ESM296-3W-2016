@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Ben Best" />
+
+<meta name="date" content="2016-02-19" />
+
+<title>Quick Intro to Package Development with devtools</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<!-- http://www.favicon-generator.org/ -->
+<link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+<link rel="manifest" href="favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
+<script src="libs/tocify-1.9.1/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="libs/tocify-1.9.1/jquery.tocify.min.js"></script>
+
+<link href="libs/lightbox-2.8.2/css/lightbox.min.css" rel="stylesheet">
+
+<!--
+Font Awesome: http://fortawesome.github.io/Font-Awesome/icons
+Octicons:     https://octicons.github.com
+-->
+<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css">
+
+<style type="text/css">
+@media (max-width: 992px) {
+#toc {
+  position: relative;
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+}
+}
+</style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+<link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css" type="text/css" />
+<link rel="stylesheet" href="styles/styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<!--- https://codepo8.github.io/css-fork-on-github-ribbon/ 
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/ucsb-bren/env-info">Fork me on GitHub</a></span>
+-->
+<div class="row-fluid">
+<div class="navbar navbar-default navbar-fixed-top navbar-transparent">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="http://ucsb-bren.github.io/env-info/" class="navbar-brand"><i class="fa fa-home"></i> env-info</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <!--
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/#schedule"><i class="fa fa-calendar"></i> schedule</a>
+        </li>
+      </ul>
+      -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/students"><i class="fa fa-users"></i> students</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row-fluid">
+  <div class="span3 col-md-3">
+    <div id="toc"></div>
+  </div>
+  <div class="main-content span9 col-md-9">
+
+<div id="header">
+<h1 class="title">Quick Intro to Package Development with <code>devtools</code></h1>
+<h4 class="author"><em>Ben Best</em></h4>
+<h4 class="date"><em>2016-02-19</em></h4>
+</div>
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Packages are the preferred way to bundle up functions, so others can easily use them. You use packages all the time, such as every time you load them with the <code>library()</code> function.</p>
+<p>The following quick introduction is based on distilling the most minimal example from the following:</p>
+<ul>
+<li><a href="http://r-pkgs.had.co.nz/">book: R packages</a></li>
+<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">cheat sheet: Package Development with <code>devtools</code></a></li>
+</ul>
+<p>The R chunks below will walk you through creation of a package called <code>mypackage</code> with the following elements:</p>
+<ul>
+<li><strong>functions</strong> in <code>R/*.R</code> scripts. Functions are written here with input arguments and return objects.</li>
+<li><strong>documentation</strong> in <code>man/*.Rd</code>. Documentation is automatically generated from the <code>roxygen2</code> comments in the R scripts. Help is then available from the console via <code>?add</code> (eg for <code>add()</code> function).</li>
+<li><strong>data</strong> in <code>data/</code>. Data can then be loaded via <code>data(x)</code> (eg for <code>x</code> data).</li>
+<li><strong>tests</strong> in <code>tests/</code>. Tests ensure checking for consistent behavior as your functions grow.</li>
+<li><strong>vignettes</strong> in <code>vignettes/</code>. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions are showing plots, tables and richer documentation since it is rendered as Rmarkdown to HTML.</li>
+<li><strong>sharing</strong> via <code>install_github()</code>. By pushing your code to Github, you can then share a single line of code using the <code>devtools::install_github()</code> function so others can install and use your function immediately.</li>
+</ul>
+</div>
+<div id="load-devtools" class="section level2">
+<h2>Load devtools</h2>
+<pre class="r"><code># load devtools package
+if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
+library(devtools)</code></pre>
+</div>
+<div id="create-package" class="section level2">
+<h2>Create package</h2>
+<p>In RStudio create a new package by going to menu File &gt; New Project &gt; New Directory &gt; R Package. I created <code>mypackage</code> inside my local directory for my github repository <code>bbest.github.io</code>.</p>
+<div class="figure">
+<img src="wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png" alt="" />
+
+</div>
+<p>The equivalent on the R Console is running <code>devtools::create()</code>.</p>
+<pre class="r"><code>create(&#39;mypackage&#39;)</code></pre>
+<p>If you use <code>create()</code>, you should open the <code>mypackage/mypackage.Rproj</code> to open RStudio with that working directory. Notice also an extra <strong>Build</strong> tab appears specifically for building packages.</p>
+<p>See more:</p>
+<ul>
+<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Package Structure, Setup, Write code in R/</li>
+<li><a href="http://r-pkgs.had.co.nz/package.html">Package structure · R packages</a></li>
+</ul>
+</div>
+<div id="document-to-man" class="section level2">
+<h2>Document to man/</h2>
+<pre class="r"><code>library(devtools)
+
+# write add function with documentation
+cat(
+&quot;#&#39; Add together two numbers.
+#&#39;
+#&#39; @param x A number.
+#&#39; @param y A number.
+#&#39; @return The sum of \\code{x} and \\code{y}.
+#&#39; @examples
+#&#39; add(1, 1)
+#&#39; @export
+add &lt;- function(x, y) { x+ y
+}&quot;, file=&#39;R/add.R&#39;)
+
+# update R documentation (*.Rd) in manual folder man/ 
+document()
+
+# load the library from source
+load_all()
+
+# try function
+add(1,2)
+
+# check documentation
+?add</code></pre>
+<p>Notice how <code>document()</code> creates the <a href="https://github.com/bbest/bbest.github.io/blob/master/mypackage/R/add.R"><code>man/add.Rd</code></a> (and any other <code>man/*.Rd</code>) files and updates <code>DESCRIPTION</code> and <code>NAMESPACE</code>.</p>
+<pre><code>Updating roxygen version in  ~/bbest.github.io/mypackage/DESCRIPTION 
+Writing NAMESPACE
+Writing add.Rd</code></pre>
+<p>See more:</p>
+<ul>
+<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Write code in R/, Document in man/, Organize in NAMESPACE, Setup in DESCRIPTION</li>
+<li><a href="http://r-pkgs.had.co.nz/r.html">R code · R packages</a></li>
+<li><a href="http://r-pkgs.had.co.nz/description.html">Package basics · R packages</a></li>
+<li><a href="http://r-pkgs.had.co.nz/man.html">Object documentation · R packages</a></li>
+</ul>
+</div>
+<div id="add-data-to-data" class="section level2">
+<h2>Add data to data/</h2>
+<pre class="r"><code># create data
+x = 1:10
+y = 1:100
+
+# store in data/*.rda
+use_data(x, y)
+
+# use data in example
+load_all()
+data(x,y)
+add(x,y)</code></pre>
+<p>Notice how <code>use_data()</code> creates the <code>data/*.rda</code> files.</p>
+<pre><code>Saving x, y as x.rda, y.rda to ~/bbest.github.io/mypackage/data</code></pre>
+<p>See more:</p>
+<ul>
+<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Add data in data/</li>
+<li><a href="http://r-pkgs.had.co.nz/data.html">Data · R packages</a></li>
+</ul>
+</div>
+<div id="test-in-tests" class="section level2">
+<h2>Test in tests/</h2>
+<pre class="r"><code># setup for tests (one time only)
+use_testthat()
+
+# write test for add function
+cat(
+&quot;context(&#39;add&#39;)
+test_that(&#39;add works&#39;, {
+  expect_equal(add(1,1), 2)
+  expect_equal(add(1,2), 3)
+  expect_equal(add(1,100), 101)
+})
+&quot;, file = &#39;tests/testthat/test_add.R&#39;)
+
+# run tests
+test()</code></pre>
+<p>The <code>use_testthat()</code> creates the <code>test/testthat</code> folder and <code>tests/testthat.R</code> main script. Adding <a href="https://github.com/bbest/bbest.github.io/blob/master/mypackage/tests/testthat/test_add.R"><code>tests/testthat/test_add.R</code></a> adds 3 tests, each of which get executed when running <code>test()</code> which reports success with a single <code>.</code> and finishes with <code>DONE</code>.</p>
+<pre><code>Loading mypackage
+Loading required package: testthat
+Testing mypackage
+add : ...
+
+DONE </code></pre>
+<p>See more:</p>
+<ul>
+<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Test in tests/</li>
+<li><a href="http://r-pkgs.had.co.nz/tests.html">Testing · R packages</a></li>
+</ul>
+</div>
+<div id="teach-with-vignettes" class="section level2">
+<h2>Teach with vignettes/</h2>
+<pre class="r"><code># create a draft vignette
+use_vignette(&#39;math&#39;)
+
+# build vignettes, install locally
+tgz = build()
+install_local(tgz)
+
+# try vignette
+library(mypackage)
+vignette(&#39;math&#39;)</code></pre>
+<p>Notice how <code>use_vignette('math')</code> creates <code>vignettes/math.Rmd</code>, an Rmarkdown file which you can freely edit. The default draft with title “Vignette Title” by “Vignette Author” should be customized, but offers some helpful tips on how to craft a vignette. See this example as rendered <a href="http://bbest.github.io/mypackage/vignettes/math.html">math.html</a>.</p>
+<p>See more:</p>
+<ul>
+<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Teach in vignettes/</li>
+<li><a href="http://r-pkgs.had.co.nz/vignettes.html">Vignettes · R packages</a></li>
+</ul>
+</div>
+<div id="share-via-github_install" class="section level2">
+<h2>Share via <code>github_install()</code></h2>
+<p>Now that you’ve created a complete R package, it’s time to run a git <strong>Commit</strong>, and <strong>Push</strong> to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at <a href="https://github.com/bbest/bbest.github.io/tree/master/mypackage">github.com/bbest/bbest.github.io/mypackage</a>, it would be:</p>
+<pre class="r"><code>devtools::install_github(&#39;bbest/bbest.github.io&#39;, subdir=&#39;mypackage&#39;)</code></pre>
+<p>Notice how the first argument is of the form <code>&lt;owner&gt;/&lt;repository&gt;</code> and the subdirectory of <code>mypackage</code>. For more serious package development, I recommend you dedicate an entire repository so you don’t have to use the <code>subdir</code> argument.</p>
+</div>
+
+  </div> <!--span-9-->
+</div> <!--row-fluid-->
+
+<!--
+<script src="{{ site.baseurl }}/libs/lightbox-2.8.2/js/lightbox.min.js"></script>
+
+<script>
+    lightbox.option({
+      'albumLabel': 'Example %1 of %2',
+      'resizeDuration': 200,
+      'fadeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+-->
+
+<style type="text/css">
+.main-container {
+  max-width: none;
+}
+</style>
+
+<script>
+$(function() {
+    var toc = $("#toc").tocify({
+      selectors: "h2,h3",
+      theme: "bootstrap3",
+      context: '.main-content',
+      hashGenerator: 'pretty',
+      showAndHide: false
+    }).data("toc-tocify");
+    $(".optionName").popover({ trigger: "hover" });
+});
+</script>
+
+<div style="color:gray; text-align: right;" >
+  <span class="octicon octicon-repo-forked"></span> <b>Fork</b> me at <a href="http://github.com/ucsb-bren/env-info">github.com/<b>ucsb-bren/env-info</b></a>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
