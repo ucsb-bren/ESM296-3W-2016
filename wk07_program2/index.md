@@ -31,7 +31,6 @@ include at least one nested function
 ## Resources
 
 - [Zip for Rpackage examples](esm237examples.zip)
-- [Markdown for running examples](prog2.Rmd)
 
 # coding practice
 - [Commentary on coding best practices](http://simpleprogrammer.com/2013/02/17/principles-are-timeless-best-practices-are-fads/)
