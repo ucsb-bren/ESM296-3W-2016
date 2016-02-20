@@ -72,11 +72,14 @@ Now let's look at a few broad categories for chart types:
 
 ## interacting at the console
 
-There are a couple of useful packages for interacting in the console, but the interactivity does not extend to the knitted HTML:
+There are a couple of useful packages for interacting within RStudio. Here are their package descriptions:
 
-- `manipulate`
+- `manipulate`: Interactive plotting functions for use within RStudio. The manipulate function accepts a plotting expression and a set of
+  controls (e.g. slider, picker, checkbox, or button) which are used to dynamically change values within the expression. When a value is changed using its corresponding control the expression is automatically re-executed and the plot is redrawn.
 
-- `ggvis`
+- `ggvis`: An implementation of an interactive grammar of graphics, taking the best parts of 'ggplot2', combining them with the reactive framework from 'shiny' and web graphics from 'vega'.
+
+So `manipulate` gives you controls (`slider`, `picker`, `checkbox`) within just the RStudio for any plotting package. The `ggvis` package provides its own plotting capabilities, borrowed in concept from `ggplot2`, for within the console (`input_slider`, `input_select`, `input_checkbox`), and also provides interactivity within the plot (`add_tooltip` on hover or click mouse events) and works with Shiny interactive applications. Neither package provides interactivity in HTML from rendered Rmarkdown documents.
 
 ### `manipulate`
 
