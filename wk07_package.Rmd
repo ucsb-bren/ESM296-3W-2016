@@ -101,7 +101,8 @@ cat(
 #' @examples
 #' add(1, 1)
 #' @export
-add <- function(x, y) { x+ y
+add <- function(x, y){ 
+  x+ y
 }", file='R/add.R')
 
 # update R documentation (*.Rd) in manual folder man/ 
