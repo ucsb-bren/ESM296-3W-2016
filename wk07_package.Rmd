@@ -118,7 +118,7 @@ add(1,2)
 ?add
 ```
 
-Notice how `document()` creates the [`man/add.Rd`](https://github.com/bbest/bbest.github.io/blob/master/mypackage/R/add.R) (and any other `man/*.Rd`) files and updates `DESCRIPTION` and `NAMESPACE`.
+Notice how `document()` creates the [`man/add.Rd`](https://github.com/bbest/bbest.github.io/blob/master/mypackage/R/add.R) for the `add()` function (and would other `man/*.Rd` files for more functions) and updates `DESCRIPTION` and `NAMESPACE` files.
 
 ```
 Updating roxygen version in  ~/bbest.github.io/mypackage/DESCRIPTION 
