@@ -160,13 +160,22 @@ img {
 <li><a href="http://r-pkgs.had.co.nz/">book: R packages</a></li>
 <li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">cheat sheet: Package Development with <code>devtools</code></a></li>
 </ul>
-<p>The R chunks below will walk you through creation of a package called <code>mypackage</code> with the following elements:</p>
+<p>The R code below walks you through creation of an R package called <code>mypackage</code> having the following top level file and folder (<code>*/</code>) structure:</p>
+<pre><code>mypackage
+├── DESCRIPTION
+├── NAMESPACE
+├── data/
+├── man/
+├── R/
+├── tests/
+└── vignettes/</code></pre>
+<p>These files and folders correspond to the following characteristic offerings of an R package:</p>
 <ul>
-<li><strong>functions</strong> in <code>R/*.R</code> scripts. Functions are written here with input arguments and return objects.</li>
-<li><strong>documentation</strong> in <code>man/*.Rd</code>. Documentation is automatically generated from the <code>roxygen2</code> comments in the R scripts. Help is then available from the console via <code>?add</code> (eg for <code>add()</code> function).</li>
+<li><strong>functions</strong> in <code>R/</code> scripts. Functions are written here with input arguments and return objects.</li>
+<li><strong>documentation</strong> in <code>man/</code>. Documentation is automatically generated from the <code>roxygen2</code> comments in the R scripts. Help is then available from the console via <code>?add</code> (eg for <code>add()</code> function).</li>
 <li><strong>data</strong> in <code>data/</code>. Data can then be loaded via <code>data(x)</code> (eg for <code>x</code> data).</li>
 <li><strong>tests</strong> in <code>tests/</code>. Tests ensure checking for consistent behavior as your functions grow.</li>
-<li><strong>vignettes</strong> in <code>vignettes/</code>. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions are showing plots, tables and richer documentation since it is rendered as Rmarkdown to HTML.</li>
+<li><strong>vignettes</strong> in <code>vignettes/</code>. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions. Since they are rendered from Rmarkdown to HTML, you can show plots, tables and more richly formatted documentation.</li>
 <li><strong>sharing</strong> via <code>install_github()</code>. By pushing your code to Github, you can then share a single line of code using the <code>devtools::install_github()</code> function so others can install and use your function immediately.</li>
 </ul>
 </div>
@@ -192,11 +201,24 @@ library(devtools)</code></pre>
 <li><a href="http://r-pkgs.had.co.nz/package.html">Package structure · R packages</a></li>
 </ul>
 </div>
-<div id="document-to-man" class="section level2">
-<h2>Document to man/</h2>
+<div id="functions-in-r" class="section level2">
+<h2>Functions in R/</h2>
 <pre class="r"><code>library(devtools)
 
-# write add function with documentation
+# write add function
+cat(
+&quot;add &lt;- function(x, y) { x+ y
+}&quot;, file=&#39;R/add.R&#39;)
+
+# load the library from source
+load_all()
+
+# try function
+add(1,2)</code></pre>
+</div>
+<div id="document-to-man" class="section level2">
+<h2>Document to man/</h2>
+<pre class="r"><code># write add function with documentation
 cat(
 &quot;#&#39; Add together two numbers.
 #&#39;

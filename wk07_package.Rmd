@@ -18,13 +18,26 @@ The following quick introduction is based on distilling the most minimal example
 - [book: R packages](http://r-pkgs.had.co.nz/)
 - [cheat sheet: Package Development with `devtools`](../refs/cheatsheets/devtools-cheatsheet.pdf)
 
-The R chunks below will walk you through creation of a package called `mypackage` with the following elements:
+The R code below walks you through creation of an R package called `mypackage` having the following top level file and folder (`*/`) structure:
 
-- **functions** in `R/*.R` scripts. Functions are written here with input arguments and return objects.
-- **documentation** in `man/*.Rd`. Documentation is automatically generated from the `roxygen2` comments in the R scripts. Help is then available from the console via `?add` (eg for `add()` function).
+```
+mypackage
+├── DESCRIPTION
+├── NAMESPACE
+├── data/
+├── man/
+├── R/
+├── tests/
+└── vignettes/
+```
+
+These files and folders correspond to the following characteristic offerings of an R package:
+
+- **functions** in `R/` scripts. Functions are written here with input arguments and return objects.
+- **documentation** in `man/`. Documentation is automatically generated from the `roxygen2` comments in the R scripts. Help is then available from the console via `?add` (eg for `add()` function).
 - **data** in `data/`. Data can then be loaded via `data(x)` (eg for `x` data).
 - **tests** in `tests/`. Tests ensure checking for consistent behavior as your functions grow.
-- **vignettes** in `vignettes/`. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions are showing plots, tables and richer documentation since it is rendered as Rmarkdown to HTML.
+- **vignettes** in `vignettes/`. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions. Since they are rendered from Rmarkdown to HTML, you can show plots, tables and more richly formatted documentation.
 - **sharing** via `install_github()`. By pushing your code to Github, you can then share a single line of code using the `devtools::install_github()` function so others can install and use your function immediately.
 
 ```{r, echo=F, eval=F}
@@ -58,11 +71,26 @@ See more:
 - [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Package Structure, Setup, Write code in R/
 - [Package structure · R packages](http://r-pkgs.had.co.nz/package.html)
 
+## Functions in R/
+
+```{r functions}
+library(devtools)
+
+# write add function
+cat(
+"add <- function(x, y) { x+ y
+}", file='R/add.R')
+
+# load the library from source
+load_all()
+
+# try function
+add(1,2)
+```
+
 ## Document to man/
 
 ```{r document}
-library(devtools)
-
 # write add function with documentation
 cat(
 "#' Add together two numbers.
