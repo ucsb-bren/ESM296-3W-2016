@@ -225,6 +225,6 @@ Now that you've created a complete R package, it's time to run a git **Commit**,
 devtools::install_github('bbest/bbest.github.io', subdir='mypackage')
 ```
 
-Notice how the first argument is of the form `<owner>/<repository>` and the subdirectory of `mypackage`. For more serious package development, I recommend you dedicate an entire repository so you don't have to use the `subdir` argument.
+Notice how the first argument is of the form `<owner>/<repository>`. For more serious package development, I recommend you dedicate an entire repository so you don't have to use the `subdir` argument.
 
 
