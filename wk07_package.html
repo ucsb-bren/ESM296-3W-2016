@@ -206,10 +206,8 @@ library(devtools)</code></pre>
 <h2>Functions in R/</h2>
 <pre class="r"><code>library(devtools)
 
-# write add function
-cat(
-&quot;add &lt;- function(x, y) { x+ y
-}&quot;, file=&#39;R/add.R&#39;)
+# write add function to add.R file in R/ folder
+cat(&quot;add &lt;- function(x, y){ x+ y }&quot;, file=&#39;R/add.R&#39;)
 
 # load the library from source
 load_all()

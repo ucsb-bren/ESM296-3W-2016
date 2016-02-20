@@ -78,10 +78,8 @@ See more:
 ```{r functions}
 library(devtools)
 
-# write add function
-cat(
-"add <- function(x, y) { x+ y
-}", file='R/add.R')
+# write add function to add.R file in R/ folder
+cat("add <- function(x, y){ x+ y }", file='R/add.R')
 
 # load the library from source
 load_all()
