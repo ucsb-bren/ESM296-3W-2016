@@ -188,16 +188,17 @@ library(devtools)</code></pre>
 <div id="create-package" class="section level2">
 <h2>Create package</h2>
 <p>In RStudio create a new package by going to menu File &gt; New Project &gt; New Directory &gt; R Package. I created <code>mypackage</code> inside my local directory for my github repository <code>bbest.github.io</code>.</p>
+<p>The equivalent on the R Console is running <code>devtools::create()</code>.</p>
+<pre class="r"><code>create(&#39;mypackage&#39;)</code></pre>
+<p>If you use <code>create()</code>, you should open the <code>mypackage/mypackage.Rproj</code> to open RStudio with that working directory.</p>
+<p>Notice also an extra <strong>Build</strong> tab appears specifically for building packages, per the <a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>:</p>
 <div class="figure">
 <img src="wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png" alt="" />
 
 </div>
-<p>The equivalent on the R Console is running <code>devtools::create()</code>.</p>
-<pre class="r"><code>create(&#39;mypackage&#39;)</code></pre>
-<p>If you use <code>create()</code>, you should open the <code>mypackage/mypackage.Rproj</code> to open RStudio with that working directory. Notice also an extra <strong>Build</strong> tab appears specifically for building packages.</p>
 <p>See more:</p>
 <ul>
-<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Package Structure, Setup, Write code in R/</li>
+<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">devtools-cheatsheet</a>: Package Structure, Setup, Write code in R/</li>
 <li><a href="http://r-pkgs.had.co.nz/package.html">Package structure · R packages</a></li>
 </ul>
 </div>
@@ -248,7 +249,7 @@ Writing NAMESPACE
 Writing add.Rd</code></pre>
 <p>See more:</p>
 <ul>
-<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Write code in R/, Document in man/, Organize in NAMESPACE, Setup in DESCRIPTION</li>
+<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">devtools-cheatsheet</a>: Write code in R/, Document in man/, Organize in NAMESPACE, Setup in DESCRIPTION</li>
 <li><a href="http://r-pkgs.had.co.nz/r.html">R code · R packages</a></li>
 <li><a href="http://r-pkgs.had.co.nz/description.html">Package basics · R packages</a></li>
 <li><a href="http://r-pkgs.had.co.nz/man.html">Object documentation · R packages</a></li>
@@ -271,7 +272,7 @@ add(x,y)</code></pre>
 <pre><code>Saving x, y as x.rda, y.rda to ~/bbest.github.io/mypackage/data</code></pre>
 <p>See more:</p>
 <ul>
-<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Add data in data/</li>
+<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">devtools-cheatsheet</a>: Add data in data/</li>
 <li><a href="http://r-pkgs.had.co.nz/data.html">Data · R packages</a></li>
 </ul>
 </div>
@@ -301,7 +302,7 @@ add : ...
 DONE </code></pre>
 <p>See more:</p>
 <ul>
-<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Test in tests/</li>
+<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">devtools-cheatsheet</a>: Test in tests/</li>
 <li><a href="http://r-pkgs.had.co.nz/tests.html">Testing · R packages</a></li>
 </ul>
 </div>
@@ -320,7 +321,7 @@ vignette(&#39;math&#39;)</code></pre>
 <p>Notice how <code>use_vignette('math')</code> creates <code>vignettes/math.Rmd</code>, an Rmarkdown file which you can freely edit. The default draft with title “Vignette Title” by “Vignette Author” should be customized, but offers some helpful tips on how to craft a vignette. See this example as rendered <a href="http://bbest.github.io/mypackage/vignettes/math.html">math.html</a>.</p>
 <p>See more:</p>
 <ul>
-<li><a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>: Teach in vignettes/</li>
+<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">devtools-cheatsheet</a>: Teach in vignettes/</li>
 <li><a href="http://r-pkgs.had.co.nz/vignettes.html">Vignettes · R packages</a></li>
 </ul>
 </div>

@@ -56,19 +56,21 @@ library(devtools)
 
 In RStudio create a new package by going to menu File > New Project > New Directory > R Package. I created `mypackage` inside my local directory for my github repository `bbest.github.io`.
 
-![](./wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png)
-
 The equivalent on the R Console is running `devtools::create()`.
 
 ```{r create}
 create('mypackage')
 ```
 
-If you use `create()`, you should open the `mypackage/mypackage.Rproj` to open RStudio with that working directory. Notice also an extra **Build** tab appears specifically for building packages.
+If you use `create()`, you should open the `mypackage/mypackage.Rproj` to open RStudio with that working directory.
+
+Notice also an extra **Build** tab appears specifically for building packages, per the [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf):
+
+![](./wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png)
 
 See more:
 
-- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Package Structure, Setup, Write code in R/
+- [devtools-cheatsheet](../refs/cheatsheets/devtools-cheatsheet.pdf): Package Structure, Setup, Write code in R/
 - [Package structure · R packages](http://r-pkgs.had.co.nz/package.html)
 
 ## Functions in R/
@@ -127,7 +129,7 @@ Writing add.Rd
 
 See more:
 
-- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Write code in R/, Document in man/, Organize in NAMESPACE, Setup in DESCRIPTION
+- [devtools-cheatsheet](../refs/cheatsheets/devtools-cheatsheet.pdf): Write code in R/, Document in man/, Organize in NAMESPACE, Setup in DESCRIPTION
 - [R code · R packages](http://r-pkgs.had.co.nz/r.html)
 - [Package basics · R packages](http://r-pkgs.had.co.nz/description.html)
 - [Object documentation · R packages](http://r-pkgs.had.co.nz/man.html)
@@ -156,7 +158,7 @@ Saving x, y as x.rda, y.rda to ~/bbest.github.io/mypackage/data
 
 See more:
 
-- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Add data in data/
+- [devtools-cheatsheet](../refs/cheatsheets/devtools-cheatsheet.pdf): Add data in data/
 - [Data · R packages](http://r-pkgs.had.co.nz/data.html)
 
 ## Test in tests/
@@ -192,7 +194,7 @@ DONE
 
 See more:
 
-- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Test in tests/
+- [devtools-cheatsheet](../refs/cheatsheets/devtools-cheatsheet.pdf): Test in tests/
 - [Testing · R packages](http://r-pkgs.had.co.nz/tests.html)
 
 ## Teach with vignettes/
@@ -214,7 +216,7 @@ Notice how `use_vignette('math')` creates `vignettes/math.Rmd`, an Rmarkdown fil
 
 See more:
 
-- [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf): Teach in vignettes/
+- [devtools-cheatsheet](../refs/cheatsheets/devtools-cheatsheet.pdf): Teach in vignettes/
 - [Vignettes · R packages](http://r-pkgs.had.co.nz/vignettes.html)
 
 ## Share via `github_install()`
