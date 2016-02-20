@@ -39,3 +39,8 @@ shiny::runExample('01_hello')
   - [Physics grades](https://oharascience.shinyapps.io/shinyFCI/)
   - [Ben's conservation routing app](http://shiny.env.duke.edu/bbest/consmap/)
   - [Marxan](http://marxan.net/shinyapps.html) and [mapotron](http://marxan.net/rshiny/GIS/mapotron206/)/[paleo13/mapotron](https://github.com/paleo13/mapotron)
+
+deanattali:
+* [Supplementing your R package with a Shiny app](http://deanattali.com/2015/04/21/r-package-shiny-app/)
+* [Building Shiny apps - an interactive tutorial](http://deanattali.com/blog/building-shiny-apps-tutorial/)
+* [How to get your very own RStudio Server and Shiny Server with DigitalOcean](http://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean/)
