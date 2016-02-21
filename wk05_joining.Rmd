@@ -111,16 +111,19 @@ if (basename(getwd()) != wd){
 bind columns between data frames
 
 ```{r bind_cols}
+library(readr)
 library(dplyr)
 
-y = data.frame(
-  x1 = c('A','B','C'), 
-  x2 = c( 1 , 2 , 3), 
-  stringsAsFactors=F)
-z = data.frame(
-  x1 = c('B','C','D'), 
-  x2 = c( 2 , 3 , 4), 
-  stringsAsFactors=F)
+y = read_csv(
+'x1,x2
+A,1
+B,2
+C,3')
+z = read_csv(
+'x1,x2
+B,2
+C,3
+D,4')
 y
 z
 bind_cols(y, z)
@@ -171,14 +174,20 @@ setdiff(y, z)
 return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.
 
 ```{r left_join}
-songs = data.frame(
-  song = c('Across the Universe','Come Together', 'Hello, Goodbye', 'Peggy Sue'),
-  name = c('John','John','Paul','Buddy'), 
-  stringsAsFactors=F)
-artists = data.frame(
-  name = c('George','John','Paul','Ringo'),
-  plays = c('sitar','guitar','bass','drums'), 
-  stringsAsFactors=F)
+artists = read_csv(
+'name,plays
+George,sitar
+John,guitar
+Paul,bass
+Ringo,drums')
+songs = read_csv(
+'song,name
+Across the Universe,John
+Come Together,John
+"Hello, Goodbye",Paul
+Peggy Sue,Buddy')
+artists
+songs
 left_join(songs, artists, by='name')
 ```
 

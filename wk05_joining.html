@@ -308,16 +308,19 @@ if (basename(getwd()) != wd){
 <div id="bind_cols" class="section level3">
 <h3><code>bind_cols</code></h3>
 <p>bind columns between data frames</p>
-<pre class="r"><code>library(dplyr)
+<pre class="r"><code>library(readr)
+library(dplyr)
 
-y = data.frame(
-  x1 = c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;), 
-  x2 = c( 1 , 2 , 3), 
-  stringsAsFactors=F)
-z = data.frame(
-  x1 = c(&#39;B&#39;,&#39;C&#39;,&#39;D&#39;), 
-  x2 = c( 2 , 3 , 4), 
-  stringsAsFactors=F)
+y = read_csv(
+&#39;x1,x2
+A,1
+B,2
+C,3&#39;)
+z = read_csv(
+&#39;x1,x2
+B,2
+C,3
+D,4&#39;)
 y
 z
 bind_cols(y, z)</code></pre>
@@ -353,14 +356,20 @@ setdiff(y, z)</code></pre>
 <div id="left_join" class="section level3">
 <h3><code>left_join</code></h3>
 <p>return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.</p>
-<pre class="r"><code>songs = data.frame(
-  song = c(&#39;Across the Universe&#39;,&#39;Come Together&#39;, &#39;Hello, Goodbye&#39;, &#39;Peggy Sue&#39;),
-  name = c(&#39;John&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Buddy&#39;), 
-  stringsAsFactors=F)
-artists = data.frame(
-  name = c(&#39;George&#39;,&#39;John&#39;,&#39;Paul&#39;,&#39;Ringo&#39;),
-  plays = c(&#39;sitar&#39;,&#39;guitar&#39;,&#39;bass&#39;,&#39;drums&#39;), 
-  stringsAsFactors=F)
+<pre class="r"><code>artists = read_csv(
+&#39;name,plays
+George,sitar
+John,guitar
+Paul,bass
+Ringo,drums&#39;)
+songs = read_csv(
+&#39;song,name
+Across the Universe,John
+Come Together,John
+&quot;Hello, Goodbye&quot;,Paul
+Peggy Sue,Buddy&#39;)
+artists
+songs
 left_join(songs, artists, by=&#39;name&#39;)</code></pre>
 </div>
 <div id="inner_join" class="section level3">
