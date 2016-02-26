@@ -7,19 +7,20 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Ben Best" />
 
-<meta name="date" content="2016-02-19" />
+<meta name="date" content="2016-02-25" />
 
 <title>Quick Intro to Package Development with devtools</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 <!-- http://www.favicon-generator.org/ -->
 <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
@@ -84,6 +85,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </script>
 
 
+
 <link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" />
 <link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css" type="text/css" />
 <link rel="stylesheet" href="styles/styles.css" type="text/css" />
@@ -102,12 +104,55 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+
 <div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
 
 <!--- https://codepo8.github.io/css-fork-on-github-ribbon/ 
 <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;left:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;left:-60px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/ucsb-bren/env-info">Fork me on GitHub</a></span>
@@ -145,10 +190,13 @@ img {
   </div>
   <div class="main-content span9 col-md-9">
 
-<div id="header">
+<div class="fluid-row" id="header">
+
+
 <h1 class="title">Quick Intro to Package Development with <code>devtools</code></h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-02-19</em></h4>
+<h4 class="date"><em>2016-02-25</em></h4>
+
 </div>
 
 
@@ -179,19 +227,46 @@ img {
 <li><strong>sharing</strong> via <code>install_github()</code>. By pushing your code to Github, you can then share a single line of code using the <code>devtools::install_github()</code> function so others can install and use your function immediately.</li>
 </ul>
 </div>
+<div id="create-repo" class="section level2">
+<h2>Create repo</h2>
+<p>Start by <a href="https://help.github.com/articles/create-a-repo/">creating a repository</a> in Github. For this tutorial, I recommend:</p>
+<ul>
+<li>Owner: <strong><user></strong> (for me: bbest), Repository: <strong>mypackage</strong></li>
+<li>Description: <strong>R package to do some basic math</strong></li>
+<li>YES, <strong>Initialize this repository with a README</strong></li>
+</ul>
+<p>Now git clone this repository to your machine from within RStudio’s menu File &gt; New Project &gt; Version Control &gt; Git:</p>
+<ul>
+<li>Repository URL: <strong><a href="https://github.com/" class="uri">https://github.com/</a><user>/mypackage.git</strong> (for me: <a href="https://github.com/bbest/mypackage.git" class="uri">https://github.com/bbest/mypackage.git</a>)</li>
+<li>Project directory name: <strong>mypackage</strong></li>
+<li>Create project as subdirectory of: <strong>~/github</strong> (or wherever you like)</li>
+</ul>
+</div>
 <div id="load-devtools" class="section level2">
 <h2>Load devtools</h2>
+<p>The <a href="https://github.com/hadley/devtools"><code>devtools</code></a> package makes R packages easy. All the functions below are from this library. Thank you <a href="https://github.com/hadley">@hadley</a>!</p>
 <pre class="r"><code># load devtools package
 if (!require(&#39;devtools&#39;)) install.packages(&#39;devtools&#39;)
 library(devtools)</code></pre>
 </div>
-<div id="create-package" class="section level2">
-<h2>Create package</h2>
-<p>In RStudio create a new package by going to menu File &gt; New Project &gt; New Directory &gt; R Package. I created <code>mypackage</code> inside my local directory for my github repository <code>bbest.github.io</code>.</p>
-<p>The equivalent on the R Console is running <code>devtools::create()</code>.</p>
-<pre class="r"><code>create(&#39;mypackage&#39;)</code></pre>
-<p>If you use <code>create()</code>, you should open the <code>mypackage/mypackage.Rproj</code> to open RStudio with that working directory.</p>
-<p>Notice also an extra <strong>Build</strong> tab appears specifically for building packages, per the <a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>:</p>
+<div id="setup-the-package" class="section level2">
+<h2>Setup the package</h2>
+<p>Setup the existing folder to be a package. (Alternatively you can use <code>devtools::create()</code> to create from scratch.)</p>
+<pre class="r"><code>setup()</code></pre>
+<p>Notice how this function creates the <code>DESCRIPTION</code> and <code>NAMESPACE</code> files, and <code>R</code> folder.</p>
+<pre><code>Creating package &#39;mypackage&#39; in &#39;/Users/bbest/github/mypackage&#39;
+No DESCRIPTION found. Creating with values:
+
+
+Package: mypackage
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person(&quot;First&quot;, &quot;Last&quot;, email = &quot;first.last@example.com&quot;, role = c(&quot;aut&quot;, &quot;cre&quot;))
+Description: What the package does (one paragraph).
+Depends: R (&gt;= 3.2.3)
+License: What license is it under?
+LazyData: true</code></pre>
+<p>Notice how if you re-open RStudio to <code>mypackage.Rproj</code> an extra <strong>Build</strong> tab appears, per the <a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>:</p>
 <div class="figure">
 <img src="wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png" alt="" />
 
@@ -204,6 +279,7 @@ library(devtools)</code></pre>
 </div>
 <div id="functions-in-r" class="section level2">
 <h2>Functions in R/</h2>
+<p>Now create an R file with a custom <code>add()</code> function, load the package with <code>devtools::load_all()</code> and try out the function.</p>
 <pre class="r"><code>library(devtools)
 
 # write add function to add.R file in R/ folder
@@ -214,9 +290,11 @@ load_all()
 
 # try function
 add(1,2)</code></pre>
+<p>Note the function <strong><code>cat()</code></strong> which “concatenates”, or joins together, R objects and prints. This is a programmer’s way of creating a file with content. Normally you would just create this new file in the RStudio editor.</p>
 </div>
 <div id="document-to-man" class="section level2">
 <h2>Document to man/</h2>
+<p>Add documentation to the custom <code>add()</code> function using <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">roxygen2</a> style, generate documentation with <code>devtools::document()</code>, reload the package, and try out the help documentation.</p>
 <pre class="r"><code># write add function with documentation
 cat(
 &quot;#&#39; Add together two numbers.
@@ -256,6 +334,7 @@ Writing add.Rd</code></pre>
 </div>
 <div id="add-data-to-data" class="section level2">
 <h2>Add data to data/</h2>
+<p>Add custom data with <code>devtools::use_data()</code>, and load the data with base function <code>data()</code>.</p>
 <pre class="r"><code># create data
 x = 1:10
 y = 1:100
@@ -277,6 +356,7 @@ add(x,y)</code></pre>
 </div>
 <div id="test-in-tests" class="section level2">
 <h2>Test in tests/</h2>
+<p>Create test infrastructure with <code>devtools::use_testthat()</code>, create some tests in <code>test_add.R</code>, and run tests with <code>devtools::test()</code>.</p>
 <pre class="r"><code># setup for tests (one time only)
 use_testthat()
 
@@ -305,8 +385,73 @@ DONE </code></pre>
 <li><a href="http://r-pkgs.had.co.nz/tests.html">Testing · R packages</a></li>
 </ul>
 </div>
+<div id="check-with-travis" class="section level2">
+<h2>Check with Travis</h2>
+<p>Once you have tests built, wouldn’t it be nice to automatically run the tests every time a new commit is made to Github? This is called “continuous integration” in developer circles, and the idea is to continuously integrate tests with changes in code to ensure all is happy as you develop. If any of the tests fail, you get emailed and can fix the problem sooner than later. There’s a great free service by <a href="https://travis-ci.org">Travis CI</a> that can be setup to run any tests on any Github repository at every new commit that gets pushed or merged.</p>
+<p>Before you run the next command to add the Travis CI infrastructure, I recommend running a git commit and push.</p>
+<pre class="r"><code>use_travis()</code></pre>
+<p>This creates the special file <code>.travis.yml</code> containing the test instructions.</p>
+<pre><code>Adding .travis.yml to mypackage. Next: 
+ * Turn on travis for this repo at https://travis-ci.org/profile
+ * Add a travis shield to your README.md:
+[![Travis-CI Build Status](https://travis-ci.org/bbest/mypackage.svg?branch=master)](https://travis-ci.org/bbest/mypackage)</code></pre>
+<p>Per the instructions, visit <a href="https://travis-ci.org/profile" class="uri">https://travis-ci.org/profile</a> to create a profile to link to your Github account and turn on Travis with a little slider to your <code>mypackage</code>.</p>
+<p>Let’s add the “travis shield” line above to the README.md (replace with your Github <code>&lt;user&gt;</code>, not <code>bbest</code>). Note the <code>append=T</code> argument.</p>
+<pre class="r"><code>cat(&#39;
+[![Travis-CI Build Status](https://travis-ci.org/bbest/mypackage.svg?branch=master)](https://travis-ci.org/bbest/mypackage)
+&#39;, file=&#39;README.md&#39;, append=T)</code></pre>
+<p>Do another git commit and push. Now visit <a href="https://travis-ci.org/USER/mypackage">travis-ci.org/USER/mypackage</a> (for me <a href="https://travis-ci.org/bbest/mypackage">travis-ci.org/bbest/mypackage</a>). I can see that based on the Build History, I get the following “build failing” based on 2 warnings converted to errors:</p>
+<pre><code>Checking package
+checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  What license is it under?
+Standardizable: FALSE checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘x’ ‘y’
+Undocumented data sets:
+  ‘x’ ‘y’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual. DONE
+Status: 2 WARNINGs 
+
+R CMD check logs
+Found warnings, treating as errors (as requested).</code></pre>
+<p>You can also see this “build failing” status at <a href="https://github.com/USER/mypackage">github.com/USER/mypackage</a> (for me <a href="https://github.com/bbest/mypackage">github.com/bbest/mypackage</a>) which shows the README.md at the bottom with the “travis shield”:</p>
+<p><img src="wk07_program2/img/travis-ci_build-failing.png" width="100"/></p>
+<p>Let’s fix these warnings to get the build to pass:</p>
+<ul>
+<li>use permissive MIT license. See <a href="https://github.com/blog/1530-choosing-an-open-source-license">Choosing an Open Source License</a>.</li>
+<li>add <a href="http://r-pkgs.had.co.nz/data.html#documenting-data">documentation to the data</a></li>
+</ul>
+<pre class="r"><code># fix license
+use_mit_license()
+
+# add data documentation
+cat(&quot;
+#&#39; 1 thru 10
+#&#39;
+#&#39; A simple dataset
+&#39;x&#39;
+
+
+#&#39; 1 thru 100
+#&#39;
+#&#39; Another simple dataset
+#&#39;
+&#39;y&#39;
+&quot;, file = &#39;R/data.R&#39;)
+document()</code></pre>
+<p>Now git commit and push again, to see if that fixes your build to build passing:</p>
+<p><img src="wk07_program2/img/travis-ci_build-passing.png" width="100"/></p>
+<p>See more:</p>
+<ul>
+<li><a href="http://r-pkgs.had.co.nz/check.html#travis">Checking a package · R packages</a></li>
+</ul>
+</div>
 <div id="teach-with-vignettes" class="section level2">
 <h2>Teach with vignettes/</h2>
+<p>Finally, you can teach with vignettes, which are a longer form than just a single function or data help. Better yet, you can write them as an Rmarkdown file so they can render tables, images, etc.</p>
 <pre class="r"><code># create a draft vignette
 use_vignette(&#39;math&#39;)
 
@@ -326,9 +471,9 @@ vignette(&#39;math&#39;)</code></pre>
 </div>
 <div id="share-via-github_install" class="section level2">
 <h2>Share via <code>github_install()</code></h2>
-<p>Now that you’ve created a complete R package, it’s time to run a git <strong>Commit</strong>, and <strong>Push</strong> to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at <a href="https://github.com/bbest/bbest.github.io/tree/master/mypackage">github.com/bbest/bbest.github.io/mypackage</a>, it would be:</p>
-<pre class="r"><code>devtools::install_github(&#39;bbest/bbest.github.io&#39;, subdir=&#39;mypackage&#39;)</code></pre>
-<p>Notice how the first argument is of the form <code>&lt;owner&gt;/&lt;repository&gt;</code>. For more serious package development, I recommend you dedicate an entire repository so you don’t have to use the <code>subdir</code> argument.</p>
+<p>Now that you’ve created a complete R package, it’s time to run a git <strong>Commit</strong>, and <strong>Push</strong> to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at <a href="https://github.com/bbest/mypackage">github.com/bbest/mypackage</a>, it would be:</p>
+<pre class="r"><code>devtools::install_github(&#39;bbest/mypackage&#39;)</code></pre>
+<p>Notice how the first argument is of the form <code>&lt;owner&gt;/&lt;repository&gt;</code>.</p>
 </div>
 
   </div> <!--span-9-->
@@ -369,6 +514,8 @@ $(function() {
 <div style="color:gray; text-align: right;" >
   <span class="octicon octicon-repo-forked"></span> <b>Fork</b> me at <a href="http://github.com/ucsb-bren/env-info">github.com/<b>ucsb-bren/env-info</b></a>
 </div>
+
+
 
 </div>
 

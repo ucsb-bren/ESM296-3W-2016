@@ -5,8 +5,9 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-```{r setup, include=F}
+```{r init, include=F}
 knitr::opts_chunk$set(echo = T, eval=F)
+library(htmltools)
 ```
 
 ## Overview
@@ -40,11 +41,27 @@ These files and folders correspond to the following characteristic offerings of 
 - **vignettes** in `vignettes/`. Vignettes are a long form of documentation that allow you to walk the user through a larger amount of analysis, especially useful for showing relatedness between functions. Since they are rendered from Rmarkdown to HTML, you can show plots, tables and more richly formatted documentation.
 - **sharing** via `install_github()`. By pushing your code to Github, you can then share a single line of code using the `devtools::install_github()` function so others can install and use your function immediately.
 
+## Create repo
+
+Start by [creating a repository](https://help.github.com/articles/create-a-repo/) in Github. For this tutorial, I recommend:
+
+- Owner: **<user>** (for me: bbest), Repository: **mypackage**
+- Description: **R package to do some basic math**
+- YES, **Initialize this repository with a README**
+
+Now git clone this repository to your machine from within RStudio's menu File > New Project > Version Control > Git:
+
+- Repository URL: **https://github.com/<user>/mypackage.git** (for me: https://github.com/bbest/mypackage.git)
+- Project directory name: **mypackage**
+- Create project as subdirectory of: **~/github** (or wherever you like)
+
 ```{r, echo=F, eval=F}
-setwd('~/github/bbest.github.io')
+setwd('~/github/mypackage')
 ```
 
 ## Load devtools
+
+The [`devtools`](https://github.com/hadley/devtools) package makes R packages easy. All the functions below are from this library. Thank you [\@hadley](https://github.com/hadley)!
 
 ```{r devtools}
 # load devtools package
@@ -52,19 +69,32 @@ if (!require('devtools')) install.packages('devtools')
 library(devtools)
 ```
 
-## Create package
+## Setup the package
 
-In RStudio create a new package by going to menu File > New Project > New Directory > R Package. I created `mypackage` inside my local directory for my github repository `bbest.github.io`.
+Setup the existing folder to be a package. (Alternatively you can use `devtools::create()` to create from scratch.)
 
-The equivalent on the R Console is running `devtools::create()`.
-
-```{r create}
-create('mypackage')
+```{r setup}
+setup()
 ```
 
-If you use `create()`, you should open the `mypackage/mypackage.Rproj` to open RStudio with that working directory.
+Notice how this function creates the `DESCRIPTION` and `NAMESPACE` files, and `R` folder.
 
-Notice also an extra **Build** tab appears specifically for building packages, per the [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf):
+```
+Creating package 'mypackage' in '/Users/bbest/github/mypackage'
+No DESCRIPTION found. Creating with values:
+
+
+Package: mypackage
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.2.3)
+License: What license is it under?
+LazyData: true
+```
+
+Notice how if you re-open RStudio to `mypackage.Rproj` an extra **Build** tab appears, per the [rstudio-IDE-cheatsheet](.refs/cheatsheets/rstudio-IDE-cheatsheet.pdf):
 
 ![](./wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png)
 
@@ -74,6 +104,8 @@ See more:
 - [Package structure · R packages](http://r-pkgs.had.co.nz/package.html)
 
 ## Functions in R/
+
+Now create an R file with a custom `add()` function, load the package with `devtools::load_all()` and try out the function.
 
 ```{r functions}
 library(devtools)
@@ -88,7 +120,11 @@ load_all()
 add(1,2)
 ```
 
+Note the function **`cat()`** which "concatenates", or joins together, R objects and prints. This is a programmer's way of creating a file with content. Normally you would just create this new file in the RStudio editor. 
+
 ## Document to man/
+
+Add documentation to the custom `add()` function using [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) style, generate documentation with `devtools::document()`, reload the package, and try out the help documentation.
 
 ```{r document}
 # write add function with documentation
@@ -135,6 +171,8 @@ See more:
 
 ## Add data to data/
 
+Add custom data with `devtools::use_data()`, and load the data with base function `data()`.
+
 ```{r data}
 # create data
 x = 1:10
@@ -161,6 +199,8 @@ See more:
 - [Data · R packages](http://r-pkgs.had.co.nz/data.html)
 
 ## Test in tests/
+
+Create test infrastructure with `devtools::use_testthat()`, create some tests in `test_add.R`, and run tests with `devtools::test()`.
 
 ```{r test}
 # setup for tests (one time only)
@@ -196,7 +236,97 @@ See more:
 - [devtools-cheatsheet](../refs/cheatsheets/devtools-cheatsheet.pdf): Test in tests/
 - [Testing · R packages](http://r-pkgs.had.co.nz/tests.html)
 
+## Check with Travis
+
+Once you have tests built, wouldn't it be nice to automatically run the tests every time a new commit is made to Github? This is called "continuous integration" in developer circles, and the idea is to continuously integrate tests with changes in code to ensure all is happy as you develop. If any of the tests fail, you get emailed and can fix the problem sooner than later. There's a great free service by [Travis CI](https://travis-ci.org) that can be setup to run any tests on any Github repository at every new commit that gets pushed or merged. 
+
+Before you run the next command to add the Travis CI infrastructure, I recommend running a git commit and push.
+
+```{r}
+use_travis()
+```
+
+This creates the special file `.travis.yml` containing the test instructions.
+
+```
+Adding .travis.yml to mypackage. Next: 
+ * Turn on travis for this repo at https://travis-ci.org/profile
+ * Add a travis shield to your README.md:
+[![Travis-CI Build Status](https://travis-ci.org/bbest/mypackage.svg?branch=master)](https://travis-ci.org/bbest/mypackage)
+```
+
+Per the instructions, visit <https://travis-ci.org/profile> to create a profile to link to your Github account and turn on Travis with a little slider to your `mypackage`.
+
+Let's add the "travis shield" line above to the README.md (replace with your Github `<user>`, not `bbest`). Note the `append=T` argument.
+
+```{r}
+cat('
+[![Travis-CI Build Status](https://travis-ci.org/bbest/mypackage.svg?branch=master)](https://travis-ci.org/bbest/mypackage)
+', file='README.md', append=T)
+```
+
+Do another git commit and push. Now visit [travis-ci.org/USER/mypackage](https://travis-ci.org/USER/mypackage) (for me [travis-ci.org/bbest/mypackage](https://travis-ci.org/bbest/mypackage)). I can see that based on the Build History, I get the following "build failing" based on 2 warnings converted to errors:
+
+```
+Checking package
+checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  What license is it under?
+Standardizable: FALSE checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘x’ ‘y’
+Undocumented data sets:
+  ‘x’ ‘y’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual. DONE
+Status: 2 WARNINGs 
+
+R CMD check logs
+Found warnings, treating as errors (as requested).
+```
+
+You can also see this "build failing" status at [github.com/USER/mypackage](https://github.com/USER/mypackage) (for me [github.com/bbest/mypackage](https://github.com/bbest/mypackage)) which shows the README.md at the bottom with the "travis shield":
+
+  `r img(src='./wk07_program2/img/travis-ci_build-failing.png', width=100)`
+
+Let's fix these warnings to get the build to pass:
+
+- use permissive MIT license. See [Choosing an Open Source License](https://github.com/blog/1530-choosing-an-open-source-license).
+- add [documentation to the data](http://r-pkgs.had.co.nz/data.html#documenting-data)
+
+```{r}
+# fix license
+use_mit_license()
+
+# add data documentation
+cat("
+#' 1 thru 10
+#'
+#' A simple dataset
+'x'
+
+
+#' 1 thru 100
+#'
+#' Another simple dataset
+#'
+'y'
+", file = 'R/data.R')
+document()
+```
+
+Now git commit and push again, to see if that fixes your build to build passing:
+
+  `r img(src='./wk07_program2/img/travis-ci_build-passing.png', width=100)`
+
+See more:
+
+- [Checking a package · R packages](http://r-pkgs.had.co.nz/check.html#travis)
+
 ## Teach with vignettes/
+
+Finally, you can teach with vignettes, which are a longer form than just a single function or data help. Better yet, you can write them as an Rmarkdown file so they can render tables, images, etc.
 
 ```{r vignette}
 # create a draft vignette
@@ -220,12 +350,10 @@ See more:
 
 ## Share via `github_install()`
 
-Now that you've created a complete R package, it's time to run a git **Commit**, and **Push** to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at [github.com/bbest/bbest.github.io/mypackage](https://github.com/bbest/bbest.github.io/tree/master/mypackage), it would be:
+Now that you've created a complete R package, it's time to run a git **Commit**, and **Push** to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at [github.com/bbest/mypackage](https://github.com/bbest/mypackage), it would be:
 
 ```{r install_github}
-devtools::install_github('bbest/bbest.github.io', subdir='mypackage')
+devtools::install_github('bbest/mypackage')
 ```
 
-Notice how the first argument is of the form `<owner>/<repository>`. For more serious package development, I recommend you dedicate an entire repository so you don't have to use the `subdir` argument.
-
-
+Notice how the first argument is of the form `<owner>/<repository>`.
