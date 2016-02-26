@@ -1,7 +1,7 @@
 ---
 title: "joining"
 author: "Ben Best"
-date: "January 29, 2016"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
 output: html_document
 ---
 

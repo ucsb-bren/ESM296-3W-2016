@@ -147,9 +147,11 @@ Two essential components of programming best practices are documentation and tes
 
 ### 8. Interactive Applications
 
-#### Feb 26, 8:30-11:30 [BB]. extra office hours: 11:30-12:30 [NT, BB]
+#### Feb 26, 8:30-11:30 [BB]. extra office hours: 11:30-12:30 [BB]
 
 Continuing with the online interactive theme, we'll explore the world of making [Shiny](http://shiny.rstudio.com/) apps for truly interactive applications that allow for backend R functions reactive to user inputs to a clean web interface easily rendered with the most minimal amount of code. See the [shiny cheat sheet](http://shiny.rstudio.com/images/shiny-cheatsheet.pdf).
+
+<a href="wk08_shiny/" class="btn btn-primary btn-sm">Interactive Applications...</a>
 
 ### 9. NO CLASS
 
@@ -159,7 +161,7 @@ Because of [Bren Group Project](http://www.bren.ucsb.edu/research/gp_submit.html
 
 ### 10. Final Project Presentations
 
-#### Mar 11, 8:30-noon
+#### Mar 11, 8:30-10:30
 
 You'll share your final project presentations in class, describing the scientific question asked, methodological steps taken to gather and clean data, analytical steps and visualizations. This will be done with an Rmarkdown presentation having a Shiny app embedded with all code made available on a Github repository (ie at your group's org.github.io site).
 

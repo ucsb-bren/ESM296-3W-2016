@@ -30,6 +30,7 @@ for (f in list.files('refs/lit')){
 - [R for Data Science](http://r4ds.had.co.nz/) [<span class="octicon octicon-mark-github"></span>](https://github.com/hadley/r4ds) by Garrett Grolemund and Hadley Wickham
 - [Advanced R](http://adv-r.had.co.nz/) [<span class="octicon octicon-mark-github"></span>](https://github.com/hadley/adv-r) by Hadley Wickham
 - [Reproducible Research with R and Rstudio](http://christophergandrud.github.io/RepResR-RStudio/) by Christopher Gandrud
+- [Practical Data Science with R](http://www.amazon.com/Practical-Data-Science-Nina-Zumel/dp/1617291560/) by Nina Zumel, John Mount and Jim Porzak
 
 ## Courses
 

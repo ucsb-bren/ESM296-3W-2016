@@ -1,0 +1,23 @@
+---
+title: "extra"
+author: "Ben Best"
+date: "February 25, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## more
+
+- Any htmlwidget can be used within a Shiny app.
+
+# resources
+
+## Shiny Showcase
+
+- Shiny User Showcase: <https://www.rstudio.com/products/shiny/shiny-user-showcase/>
+- Shiny Gallery: <http://shiny.rstudio.com/gallery>
+- Show Me Shiny: <http://www.showmeshiny.com>
+- Shiny Apps: <http://shinyapps.org>
