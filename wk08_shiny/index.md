@@ -13,7 +13,7 @@ layout: default
     - NO office hours for BB this week, on again March 8th or by email
     - This assignment due next Thursday, March 10
     - final project presentations Friday, March 11
-  - [quick intro to **package** development](../wk07_package.html) (+ continuous integration)
+  - [quick intro to **package** development](../wk07_package.html)
   
 - 9:00 - 9:45 [Shiny **demo**](https://bdbest.shinyapps.io/shiny_demo)
 
