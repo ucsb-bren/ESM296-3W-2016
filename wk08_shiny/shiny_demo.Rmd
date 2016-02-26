@@ -1,13 +1,20 @@
 ---
 title: "Shiny Apps"
-subtitle: 'Environmental Informatics<br/><a href="http://bit.ly/ei-shiny">bit.ly/ei-shiny</a>'
 author: "Ben Best"
-date: "February 25, 2016"
-output: 
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+output:
   ioslides_presentation:
-    widescreen: true
-    incremental: true
+    incremental: yes
+    widescreen: yes
 runtime: shiny
+subtitle: Environmental Informatics
+resource_files:
+- img/new-shiny-app_myfirstapp.png
+- img/rstudio_file-new-rmarkdown-shiny.png
+- img/shiny_summary.png
+- img/shiny-arch_1-laptop.png
+- img/shiny-arch_2-server.png
+- img/shiny-arch_3-components.png
 ---
 
 ```{r setup, include=FALSE}
@@ -328,17 +335,15 @@ The cheat sheets is very helpful
 
 - [shiny-cheatsheet.pdf](../refs/cheatsheets/shiny-cheatsheet.pdf)
 
-    `r img(src='./img/shiny_summary.png', height=150)`
+    `r img(src='./img/shiny_summary.png', height=250)`
 
 # shiny essentials
-
-`r img(src='./img/shiny_summary.png', height=300)`
 
 ## shiny architecture: local
 
 Every Shiny app is maintained by a computer running R
 
-![](./img/shiny-arch_1-laptop.png)
+`r img(src='./img/shiny-arch_1-laptop.png', width=1000)`
 
 which can be your local laptop...
 
@@ -348,7 +353,7 @@ source: <http://bit.ly/shiny-quickstart-1>
 
 ... or a server on the web.
 
-![](./img/shiny-arch_2-server.png)
+`r img(src='./img/shiny-arch_2-server.png', width=1000)`
 
 source: <http://bit.ly/shiny-quickstart-1>
 
@@ -356,7 +361,7 @@ source: <http://bit.ly/shiny-quickstart-1>
 
 Either way, the user interface is rendered to a web browser. Elements of the user interface are populated by functions executed in R.
 
-![](./img/shiny-arch_3-components.png)
+`r img(src='./img/shiny-arch_3-components.png', height=450)`
 
 source: <http://bit.ly/shiny-quickstart-1>
 

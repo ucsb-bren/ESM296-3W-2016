@@ -19,7 +19,7 @@ layout: default
 
 - 9:45 - 10:00 **break**
 
-- 9:45 - 10:30 [Shiny **slides**](./wk08_shiny/shiny_lec.pdf)
+- 9:45 - 10:30 [Shiny **slides**](./shiny_lec.pdf)
   
 - 10:30 - 11:30 **tutorials, assignment**
   - Run through Shiny **Tutorial** lessons, placing shiny files in folders contained in the `env-info_hw` directory of your `<user>.github.io` repository. I recommend starting RStudio with the R project corresponding to your `<user>.github.io.Rproj`.

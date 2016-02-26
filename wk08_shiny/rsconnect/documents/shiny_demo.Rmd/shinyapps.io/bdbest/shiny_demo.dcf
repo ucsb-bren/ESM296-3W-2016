@@ -2,8 +2,8 @@ name: shiny_demo
 account: bdbest
 server: shinyapps.io
 appId: 85444
-bundleId: 380867
+bundleId: 381144
 url: https://bdbest.shinyapps.io/shiny_demo/
-when: 1456444356.14303
+when: 1456477100.1422
 asMultiple: FALSE
 asStatic: FALSE
