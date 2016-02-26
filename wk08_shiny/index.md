@@ -39,7 +39,7 @@ layout: default
 
 In your `wk08_shiny.Rmd`, add:
 
-1. **R chunk** with option `echo=F` containing the `shiny::runGitHub()` command to run at least one of the examples from the Shiny **Tutorial** after you pushed your app files to your `<user>.github.io` repository on Github.
+1. **R chunk** with option `eval=F` containing the `shiny::runGitHub()` command to run at least one of the examples from the Shiny **Tutorial** after you pushed your app files to your `<user>.github.io` repository on Github.
 
 1. [**Link**](http://rmarkdown.rstudio.com/authoring_basics.html#links) to the shinyapps.io URL of a Shiny app that you published.
 
