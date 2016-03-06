@@ -15,7 +15,14 @@ layout: default
     - final project presentations Friday, March 11
   - [quick intro to **package** development](../wk07_package.html)
   
-- 9:00 - 9:45 [Shiny **demo**](https://bdbest.shinyapps.io/shiny_demo)
+- 9:00 - 9:45 [Shiny **demo**](https://bdbest.shinyapps.io/shiny_demo). If unavailable, you can run locally with the following:
+  
+  ```r
+  setwd('~/Downloads') # change to sensible directory
+  download.file('https://github.com/ucsb-bren/env-info/archive/gh-pages.zip','env-info-gh-pages.zip')
+  unzip('env-info-gh-pages.zip')
+  rmarkdown::run('env-info-gh-pages/wk08_shiny/shiny_demo.Rmd')
+  ```
 
 - 9:45 - 10:00 **break**
 
