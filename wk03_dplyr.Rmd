@@ -252,6 +252,7 @@ Next, we'll use the libraries `readr`for improved versions of reading and writin
 # load libraries
 library(readr)
 library(dplyr)
+library(magrittr) # for %T>%
 
 # read in csv
 surveys = read_csv('../data/r-ecology/surveys.csv') 
@@ -278,6 +279,12 @@ Now we can read from the top, starting with the data frame surveys, to see a ver
 Arguments are minimal without repeating the name of the data frame, or even needing quotations in the case of column names.
 
 The "tee" operator `%T>%` is similar to the "then" operator `%>%` in that the left side is passed to the right, but is then also teed off as the output of the right side. This is useful in this case for `glimpse` since its output is simply printed to the Console and does not otherwise return the data frame needed to continue the sequence of operations. So the "tee" operator `%T>%` is most useful for injecting intermediate operations like printing or plotting that wouldn't otherwise output a return object for continuing operations.
+
+## Summary
+
+> Data scientists, according to interviews and expert estimates, spend from 50 percent to 80 percent of their time mired in the mundane labor of collecting and preparing data, before it can be explored for useful information. - [NYTimes (2014)](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)
+
+The `tidyr` and `dplyr` packages were created by [Hadley Wickham](https://github.com/hadley) of `ggplot2` fame. The "gg" in `ggplot2` stands for the "grammar of graphics". Hadley similarly considers the functionality of the two packages `dplyr` and `tidyr` to provide the "grammar of data manipulation".
 
 ## Presentation
 

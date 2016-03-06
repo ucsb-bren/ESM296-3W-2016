@@ -40,8 +40,9 @@ Each week you will be given an assignment in class, and we will spend some time 
 
 You will work in small groups for the final project. There will also be a short paper accompanied by an in class presentation to be submitted the final week of class. This project will provide a review of several examples of innovative applications of data analysis or computing that illustrate how the strategic use of informatics can change how we think about or approach solving environmental problems. One of these examples will present the cumulative analysis of your own small group's work applying analytical techniques to a custom dataset. The other examples should come from literature, and/or online in a related topic.
 
-- presentation: 20 min (incl. 5 min for questions)
-- paper: 5 pages
+- **presentation**: 20 min (incl. 5 min for questions). Please spend the first half the presentation in a traditional format of explaining the overall scientific question, background on the data and methods, and finally your results, hopefully with an aesthetically pleasing interactive visualizations. Spend the second half on presenting the biggest obstacles and solutions based on your experience, preferably diving into the data and code to share lessons learned with your fellow students.
+
+- **paper**: 5 pages
 
 The "live" paper will live on your class group website `<org>.github.io`, to be rendered from Rmarkdown to HTML, and contain the following headers:
 
