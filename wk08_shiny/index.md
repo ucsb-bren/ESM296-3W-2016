@@ -40,7 +40,7 @@ layout: default
 
 ## Assignment
 
-- Create `wk08_shiny.Rmd` in the `env-info_hw` folder of your `<user>.github.io` repository. 
+- Create a normal Rmarkdown HTML document `wk08_shiny.Rmd` in the `env-info_hw` folder of your `<user>.github.io` repository. 
 
 ### Individual
 
