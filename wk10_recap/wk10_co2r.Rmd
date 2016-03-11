@@ -1,0 +1,186 @@
+---
+title: "**co2r** R package"
+subtitle: "Environmental Informatics"
+author: "Ben Best"
+date: "March 8, 2016"
+output: 
+  ioslides_presentation:
+    css: env-info.css
+    incremental: true    
+#runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(htmltools)
+setwd('~/github/env-info/wk10_final')
+```
+
+
+## Read
+
+- xls: Excel
+- csv: comma-seperated
+    - read_csv >> read.csv: 
+        - default `stringsAsFactors=F`
+        - 
+- other...
+
+## Model
+
+- **broom**
+
+## Shiny WorldBank Data
+
+* [CO2 emissions (kt) | Data | Map](http://data.worldbank.org/indicator/EN.ATM.CO2E.KT/countries?display=map)
+* [CO2 emissions (metric tons per capita) | Data | Map](http://data.worldbank.org/indicator/EN.ATM.CO2E.PC/countries/1W?display=map)
+* [6 Graphs Explain the World’s Top 10 Emitters | World Resources Institute](http://www.wri.org/blog/2014/11/6-graphs-explain-world%E2%80%99s-top-10-emitters)
+* [Emissions | Global Carbon Atlas](http://www.globalcarbonatlas.org/?q=en/emissions)
+* [Global Emissions | Climate Change | US EPA](http://www3.epa.gov/climatechange/ghgemissions/global.html)
+* [These 6 Countries Are Responsible For 60% Of CO2 Emissions - Business Insider](http://www.businessinsider.com/these-6-countries-are-responsible-for-60-of-co2-emissions-2014-12)
+* [The carbon map](http://www.carbonmap.org/#Poverty)
+* [Accessing World Bank Data using Shiny dashboards and Dygraphs – orientr](https://orientr.wordpress.com/2015/09/18/accessing-world-bank-data-using-shiny-dashboards-and-dygraphs/)
+* [myTinyShinys](https://pssguy.shinyapps.io/worldBank/)
+* [CRAN - Package choroplethr](https://cran.r-project.org/web/packages/choroplethr/)
+* [Mapping World Bank Data](https://cran.r-project.org/web/packages/choroplethr/vignettes/f-world-bank-data.html)
+* [Animated Choropleths](https://cran.r-project.org/web/packages/choroplethr/vignettes/g-animated-choropleths.html)
+* [Accessing and plotting World Bank data with R](http://www.magesblog.com/2011/09/accessing-and-plotting-world-bank-data.html)
+* [googleVis 0.4.2 with support for shiny released on CRAN](http://www.magesblog.com/2013/03/googlevis-042-with-support-for-shiny.html)
+* [Shiny - Google Charts](http://shiny.rstudio.com/gallery/google-charts.html)
+* [walkerke/wdi-shiny: Shiny app to explore World Bank datasets](https://github.com/walkerke/wdi-shiny)
+* [https://walkerke.shinyapps.io/wdi-shiny/](https://walkerke.shinyapps.io/wdi-shiny/)
+* [Static and Motion Bubble Charts in Shiny for Exploring the Relationship between Population Growth, GDP per Capita, and Gini Coefficient - NYC Data Science AcademyNYC Data Science Academy](http://nycdatascience.com/static-and-motion-bubble-charts-in-shiny-for-exploring-the-relationship-between-population-growth-gdp-per-capita-and-gini-coefficient/)
+* [Total Population, Population Growth, GDP per Capita, and Gini Coefficient](http://216.230.228.88:3838/Bootcamp2-Project/Shiny-Project/Sara/Shiny%20Bubble%20App/)
+* [GoogleVis is AWESOME! Plotting World Bank Data with gvisMotionChart](https://dreamtolearn.com/ryan/data_analytics_viz/52)
+* [Using R language to make Data Analysis of World Bank datasets | Carlos Lacerda, MSc | LinkedIn](https://www.linkedin.com/pulse/using-r-programming-make-data-analysis-world-bank-carlos-lacerda-msc)
+
+## WorldBank API
+
+* [Intro to working with World Bank climate data in R](https://ropensci.org/usecases/rwbclimate_intro.html)
+* [Global Indicator Analyses with R - ProgrammingR](http://www.programmingr.com/content/global-indicator-analyses-with-r/)
+* [ropensci/opendata: CRAN OpenData Task View](https://github.com/ropensci/opendata)
+* [consider using R package and API for WorldBank data · Issue #11 · OHI-Science/ohiprep](https://github.com/OHI-Science/ohiprep/issues/11)
+* [CRAN - Package WDI](https://cran.r-project.org/web/packages/WDI/)
+* [vincentarelbundock/WDI](https://github.com/vincentarelbundock/WDI)
+
+
+## Outline
+
+- read
+
+## Do
+
+
+```{r load packages, eval=F}
+library(readr)
+library(readxl)
+library(dplyr)
+library(tidyr)
+#library(magrittr)
+#library(DT)
+
+# read in carbon dioxide emissions file
+co2 = read_excel('../data/co2_europa.xls', skip=12) %>%
+  rename(
+    country=Country) %>%
+  gather(year, ktons_co2, -country) %>%
+  filter(!country %in% c('World','EU28') & !is.na(country)) %>%
+  mutate(
+    year = as.integer(year))
+
+# read in population
+popn = read_csv('https://raw.githubusercontent.com/datasets/population/master/data/population.csv') %>%
+  select(country=`Country Name`, year=Year, popn=Value)
+
+# get lookup table to translate popn$country to co2$country
+cntry = read_csv('https://raw.githubusercontent.com/ucsb-bren/env-info/gh-pages/data/co2_country_to_popn.csv')
+```
+
+```{r, eval=F}
+# fix co2$country to match popn$country
+co2 = co2 %>%
+  left_join(
+    cntry, by = c('country'='country_co2')) %>%    
+  mutate(
+    country = ifelse(!is.na(country_popn), country_popn, country)) %>%
+  select(-country_popn)
+
+# calculate ktons CO2 per capita
+co2 = co2 %>%
+  left_join(
+    popn, by=c('country','year')) %>%
+  mutate(
+    tons_co2_per_capita = ktons_co2 / popn * 1000) %>%
+  arrange(desc(tons_co2_per_capita))
+
+# d %>%
+#   filter(is.na(popn)) %>%
+#   group_by(country) %>%
+#   summarize(n = n())
+
+# what is the trend between GDP and ktons_co2_per_capita?
+gdp = read_csv('https://raw.githubusercontent.com/datasets/gdp/master/data/gdp.csv') %>%
+  select(country=`Country Name`, year=Year, gdp=Value) %>%
+  mutate(gdp_m = gdp / 1000000) %>%
+  select(-gdp)
+
+# OPEC member countries: http://www.opec.org/opec_web/en/about_us/25.htm
+opec_countries = c('Algeria','Angola','Ecuador','Indonesia','Iran','Iraq','Kuwait','Libya','Nigeria','Qatar','Saudi Arabia','United Arab Emirates','Venezuela')
+
+# join
+co2 = co2 %>%
+  left_join(
+    gdp, by=c('country','year')) %>%
+  mutate(
+    opec = country %in% opec_countries)
+```
+
+
+```{r, eval=F}
+#library(broom)
+
+mdl = lm(tons_co2_per_capita ~ gdp_m + opec, data=co2)
+summary(mdl)
+
+plot(Sepal.Length ~ Petal.Width, data = iris)
+abline(fit1)
+
+library(ggplot2)
+
+v = co2 %>%
+  filter(year==2014) %>%
+  filter(!is.na(gdp_m), !is.na(tons_co2_per_capita))
+
+ggplot(v, aes(x=gdp_m, y=tons_co2_per_capita, color=factor(opec))) + 
+    stat_smooth(method='lm', formula=y ~ x, fullrange=T, alpha=0.15) +
+    geom_point() +
+    scale_x_log10() +
+    scale_y_log10()
+
+scale_colour_hue()(2)
+
+```
+
+
+
+## Testimonials (cont'd)
+
+- [Less Noise but More Money in Data Science - The New York Times](http://bits.blogs.nytimes.com/2015/04/28/less-noise-but-more-money-in-data-science/)
+
+- [Careers in Statistics Evolve and Expand | Science | AAAS](http://www.sciencemag.org/careers/2014/03/careers-statistics-evolve-and-expand)
+
+- [STEM crisis or STEM surplus? Yes and yes : Monthly Labor Review: U.S. Bureau of Labor Statistics](http://www.bls.gov/opub/mlr/2015/article/stem-crisis-or-stem-surplus-yes-and-yes.htm)
+
+- [Meeting The Growing Need for Data-Literate Employees](http://www.mastersindatascience.org/blog/the-data-economy/)
+
+- [FACT SHEET: President Obama Proposes New ‘First Job’ Funding to Connect Young Americans with Jobs and Skills Training to Start Their Careers | whitehouse.gov](https://www.whitehouse.gov/the-press-office/2016/02/04/fact-sheet-president-obama-proposes-new-first-job-funding-connect-young):
+
+> $500 million **Workforce Data Science and Innovation Fund** to create dynamic data sets on jobs, skills, and training to help training providers and workers keep pace with rapidly changing job needs
+
+
+## Notes
+
+- [quick intro to **package** development](../wk07_package.html) + continuous integration (CI), 
+- [The Hitchhiker's Guide to the Hadleyverse – Adolfo Álvarez](http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/)
+  - [Depsy](http://depsy.org/package/r/lubridate)
+  - [Depsy](http://depsy.org/person/329894)

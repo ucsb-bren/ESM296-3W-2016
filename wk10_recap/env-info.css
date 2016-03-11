@@ -1,0 +1,13 @@
+small {
+    font-size: 60%;
+}
+
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 80%;
+    border-left: 5px solid #eee;
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-left-color: rgb(238, 238, 238);
+}

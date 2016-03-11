@@ -166,6 +166,8 @@ Because of [Bren Group Project](http://www.bren.ucsb.edu/research/gp_submit.html
 
 You'll share your final project presentations in class, describing the scientific question asked, methodological steps taken to gather and clean data, analytical steps and visualizations. This will be done with an Rmarkdown presentation having a Shiny app embedded with all code made available on a Github repository (ie at your group's org.github.io site).
 
+<a href="wk10_recap/" class="btn btn-primary btn-sm">Final Recap...</a>
+
 ## Resources
 
 ### [Data]({{ site.baseurl }}/data)

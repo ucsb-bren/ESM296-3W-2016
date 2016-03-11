@@ -1,0 +1,111 @@
+---
+title: "Recap"
+subtitle: "Environmental Informatics"
+author: "Ben Best & Naomi Tague"
+date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
+output: 
+  ioslides_presentation:
+    css: env-info.css
+    incremental: true    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(htmltools)
+```
+
+## Environmental Informatics
+
+manipulating information to solve environmental problems
+
+`r img(src='./img/r4ds_data-science.png', width=800)`
+
+## Concepts (Tools)
+
+- **reproducible science**: versioning ([Git](https://git-scm.com/)), collaborating ([GitHub](https://github.com/)), and dynamic documents ([Rmarkdown](http://rmarkdown.rstudio.com/))
+- **data wrangling**: reading ([readr](https://github.com/hadley/readr), [readxl](https://github.com/hadley/readxl)), transforming ([dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html), [tidyr](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)) and data type formatting ([lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html), [stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html))
+- **programming**: data types, flow control, functions, packages ([devtools](http://ucsb-bren.github.io/env-info/wk07_package.html)), documentation (roxygen2) and testing (testthat)
+- **visualization**: static ([ggplot2](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)), interactive ([htmlwidgets](http://www.htmlwidgets.org/showcase_leaflet.html)) and applications ([shiny](http://shiny.rstudio.com/))
+
+## Hadley-verse
+
+R packages
+
+<div class="columns-2">
+`r img(src='img/hadleyverse.png', width=400)`
+
+[Hadley-verse](http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/) highlights:
+
+- `ggplot2`: "grammar of graphics"
+- `ggvis` interactive "grammar of graphics"
+- `dplyr`+`tidyr`:  "grammar of data manipulation"
+</div>
+
+## Testimonials
+
+- <blockquote>
+Data scientists, according to interviews and expert estimates, spend from **50 percent to 80 percent of their time** mired in the mundane labor of **collecting and preparing data**, before it can be explored for useful information. 
+<footer>
+[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html) (NY Times, 2014-08-18)
+</footer>
+</blockquote>
+
+- <blockquote>
+Data scientists are the **magicians of the Big Data era**... 190,000 projected **shortage** in data scientists by 2018. 
+<footer>
+[Universities Offer Courses in a Hot New Field: Data Science](http://www.nytimes.com/2013/04/14/education/edlife/universities-offer-courses-in-a-hot-new-field-data-science.html?_r=0) (NY Times, 2013-04-14)
+</footer>
+</blockquote>
+
+- <blockquote>
+[Data scientiests] responsible for a team of 1-3 earn [a median salary of] **$140,000** and those responsible for a team of 10 or more earn **$232,500**. By contrast, the mean average annual income for a lawyer in America was $131,990 in 2013, while doctors earned $183,940.
+<footer>
+[Tell Your Kids to Be Data Scientists, Not Doctors | WIRED](http://www.wired.com/insights/2014/06/tell-kids-data-scientists-doctors/) (Wired, 2014-06)
+</footer>
+</blockquote>
+
+<div class="notes">
+- close the gap!
+</div>
+
+## Local Groups
+
+There are a lot of great data science / R / environmental informatics community offerings in our area:
+
+- ![](img/logo_meetup.png) [Santa Barbara R Users Group](http://www.meetup.com/Santa-Barbara-R-Users-Group/): community R _~1x/qrtr_
+
+- ![](img/logo_meetup.png) [Santa Barbara Data Science](http://www.meetup.com/Santa-Barbara-Data-Science/): community big data _~1x/qrtr_
+
+- `r img(src='img/logo_facebook.jpg', width=32)` [Data Science at UCSB](https://www.facebook.com/DataScienceUCSB/): UCSB undergraduate seminars _~2x/qrtr_
+
+- `r img(src='img/logo_github.png', width=32)` [UCSB Data Science](http://ucsb-data-science.github.io/): UCSB graduate learning _~1x/2 wk_
+
+- `r img(src='img/logo_github.png', width=32)` [Eco Data Science](https://eco-data-science.github.io/): Bren/NCEAS graduate learning  _~3x/qrtr_
+
+- `r img(src='img/logo_software-carpentry.jpg', width=32)` [Software Carpentry Workshop](http://remi-daigle.github.io/2016-04-15-UCSB/): April 14-15th in UCSB Library Collaboratory  _1x_
+
+## Next Time
+
+- Less **Git** pain: 
+    - [Github Desktop](https://desktop.github.com)
+    - [New Assignment Github Workflow](http://ucsb-bren.github.io/env-info/wk05_joining.html#new-assignment-github-workflow)
+    - URL of knitted HTML to GauchoSpace
+- More website development with [GitHub Pages](https://pages.github.com/):
+    - Populate `index.Rmd` to render default `index.html`
+    - **Project** websites (`gh-pages` branch) + personal (`user.github.io`) + organization (`org.github.io`)
+    - Polished final project website (gh-pages branch) of R package having: wrangling + plotting functions + [Shiny app embedded](http://deanattali.com/2015/04/21/r-package-shiny-app/)
+
+## Feedback
+
+- **Topics**: 
+    - more/less of a given topic?
+    - additional topics? 
+- **Assignments**: 
+    - mix of group vs individual? 
+    - depth vs breadth?
+    - creative vs cookbook?
+- **Teaching**: 
+    - format: 3 hr block vs multi-day?
+    - stickies?
+    - mix of lecture vs demo vs worktime?
+    - online forum/issues/chat?
