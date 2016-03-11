@@ -64,6 +64,8 @@ The "live" paper will live on your class group website `<org>.github.io`, to be 
 - **References**
   Mention at least 5 references above and provide the proper ctiations here. These can be any combination of scientific literature and/or websites.
 
+**Due: 5pm Friday, March 18th** Submit URL of your final project "live" paper, such as `http://<org>.github.io`, into GauchoSpace [final project assignment](https://gauchospace.ucsb.edu/courses/mod/assign/view.php?id=541915).
+
 ## Schedule
 
 Listed by week...
