@@ -4,11 +4,11 @@ subtitle: "Environmental Informatics"
 author: "Ben Best & Naomi Tague"
 date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
 output:
-  html_document:
-    css: env-info.css
   ioslides_presentation:
     css: env-info.css
     incremental: true    
+  html_document:
+    css: env-info.css
 ---
 
 ```{r setup, include=FALSE}
