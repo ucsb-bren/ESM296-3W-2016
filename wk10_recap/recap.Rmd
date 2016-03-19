@@ -3,7 +3,9 @@ title: "Recap"
 subtitle: "Environmental Informatics"
 author: "Ben Best & Naomi Tague"
 date: '`r format(Sys.time(), "%Y-%m-%d %H:%M")`'
-output: 
+output:
+  html_document:
+    css: env-info.css
   ioslides_presentation:
     css: env-info.css
     incremental: true    
@@ -94,6 +96,7 @@ There are a lot of great data science / R / environmental informatics community 
     - Populate `index.Rmd` to render default `index.html`
     - **Project** websites (`gh-pages` branch) + personal (`user.github.io`) + organization (`org.github.io`)
     - Polished final project website (gh-pages branch) of R package having: wrangling + plotting functions + [Shiny app embedded](http://deanattali.com/2015/04/21/r-package-shiny-app/)
+- Install and use [RStudio Server Pro](https://www.rstudio.com/products/rstudio-server-pro/) + [Shiny Server Pro](https://www.rstudio.com/products/shiny/shiny-server2/) [**FREE** for teaching!](https://www.rstudio.com/pricing/academic-pricing/)
 
 ## Feedback
 
