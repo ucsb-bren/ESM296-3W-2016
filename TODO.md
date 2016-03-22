@@ -1,0 +1,13 @@
+- see TODO.md inside folders
+- see wk10_recap presentation
+- consider peer review sequencing
+  - see ConsPlan 2011 w/ Leah Gerber
+  - [Intro, Methods, Results and Discussion](https://en.wikipedia.org/wiki/IMRAD)
+    - write paper as you go w/ intro -- when form groups
+    - methods & results -- per module
+    - discussion -- as see results, at end
+  - revise as Github pull requests
+  - show how to do captions for figures & tables with numbering
+  - show how to add references
+  - [rmarkdown-example](https://github.com/bbest/rmarkdown-example)
+- use Rmarkdown templates with headers, example R chunks and points awarded per section to explicitly guide students on expectations
