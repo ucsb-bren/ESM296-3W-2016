@@ -11,3 +11,5 @@
   - show how to add references
   - [rmarkdown-example](https://github.com/bbest/rmarkdown-example)
 - use Rmarkdown templates with headers, example R chunks and points awarded per section to explicitly guide students on expectations
+
+- progress from vis w/ ggplot2 to interactive with [plot.ly](https://plot.ly/ggplot2/), using same ggplot2 code! ggplotly draws locally instead of in Plotly host.
