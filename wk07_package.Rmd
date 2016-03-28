@@ -353,7 +353,7 @@ See more:
 Now that you've created a complete R package, it's time to run a git **Commit**, and **Push** to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at [github.com/bbest/mypackage](https://github.com/bbest/mypackage), it would be:
 
 ```{r install_github}
-devtools::install_github('bbest/mypackage')
+devtools::install_github('bbest/mypackage', build_vignettes=T)
 ```
 
 Notice how the first argument is of the form `<owner>/<repository>`.

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Ben Best" />
 
-<meta name="date" content="2016-02-25" />
+<meta name="date" content="2016-03-28" />
 
 <title>Quick Intro to Package Development with devtools</title>
 
@@ -195,7 +195,7 @@ $(document).ready(function () {
 
 <h1 class="title">Quick Intro to Package Development with <code>devtools</code></h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-02-25</em></h4>
+<h4 class="date"><em>2016-03-28</em></h4>
 
 </div>
 
@@ -472,7 +472,7 @@ vignette(&#39;math&#39;)</code></pre>
 <div id="share-via-github_install" class="section level2">
 <h2>Share via <code>github_install()</code></h2>
 <p>Now that you’ve created a complete R package, it’s time to run a git <strong>Commit</strong>, and <strong>Push</strong> to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at <a href="https://github.com/bbest/mypackage">github.com/bbest/mypackage</a>, it would be:</p>
-<pre class="r"><code>devtools::install_github(&#39;bbest/mypackage&#39;)</code></pre>
+<pre class="r"><code>devtools::install_github(&#39;bbest/mypackage&#39;, build_vignettes = T)</code></pre>
 <p>Notice how the first argument is of the form <code>&lt;owner&gt;/&lt;repository&gt;</code>.</p>
 </div>
 
