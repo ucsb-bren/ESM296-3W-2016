@@ -17,7 +17,7 @@ Packages are the preferred way to bundle up functions, so others can easily use 
 The following quick introduction is based on distilling the most minimal example from the following:
 
 - [book: R packages](http://r-pkgs.had.co.nz/)
-- [cheat sheet: Package Development with `devtools`](../refs/cheatsheets/devtools-cheatsheet.pdf)
+- [cheat sheet: Package Development with `devtools`](./refs/cheatsheets/devtools-cheatsheet.pdf)
 
 The R code below walks you through creation of an R package called `mypackage` having the following top level file and folder (`*/`) structure:
 

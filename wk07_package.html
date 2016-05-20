@@ -7,11 +7,11 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <meta name="author" content="Ben Best" />
 
-<meta name="date" content="2016-03-28" />
+<meta name="date" content="2016-05-20" />
 
 <title>Quick Intro to Package Development with devtools</title>
 
@@ -86,6 +86,33 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
 <link rel="stylesheet" href="libs/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" />
 <link rel="stylesheet" href="libs/octicons-3.3.0/octicons.css" type="text/css" />
 <link rel="stylesheet" href="styles/styles.css" type="text/css" />
@@ -107,27 +134,6 @@ code {
 img {
   max-width:100%;
   height: auto;
-}
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -193,9 +199,10 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Quick Intro to Package Development with <code>devtools</code></h1>
+
+<h1 class="title toc-ignore">Quick Intro to Package Development with <code>devtools</code></h1>
 <h4 class="author"><em>Ben Best</em></h4>
-<h4 class="date"><em>2016-03-28</em></h4>
+<h4 class="date"><em>2016-05-20</em></h4>
 
 </div>
 
@@ -206,7 +213,7 @@ $(document).ready(function () {
 <p>The following quick introduction is based on distilling the most minimal example from the following:</p>
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/">book: R packages</a></li>
-<li><a href="../refs/cheatsheets/devtools-cheatsheet.pdf">cheat sheet: Package Development with <code>devtools</code></a></li>
+<li><a href="./refs/cheatsheets/devtools-cheatsheet.pdf">cheat sheet: Package Development with <code>devtools</code></a></li>
 </ul>
 <p>The R code below walks you through creation of an R package called <code>mypackage</code> having the following top level file and folder (<code>*/</code>) structure:</p>
 <pre><code>mypackage
@@ -268,7 +275,7 @@ License: What license is it under?
 LazyData: true</code></pre>
 <p>Notice how if you re-open RStudio to <code>mypackage.Rproj</code> an extra <strong>Build</strong> tab appears, per the <a href=".refs/cheatsheets/rstudio-IDE-cheatsheet.pdf">rstudio-IDE-cheatsheet</a>:</p>
 <div class="figure">
-<img src="wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png" alt="" />
+<img src="wk07_program2/img/rstudio-IDE-cheatsheet_package-writing.png" />
 
 </div>
 <p>See more:</p>
@@ -418,7 +425,7 @@ Status: 2 WARNINGs
 R CMD check logs
 Found warnings, treating as errors (as requested).</code></pre>
 <p>You can also see this “build failing” status at <a href="https://github.com/USER/mypackage">github.com/USER/mypackage</a> (for me <a href="https://github.com/bbest/mypackage">github.com/bbest/mypackage</a>) which shows the README.md at the bottom with the “travis shield”:</p>
-<p><img src="wk07_program2/img/travis-ci_build-failing.png" width="100"/></p>
+<img src="wk07_program2/img/travis-ci_build-failing.png" width="100"/>
 <p>Let’s fix these warnings to get the build to pass:</p>
 <ul>
 <li>use permissive MIT license. See <a href="https://github.com/blog/1530-choosing-an-open-source-license">Choosing an Open Source License</a>.</li>
@@ -443,7 +450,7 @@ cat(&quot;
 &quot;, file = &#39;R/data.R&#39;)
 document()</code></pre>
 <p>Now git commit and push again, to see if that fixes your build to build passing:</p>
-<p><img src="wk07_program2/img/travis-ci_build-passing.png" width="100"/></p>
+<img src="wk07_program2/img/travis-ci_build-passing.png" width="100"/>
 <p>See more:</p>
 <ul>
 <li><a href="http://r-pkgs.had.co.nz/check.html#travis">Checking a package · R packages</a></li>
@@ -472,7 +479,7 @@ vignette(&#39;math&#39;)</code></pre>
 <div id="share-via-github_install" class="section level2">
 <h2>Share via <code>github_install()</code></h2>
 <p>Now that you’ve created a complete R package, it’s time to run a git <strong>Commit</strong>, and <strong>Push</strong> to your Github repository. Then you can share a single command for anyone else to install the R package. For my R package, files at <a href="https://github.com/bbest/mypackage">github.com/bbest/mypackage</a>, it would be:</p>
-<pre class="r"><code>devtools::install_github(&#39;bbest/mypackage&#39;, build_vignettes = T)</code></pre>
+<pre class="r"><code>devtools::install_github(&#39;bbest/mypackage&#39;, build_vignettes=T)</code></pre>
 <p>Notice how the first argument is of the form <code>&lt;owner&gt;/&lt;repository&gt;</code>.</p>
 </div>
 
