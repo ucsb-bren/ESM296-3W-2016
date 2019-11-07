@@ -23,7 +23,7 @@ The content on this site draws extensively from these repositories:
 ## Testing
 
 ```bash
-cd ~/github/env-info
+cd ~/github/ESM296-3W-2016/
 bundle exec jekyll serve --baseurl ''
 /usr/local/bin/jekyll serve --baseurl ''
 ```

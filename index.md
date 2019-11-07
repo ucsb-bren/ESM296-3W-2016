@@ -23,7 +23,7 @@ Topics will be presented in weekly 3-hour modules mixing lectures and hands-on e
 - **Stickies**, aka post-it notes, available to pickup and return at front table, to be used sticking up off top of laptop screen:
   - <a href="#" class="btn btn-danger btn-sm">Help!</a> Use the red stickies to let us know you're stuck with a problem; spares arm raising.
   - <a href="#" class="btn btn-success btn-sm">Ready</a> Flag the green sticky once you're ready for the next step.
-- [**Issues**](https://github.com/ucsb-bren/env-info/issues) for ucsb-bren/env-info Github repository
+- [**Issues**](https://github.com/ucsb-bren/ESM296-3W-2016/issues) for ucsb-bren/env-info Github repository
 - [**Feedback**](https://goo.gl/forms/mIeOu7Xoaw) using Google Forms
 
 ### Workload
