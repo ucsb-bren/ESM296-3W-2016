@@ -1,7 +1,7 @@
 exclude:
   - vendor
   - "*.Rmd"
-baseurl: /env-info
+baseurl: /ESM296-3W-2016
 gems: # https://pages.github.com/versions/
   - jekyll-sitemap
   - jekyll-gist
